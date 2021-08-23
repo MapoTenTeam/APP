@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_01">
+
+    <fragment
+        android:id="@+id/home_01"
+        android:name="com.mapo.mapoten.ui.fragment.Home_01"
+        android:label="fragment_home_01"
+        tools:layout="@layout/fragment_home_01" />
+    <fragment
+        android:id="@+id/employment_01"
+        android:name="com.mapo.mapoten.ui.fragment.Employment_01"
+        android:label="fragment_employment_01"
+        tools:layout="@layout/fragment_employment_01" >
+        <action
+            android:id="@+id/action_employment_01_to_employment_01_01"
+            app:destination="@id/employment_01_01" />
+        <action
+            android:id="@+id/action_employment_01_to_employment_01_02"
+            app:destination="@id/employment_01_02" />
+    </fragment>
+    <fragment
+        android:id="@+id/consulting_01"
+        android:name="com.mapo.mapoten.ui.fragment.Consulting_01"
+        android:label="fragment_consulting_01"
+        tools:layout="@layout/fragment_consulting_01" />
+    <fragment
+        android:id="@+id/account_01"
+        android:name="com.mapo.mapoten.ui.fragment.Account_01"
+        android:label="fragment_account_01"
+        tools:layout="@layout/fragment_account_01" >
+        <action
+            android:id="@+id/action_account_01_to_account_01_01"
+            app:destination="@id/account_01_01" />
+        <action
+            android:id="@+id/action_account_01_to_account_01_02"
+            app:destination="@id/account_01_02" />
+        <action
+            android:id="@+id/action_account_01_to_account_01_03"
+            app:destination="@id/account_01_03" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_01"
+        android:name="com.mapo.mapoten.ui.fragment.Login_01"
+        android:label="fragment_login_01"
+        tools:layout="@layout/fragment_login_01">
+        <action
+            android:id="@+id/action_login_01_to_home_01"
+            app:destination="@id/home_01" />
+        <action
+            android:id="@+id/action_login_01_to_login_01_02"
+            app:destination="@id/login_01_02" />
+        <action
+            android:id="@+id/action_login_01_to_login_01_01"
+            app:destination="@id/login_01_01" />
+        <action
+            android:id="@+id/action_login_01_to_login_02"
+            app:destination="@id/login_02" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_01_01"
+        android:name="com.mapo.mapoten.ui.fragment.Login_01_01"
+        android:label="fragment_login_01_01"
+        tools:layout="@layout/fragment_login_01_01" />
+    <fragment
+        android:id="@+id/login_01_02"
+        android:name="com.mapo.mapoten.ui.fragment.Login_01_02"
+        android:label="fragment_login_01_02"
+        tools:layout="@layout/fragment_login_01_02" />
+    <fragment
+        android:id="@+id/login_02"
+        android:name="com.mapo.mapoten.ui.fragment.Login_02"
+        android:label="fragment_login_02"
+        tools:layout="@layout/fragment_login_02" />
+    <fragment
+        android:id="@+id/employment_01_01"
+        android:name="com.mapo.mapoten.ui.fragment.Employment_01_01"
+        android:label="fragment_employment_01_01"
+        tools:layout="@layout/fragment_employment_01_01" />
+    <fragment
+        android:id="@+id/employment_01_02"
+        android:name="com.mapo.mapoten.ui.fragment.Employment_01_02"
+        android:label="fragment_employment_01_02"
+        tools:layout="@layout/fragment_employment_01_02" />
+    <fragment
+        android:id="@+id/account_01_01"
+        android:name="com.mapo.mapoten.ui.fragment.Account_01_01"
+        android:label="fragment_account_01_01"
+        tools:layout="@layout/fragment_account_01_01" />
+    <fragment
+        android:id="@+id/account_01_02"
+        android:name="com.mapo.mapoten.ui.fragment.Account_01_02"
+        android:label="fragment_account_01_02"
+        tools:layout="@layout/fragment_account_01_02" />
+    <fragment
+        android:id="@+id/account_01_03"
+        android:name="com.mapo.mapoten.ui.fragment.Account_01_03"
+        android:label="fragment_account_01_03"
+        tools:layout="@layout/fragment_account_01_03" />
+</navigation>
