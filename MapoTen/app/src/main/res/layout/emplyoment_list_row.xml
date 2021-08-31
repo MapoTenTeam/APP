@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="108dp"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="8dp"
+    android:background="@drawable/bg_employment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        >
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="일반채용 정규직"
+            android:textSize="10sp"
+            android:gravity="bottom"
+            android:lineSpacingExtra="6sp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:text="승인 심사중"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingHorizontal="4dp"
+            android:textColor="#5F5F5F"
+            android:lineSpacingExtra="6sp"
+            android:background="@drawable/bg_employment_state"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="마포구 영영사 구인"
+        android:textColor="#474747"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/registrationDate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:textSize="10sp"
+        android:layout_marginBottom="8dp"
+        android:text="작성일: 2021년 08월 31일 19시24분"/>
+</LinearLayout>
