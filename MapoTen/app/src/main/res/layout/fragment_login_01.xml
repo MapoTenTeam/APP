@@ -13,10 +13,16 @@
         android:text="Login_01"/>
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/person_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인"/>
+
+    <Button
+        android:id="@+id/business_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기업로그인"/>
     <Button
         android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"
