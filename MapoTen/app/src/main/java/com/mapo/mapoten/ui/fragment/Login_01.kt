@@ -16,9 +16,12 @@ class Login_01 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_login_01, container, false)
-        view.findViewById<Button>(R.id.sign_in_button).setOnClickListener {
+        view.findViewById<Button>(R.id.person_login_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.home_01)
         } //로그인 성공시 홈화면으로 이동
+        view.findViewById<Button>(R.id.business_login_button).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.businessAccount_01)
+        } //기업 로그인 성공시 기업마이페이지으로 이동
         view.findViewById<Button>(R.id.sign_up_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.login_02)
         } //회원가입 화면으로 이동

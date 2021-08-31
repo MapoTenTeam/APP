@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.BusinessAccount_01">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기업 마이페이지"
+            android:textSize="30dp"/>
+
+        <Button
+            android:id="@+id/business_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회사프로필 수정"/>
+        <Button
+            android:id="@+id/person_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원 정보 수정"/>
+        <Button
+            android:id="@+id/password_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 변경"/>
+        <Button
+            android:id="@+id/career_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채용공고 목록"/>
+
+    </LinearLayout>
+
+</FrameLayout>
