@@ -6,19 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.BusinessAccount_01_04">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="16dp"
         tools:context=".MainActivity">
 
+        <ImageView
+            android:id="@+id/sortIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_sort_24"
+            android:layout_marginTop="24dp"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/employmentPostingBoard"
+            app:layout_constraintEnd_toStartOf="@id/filter"
+            tools:layout_editor_absoluteY="32dp" />
         <Spinner
             android:id="@+id/filter"
-            android:layout_width="140dp"
-            android:layout_height="20dp"
+            android:theme="@style/SpinnerTheme"
+            android:layout_width="wrap_content"
+            android:gravity="start"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_spinner"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:paddingVertical="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/employmentPostingBoard"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView

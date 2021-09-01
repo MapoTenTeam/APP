@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpinnerDivideStyle">
+        <item name="android:divider">#50c4c4c4</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+    <style name="SpinnerTheme" parent="Theme.AppCompat.Light">
+        <item name="android:dropDownListViewStyle">@style/SpinnerDivideStyle</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>
