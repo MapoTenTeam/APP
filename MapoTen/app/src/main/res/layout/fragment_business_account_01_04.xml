@@ -13,8 +13,13 @@
         android:orientation="horizontal"
         android:background="#50c4c4c4"
         app:layout_constraintTop_toTopOf="parent"
-
-        />
+        >
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="뒤로가기 테스트"/>
+    </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,6 +44,7 @@
                 android:button="@null"
                 android:text="전체"
                 android:paddingHorizontal="4dp"
+                android:buttonTint="#5061FF"
                 android:textAlignment="center"
                 android:textColor="@drawable/radio_button_text_color"
                 android:textSize="12sp"
@@ -52,8 +58,10 @@
                 android:background="@drawable/bg_radio_button"
                 android:button="@null"
                 android:text="승인심사중"
+                android:checked="true"
+                android:paddingHorizontal="10dp"
+                android:buttonTint="#5061FF"
                 android:textAlignment="center"
-                android:paddingHorizontal="6dp"
                 android:textColor="@drawable/radio_button_text_color"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -66,8 +74,9 @@
                 android:background="@drawable/bg_radio_button"
                 android:button="@null"
                 android:text="승인"
-                android:textAlignment="center"
                 android:paddingHorizontal="4dp"
+                android:buttonTint="#5061FF"
+                android:textAlignment="center"
                 android:textColor="@drawable/radio_button_text_color"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -79,7 +88,8 @@
                 android:background="@drawable/bg_radio_button"
                 android:button="@null"
                 android:text="비승인"
-                android:paddingHorizontal="4dp"
+                android:paddingHorizontal="10dp"
+                android:buttonTint="#5061FF"
                 android:textAlignment="center"
                 android:textColor="@drawable/radio_button_text_color"
                 android:textSize="12sp"

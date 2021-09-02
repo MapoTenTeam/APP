@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
 import com.mapo.mapoten.ui.adpater.EmploymentPostingAdapter
@@ -31,7 +32,12 @@ class BusinessAccount_01_04 : Fragment() {
         getAllPosting()
         binding.allStates.isChecked = true
 
+        binding.backButton.setOnClickListener {
+            Navigation.findNavController(view).navigateUp()
+        }
+
         binding.filter.setOnCheckedChangeListener { radioGroup, position ->
+
 
             testList.clear()
             when(position){
@@ -57,16 +63,16 @@ class BusinessAccount_01_04 : Fragment() {
 
     private fun getAllPosting() {
         testList.apply {
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
             adapter.data = testList
             adapter.notifyDataSetChanged()
         }
@@ -76,7 +82,7 @@ class BusinessAccount_01_04 : Fragment() {
         testList.apply {
             add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
             adapter.data = testList
             adapter.notifyDataSetChanged()
         }
@@ -84,9 +90,9 @@ class BusinessAccount_01_04 : Fragment() {
 
     private fun getApprovalPosting() {
         testList.apply {
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
             adapter.data = testList
             adapter.notifyDataSetChanged()
         }
@@ -96,7 +102,7 @@ class BusinessAccount_01_04 : Fragment() {
         testList.apply {
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
+            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
             add( EmploymentPostingContents("채용공고제목", "일반일자리","승인심사중", "등록일: 2021년 08월 31일 17시 34분"))
             adapter.data = testList
             adapter.notifyDataSetChanged()

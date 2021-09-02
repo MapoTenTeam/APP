@@ -60,7 +60,6 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
             }
 
             itemView.setOnClickListener {
-                Toast.makeText(context, state.text, Toast.LENGTH_SHORT).show()
                 val bundle = bundleOf("state" to state.text)
                 Navigation.findNavController(itemView).navigate(R.id.employmentDetail_01, bundle)
             }

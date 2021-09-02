@@ -3,17 +3,16 @@ package com.mapo.mapoten.ui.fragment
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.mapo.mapoten.R
+import androidx.navigation.Navigation
 import com.mapo.mapoten.databinding.FragmentEmploymentDetail01Binding
 
 class EmploymentDetail_01 : Fragment() {
     lateinit var binding : FragmentEmploymentDetail01Binding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,13 +21,18 @@ class EmploymentDetail_01 : Fragment() {
         binding = FragmentEmploymentDetail01Binding.inflate(inflater, container, false)
         val view = binding.root
 
-
         binding.state.text = arguments?.getString("state")
 
         changeStateBackground()
 
+
+        binding.backButton.setOnClickListener {
+            Navigation.findNavController(view).navigateUp()
+        }
+
         return view
     }
+
 
     private fun changeStateBackground(){
         val stateBackground : GradientDrawable = binding.state.background as GradientDrawable
