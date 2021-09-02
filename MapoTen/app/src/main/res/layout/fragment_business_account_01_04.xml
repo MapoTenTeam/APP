@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:background="@drawable/bg_employment_state"
+        android:background="#50c4c4c4"
         app:layout_constraintTop_toTopOf="parent"
 
         />
@@ -53,7 +53,7 @@
                 android:button="@null"
                 android:text="승인심사중"
                 android:textAlignment="center"
-                android:paddingHorizontal="4dp"
+                android:paddingHorizontal="6dp"
                 android:textColor="@drawable/radio_button_text_color"
                 android:textSize="12sp"
                 android:textStyle="bold" />

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
@@ -60,7 +61,8 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
 
             itemView.setOnClickListener {
                 Toast.makeText(context, state.text, Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(itemView).navigate(R.id.employmentDetail_01)
+                val bundle = bundleOf("state" to state.text)
+                Navigation.findNavController(itemView).navigate(R.id.employmentDetail_01, bundle)
             }
 
         }

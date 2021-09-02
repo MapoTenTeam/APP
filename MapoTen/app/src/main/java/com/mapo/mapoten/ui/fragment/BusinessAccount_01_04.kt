@@ -23,7 +23,6 @@ class BusinessAccount_01_04 : Fragment() {
 
         binding = FragmentBusinessAccount0104Binding.inflate(inflater, container, false)
         val view = binding.root
-        setHasOptionsMenu(true)
 
         adapter  = EmploymentPostingAdapter(this.requireContext())
         binding.employmentPostingBoard.adapter = adapter
