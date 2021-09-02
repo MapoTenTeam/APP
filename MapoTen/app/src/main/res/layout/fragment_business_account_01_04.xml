@@ -6,41 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.BusinessAccount_01_04">
 
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_employment_state"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="90dp"
         tools:context=".MainActivity">
 
-        <ImageView
-            android:id="@+id/sortIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_sort_24"
-            android:layout_marginTop="24dp"
-            android:paddingVertical="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/employmentPostingBoard"
-            app:layout_constraintEnd_toStartOf="@id/filter"
-            tools:layout_editor_absoluteY="32dp" />
-        <Spinner
+        <RadioGroup
             android:id="@+id/filter"
-            android:theme="@style/SpinnerTheme"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_height="24dp"
-            android:background="@drawable/bg_spinner"
-            android:layout_marginTop="24dp"
-            android:paddingVertical="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/employmentPostingBoard"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/allStates"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_radio_button"
+                android:button="@null"
+                android:text="전체"
+                android:paddingHorizontal="4dp"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_button_text_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/judging"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_radio_button"
+                android:button="@null"
+                android:text="승인심사중"
+                android:textAlignment="center"
+                android:paddingHorizontal="4dp"
+                android:textColor="@drawable/radio_button_text_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/approval"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_radio_button"
+                android:button="@null"
+                android:text="승인"
+                android:textAlignment="center"
+                android:paddingHorizontal="4dp"
+                android:textColor="@drawable/radio_button_text_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/reject"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_radio_button"
+                android:button="@null"
+                android:text="비승인"
+                android:paddingHorizontal="4dp"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_button_text_color"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/employmentPostingBoard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter"
             tools:listitem="@layout/emplyoment_list_row" />

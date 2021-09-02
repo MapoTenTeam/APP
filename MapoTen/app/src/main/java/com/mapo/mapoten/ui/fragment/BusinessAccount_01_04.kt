@@ -2,11 +2,8 @@ package com.mapo.mapoten.ui.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import com.mapo.mapoten.R
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
 import com.mapo.mapoten.ui.adpater.EmploymentPostingAdapter
@@ -33,43 +30,29 @@ class BusinessAccount_01_04 : Fragment() {
 
         // test
         getAllPosting()
+        binding.allStates.isChecked = true
 
-        // selectbox
-        val spinnerItem = resources.getStringArray(R.array.states)
-        val spinnerAdapter  = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItem)
-        binding.filter.adapter = spinnerAdapter
-        binding.filter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        binding.filter.setOnCheckedChangeListener { radioGroup, position ->
 
-                testList.clear()
-                when(position){
-                    0 -> {
-                        Toast.makeText(context, "전체", Toast.LENGTH_SHORT).show()
-                        getAllPosting()
-                    }
-                    1 -> {
-                        Toast.makeText(context, "승인심사중", Toast.LENGTH_SHORT).show()
-                        getJudgingPosting()
-                    }
-                    2 -> {
-                        Toast.makeText(context, "승인", Toast.LENGTH_SHORT).show()
-                        getApprovalPosting()
-                    }
-                    3 -> {
-                        Toast.makeText(context, "비승인", Toast.LENGTH_SHORT).show()
-                        getRejectPosting()
-                    }
-                    else -> {
-                        Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()}
+            testList.clear()
+            when(position){
+                R.id.allStates -> {
+                    getAllPosting()
                 }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                R.id.judging -> {
+                    getJudgingPosting()
+                }
+                R.id.approval -> {
+                    getApprovalPosting()
+                }
+                R.id.reject -> {
+                    getRejectPosting()
+                }
+                else -> {
+                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()}
             }
 
         }
-
         return view
     }
 
