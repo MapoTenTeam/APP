@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/activity_main.xml" value="0.17603850050658562" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_account_01.xml" value="0.17603850050658562" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_account_01_01.xml" value="0.17603850050658562" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_account_01_02.xml" value="0.17603850050658562" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_account_01_03.xml" value="0.17603850050658562" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_home_01.xml" value="0.35208333333333336" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_01_02.xml" value="0.35208333333333336" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
