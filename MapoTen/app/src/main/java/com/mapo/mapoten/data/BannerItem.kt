@@ -7,5 +7,7 @@ package com.mapo.mapoten.data
  * @desc
  */
 data class BannerItem(
-    val homeImage: Int
+    val homeImage: Int,
+    val homeName: String = "",
+    val homeContent: String = ""
 )

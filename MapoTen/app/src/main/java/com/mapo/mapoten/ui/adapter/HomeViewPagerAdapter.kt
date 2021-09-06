@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.BannerItem
@@ -19,7 +20,9 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
     : RecyclerView.Adapter<HomeViewPagerAdapter.BannerHolder>() {
 
     inner class BannerHolder(rowRoot: View) : RecyclerView.ViewHolder(rowRoot) {
-        val bannerImage : ImageView = rowRoot.findViewById(R.id.iv_bannerItem)
+        val bannerImage : ImageView = rowRoot.findViewById(R.id.iv_bannerImage)
+        val bannerName : TextView = rowRoot.findViewById(R.id.tv_bannerName)
+        val bannerContent : TextView = rowRoot.findViewById(R.id.tv_bannerContent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerHolder {
@@ -31,6 +34,8 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
         val bannerData = bannerItemList[position%5]
         with(holder) {
             bannerImage.setImageResource(bannerData.homeImage)
+            bannerName.text = bannerData.homeName
+            bannerContent.text = bannerData.homeContent
         }
     }
 
