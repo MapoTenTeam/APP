@@ -3,25 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19583333333333333" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/button_background_radius30.xml" value="0.34933605720122574" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/ic_baseline_arrow_back_16.xml" value="0.35625" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/ic_baseline_navigate_next_12.xml" value="0.2379979570990807" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/ic_launcher_background.xml" value="0.34933605720122574" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/input_stroke_radius30.xml" value="0.34933605720122574" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/activity_main.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/button_background_stroke.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01_01.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01.xml" value="0.33" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_01.xml" value="0.31875" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_02.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_03.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_04.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_consulting_01.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_home_01.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_login_01.xml" value="0.3359375" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/menu/nav_bottom.xml" value="0.67" />
+        <entry key="..\:/Users/user/Desktop/git/APP/MapoTen/app/src/main/res/menu/nav_bottom.xml" value="0.3515625" />
       </map>
     </option>
   </component>
