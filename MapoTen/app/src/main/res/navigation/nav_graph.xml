@@ -9,7 +9,11 @@
         android:id="@+id/home_01"
         android:name="com.mapo.mapoten.ui.fragment.Home_01"
         android:label="fragment_home_01"
-        tools:layout="@layout/fragment_home_01" />
+        tools:layout="@layout/fragment_home_01" >
+        <action
+            android:id="@+id/action_home_01_to_employment_Detail_01"
+            app:destination="@id/employment_Detail_01" />
+    </fragment>
     <fragment
         android:id="@+id/employment_01"
         android:name="com.mapo.mapoten.ui.fragment.Employment_01"
@@ -137,14 +141,10 @@
         android:id="@+id/businessAccount_01_04"
         android:name="com.mapo.mapoten.ui.fragment.BusinessAccount_01_04"
         android:label="fragment_business_account_01_04"
-        tools:layout="@layout/fragment_business_account_01_04" >
-        <action
-            android:id="@+id/action_businessAccount_01_04_to_employmentDetail_01"
-            app:destination="@id/employmentDetail_01" />
-    </fragment>
+        tools:layout="@layout/fragment_business_account_01_04" />
     <fragment
-        android:id="@+id/employmentDetail_01"
-        android:name="com.mapo.mapoten.ui.fragment.EmploymentDetail_01"
-        android:label="fragment_employment_detail_01"
-        tools:layout="@layout/fragment_employment_detail_01" />
+        android:id="@+id/employment_Detail_01"
+        android:name="com.mapo.mapoten.ui.fragment.Employment_Detail_01"
+        android:label="fragment_employment__detail_01"
+        tools:layout="@layout/fragment_employment__detail_01" />
 </navigation>
