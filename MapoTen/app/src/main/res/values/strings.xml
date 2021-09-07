@@ -2,4 +2,19 @@
     <string name="app_name">MapoTen</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- LOGIN -->
+    <string name="login">로그인</string>
+    <string name="auto_login">자동로그인</string>
+    <string name="id">아이디</string>
+    <string name="passWord">비밀번호</string>
+    <string name="signUp_personal">이메일로 개인회원 가입</string>
+    <string name="signUp_business">이메일로 기업회원 가입</string>
+    <string name="find_id">아이디찾기</string>
+    <string name="find_id_personal">개인아이디찾기</string>
+    <string name="find_id_business">기업아이디찾기</string>
+    <string name="find_pwd">비밀번호찾기</string>
+    <string name="or">또는</string>
+
+
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 
@@ -16,17 +17,23 @@ class Login_01 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_login_01, container, false)
-        view.findViewById<Button>(R.id.sign_in_button).setOnClickListener {
+        view.findViewById<Button>(R.id.btn_sign_in).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.home_01)
         } //로그인 성공시 홈화면으로 이동
-        view.findViewById<Button>(R.id.sign_up_button).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.login_02)
-        } //회원가입 화면으로 이동
-        view.findViewById<Button>(R.id.forgot_id_button).setOnClickListener {
+        view.findViewById<Button>(R.id.btn_signUp_personal).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.login_02_01)
+        } //개인 회원가입 화면으로 이동
+        view.findViewById<Button>(R.id.btn_signUp_business).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.login_02_02)
+        } //기업 회원가입 화면으로 이동
+        view.findViewById<TextView>(R.id.tv_findId_personal).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.login_01_01)
-        } //아이디 찾기 화면으로 이동
-        view.findViewById<Button>(R.id.forgot_pwd_button).setOnClickListener {
+        } //개인 아이디 찾기 화면으로 이동
+        view.findViewById<TextView>(R.id.tv_findId_business).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.login_01_02)
+        } //기업 아이디 찾기 화면으로 이동
+        view.findViewById<TextView>(R.id.tv_find_pw).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.login_01_03)
         } //비밀번호 찾기 화면으로 이동
         return view
     }

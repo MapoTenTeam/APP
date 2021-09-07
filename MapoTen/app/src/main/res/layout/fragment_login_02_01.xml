@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.Login_01_02">
+    tools:context=".ui.fragment.Login_02_01">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/find_id_business" />
+        android:text="@string/signUp_personal"/>
 
 </FrameLayout>

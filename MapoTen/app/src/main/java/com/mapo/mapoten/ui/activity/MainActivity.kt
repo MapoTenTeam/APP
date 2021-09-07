@@ -19,15 +19,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun BottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.login_01 ||
-                    destination.id == R.id.login_02 ||
-                    destination.id == R.id.login_01_01 ||
-                    destination.id == R.id.login_01_02) {
+                destination.id == R.id.login_02_01 ||
+                destination.id == R.id.login_01_01 ||
+                destination.id == R.id.login_01_02 ||
+                destination.id == R.id.login_01_03
+            ) {
                 bottomNavigationView.visibility = View.GONE
             } else {
                 bottomNavigationView.visibility = View.VISIBLE

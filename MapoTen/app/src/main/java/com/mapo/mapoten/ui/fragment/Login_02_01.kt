@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.mapo.mapoten.R
 
-
-class Login_01_02 : Fragment() {
+class Login_02_01 : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_01_02, container, false)
+        return inflater.inflate(R.layout.fragment_login_02_01, container, false)
     }
-
 }
