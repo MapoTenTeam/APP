@@ -8,21 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    //메인 공통 컬러
+    <color name="main_darkBlue">#4C67A6</color>
+    <color name="main_skyBlue">#7C9FF2</color>
 
-    <color name="gray">#CCCCCC</color>
-    <color name="disabled">#B1B1B1</color>
-    <color name="text_color1">#5F5F5F</color>
-    <color name="text_color2">#666666</color>
-    <color name="text_color3">#999999</color>
-    <color name="main_color1">#7C9FF2</color>
-    <color name="main_color1_alpha">#4D7C9FF2</color>
-
-    <color name="main_color2">#4C67A6</color>
-    <color name="main_color2_alpha">#4D4C67A6</color>
-
-
-
-
-
+    //공통 텍스트 컬러
+    <color name="text_darkGrey">#5F5F5F</color>
+    <color name="text_lightGrey">#C4C4C4</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_darkBlue">#4C67A6</color>
 
 </resources>
