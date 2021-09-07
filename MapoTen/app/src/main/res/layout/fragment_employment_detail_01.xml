@@ -10,15 +10,27 @@
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:orientation="horizontal"
-        android:background="#50c4c4c4"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         >
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="뒤로가기 테스트"/>
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
+            android:text="채용공고목록"
+            android:textColor="#5F5F5F"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#50c4c4c4"
+            />
     </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
