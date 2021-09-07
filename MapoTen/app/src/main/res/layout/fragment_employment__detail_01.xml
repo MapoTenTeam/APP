@@ -47,7 +47,8 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/main_skyBlue">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -99,8 +100,12 @@
                     android:id="@+id/bt_focus_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="상단으로 이동"
-                    android:layout_gravity="right"/>
+                    android:text="상단으로(임시)"
+                    android:layout_gravity="right"
+                    android:background="@drawable/button_background_radius30"
+                    android:textColor="@color/text_white"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"/>
 
             </LinearLayout>
 
@@ -111,10 +116,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button"
+        android:background="@drawable/button_background_radius30"
         android:layout_gravity="bottom"
         android:text="지원하기"
         android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/text_white"/>
 
 </LinearLayout>
