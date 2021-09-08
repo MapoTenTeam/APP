@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.BusinessAccount_01_04">
@@ -10,28 +10,24 @@
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:orientation="vertical"
         android:background="#ffffff"
         android:gravity="center_vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
         <Button
             android:id="@+id/backButton"
+            style="@style/BackButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
-            android:text="채용공고목록"
-            android:textColor="#5F5F5F"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:text="채용공고목록" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#50c4c4c4"
-            />
+            android:background="#50c4c4c4" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,67 +45,36 @@
 
             <RadioButton
                 android:id="@+id/allStates"
+                style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_radio_button"
-                android:button="@null"
-                android:text="전체"
                 android:checked="true"
                 android:paddingHorizontal="4dp"
-                android:buttonTint="#5061FF"
-                android:textAlignment="center"
-                android:textColor="@drawable/radio_button_text_color"
-                android:drawableLeft="@drawable/ic_radio_button_check"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text="전체" />
 
             <RadioButton
                 android:id="@+id/judging"
+                style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_radio_button"
-                android:button="@null"
-                android:text=" 승인심사중"
-                android:drawableLeft="@drawable/ic_radio_button_check"
                 android:paddingHorizontal="8dp"
-                android:buttonTint="#5061FF"
-                android:textAlignment="center"
-                android:textColor="@drawable/radio_button_text_color"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text=" 승인심사중" />
 
             <RadioButton
                 android:id="@+id/approval"
+                style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:drawableLeft="@drawable/ic_radio_button_check"
-                android:background="@drawable/bg_radio_button"
-                android:button="@null"
-                android:text="승인"
                 android:paddingHorizontal="4dp"
-                android:buttonTint="#5061FF"
-                android:textAlignment="center"
-                android:textColor="@drawable/radio_button_text_color"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text="승인" />
 
             <RadioButton
                 android:id="@+id/reject"
+                style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
-                android:background="@drawable/bg_radio_button"
-                android:button="@null"
-                android:text=" 비승인"
-                android:drawableLeft="@drawable/ic_radio_button_check"
                 android:paddingHorizontal="8dp"
-                android:buttonTint="#5061FF"
-                android:textAlignment="center"
-                android:textColor="@drawable/radio_button_text_color"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text=" 비승인" />
         </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
