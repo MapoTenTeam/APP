@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:hint="현재 비밀번호 *"
+                android:hint=" 현재 비밀번호 *"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -102,10 +102,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:hint="현재 비밀번호를 입력해주세요"
                     android:inputType="textPassword"
                     android:paddingVertical="10dp"
                     android:paddingStart="14dp"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/text_lightGrey"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:hint="새 비밀번호 *"
+                android:hint=" 새 비밀번호 *"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -130,10 +130,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:hint="새 비밀번호를 입력해주세요"
                     android:inputType="textPassword"
                     android:paddingVertical="10dp"
                     android:paddingStart="14dp"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/text_lightGrey"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -143,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:hint="새 비밀번호 확인 *"
+                android:hint=" 새 비밀번호 확인 *"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -158,10 +158,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:hint="새 비밀번호를 다시 입력해주세요"
                     android:inputType="textPassword"
                     android:paddingVertical="10dp"
                     android:paddingStart="14dp"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/text_lightGrey"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -174,7 +174,7 @@
                 android:background="@drawable/bg_password_button"
                 android:text="비밀번호 변경하기"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
