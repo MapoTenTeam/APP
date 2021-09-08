@@ -61,7 +61,7 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
 
             itemView.setOnClickListener {
                 val bundle = bundleOf("state" to state.text)
-                Navigation.findNavController(itemView).navigate(R.id.employmentDetail_01, bundle)
+                Navigation.findNavController(itemView).navigate(R.id.bussinessAccountEmploymentDetail_01, bundle)
             }
 
         }
