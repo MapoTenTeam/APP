@@ -11,10 +11,14 @@
     //메인 공통 컬러
     <color name="main_darkBlue">#4C67A6</color>
     <color name="main_skyBlue">#7C9FF2</color>
+    
+    //버튼 컬러
+    <color name="inactive_btn">#CCCCCC</color>
 
     //공통 텍스트 컬러
     <color name="text_darkGrey">#5F5F5F</color>
     <color name="text_lightGrey">#C4C4C4</color>
+    <color name="text_middleGrey">#979797</color>
     <color name="text_white">#ffffff</color>
     <color name="text_darkBlue">#4C67A6</color>
 

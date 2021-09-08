@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.BannerItem
@@ -36,6 +38,13 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
             bannerImage.setImageResource(bannerData.homeImage)
             bannerName.text = bannerData.homeName
             bannerContent.text = bannerData.homeContent
+
+            itemView.setOnClickListener {
+                val bundle = bundleOf(
+                    "title" to bannerData.homeName,
+                    "content" to bannerData.homeContent)
+                Navigation.findNavController(it).navigate(R.id.action_home_01_to_employment_Detail_01, bundle)
+            }
         }
     }
 
