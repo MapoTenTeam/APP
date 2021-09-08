@@ -9,10 +9,6 @@
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Employment"/>
     <item
-        android:id="@+id/consulting_01"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Consulting"/>
-    <item
         android:id="@+id/account_01"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Account"/>

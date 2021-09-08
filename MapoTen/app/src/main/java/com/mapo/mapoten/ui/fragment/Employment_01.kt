@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.viewpager2.widget.ViewPager2
 import com.mapo.mapoten.R
 import com.mapo.mapoten.databinding.FragmentEmployment01Binding
+import com.mapo.mapoten.ui.adapter.EmploymentViewPagerAdapter
 
 class Employment_01 : Fragment() {
     private lateinit var binding: FragmentEmployment01Binding
@@ -16,12 +18,10 @@ class Employment_01 : Fragment() {
         binding = FragmentEmployment01Binding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.publicButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.employment_01_01)
-        } //공공일자리로 이동
-        binding.privateButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.employment_01_02)
-        } //일반일자리로 이동
+        binding.employmentViewPager2.apply {
+            adapter = activity?.let { EmploymentViewPagerAdapter(it) }
+            orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        }
 
         return view
     }

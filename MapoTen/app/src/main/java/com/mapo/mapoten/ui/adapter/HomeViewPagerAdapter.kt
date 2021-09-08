@@ -23,7 +23,7 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
 
     inner class BannerHolder(rowRoot: View) : RecyclerView.ViewHolder(rowRoot) {
         val bannerImage : ImageView = rowRoot.findViewById(R.id.iv_bannerImage)
-        val bannerName : TextView = rowRoot.findViewById(R.id.tv_bannerName)
+        val bannerTitle : TextView = rowRoot.findViewById(R.id.tv_bannerTitle)
         val bannerContent : TextView = rowRoot.findViewById(R.id.tv_bannerContent)
     }
 
@@ -36,12 +36,12 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
         val bannerData = bannerItemList[position%5]
         with(holder) {
             bannerImage.setImageResource(bannerData.homeImage)
-            bannerName.text = bannerData.homeName
+            bannerTitle.text = bannerData.homeTitle
             bannerContent.text = bannerData.homeContent
 
             itemView.setOnClickListener {
                 val bundle = bundleOf(
-                    "title" to bannerData.homeName,
+                    "title" to bannerData.homeTitle,
                     "content" to bannerData.homeContent)
                 Navigation.findNavController(it).navigate(R.id.action_home_01_to_employment_Detail_01, bundle)
             }
