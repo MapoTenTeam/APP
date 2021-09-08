@@ -15,10 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="100dp"
         android:orientation="horizontal">
 
-<<<<<<< HEAD
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="wrap_content"
@@ -42,44 +41,33 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textSize="@dimen/text_18"
+        android:textStyle="bold" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/id_text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-=======
-    <Button
-        android:id="@+id/person_login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인"/>
-
-    <Button
-        android:id="@+id/business_login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="기업로그인"/>
-    <Button
-        android:id="@+id/sign_up_button"
->>>>>>> 5a967a74142ffbe9f87f8d108c6d0c961f5549ab
-        android:layout_width="wrap_content"
+        style="@style/EditTextStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:isScrollContainer="false"
-        app:boxStrokeColor="@color/main_color1"
+        android:theme="@style/EditTextStyle"
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusTopStart="30dp"
-        app:errorEnabled="true"
-        app:hintTextColor="@color/main_color1">
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id_edit_text"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/id"
             android:singleLine="true"
+            android:textSize="@dimen/text_14"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
@@ -87,9 +75,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:theme="@style/EditTextThemeOverlay"
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
@@ -99,26 +89,26 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pwd_edit_text"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/passWord"
             android:inputType="textPassword"
-            tools:ignore="SpeakableTextPresentCheck"
-
-            />
+            android:textSize="@dimen/text_14"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
         android:id="@+id/btn_sign_in"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:backgroundTint="#7C9FF2"
         android:text="@string/login"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_14"
         app:cornerRadius="30dp" />
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -127,62 +117,83 @@
             android:id="@+id/autoLogin_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/gray"
-            android:text="@string/auto_login" />
+            android:layout_gravity="left|center"
+            android:text="@string/auto_login"
+            android:textColor="@color/text_darkGrey"
+            android:textSize="@dimen/text_12" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/tv_findId_personal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:text="@string/find_id_personal" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="right|center"
+            android:text="@string/find_id_personal"
+            android:textColor="@color/text_darkGrey"
+            android:textSize="@dimen/text_12" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="right|center"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="/" />
+            android:text="/"
+
+
+            android:textSize="@dimen/text_12" />
 
         <TextView
             android:id="@+id/tv_findId_business"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/find_id_business" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="right|center"
+            android:text="@string/find_id_business"
+            android:textSize="@dimen/text_12" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_find_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_gravity="right"
-        android:text="@string/find_pwd" />
+        android:text="@string/find_pwd"
+        android:textSize="@dimen/text_12"/>
 
 
     <Button
         android:id="@+id/btn_signUp_personal"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/main_color1_alpha"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/main_skyBlue"
         android:text="@string/signUp_personal"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_14"
         app:cornerRadius="30dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:gravity="center"
         android:orientation="horizontal">
 
         <View
             android:id="@+id/view"
-            android:layout_width="145dp"
+            android:layout_width="120dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/gray" />
+            android:background="@color/text_darkGrey" />
 
         <TextView
             android:id="@+id/textView6"
@@ -194,21 +205,21 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_width="145dp"
+            android:layout_width="120dp"
             android:layout_height="2dp"
             android:layout_gravity="center"
-            android:background="@color/gray" />
+            android:background="@color/text_darkGrey" />
 
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_signUp_business"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:backgroundTint="@color/main_color1_alpha"
+        android:backgroundTint="@color/main_skyBlue"
         android:text="@string/signUp_business"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_14"
         app:cornerRadius="30dp" />
 
 

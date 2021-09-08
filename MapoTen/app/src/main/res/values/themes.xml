@@ -16,4 +16,15 @@
     </style>
 
 
+    <!-- TextInputLayout -->
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlNormal">@color/main_skyBlue</item>
+        <item name="boxStrokeColor">@color/main_skyBlue</item>
+        <item name="android:textCursorDrawable">@color/main_skyBlue</item>
+        <item name="hintTextColor">@color/main_skyBlue</item>
+    </style>
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/main_skyBlue</item>
+    </style>
+
 </resources>
