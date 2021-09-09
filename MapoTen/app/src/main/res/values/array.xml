@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="employ_array_career">
+        <item>경력무관</item>
+        <item>경력</item>
+        <item>신입</item>
+    </string-array>
+
+    <string-array name="employ_array_job">
+        <item>전체보기</item>
+        <item>경영지원</item>
+        <item>마케팅</item>
+        <item>기획</item>
+        <item>인사,교육</item>
+        <item>디자인</item>
+        <item>공간운영</item>
+        <item>컨텐츠</item>
+        <item>개발</item>
+        <item>고객서비스</item>
+    </string-array>
+
+    <string-array name="employ_array_country">
+        <item>전체보기</item>
+        <item>공덕동</item>
+        <item>도화동</item>
+        <item>대흥동</item>
+        <item>망원1동</item>
+        <item>망원2동</item>
+        <item>서강동</item>
+        <item>서교동</item>
+        <item>신수동</item>
+        <item>상암동</item>
+        <item>성산1동</item>
+        <item>성산2동</item>
+        <item>아현동</item>
+        <item>합정동</item>
+        <item>연남동</item>
+        <item>염리동</item>
+        <item>용강동</item>
+    </string-array>
+</resources>
