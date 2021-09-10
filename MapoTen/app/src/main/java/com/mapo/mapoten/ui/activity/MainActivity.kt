@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.login_01 ||
                 destination.id == R.id.login_02_01 ||
+                destination.id == R.id.login_02_02 ||
                 destination.id == R.id.login_01_01 ||
                 destination.id == R.id.login_01_02 ||
                 destination.id == R.id.login_01_03

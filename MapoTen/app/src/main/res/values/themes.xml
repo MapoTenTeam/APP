@@ -17,14 +17,33 @@
 
 
     <!-- TextInputLayout -->
-    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/main_skyBlue</item>
+    </style>
+
+    <style name="TextInputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="colorControlNormal">@color/main_skyBlue</item>
         <item name="boxStrokeColor">@color/main_skyBlue</item>
         <item name="android:textCursorDrawable">@color/main_skyBlue</item>
         <item name="hintTextColor">@color/main_skyBlue</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="boxCornerRadiusTopStart">@dimen/size_30</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/size_30</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/size_30</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/size_30</item>
+        <item name="boxBackgroundColor">@color/main_skyBlue</item>
     </style>
-    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
-        <item name="colorAccent">@color/main_skyBlue</item>
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:paddingStart">30dp</item>
+    </style>
+
+    <!-- Button -->
+    <style name="btnStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/main_skyBlue</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="cornerRadius">@dimen/size_30</item>
     </style>
 
 </resources>

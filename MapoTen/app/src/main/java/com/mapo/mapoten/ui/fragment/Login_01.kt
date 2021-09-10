@@ -31,7 +31,10 @@ class Login_01 : Fragment() {
         } //개인 아이디 찾기 화면으로 이동
         view.findViewById<TextView>(R.id.tv_findId_business).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.login_01_02)
-        } //비밀번호 찾기 화면으로 이동
+        } //기업 아이디 찾기 화면으로 이동
+        view.findViewById<TextView>(R.id.tv_find_pwd).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.login_01_03)
+        }  //비밀번호 찾기 화면으로 이동
         return view
     }
 }
