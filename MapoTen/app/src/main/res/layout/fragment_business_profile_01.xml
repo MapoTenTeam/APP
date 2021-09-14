@@ -23,6 +23,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
+                app:tint="@color/text_darkBlue"
                 android:src="@drawable/ic_baseline_arrow_back_16"
                 app:layout_constraintBottom_toBottomOf="@id/title_myPage"
                 app:layout_constraintStart_toStartOf="parent"
