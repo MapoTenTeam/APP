@@ -1,15 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.BusinessAccount_01_03">
+    tools:context=".ui.fragment.BusinessAccount_01_04">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_56"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
+            android:text="@string/password_action_bar_text"
+            android:textColor="@color/main_darkBlue"
+            android:textSize="@dimen/text_20"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:background="#60c4c4c4" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="비밀번호 변경"
-        android:textSize="30dp"/>
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_90"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/userNickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_user_name"
+                android:textColor="@color/text_darkGrey"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_4"
+                android:layout_marginTop="@dimen/margin_22"
+                android:background="#F4F4F4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_18"
+                android:text="@string/password_title"
+                android:textColor="@color/text_darkGrey"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:text="@string/password_guide_text"
+                android:textColor="@color/text_middleGrey"
+                android:textSize="@dimen/text_12"
+                android:textStyle="normal" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordLayout"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    style="@style/PasswordTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:paddingVertical="@dimen/margin_14"
+                    android:layout_height="47dp"
+
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint_new">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/newPassword"
+                    style="@style/PasswordTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/margin_14"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint_new_confirm">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmNewPassword"
+                    style="@style/PasswordTextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/margin_14"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submitButton"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_submit_button" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

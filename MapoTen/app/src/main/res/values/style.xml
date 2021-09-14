@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_marginTop">28dp</item>
+        <item name="android:background">@drawable/bg_password_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
+    <style name="TextInputOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/button_radius</item>
+        <item name="boxStrokeColor">@color/main_skyBlue</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">@color/main_skyBlue</item>
+
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/button_radius</item>
+        <item name="boxStrokeColor">@color/main_skyBlue</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">@color/main_skyBlue</item>
+    </style>
+    <style name="PasswordTextInputEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_marginTop">@dimen/margin_4</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="paddingStart">14dp</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/text_lightGrey</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
     <!-- 채용공고목록 -->
 
     <style name="BackButtonStyle" parent="TextAppearance.AppCompat.Widget.Button">

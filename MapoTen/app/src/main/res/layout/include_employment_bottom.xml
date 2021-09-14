@@ -151,9 +151,10 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/button"
+        android:background="@drawable/button_background_radius30"
         android:text="기업정보 더보기"
         android:textStyle="bold"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:textColor="@color/text_white"/>
 
 </LinearLayout>
