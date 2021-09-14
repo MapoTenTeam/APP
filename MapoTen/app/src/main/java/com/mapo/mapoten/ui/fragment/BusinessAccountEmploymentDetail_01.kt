@@ -8,18 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.mapo.mapoten.databinding.FragmentBussinessAccountEmploymentDetail01Binding
-import com.mapo.mapoten.databinding.FragmentEmploymentDetail01Binding
+import com.mapo.mapoten.databinding.FragmentBusinessAccountEmploymentDetail01Binding
 
-class BussinessAccountEmploymentDetail_01 : Fragment() {
-    lateinit var binding : FragmentBussinessAccountEmploymentDetail01Binding
+class BusinessAccountEmploymentDetail_01 : Fragment() {
+    lateinit var binding : FragmentBusinessAccountEmploymentDetail01Binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentBussinessAccountEmploymentDetail01Binding.inflate(inflater, container, false)
+        binding = FragmentBusinessAccountEmploymentDetail01Binding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.state.text = arguments?.getString("state")

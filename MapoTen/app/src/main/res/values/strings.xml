@@ -31,4 +31,25 @@
     <string name="password_hint_new">새 비밀번호 *</string>
     <string name="password_hint_new_confirm">새 비밀번호 확인 *</string>
     <string name="password_submit_button">비밀번호 변경하기</string>
+
+    <!-- 채용공고 관리 상세 -->
+    <string name="business_employment_detail_action_bar_title">채용공고목록</string>
+    <string name="business_employment_detail_category_text">일반채용 정규직</string>
+    <string name="business_employment_state_text">대기</string>
+    <string name="business_employment_title">채용공고 제목</string>
+    <string name="business_employment_content_title1">채용사항</string>
+    <string name="business_employment_content_title2">업체현황</string>
+    <string name="business_employment_content_title3">근로조건</string>
+    <string name="business_employment_content_title4">전형사항</string>
+
+    <!-- 채용공고 관리 -->
+    <string name="business_employment_radio_all">전체</string>
+    <string name="business_employment_radio_judging">대기</string>
+    <string name="business_employment_radio_approval">승인</string>
+    <string name="business_employment_radio_reject">비승인</string>
+    <string name="business_employment_row_category_text">일반채용 정규직</string>
+    <string name="business_employment_row_state_text">승인 심사중</string>
+    <string name="business_employment_row_title">마포구 영영사 구인</string>
+    <string name="business_employment_date">작성일: 2021년 08월 31일 19시24분</string>
+
 </resources>

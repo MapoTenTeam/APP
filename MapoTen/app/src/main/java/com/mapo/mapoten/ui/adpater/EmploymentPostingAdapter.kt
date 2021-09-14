@@ -19,7 +19,7 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
-            .inflate(R.layout.emplyoment_list_row, parent, false)
+            .inflate(R.layout.employment_list_row, parent, false)
         return ViewHolder(view)
     }
 
@@ -61,7 +61,7 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
 
             itemView.setOnClickListener {
                 val bundle = bundleOf("state" to state.text)
-                Navigation.findNavController(itemView).navigate(R.id.bussinessAccountEmploymentDetail_01, bundle)
+                Navigation.findNavController(itemView).navigate(R.id.businessAccountEmploymentDetail_01, bundle)
             }
 
         }
