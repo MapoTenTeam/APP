@@ -325,6 +325,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="로그아웃"
+                android:textSize="@dimen/text_12"
                 android:background="@drawable/input_stroke_radius30"
                 android:drawableLeft="@drawable/ic_baseline_logout_24"
                 android:paddingHorizontal="50dp"
