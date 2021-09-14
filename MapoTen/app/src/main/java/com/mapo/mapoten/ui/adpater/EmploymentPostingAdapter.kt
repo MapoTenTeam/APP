@@ -46,16 +46,16 @@ class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adap
 
             when(state.text){
                 "승인" -> {
-                    stateBackground.setColor(Color.parseColor("#132646EC"))
-                    state.setTextColor(Color.parseColor("#2646EC"))
+                    stateBackground.setColor(Color.parseColor("#E8F1FF"))
+                    state.setTextColor(Color.parseColor("#1A75FF"))
                 }
                 "비승인" -> {
-                    stateBackground.setColor(Color.parseColor("#17E97575"))
-                    state.setTextColor(Color.parseColor("#FF5858"))
+                    stateBackground.setColor(Color.parseColor("#FFE8EC"))
+                    state.setTextColor(Color.parseColor("#FF1A43"))
                 }
                 else -> {
-                    stateBackground.setColor(Color.parseColor("#50C4C4C4"))
-                    state.setTextColor(Color.parseColor("#5F5F5F"))
+                    stateBackground.setColor(Color.parseColor("#FFF6E8"))
+                    state.setTextColor(Color.parseColor("#FFA31A"))
                 }
             }
 

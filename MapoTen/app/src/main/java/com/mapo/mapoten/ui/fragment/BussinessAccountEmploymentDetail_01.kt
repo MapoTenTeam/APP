@@ -40,16 +40,16 @@ class BussinessAccountEmploymentDetail_01 : Fragment() {
 
         when(binding.state.text){
             "승인" -> {
-                stateBackground.setColor(Color.parseColor("#132646EC"))
-                binding.state.setTextColor(Color.parseColor("#2646EC"))
+                stateBackground.setColor(Color.parseColor("#E8F1FF"))
+                binding.state.setTextColor(Color.parseColor("#1A75FF"))
             }
             "비승인" -> {
-                stateBackground.setColor(Color.parseColor("#17E97575"))
-                binding.state.setTextColor(Color.parseColor("#FF5858"))
+                stateBackground.setColor(Color.parseColor("#FFE8EC"))
+                binding.state.setTextColor(Color.parseColor("#FF1A43"))
             }
             else -> {
-                stateBackground.setColor(Color.parseColor("#50C4C4C4"))
-                binding.state.setTextColor(Color.parseColor("#5F5F5F"))
+                stateBackground.setColor(Color.parseColor("#FFF6E8"))
+                binding.state.setTextColor(Color.parseColor("#FFA31A"))
             }
         }
     }
