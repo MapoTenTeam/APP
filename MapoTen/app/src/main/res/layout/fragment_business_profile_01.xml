@@ -153,6 +153,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14"/>
 
 
@@ -171,6 +172,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14"/>
 
 
@@ -190,6 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/text_14"
+                            android:paddingVertical="@dimen/padding_14"
                             tools:ignore="TextContrastCheck" />
 
 
@@ -208,6 +211,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14"/>
 
 
@@ -226,6 +230,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+
                             android:textSize="@dimen/text_14"/>
 
 

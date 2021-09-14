@@ -23,7 +23,7 @@
             android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
             android:text="@string/password_action_bar_text"
             android:textColor="@color/main_darkBlue"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_20"
             android:textStyle="bold" />
 
         <View
