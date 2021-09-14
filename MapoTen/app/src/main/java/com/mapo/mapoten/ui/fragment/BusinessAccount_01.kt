@@ -46,6 +46,15 @@ class BusinessAccount_01 : Fragment() {
             view.findViewById<View>(R.id.backBtn).setOnClickListener {
                 Navigation.findNavController(view).navigateUp()
             } //뒤로가기
+
+
+            // logout 처리
+            view.findViewById<View>(R.id.logoutBtn).setOnClickListener {
+
+                // login 화면 이동
+                Navigation.findNavController(view).navigate(R.id.login_01)
+            }
+
             return view
         }
 
