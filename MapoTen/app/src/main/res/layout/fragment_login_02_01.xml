@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_40"
-        android:layout_marginEnd="@dimen/margin_40"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_32"
         android:orientation="vertical">
 
 
@@ -39,12 +39,8 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_16"
             android:isScrollContainer="false"
-            app:boxCornerRadiusBottomEnd="@dimen/size_30"
-            app:boxCornerRadiusBottomStart="@dimen/size_30"
-            app:boxCornerRadiusTopEnd="@dimen/size_30"
-            app:boxCornerRadiusTopStart="@dimen/size_30"
             app:errorEnabled="true"
             app:expandedHintEnabled="false">
 
@@ -64,10 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:isScrollContainer="false"
-            app:boxCornerRadiusBottomEnd="@dimen/size_30"
-            app:boxCornerRadiusBottomStart="@dimen/size_30"
-            app:boxCornerRadiusTopEnd="@dimen/size_30"
-            app:boxCornerRadiusTopStart="@dimen/size_30"
             app:errorEnabled="true"
             app:expandedHintEnabled="false">
 
@@ -94,7 +86,7 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_16"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
@@ -141,7 +133,7 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_16"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
@@ -170,7 +162,7 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_16"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
@@ -191,7 +183,6 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
@@ -212,10 +203,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/margin_20"
             android:background="@drawable/tos_stroke"
             android:orientation="vertical"
             android:paddingStart="@dimen/padding_14"
-            android:paddingTop="@dimen/padding_20"
+            android:paddingTop="@dimen/padding_14"
             android:paddingEnd="@dimen/padding_14"
             android:paddingBottom="@dimen/padding_20">
 
@@ -224,20 +216,15 @@
                 android:id="@+id/all_checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/all_check_tos"
-                android:textColor="@color/text_darkGrey"
-                android:textSize="@dimen/text_18"
-                android:textStyle="bold"
                 android:buttonTint="@color/text_middleGrey"
-
-
-                />
+                android:text="@string/all_check_tos"
+                style="@style/title_text16"/>
 
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"
-                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_6"
                 android:background="@color/text_lightGrey" />
 
             <TextView
@@ -245,25 +232,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_24"
+                android:layout_marginTop="@dimen/margin_20"
                 android:text="@string/tos"
-                android:textColor="@color/text_darkGrey"
-                android:textSize="@dimen/text_16" />
+                style="@style/tos_text14" />
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/tv_tos1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
+                    android:buttonTint="@color/text_middleGrey"
                     android:text="[필수] 마포잡 서비스 이용약관"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14"
-                    android:buttonTint="@color/text_middleGrey"/>
+                    style="@style/text12" />
 
                 <View
                     android:layout_width="0dp"
@@ -277,8 +263,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    style="@style/text12" />
 
             </LinearLayout>
 
@@ -292,10 +277,10 @@
                     android:id="@+id/tv_tos2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:buttonTint="@color/text_middleGrey"
                     android:text="[필수] 개인정보 수집 및 이용약관"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14"
-                    android:buttonTint="@color/text_middleGrey"/>
+                    style="@style/text12"/>
 
                 <View
                     android:layout_width="0dp"
@@ -309,8 +294,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    style="@style/text12" />
 
             </LinearLayout>
 
@@ -323,10 +307,9 @@
                     android:id="@+id/tv_tos3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/text_middleGrey"
                     android:text="[선택] 프로필 정보 추가 수집 동의"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14"
-                    android:buttonTint="@color/text_middleGrey"/>
+                    style="@style/text12"/>
 
                 <View
                     android:layout_width="0dp"
@@ -340,8 +323,7 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    style="@style/text12" />
             </LinearLayout>
 
             <LinearLayout
@@ -353,10 +335,9 @@
                     android:id="@+id/tv_tos4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/text_middleGrey"
                     android:text="[선택] 광고성 정보 수신 동의"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14"
-                    android:buttonTint="@color/text_middleGrey"/>
+                    style="@style/text12" />
 
                 <View
                     android:layout_width="0dp"
@@ -370,13 +351,63 @@
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    style="@style/text12" />
             </LinearLayout>
-
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_membership_question"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_30"
+                style="@style/tos_text14"
+                android:text="@string/membership_question" />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_30"
+                android:layout_marginStart="@dimen/margin_10"
+                android:text="@string/login"
+                android:textColor="@color/main_skyBlue" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_membership_business_question"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_30"
+            style="@style/tos_text14"
+            android:text="@string/membership_business_question" />
+
+        <TextView
+            android:id="@+id/tv_signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_30"
+            android:layout_marginStart="@dimen/margin_10"
+            android:text="@string/signUp_business"
+            android:textColor="@color/main_skyBlue" />
+
+    </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_60"
+            android:text="@string/sign_up_description"
+            android:layout_marginBottom="@dimen/margin_40"
+            style="@style/btnStyle" />
 
     </LinearLayout>
 

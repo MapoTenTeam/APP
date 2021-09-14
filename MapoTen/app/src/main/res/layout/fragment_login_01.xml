@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/margin_40"
-    android:layout_marginEnd="@dimen/margin_40"
+    android:layout_marginStart="@dimen/margin_32"
+    android:layout_marginEnd="@dimen/margin_32"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".ui.fragment.Login_01">
@@ -43,21 +43,18 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/id_edit_textInputLayout"
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_20"
         android:isScrollContainer="false"
-        app:boxCornerRadiusBottomEnd="@dimen/size_30"
-        app:boxCornerRadiusBottomStart="@dimen/size_30"
-        app:boxCornerRadiusTopEnd="@dimen/size_30"
-        app:boxCornerRadiusTopStart="@dimen/size_30"
-        app:expandedHintEnabled="false"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:expandedHintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/EditTextStyle"
             android:id="@+id/id_edit_text"
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -71,14 +68,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pwd_edit_textInputLayout"
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/EditTextThemeOverlay"
-        app:boxCornerRadiusBottomEnd="@dimen/size_30"
-        app:boxCornerRadiusBottomStart="@dimen/size_30"
-        app:boxCornerRadiusTopEnd="@dimen/size_30"
-        app:boxCornerRadiusTopStart="@dimen/size_30"
         app:errorEnabled="true"
         app:expandedHintEnabled="false"
         app:passwordToggleEnabled="true">
@@ -131,8 +125,7 @@
             android:layout_gravity="end|center"
             android:gravity="center"
             android:text="@string/find_id_personal"
-            android:textColor="@color/text_darkGrey"
-            android:textSize="@dimen/text_12" />
+            style="@style/text12"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -152,7 +145,7 @@
             android:layout_gravity="end|center"
             android:gravity="center"
             android:text="@string/find_id_business"
-            android:textSize="@dimen/text_12" />
+            style="@style/text12"/>
     </LinearLayout>
 
     <TextView
@@ -161,7 +154,7 @@
         android:layout_height="@dimen/size_30"
         android:layout_gravity="end"
         android:text="@string/find_pwd"
-        android:textSize="@dimen/text_12" />
+        style="@style/text12"/>
 
 
     <Button
