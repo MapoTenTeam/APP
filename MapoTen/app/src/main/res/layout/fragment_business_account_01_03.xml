@@ -84,7 +84,6 @@
                 android:id="@+id/passwordLayout"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:hint="@string/password_hint">
 
@@ -92,9 +91,8 @@
                     android:id="@+id/password"
                     style="@style/PasswordTextInputEditTextStyle"
                     android:layout_width="match_parent"
-                    android:paddingVertical="@dimen/margin_14"
                     android:layout_height="47dp"
-
+                    android:paddingVertical="@dimen/padding_14"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +107,7 @@
                     style="@style/PasswordTextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/margin_14"
+                    android:paddingVertical="@dimen/padding_14"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +122,7 @@
                     style="@style/PasswordTextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/margin_14"
+                    android:paddingVertical="@dimen/padding_14"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
