@@ -50,7 +50,8 @@
                 android:layout_height="24dp"
                 android:checked="true"
                 android:paddingHorizontal="4dp"
-                android:text="전체" />
+                android:text="전체"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/judging"
@@ -58,7 +59,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:paddingHorizontal="8dp"
-                android:text=" 승인심사중" />
+                android:text=" 승인심사중"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/approval"
@@ -66,7 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:paddingHorizontal="4dp"
-                android:text="승인" />
+                android:text="승인"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/reject"
@@ -74,7 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:paddingHorizontal="8dp"
-                android:text=" 비승인" />
+                android:text=" 비승인"
+                tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
