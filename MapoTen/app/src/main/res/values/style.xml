@@ -8,6 +8,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextInputOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/margin_24</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/button_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/button_radius</item>
+        <item name="boxStrokeColor">@color/main_skyBlue</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="hintTextColor">@color/main_skyBlue</item>
+
+    </style>
+
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_marginTop">@dimen/margin_24</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/button_radius</item>

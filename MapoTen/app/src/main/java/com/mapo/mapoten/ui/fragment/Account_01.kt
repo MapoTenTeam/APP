@@ -16,13 +16,13 @@ class Account_01 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_account_01, container, false)
-        view.findViewById<Button>(R.id.info_button).setOnClickListener {
+        view.findViewById<View>(R.id.info_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.account_01_01)
         } //회원정보 화면으로 이동
-        view.findViewById<Button>(R.id.resume_button).setOnClickListener {
+        view.findViewById<View>(R.id.resume_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.account_01_02)
         } //지원서 화면으로 이동
-        view.findViewById<Button>(R.id.application_button).setOnClickListener {
+        view.findViewById<View>(R.id.scrapList_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.account_01_03)
         } //구직신청서 화면으로 이동
         return view
