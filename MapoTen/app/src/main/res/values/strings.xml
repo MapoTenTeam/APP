@@ -2,4 +2,14 @@
     <string name="app_name">MapoTen</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--password -->
+    <string name="password_action_bar_text">비밀번호 변경</string>
+    <string name="password_user_name">Dorofeev Alexander 님</string>
+    <string name="password_title">비밀번호 재설정</string>
+    <string name="password_guide_text">비밀번호 재설정시 자동으로 로그아웃 되므로, 변경된 비밀번호로 다시 로그인 해 주세요.</string>
+    <string name="password_hint">현재 비밀번호 *</string>
+    <string name="password_hint_new">새 비밀번호 *</string>
+    <string name="password_hint_new_confirm">새 비밀번호 확인 *</string>
+    <string name="password_submit_button">비밀번호 변경하기</string>
 </resources>

@@ -1,12 +1,8 @@
 package com.mapo.mapoten.ui.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
-import android.text.Spannable
-import android.text.SpannableString
 import android.text.TextWatcher
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,6 +41,7 @@ class BusinessAccount_01_03 : Fragment() {
         binding.submitButton.setOnClickListener {
             if (validatePassword()) {
                 Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).navigate(R.id.login_01)
             } else {
                 // 전송 실패 처리
             }
