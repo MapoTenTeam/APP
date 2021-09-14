@@ -83,7 +83,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/businessName"
-                        style="@style/TextInputOutline"
+                        style="@style/TextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_12"
@@ -95,7 +95,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_14"/>
+                            android:paddingVertical="@dimen/padding_14"
+                            style="@style/PasswordTextInputEditTextStyle"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,6 +114,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14"/>
 
 
@@ -313,10 +315,9 @@
                         android:id="@+id/business_save_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/margin_12"
+
                         android:layout_marginTop="10dp"
                         android:background="@drawable/button_background_radius30"
-                        android:letterSpacing="-0.02"
                         android:text="@string/btn_save"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/text_14"

@@ -29,7 +29,6 @@
         <item name="boxStrokeColor">@color/main_skyBlue</item>
         <item name="expandedHintEnabled">false</item>
         <item name="hintTextColor">@color/main_skyBlue</item>
-        <item name="shapeAppearance">@drawable/bg_password_input</item>
     </style>
     <style name="PasswordTextInputEditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:layout_marginTop">@dimen/margin_4</item>
