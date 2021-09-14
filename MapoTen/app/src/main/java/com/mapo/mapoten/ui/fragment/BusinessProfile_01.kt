@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mapo.mapoten.R
+import java.io.File
 
 
 class BusinessProfile_01 : Fragment() {
 
-
+    val file = File("파일의 경로")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

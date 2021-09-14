@@ -77,15 +77,18 @@
           <androidx.appcompat.widget.AppCompatButton
               android:id="@+id/business_profile_button"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="프로필 등록하기"
+              android:layout_height="60dp"
               android:layout_marginTop="80dp"
               android:background="@drawable/button_background_radius30"
-              android:textColor="@color/white"
-              app:layout_constraintTop_toBottomOf="@+id/info_text"
-              app:layout_constraintStart_toStartOf="parent"
+              android:text="프로필 등록하기"
+              android:textStyle="bold"
+              android:letterSpacing="-0.02"
+              android:textColor="#ffffff"
+              android:textSize="@dimen/text_14"
               app:layout_constraintEnd_toEndOf="parent"
-              />
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/info_text"
+              tools:ignore="TextContrastCheck" />
 
       </androidx.constraintlayout.widget.ConstraintLayout>
 

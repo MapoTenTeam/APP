@@ -20,6 +20,8 @@
     <dimen name="margin_18">18dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+
 
     <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_12">12dp</dimen>
