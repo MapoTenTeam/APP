@@ -43,6 +43,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/name_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -62,6 +63,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/id_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -91,6 +93,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/email_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -138,6 +141,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/authentication_number_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -167,6 +171,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -187,6 +192,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_confirm_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -208,6 +214,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/company_name_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -228,6 +235,7 @@
             android:isScrollContainer="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/company_registration_number_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"

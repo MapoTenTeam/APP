@@ -55,6 +55,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id_edit_text"
             style="@style/EditTextStyle"
+            android:paddingVertical="@dimen/padding_14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
@@ -72,6 +73,7 @@
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_6"
         android:theme="@style/EditTextThemeOverlay"
         app:errorEnabled="true"
         app:expandedHintEnabled="false"
@@ -80,6 +82,7 @@
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
             android:id="@+id/pwd_edit_text"
+            android:paddingVertical="@dimen/padding_14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/passWord"
@@ -108,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-            android:text="@string/auto_login"
+            android:text="기업로그인"
             android:textColor="@color/text_darkGrey"
             android:textSize="@dimen/text_12"
             android:buttonTint="@color/text_middleGrey"/>

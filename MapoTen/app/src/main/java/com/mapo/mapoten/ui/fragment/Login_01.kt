@@ -20,14 +20,20 @@ class Login_01 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
-        _binding = FragmentLogin01Binding.inflate(inflater,container,false)
+        _binding = FragmentLogin01Binding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        with(binding){
-            btnSignIn.setOnClickListener{
-                findNavController().navigate(R.id.home_01)
+        with(binding) {
+            btnSignIn.setOnClickListener {
+                textLengthChecker()
+                if (autoLoginCheckBox.isChecked) {
+                    findNavController().navigate(R.id.businessAccount_01)
+                } else {
+                    findNavController().navigate(R.id.home_01)
+
+                }
             } //로그인 성공시 홈화면으로 이동
             tvFindIdPersonal.setOnClickListener {
                 findNavController().navigate(R.id.login_01_01)
@@ -41,41 +47,35 @@ class Login_01 : Fragment() {
             btnSignUpPersonal.setOnClickListener {
                 findNavController().navigate(R.id.login_02_01)
             } //개인 회원가입 화면으로 이동
-            btnSignUpBusiness.setOnClickListener{
+            btnSignUpBusiness.setOnClickListener {
                 findNavController().navigate(R.id.login_02_02)
             } //기업 회원가입 화면으로 이동
 
         }
 
-        textLengthChecker()
+
         return binding.root
 
 
     }
 
-    private fun textLengthChecker(){
-        with(binding){
-            pwdEditText.addTextChangedListener(object : TextWatcher{
+    private fun textLengthChecker() {
+        with(binding) {
+            pwdEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if (pwdEditText.length() in 1..7){
+                    if (pwdEditText.length() in 1..7) {
                         pwdEditTextInputLayout.error = "비밀번호를 8글자 이상 입력해주세요"
                     } else
                         pwdEditTextInputLayout.error = null
                 }
+
                 override fun afterTextChanged(p0: Editable?) {
-                    if (idEditText.text!!.isEmpty()){
+                    if (idEditText.text!!.isEmpty()) {
                         idEditTextInputLayout.error = "아이디 항목은 필수 정보입니다."
-                    } else {
-                        idEditTextInputLayout.error = null
-                    }
-                    else if (pwdEditText.text!!.isEmpty()){
-
-
-
+                    } else if (pwdEditText.text!!.isEmpty()) {
                         pwdEditTextInputLayout.error = "비밀번호 항목은 필수 정보입니다."
-                    }
-                    else {
+                    } else {
                         pwdEditTextInputLayout.error = null
                     }
                 }
