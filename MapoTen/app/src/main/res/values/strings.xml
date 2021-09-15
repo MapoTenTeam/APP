@@ -16,7 +16,7 @@
     <string name="find_pwd">비밀번호 찾기</string>
     <string name="or">또는</string>
 
-    <!-- Sign Up -->    
+    <!-- Sign Up -->
     <string name="signUp_personal">개인 회원가입</string>
     <string name="signUp_business">기업 회원가입</string>
     <string name="sign_up_description">회원가입</string>
@@ -39,5 +39,55 @@
     <string name="find_id_information">아이디를 찾기 위해 필요한 정보를 입력하세요.</string>
     <string name="find_pwd_information">비밀번호를 찾기 위해 필요한 정보를 입력하세요.</string>
     <string name="send_pwd">임시 비밀번호 발송</string>
+
+
+
+    //business my page part
+    <string name="business_profile_title">회사 프로필 등록</string>
+    <string name="business_profile_textView">채용 공고 및 회사 페이지에 표시될 법인명을 입력해주세요</string>
+    <string name="businessFile">사업자 등록증</string>
+    <string name="btn_save">저장하기</string>
+    <string name="ownerName">대표자명</string>
+    <string name="businessName">사업체명</string>
+    <string name="businessNumber">사업자 등록번호</string>
+    <string name="text_businessLogo">회사 대표 이미지(로고)</string>
+    <string name="businessWeb">홈페이지 주소</string>
+    <string name="businessEmpNum">근로자 수</string>
+    <string name="businessCategorty">업종(산업 분야)</string>
+    <string name="businessAddress2">상세 주소</string>
+    <string name="businessEmail">회사 대표 이메일</string>
+    <string name="businessAddress1">소재지</string>
+    <string name="businessInfo">회사 정보</string>
+
+
+    <!--password -->
+    <string name="password_action_bar_text">비밀번호 변경</string>
+    <string name="password_user_name">Dorofeev Alexander 님</string>
+    <string name="password_title">비밀번호 재설정</string>
+    <string name="password_guide_text">비밀번호 재설정시 자동으로 로그아웃 되므로, 변경된 비밀번호로 다시 로그인 해 주세요.</string>
+    <string name="password_hint">현재 비밀번호 *</string>
+    <string name="password_hint_new">새 비밀번호 *</string>
+    <string name="password_hint_new_confirm">새 비밀번호 확인 *</string>
+    <string name="password_submit_button">비밀번호 변경하기</string>
+
+    <!-- 채용공고 관리 상세 -->
+    <string name="business_employment_detail_action_bar_title">채용공고목록</string>
+    <string name="business_employment_detail_category_text">일반채용 정규직</string>
+    <string name="business_employment_state_text">대기</string>
+    <string name="business_employment_title">채용공고 제목</string>
+    <string name="business_employment_content_title1">채용사항</string>
+    <string name="business_employment_content_title2">업체현황</string>
+    <string name="business_employment_content_title3">근로조건</string>
+    <string name="business_employment_content_title4">전형사항</string>
+
+    <!-- 채용공고 관리 -->
+    <string name="business_employment_radio_all">전체</string>
+    <string name="business_employment_radio_judging">대기</string>
+    <string name="business_employment_radio_approval">승인</string>
+    <string name="business_employment_radio_reject">비승인</string>
+    <string name="business_employment_row_category_text">일반채용 정규직</string>
+    <string name="business_employment_row_state_text">승인 심사중</string>
+    <string name="business_employment_row_title">마포구 영영사 구인</string>
+    <string name="business_employment_date">작성일: 2021년 08월 31일 19시24분</string>
 
 </resources>
