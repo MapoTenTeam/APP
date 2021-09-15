@@ -1,42 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.Login_01"
-    android:orientation="vertical">
+    android:layout_marginStart="@dimen/margin_32"
+    android:layout_marginEnd="@dimen/margin_32"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.Login_01">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/logo"
+            android:gravity="center"
+            android:text="MapoTen"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
     <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/login"
+        android:textSize="@dimen/text_18"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/id_edit_textInputLayout"
+        style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login_01"/>
+        android:layout_marginTop="@dimen/margin_20"
+        android:isScrollContainer="false"
+        app:errorEnabled="true"
+        app:expandedHintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/id_edit_text"
+            style="@style/EditTextStyle"
+            android:paddingVertical="@dimen/padding_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/id"
+            android:singleLine="true"
+            android:textSize="@dimen/text_14"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pwd_edit_textInputLayout"
+        style="@style/TextInputTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_6"
+        android:theme="@style/EditTextThemeOverlay"
+        app:errorEnabled="true"
+        app:expandedHintEnabled="false"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/EditTextStyle"
+            android:id="@+id/pwd_edit_text"
+            android:paddingVertical="@dimen/padding_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/passWord"
+            android:inputType="textPassword"
+            android:textSize="@dimen/text_14"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
-        android:id="@+id/person_login_button"
-        android:layout_width="wrap_content"
+        style="@style/btnStyle"
+        android:id="@+id/btn_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:text="@string/login"
+         />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로그인"/>
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/autoLogin_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:text="기업로그인"
+            android:textColor="@color/text_darkGrey"
+            android:textSize="@dimen/text_12"
+            android:buttonTint="@color/text_middleGrey"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_findId_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center"
+            android:gravity="center"
+            android:text="@string/find_id_personal"
+            style="@style/text12"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center"
+            android:layout_marginStart="@dimen/margin_6"
+            android:layout_marginEnd="@dimen/margin_6"
+            android:gravity="center"
+            android:text="/"
+            android:textSize="@dimen/text_12" />
+
+        <TextView
+            android:id="@+id/tv_findId_business"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center"
+            android:gravity="center"
+            android:text="@string/find_id_business"
+            style="@style/text12"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_find_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_30"
+        android:layout_gravity="end"
+        android:text="@string/find_pwd"
+        style="@style/text12"/>
+
 
     <Button
-        android:id="@+id/business_login_button"
-        android:layout_width="wrap_content"
+        style="@style/btnStyle"
+        android:id="@+id/btn_signUp_personal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:text="@string/signUp_personal_e"
+         />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="기업로그인"/>
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/size_140"
+            android:layout_height="@dimen/size_1"
+            android:layout_gravity="center"
+            android:background="@color/text_lightGrey" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_6"
+            android:layout_marginEnd="@dimen/margin_6"
+            android:text="@string/or"
+            android:textColor="@color/text_lightGrey" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="@dimen/size_140"
+            android:layout_height="@dimen/size_1"
+            android:layout_gravity="center"
+            android:background="@color/text_lightGrey" />
+
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/sign_up_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="회원가입"/>
-    <Button
-        android:id="@+id/forgot_id_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아이디찾기"/>
-    <Button
-        android:id="@+id/forgot_pwd_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="비밀번호찾기"/>
+        style="@style/btnStyle"
+        android:id="@+id/btn_signUp_business"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:text="@string/signUp_business_e" />
+
 
 </LinearLayout>

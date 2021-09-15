@@ -14,4 +14,64 @@
         <!-- Customize your theme here. -->
         <item name="android:windowFullscreen">true</item>
     </style>
+
+
+    <!-- TextInputLayout -->
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/main_skyBlue</item>
+    </style>
+
+    <style name="TextInputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlNormal">@color/main_skyBlue</item>
+        <item name="boxStrokeColor">@color/main_skyBlue</item>
+        <item name="android:textCursorDrawable">@color/main_skyBlue</item>
+        <item name="hintTextColor">@color/main_skyBlue</item>
+        <item name="boxCornerRadiusTopStart">@dimen/size_30</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/size_30</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/size_30</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/size_30</item>
+        <item name="boxBackgroundColor">@color/main_skyBlue</item>
+
+    </style>
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:paddingStart">30dp</item>
+    </style>
+
+    <!-- Button -->
+    <style name="btnStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/main_skyBlue</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">@dimen/size_30</item>
+    </style>
+
+    <!-- text -->
+    <style name="text12">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text_darkGrey</item>
+    </style>
+    <style name="tos_text14">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text_darkGrey</item>
+    </style>
+    <style name="title_text16">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text_darkGrey</item>
+    </style>
+    <style name="title_text20">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text_darkGrey</item>
+    </style>
+
+
 </resources>

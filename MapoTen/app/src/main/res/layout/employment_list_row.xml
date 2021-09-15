@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/RowStyle"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_108">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/category"
+            style="@style/Row.CategoryStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/business_employment_row_category_text" />
+
+        <TextView
+            android:id="@+id/state"
+            style="@style/Row.StateStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_16"
+            android:paddingHorizontal="@dimen/padding_4"
+            android:text="@string/business_employment_row_state_text" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Row.TitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/business_employment_row_title" />
+
+    <TextView
+        android:id="@+id/registrationDate"
+        style="@style/Row.RegistrationDateStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/business_employment_date" />
+</LinearLayout>

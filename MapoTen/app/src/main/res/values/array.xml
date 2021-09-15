@@ -38,4 +38,12 @@
         <item>염리동</item>
         <item>용강동</item>
     </string-array>
+
+    <string-array name="states">
+        <item>전체</item>
+        <item>승인심사중</item>
+        <item>승인</item>
+        <item>비승인</item>
+
+    </string-array>
 </resources>
