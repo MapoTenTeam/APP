@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -82,4 +83,24 @@ class Employment_01 : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, country)
         empSpinnerCountry?.adapter = adapter
     }
+
+    private fun careerSpinnerHandler() {
+        val empSpinnerCareer = view?.findViewById<Spinner>(R.id.emp_spinner_career)
+        val mEmpAdapter = EmploymentRecyclerViewAdapter(EmployData())
+        if (empSpinnerCareer != null) {
+            empSpinnerCareer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when(empSpinnerCareer.getItemIdAtPosition(position)) {
+
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
+        }
+    }
+
 }

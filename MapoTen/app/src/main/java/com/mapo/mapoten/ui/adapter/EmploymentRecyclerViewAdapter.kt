@@ -48,7 +48,6 @@ class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployData
             mCareer.text = employData.employCareer
             mJob.text = employData.employJob
         }
-        Log.e("dawd","${filteredList[position]}")
     }
 
     override fun getItemCount(): Int {

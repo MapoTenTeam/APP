@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mapo.mapoten.R
+import com.mapo.mapoten.ui.fragment.Employment_01
 import com.mapo.mapoten.ui.fragment.Employment_01_01
 import com.mapo.mapoten.ui.fragment.Employment_01_02
 
@@ -21,16 +22,16 @@ class EmploymentViewPagerAdapter(fragment : FragmentActivity) : FragmentStateAda
     override fun createFragment(position: Int): Fragment {
         var fragment = Fragment()
         when(position) {
-            0 -> fragment = Employment_01_01()
-            1 -> fragment = Employment_01_01()
-            2 -> fragment = Employment_01_01()
-            3 -> fragment = Employment_01_01()
-            4 -> fragment = Employment_01_01()
-            5 -> fragment = Employment_01_01()
-            6 -> fragment = Employment_01_01()
-            7 -> fragment = Employment_01_01()
-            8 -> fragment = Employment_01_01()
-            9 -> fragment = Employment_01_01()
+            0 -> fragment = Employment_01()
+            1 -> fragment = Employment_01()
+            2 -> fragment = Employment_01()
+            3 -> fragment = Employment_01()
+            4 -> fragment = Employment_01()
+            5 -> fragment = Employment_01()
+            6 -> fragment = Employment_01()
+            7 -> fragment = Employment_01()
+            8 -> fragment = Employment_01()
+            9 -> fragment = Employment_01()
         }
         return fragment
     }

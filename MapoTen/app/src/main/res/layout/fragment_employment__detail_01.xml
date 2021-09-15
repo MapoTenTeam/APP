@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.Employment_Detail_01"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/margin_32"
+    android:layout_marginRight="@dimen/margin_32">
 
     <ScrollView
         android:id="@+id/detail_scrollView"
