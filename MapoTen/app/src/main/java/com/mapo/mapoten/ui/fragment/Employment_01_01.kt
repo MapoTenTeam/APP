@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.EmployData
-import com.mapo.mapoten.data.EmployItem
 import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 import com.mapo.mapoten.ui.adapter.EmploymentRecyclerViewAdapter
 
@@ -18,8 +17,8 @@ class Employment_01_01 : Fragment() {
         binding = FragmentEmployment0101Binding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.empRecyclerView.adapter = EmploymentRecyclerViewAdapter(EmployData())
-        binding.empRecyclerView.layoutManager = LinearLayoutManager(context)
+//        binding.empRecyclerView.adapter = EmploymentRecyclerViewAdapter(EmployData())
+//        binding.empRecyclerView.layoutManager = LinearLayoutManager(context)
 
         return view
     }

@@ -1,5 +1,6 @@
 package com.mapo.mapoten.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
-import com.mapo.mapoten.data.EmployItem
+import com.mapo.mapoten.data.EmployData
 
 /**
  * @author hj
@@ -17,19 +18,19 @@ import com.mapo.mapoten.data.EmployItem
  * @created 2021-09-08
  * @desc
  */
-class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployItem>)
+class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployData>)
     : RecyclerView.Adapter<EmploymentRecyclerViewAdapter.EmployHolder>(), Filterable {
 
     private val unFilteredList = employList
     private var filteredList = employList
 
     inner class EmployHolder(rowRoot: View) : RecyclerView.ViewHolder(rowRoot) {
-        val mImage : ImageView = rowRoot.findViewById(R.id.emp_item_image)
-        val mTitle : TextView = rowRoot.findViewById(R.id.emp_item_title)
-        val mContent : TextView = rowRoot.findViewById(R.id.emp_item_content)
-        val mCountry : TextView = rowRoot.findViewById(R.id.emp_item_country)
-        val mCareer : TextView = rowRoot.findViewById(R.id.emp_item_career)
-        val mJob : TextView = rowRoot.findViewById(R.id.emp_item_job)
+        val mImage: ImageView = rowRoot.findViewById(R.id.emp_item_image)
+        val mTitle: TextView = rowRoot.findViewById(R.id.emp_item_title)
+        val mContent: TextView = rowRoot.findViewById(R.id.emp_item_content)
+        val mCountry: TextView = rowRoot.findViewById(R.id.emp_item_country)
+        val mCareer: TextView = rowRoot.findViewById(R.id.emp_item_career)
+        val mJob: TextView = rowRoot.findViewById(R.id.emp_item_job)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmploymentRecyclerViewAdapter.EmployHolder {
@@ -47,6 +48,7 @@ class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployItem
             mCareer.text = employData.employCareer
             mJob.text = employData.employJob
         }
+        Log.e("dawd","${filteredList[position]}")
     }
 
     override fun getItemCount(): Int {
@@ -56,14 +58,16 @@ class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployItem
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val filteringList = ArrayList<EmployItem>()
+                val filteringList = ArrayList<EmployData>()
                 val charString = constraint.toString()
 
                 filteredList = if (charString.isEmpty()) {
                     unFilteredList
                 } else {
                     for (item in unFilteredList) {
+                        if (item.employJob == charString)
                         filteringList.add(item)
+
                     }
                     filteringList
                 }
@@ -73,8 +77,9 @@ class EmploymentRecyclerViewAdapter(private val employList: ArrayList<EmployItem
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredList = results?.values as ArrayList<EmployItem>
+                filteredList = results?.values as ArrayList<EmployData>
                 notifyDataSetChanged()
+
             }
         }
     }
