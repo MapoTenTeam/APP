@@ -51,5 +51,6 @@
     <string name="business_employment_row_state_text">승인 심사중</string>
     <string name="business_employment_row_title">마포구 영영사 구인</string>
     <string name="business_employment_date">작성일: 2021년 08월 31일 19시24분</string>
+    <string name="title_myProfile">회원 정보 수정</string>
 
 </resources>

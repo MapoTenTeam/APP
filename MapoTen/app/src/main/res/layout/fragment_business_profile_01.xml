@@ -251,6 +251,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14"/>
 
 
@@ -269,6 +270,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -294,7 +296,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_businesslogo" />
-
+                        <ImageView
+                            android:id="@+id/icon_image_upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="@+id/businessLogo"
+                            app:layout_constraintStart_toStartOf="@+id/businessLogo"
+                            app:layout_constraintEnd_toEndOf="@+id/businessLogo"
+                            app:layout_constraintBottom_toBottomOf="@+id/businessLogo"
+                            android:src="@drawable/icon_image_upload"/>
                     <TextView
                         android:id="@+id/text_businessFile"
                         android:layout_width="wrap_content"
