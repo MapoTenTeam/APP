@@ -36,8 +36,7 @@ class BusinessAccount_01_04 : Fragment() {
             Navigation.findNavController(view).navigateUp()
         }
 
-        binding.filter.setOnCheckedChangeListener { radioGroup, position ->
-
+        binding.filter.setOnCheckedChangeListener { _, position ->
 
             testList.clear()
             when(position){
@@ -58,6 +57,15 @@ class BusinessAccount_01_04 : Fragment() {
             }
 
         }
+
+        binding.refreshLayout.setOnRefreshListener {
+            var newDataTest = EmploymentPostingContents("title", "category","대기", "registrationDate")
+            testList.add(newDataTest)
+            adapter.notifyDataSetChanged()
+
+            binding.refreshLayout.isRefreshing = false
+        }
+
         return view
     }
 

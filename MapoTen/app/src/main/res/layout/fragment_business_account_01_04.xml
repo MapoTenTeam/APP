@@ -38,7 +38,8 @@
         <RadioGroup
             android:id="@+id/filter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="start"
+            android:layout_height="wrap_content"
+            android:gravity="start"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -80,18 +81,24 @@
                 tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employmentPostingBoard"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_32"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filter"
-            tools:listitem="@layout/employment_list_row" />
+            app:layout_constraintTop_toBottomOf="@+id/filter">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/employmentPostingBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/employment_list_row" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
