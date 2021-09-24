@@ -29,7 +29,7 @@ class BusinessProfile_01 : Fragment() {
 
 
     lateinit var binding: FragmentBusinessProfile01Binding
-
+    val file = File("경로")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,8 +68,8 @@ class BusinessProfile_01 : Fragment() {
                 val selectedFile : Uri? = data?.data
                 if(selectedFile != null){
                     val file =selectedFile!!
-                   // val files = file.listFiles()
-                    var strFileList:String? = file.toString()
+
+
                     binding.fileView.text = file.encodedPath
                     binding.iconFileUpload.visibility = GONE
                     binding.fileView.visibility= VISIBLE
@@ -160,14 +160,7 @@ class BusinessProfile_01 : Fragment() {
     }
 
 
-    fun saveFile(inputStream: InputStream, filePath: String) {
-        //저장할 파일
-        val saveFile = File(filePath)
 
-        saveFile.outputStream().use { fileOutput ->
-            inputStream.copyTo(fileOutput)
-        }
-    }
 
 
 }
