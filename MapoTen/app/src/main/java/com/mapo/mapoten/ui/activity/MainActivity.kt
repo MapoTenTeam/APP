@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
-
+        
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.login_01 ||
                 destination.id == R.id.login_02_01 ||
