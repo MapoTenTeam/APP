@@ -35,19 +35,30 @@
         android:layout_marginTop="@dimen/margin_90"
         tools:context=".MainActivity">
 
+        <TextView
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* 원하는 일자리 분야를 선택해주세요!"
+            android:textColor="@color/text_lightGrey"
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/publicJopBtn"
             android:layout_width="match_parent"
             android:layout_height="154dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_employment_btn"
             android:drawableLeft="@drawable/employment_public"
-            android:layout_marginBottom="@dimen/margin_32"
             android:text="공공 일자리"
             android:textColor="@color/text_darkGrey"
             android:textSize="@dimen/text_18"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            tools:layout_editor_absoluteX="0dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/GeneralJopBtn"

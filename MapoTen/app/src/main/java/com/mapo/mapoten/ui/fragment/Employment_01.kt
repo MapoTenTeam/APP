@@ -35,6 +35,11 @@ class Employment_01 : Fragment() {
 
         }
 
+
+        binding.backButton.setOnClickListener {
+            Navigation.findNavController(view).popBackStack()
+        }
+
         return view
     }
 }

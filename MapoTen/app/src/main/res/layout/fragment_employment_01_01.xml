@@ -49,7 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:drawableRight="@drawable/ic_search_24"
-                android:hint="회사명 또는 직무명, 지역등으로 검색해보세요!"
+                android:hint="회사명이나 직무를 검색해보세요!"
+                android:textSize="@dimen/text_12"
                 android:paddingVertical="@dimen/padding_14"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>

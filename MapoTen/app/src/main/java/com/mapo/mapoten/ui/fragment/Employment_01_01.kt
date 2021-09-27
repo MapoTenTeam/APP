@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.mapo.mapoten.data.EmploymentJobPostingItem
 import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 import com.mapo.mapoten.ui.adapter.EmploymentPostingAdapter
@@ -29,6 +30,12 @@ class Employment_01_01 : Fragment() {
         adapter = GeneralEmploymentPostingAdapter(this.requireContext())
         binding.jobPostingBoard.adapter = adapter
         getAllPosting()
+
+
+        binding.backButton.setOnClickListener {
+            Navigation.findNavController(view).navigateUp()
+        }
+
 
         return view
     }
