@@ -12,12 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.BannerItem
 
-/**
- * @author hj
- * @email syk01132@gmail.com
- * @created 2021-09-06
- * @desc
- */
 class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
     : RecyclerView.Adapter<HomeViewPagerAdapter.BannerHolder>() {
 
