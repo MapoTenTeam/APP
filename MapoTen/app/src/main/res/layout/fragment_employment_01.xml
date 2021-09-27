@@ -4,23 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.Employment_01"
-    android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Employment_01" />
-
-    <Button
-        android:id="@+id/public_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="공공일자리"/>
-    <Button
-        android:id="@+id/private_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="일반일자리"/>
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/margin_32"
+    android:layout_marginRight="@dimen/margin_32">
 
 </LinearLayout>

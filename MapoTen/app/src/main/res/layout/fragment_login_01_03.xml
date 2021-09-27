@@ -8,7 +8,7 @@
     android:layout_marginEnd="@dimen/margin_32"
     android:layout_marginTop="@dimen/margin_32"
     android:orientation="vertical"
-    tools:context=".ui.fragment.Login_01_02">
+    tools:context=".ui.fragment.Login_01_03">
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,18 +19,18 @@
         android:contentDescription="@string/find_id" />
 
     <TextView
-        android:id="@+id/find_id_business"
+        android:id="@+id/tv_find_pwd"
         android:layout_marginTop="@dimen/margin_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/find_id_business"
+        android:text="@string/find_pwd"
         style="@style/title_text20"/>
 
     <TextView
         android:id="@+id/tv_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/find_id_information"
+        android:text="@string/find_pwd_information"
         android:layout_marginTop="@dimen/margin_10"
         style="@style/tos_text14"/>
 
@@ -45,13 +45,13 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:paddingVertical="@dimen/padding_14"
-            android:id="@+id/name_edit_text"
+            android:id="@+id/id_edit_text"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="@string/company_name"
+            android:hint="@string/id"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,21 +65,21 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:paddingVertical="@dimen/padding_14"
-            android:id="@+id/company_number_edit_text"
+            android:id="@+id/email_edit_text"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="@string/company_registration_number"
+            android:hint="@string/email"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_confirm"
+        android:id="@+id/btn_send_pwd"
         style="@style/btnStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
-        android:text="@string/confirm" />
+        android:text="@string/send_pwd" />
 
 </LinearLayout>

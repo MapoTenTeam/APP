@@ -1,4 +1,4 @@
-package com.mapo.mapoten.ui.adpater
+package com.mapo.mapoten.ui.adapter
 
 import android.content.Context
 import android.graphics.Color

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mapo.mapoten.R
+import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 
 class Employment_01_01 : Fragment() {
     override fun onCreateView(
