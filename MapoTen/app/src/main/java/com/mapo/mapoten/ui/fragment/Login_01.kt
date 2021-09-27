@@ -26,13 +26,12 @@ class Login_01 : Fragment() {
         _binding = FragmentLogin01Binding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         with(binding) {
-            btnSignIn.setOnClickListener {
-                textLengthChecker()
+            textLengthChecker()
+            btnLogin.setOnClickListener {
                 if (autoLoginCheckBox.isChecked) {
                     findNavController().navigate(R.id.businessAccount_01)
                 } else {
                     findNavController().navigate(R.id.home_01)
-
                 }
             } //로그인 성공시 홈화면으로 이동
             tvFindIdPersonal.setOnClickListener {
@@ -53,6 +52,9 @@ class Login_01 : Fragment() {
 
         }
 
+        binding.btnLogin.setOnClickListener {
+
+        }
 
         return binding.root
 
@@ -66,8 +68,7 @@ class Login_01 : Fragment() {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     if (pwdEditText.length() in 1..7) {
                         pwdEditTextInputLayout.error = "비밀번호를 8글자 이상 입력해주세요"
-                    } else
-                        pwdEditTextInputLayout.error = null
+                    } else pwdEditTextInputLayout.error = null
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
@@ -76,6 +77,7 @@ class Login_01 : Fragment() {
                     } else if (pwdEditText.text!!.isEmpty()) {
                         pwdEditTextInputLayout.error = "비밀번호 항목은 필수 정보입니다."
                     } else {
+                        idEditTextInputLayout.error = null
                         pwdEditTextInputLayout.error = null
                     }
                 }

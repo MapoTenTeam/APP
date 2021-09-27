@@ -94,7 +94,7 @@
 
     <Button
         style="@style/btnStyle"
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
         android:text="@string/login"
@@ -113,8 +113,7 @@
             android:layout_gravity="start|center"
             android:text="기업로그인"
             android:textColor="@color/text_darkGrey"
-            android:textSize="@dimen/text_12"
-            android:buttonTint="@color/text_middleGrey"/>
+            android:textSize="@dimen/text_12" />
 
         <View
             android:layout_width="0dp"

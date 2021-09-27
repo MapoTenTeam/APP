@@ -41,7 +41,6 @@
     <string name="send_pwd">임시 비밀번호 발송</string>
 
 
-
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
     <string name="business_profile_textView">채용 공고 및 회사 페이지에 표시될 법인명을 입력해주세요</string>

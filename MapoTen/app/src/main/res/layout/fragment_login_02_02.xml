@@ -262,7 +262,6 @@
                 android:id="@+id/all_checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/text_middleGrey"
                 android:text="@string/all_check_tos"
                 style="@style/title_text16" />
 
@@ -292,7 +291,6 @@
                     android:id="@+id/tv_tos1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
                     android:text="[필수] 마포잡 서비스 이용약관"
                     style="@style/text12" />
 
@@ -323,7 +321,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:buttonTint="@color/text_middleGrey"
                     android:text="[필수] 개인정보 수집 및 이용약관"
                     style="@style/text12" />
 
@@ -352,7 +349,6 @@
                     android:id="@+id/tv_tos3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
                     android:text="[선택] 프로필 정보 추가 수집 동의"
                     style="@style/text12" />
 
@@ -380,7 +376,6 @@
                     android:id="@+id/tv_tos4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
                     android:text="[선택] 광고성 정보 수신 동의"
                     style="@style/text12" />
 
@@ -390,14 +385,14 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    android:textColor="@color/text_darkGrey" />
             </LinearLayout>
 
         </LinearLayout>
