@@ -65,15 +65,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/business_employment_title"
                 android:textColor="#474747"
                 android:textSize="@dimen/text_16"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/size_6"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:text="모집기간 : "
+                android:textSize="@dimen/text_10" />
+
+
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="234dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/banner_image1"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:background="#50c4c4c4" />
 

@@ -36,18 +36,19 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val title: TextView = view.findViewById(R.id.postingTitle)
         private val name: TextView = view.findViewById(R.id.CompanyName)
         private val place: TextView = view.findViewById(R.id.place)
-        private val registrationDate: TextView = view.findViewById(R.id.registrationDate)
+        private val date: TextView = view.findViewById(R.id.registrationDate)
 
         fun bind(item: EmploymentJobPostingItem) {
             title.text = item.title
             name.text = item.name
             place.text = item.address
-            registrationDate.text = item.startReception + " - " + item.endReception
+            date.text = item.startReception + " - " + item.endReception
 
 
             itemView.setOnClickListener {
 
-                Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01)
+                val bundle = bundleOf("title" to title.text, "date" to date.text)
+                Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
 
             }
         }
