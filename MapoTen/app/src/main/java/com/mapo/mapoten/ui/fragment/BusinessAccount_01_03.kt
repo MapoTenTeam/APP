@@ -11,13 +11,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.UpdatePasswordItem
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0103Binding
+import com.mapo.mapoten.service.UserService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BusinessAccount_01_03 : Fragment() {
 
     lateinit var binding: FragmentBusinessAccount0103Binding
     private var checkedPassword: Boolean = false
+    lateinit var userService: UserService
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +46,45 @@ class BusinessAccount_01_03 : Fragment() {
         }
 
         // submit button
+        userService = RetrofitBuilder.getInstance().create(UserService::class.java)
+
         binding.submitButton.setOnClickListener {
             if (validatePassword()) {
                 Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
+
+                val updatePassword = userService.updatePassword(binding.password.text.toString())
+
+                updatePassword.enqueue(object : Callback<UpdatePasswordItem> {
+                    override fun onResponse(
+                        call: Call<UpdatePasswordItem>,
+                        response: Response<UpdatePasswordItem>
+                    ) {
+
+                        Log.d("passwordUpdate", "code : "+ response.code() )
+                        if (response.isSuccessful) {
+
+                            Toast.makeText(
+                                context,
+                                "200 ${response.body()?.message}",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        } else {
+
+                            Toast.makeText(context, "${response.message()}", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<UpdatePasswordItem>, t: Throwable) {
+
+                        Log.e("error", "통신 실패" + t.localizedMessage)
+
+                    }
+
+                })
+
+
                 Navigation.findNavController(view).navigate(R.id.login_01)
             } else {
                 // 전송 실패 처리
