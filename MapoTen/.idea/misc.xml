@@ -11,14 +11,19 @@
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_job_posting_row.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_state.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_job_posting_category.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_job_posting_category_career.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_job_posting_category_job.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_job_posting_category_place.xml" value="0.2962962962962963" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_password_button.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_password_button_pressed.xml" value="0.3723076923076923" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_password_input.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_password_not_pressed.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_radio_button.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_search_spinner.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_serach_input.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_spinner.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/button_background_radius30.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/employment_general.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/employment_public.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_baseline_arrow_back_16.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_bookmark_16.xml" value="0.3723076923076923" />
@@ -56,22 +61,8 @@
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/layout/item_layout_home_banner.xml" value="0.27219202898550726" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/layout/item_spinner.xml" value="0.5" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/menu/nav_bottom.xml" value="0.36614583333333334" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/button_background_radius30.xml" value="0.3098958333333333" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/ic_baseline_arrow_back_16.xml" value="0.19895833333333332" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.19895833333333332" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/drawable/input_stroke_radius30.xml" value="0.3098958333333333" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/activity_main.xml" value="0.14266304347826086" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01.xml" value="0.33" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01_01.xml" value="0.33" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01.xml" value="0.23835997220291869" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_01.xml" value="0.23716951788491447" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_02.xml" value="0.33" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_03.xml" value="0.25" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_profile_01.xml" value="0.22" />
-        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/include_employment_top.xml" value="0.14266304347826086" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK" />
 </project>
