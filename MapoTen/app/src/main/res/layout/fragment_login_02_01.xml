@@ -36,6 +36,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_edit_textInputLayout"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,11 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:isScrollContainer="false"
+            app:endIconMode="custom"
             app:errorEnabled="true"
             app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/id_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/id"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,6 +88,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_edit_textInputLayout"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,6 +167,7 @@
             android:text="@string/confirm" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pwd_edit_textInputLayout"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

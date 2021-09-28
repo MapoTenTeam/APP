@@ -45,12 +45,10 @@ class Login_02_01 : Fragment() {
                         if (response.isSuccessful) {
                             when(response.body()?.isDuplicate){
                                 false -> {idEditTextInputLayout.helperText = "사용 가능한 아이디입니다"
-                                idEditTextInputLayout.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)}
-//                                    Toast.makeText(context,"사용 가능한 아이디입니다",Toast.LENGTH_SHORT).show()
+                                idEditTextInputLayout.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                                }
                                 true -> idEditTextInputLayout.error = "이미 사용중인 아이디입니다"
-//                                    Toast.makeText(context,"이미 사용중인 아이디입니다",Toast.LENGTH_SHORT).show()
                             }
-//                            Toast.makeText(context, "200 ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         }
@@ -73,10 +71,11 @@ class Login_02_01 : Fragment() {
                     ) {
                         if (response.isSuccessful) {
                             when(response.body()?.isDuplicate){
-                                false -> Toast.makeText(context,"사용 가능한 이메일입니다",Toast.LENGTH_SHORT).show()
-                                true -> Toast.makeText(context,"이미 사용중인 이메일입니다",Toast.LENGTH_SHORT).show()
+                                false -> {emailEditTextInputLayout.helperText = "사용 가능한 이메일입니다"
+                                    emailEditTextInputLayout.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                                }
+                                true -> emailEditTextInputLayout.error = "이미 사용중인 이메일입니다"
                             }
-//                            Toast.makeText(context, " ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT).show()
                             Log.d("TAG", "response : ${response.code()}")
