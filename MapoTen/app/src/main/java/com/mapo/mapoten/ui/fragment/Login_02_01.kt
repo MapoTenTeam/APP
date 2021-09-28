@@ -43,7 +43,14 @@ class Login_02_01 : Fragment() {
                         response: Response<DuplicateIdInfoItem>,
                     ) {
                         if (response.isSuccessful) {
-                            Toast.makeText(context, "200 ${response.body()?.message}", Toast.LENGTH_SHORT).show()
+                            when(response.body()?.isDuplicate){
+                                false -> {idEditTextInputLayout.helperText = "사용 가능한 아이디입니다"
+                                idEditTextInputLayout.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)}
+//                                    Toast.makeText(context,"사용 가능한 아이디입니다",Toast.LENGTH_SHORT).show()
+                                true -> idEditTextInputLayout.error = "이미 사용중인 아이디입니다"
+//                                    Toast.makeText(context,"이미 사용중인 아이디입니다",Toast.LENGTH_SHORT).show()
+                            }
+//                            Toast.makeText(context, "200 ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         }
@@ -57,9 +64,7 @@ class Login_02_01 : Fragment() {
             }
 
             btnEmailDoubleCheck.setOnClickListener {
-                Log.d("TAG", "클릭")
                 val duplicateEmail = userService.isDuplicateUserEmail(emailEditText.text.toString())
-                Log.d("TAG", "${emailEditText.text}")
 
                 duplicateEmail.enqueue(object : Callback<DuplicateIdInfoItem> {
                     override fun onResponse(
@@ -67,13 +72,11 @@ class Login_02_01 : Fragment() {
                         response: Response<DuplicateIdInfoItem>,
                     ) {
                         if (response.isSuccessful) {
-                            Log.d("TAG", "response : ${response.code()}")
-//                            when(response.code()){
-//                                200-> Toast.makeText(context,"사용가능한 이메일입니다",Toast.LENGTH_SHORT).show()
-//                                201-> Toast.makeText(context,"사용 불가능한 이메일입니다",Toast.LENGTH_SHORT).show()
-//                                400-> Toast.makeText(context,"이메일 형태가 아닙니다.",Toast.LENGTH_SHORT).show()
-//                            }
-                            Toast.makeText(context, " ${response.body()?.message}", Toast.LENGTH_SHORT).show()
+                            when(response.body()?.isDuplicate){
+                                false -> Toast.makeText(context,"사용 가능한 이메일입니다",Toast.LENGTH_SHORT).show()
+                                true -> Toast.makeText(context,"이미 사용중인 이메일입니다",Toast.LENGTH_SHORT).show()
+                            }
+//                            Toast.makeText(context, " ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT).show()
                             Log.d("TAG", "response : ${response.code()}")
