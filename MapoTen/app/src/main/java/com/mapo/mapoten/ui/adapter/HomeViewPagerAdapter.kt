@@ -16,9 +16,9 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
     : RecyclerView.Adapter<HomeViewPagerAdapter.BannerHolder>() {
 
     inner class BannerHolder(rowRoot: View) : RecyclerView.ViewHolder(rowRoot) {
-        val bannerImage : ImageView = rowRoot.findViewById(R.id.iv_bannerImage)
-        val bannerTitle : TextView = rowRoot.findViewById(R.id.tv_bannerTitle)
-        val bannerContent : TextView = rowRoot.findViewById(R.id.tv_bannerContent)
+        val bannerImage : ImageView = rowRoot.findViewById(R.id.homeImage)
+        val bannerTitle : TextView = rowRoot.findViewById(R.id.homeTitle)
+        val bannerContent : TextView = rowRoot.findViewById(R.id.homeContent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerHolder {
