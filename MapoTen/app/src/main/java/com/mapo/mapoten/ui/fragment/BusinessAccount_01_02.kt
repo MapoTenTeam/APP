@@ -13,6 +13,8 @@ class BusinessAccount_01_02 : Fragment() {
 
     lateinit var binding : FragmentBusinessAccount0102Binding
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
