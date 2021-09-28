@@ -63,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
-                >
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="-133dp">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,10 +95,10 @@
                         app:layout_constraintTop_toBottomOf="@+id/title_textView">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            style="@style/PasswordTextInputEditTextStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/padding_14"
-                            style="@style/PasswordTextInputEditTextStyle"/>
+                            android:paddingVertical="@dimen/padding_14" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,7 +117,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14"/>
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -155,7 +156,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14"/>
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -174,7 +175,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14"/>
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -192,8 +193,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_14"
                             android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14"
                             tools:ignore="TextContrastCheck" />
 
 
@@ -213,7 +214,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14"/>
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -233,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
 
-                            android:textSize="@dimen/text_14"/>
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -251,7 +252,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_14"/>
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -269,6 +271,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -295,6 +298,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_businesslogo" />
 
+                    <ImageView
+                        android:id="@+id/icon_image_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_image_upload"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/businessLogo"
+                        app:layout_constraintEnd_toEndOf="@+id/businessLogo"
+                        app:layout_constraintStart_toStartOf="@+id/businessLogo"
+                        app:layout_constraintTop_toTopOf="@+id/businessLogo" />
+
                     <TextView
                         android:id="@+id/text_businessFile"
                         android:layout_width="wrap_content"
@@ -312,10 +326,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="190sp"
                         android:background="@drawable/input_stroke_radius30"
-
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_businessFile" />
+                        app:layout_constraintTop_toBottomOf="@+id/text_businessFile"/>
+
+
+                    <ImageView
+                        android:id="@+id/icon_file_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:layout_constraintTop_toTopOf="@+id/businessFile"
+                        app:layout_constraintStart_toStartOf="@+id/businessFile"
+                        app:layout_constraintEnd_toEndOf="@+id/businessFile"
+                        app:layout_constraintBottom_toBottomOf="@+id/businessFile"
+                        android:src="@drawable/icon_image_upload"
+                        />
+
+                        <TextView
+                            android:id="@+id/fileView"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            app:layout_constraintTop_toTopOf="@+id/businessFile"
+                            app:layout_constraintStart_toStartOf="@+id/businessFile"
+                            app:layout_constraintEnd_toEndOf="@+id/businessFile"
+                            app:layout_constraintBottom_toBottomOf="@+id/businessFile"/>
 
 
                     <androidx.appcompat.widget.AppCompatButton

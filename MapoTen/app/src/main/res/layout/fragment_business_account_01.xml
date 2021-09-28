@@ -314,7 +314,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logoutBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginHorizontal="110dp"
             android:layout_marginBottom="30dp"
