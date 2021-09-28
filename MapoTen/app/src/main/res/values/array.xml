@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="employ_array_career">
-        <item>경력무관</item>
+        <item>경력형태</item>
         <item>경력</item>
         <item>신입</item>
     </string-array>
 
     <string-array name="employ_array_job">
-        <item>전체보기</item>
+        <item>직무</item>
         <item>경영지원</item>
         <item>마케팅</item>
         <item>기획</item>
@@ -20,7 +20,7 @@
     </string-array>
 
     <string-array name="employ_array_country">
-        <item>전체보기</item>
+        <item>근무지</item>
         <item>공덕동</item>
         <item>도화동</item>
         <item>대흥동</item>
