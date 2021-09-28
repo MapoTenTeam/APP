@@ -28,7 +28,7 @@
                 android:id="@+id/homeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="공고제목"
+                android:text="@string/home_viewpager_title"
                 android:textColor="@color/text_darkGrey"
                 android:textSize="@dimen/text_16"
                 android:textStyle="bold" />
@@ -38,7 +38,7 @@
                 android:id="@+id/homeContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="공고 내용"
+                android:text="@string/home_viewpager_contents"
                 android:textColor="@color/text_middleGrey"
                 android:textSize="@dimen/text_14"
                 android:textStyle="bold" />

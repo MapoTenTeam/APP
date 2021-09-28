@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="일자리 플랫폼"
-                android:textSize="16sp"
+                android:text="@string/home_title"
+                android:textSize="@dimen/text_16"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="마포구에서 함께 일해요!"
+                    android:text="@string/home_join_mapo"
                     android:textColor="@color/text_darkGrey"
                     android:textSize="@dimen/text_16"
                     android:textStyle="bold" />
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="유연하게, 전문적으로 일해요!"
+                    android:text="@string/home_banner_title"
                     android:textColor="@color/text_darkGrey"
                     android:textSize="@dimen/text_16"
                     android:textStyle="bold" />
@@ -97,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
-                    android:text="매일 새로운 커리어 기회를 확인하고\n 당신의 일을 찾아보세요:)"
+                    android:text="@string/home_banner_content"
                     android:textColor="@color/text_middleGrey"
                     android:textSize="@dimen/text_12"
                     android:textStyle="bold" />
