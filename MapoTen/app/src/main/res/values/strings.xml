@@ -88,8 +88,15 @@
     <string name="business_employment_row_state_text">승인 심사중</string>
     <string name="business_employment_row_title">마포구 영영사 구인</string>
     <string name="business_employment_date">작성일: 2021년 08월 31일 19시24분</string>
+    <string name="title_myProfile">회원 정보 수정</string>
     <string name="tab_home">홈</string>
     <string name="tab_employment">채용</string>
     <string name="tab_mypage">마이페이지</string>
+    <string name="home_title">일자리 플랫폼</string>
+    <string name="home_join_mapo">마포구에서 함께 일해요!</string>
+    <string name="home_banner_title">유연하게, 전문적으로 일해요!</string>
+    <string name="home_banner_content">매일 새로운 커리어 기회를 확인하고\n당신의 일을 찾아보세요:)</string>
+    <string name="home_viewpager_title">공고제목</string>
+    <string name="home_viewpager_contents">공고 내용</string>
 
 </resources>

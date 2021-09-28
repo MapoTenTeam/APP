@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.Employment_01_01">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_56"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/backButton"
+            style="@style/BackButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공공 일자리" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:background="#50c4c4c4" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="공공일자리" />
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="90dp"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_serach_input"
+            android:drawableRight="@drawable/ic_search_24"
+            android:drawableTint="@color/employment_search_icon"
+            android:hint="회사명이나 직무를 검색해보세요!"
+            android:paddingHorizontal="@dimen/padding_12"
+            android:paddingVertical="@dimen/padding_4"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/spinnerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_24"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/search">
+
+            <Spinner
+                android:id="@+id/placeOfWork"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/margin_6"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_spinner"
+                android:popupBackground="@drawable/bg_employment"
+                tools:listitem="@layout/item_spinner" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/jobPostingBoard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="86dp"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/public_employment_posting_row" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
