@@ -45,18 +45,23 @@
             android:layout_height="@dimen/size_1"
             android:layout_marginTop="@dimen/margin_8"
             android:background="#60c4c4c4" />
+
+
+
     </LinearLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_90"
+        android:layout_marginTop="46dp"
         tools:context=".MainActivity">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="45dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,6 +77,7 @@
                     android:text="@string/home_join_mapo"
                     android:textColor="@color/text_darkGrey"
                     android:textSize="@dimen/text_16"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -97,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:text="@string/home_banner_content"
                     android:textColor="@color/text_middleGrey"
                     android:textSize="@dimen/text_12"
@@ -105,8 +112,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:strokeWidth="@dimen/size_4"
-                    android:layout_margin="@dimen/margin_8">
+                    android:layout_margin="@dimen/margin_2"
+                    app:strokeWidth="@dimen/size_4">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/home_viewPager2"
@@ -114,7 +121,6 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/margin_12" />
                 </com.google.android.material.card.MaterialCardView>
-
 
 
             </LinearLayout>
