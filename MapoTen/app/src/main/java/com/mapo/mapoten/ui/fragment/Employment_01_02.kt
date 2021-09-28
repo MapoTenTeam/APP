@@ -6,14 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.mapo.mapoten.R
 import com.mapo.mapoten.data.EmploymentJobPostingItem
+import com.mapo.mapoten.data.SpinnerModel
+import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 import com.mapo.mapoten.databinding.FragmentEmployment0102Binding
 import com.mapo.mapoten.ui.adapter.GeneralEmploymentPostingAdapter
+import com.mapo.mapoten.ui.adapter.SpinnerAdapter
 
 class Employment_01_02 : Fragment() {
     lateinit var binding: FragmentEmployment0102Binding
     private lateinit var adapter: GeneralEmploymentPostingAdapter
     private val testList = mutableListOf<EmploymentJobPostingItem>()
+    private lateinit var spinnerAdapterCareer: SpinnerAdapter
+    private val listOfCareer = ArrayList<SpinnerModel>()
+    private lateinit var spinnerAdapterJob: SpinnerAdapter
+    private val listOfJob = ArrayList<SpinnerModel>()
+    private lateinit var spinnerAdapterPlace: SpinnerAdapter
+    private val listOfPlace = ArrayList<SpinnerModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +39,59 @@ class Employment_01_02 : Fragment() {
         binding.jobPostingBoard.adapter = adapter
         getAllPosting()
 
+        // init
+        initialize()
+
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 
-
         return view
+    }
+
+    private fun initialize() {
+        listOfCareer.clear()
+        listOfJob.clear()
+        listOfPlace.clear()
+
+        setupSpinnerCareer()
+        setupSpinnerJob()
+        setupSpinnerPlace()
+
+    }
+
+    private fun setupSpinnerCareer() {
+        val careers = resources.getStringArray(R.array.employ_array_career)
+
+        for (i in careers.indices) {
+            val career = SpinnerModel(careers[i])
+            listOfCareer.add(career)
+        }
+        spinnerAdapterCareer = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfCareer)
+        binding.employCareer.adapter = spinnerAdapterCareer
+    }
+
+    private fun setupSpinnerJob() {
+        val jobs = resources.getStringArray(R.array.employ_array_job)
+
+        for (i in jobs.indices) {
+            val job = SpinnerModel(jobs[i])
+            listOfJob.add(job)
+        }
+        spinnerAdapterJob = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfJob)
+        binding.employJob.adapter = spinnerAdapterJob
+    }
+
+    private fun setupSpinnerPlace() {
+        val places = resources.getStringArray(R.array.employ_array_country)
+
+        for (i in places.indices) {
+            val place = SpinnerModel(places[i])
+            listOfPlace.add(place)
+        }
+        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
+        binding.placeOfWork.adapter = spinnerAdapterPlace
     }
 
 
