@@ -1,11 +1,14 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.EmploymentJobPostingItem
@@ -42,19 +45,41 @@ class Employment_01_01 : Fragment() {
         binding.jobPostingBoard.adapter = adapter
         getAllPosting()
 
-        // spinner settings
-        setupSpinnerCareer()
-        setupSpinnerJob()
-        setupSpinnerPlace()
+        // init
+        initialize()
+
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 
 
+        binding.employJob.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                //Toast.makeText(requireContext(), "선택 : $p2", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
         return view
     }
 
+    private fun initialize() {
+        listOfCareer.clear()
+        listOfJob.clear()
+        listOfPlace.clear()
+
+        setupSpinnerCareer()
+        setupSpinnerJob()
+        setupSpinnerPlace()
+
+    }
 
     private fun setupSpinnerCareer() {
         val careers = resources.getStringArray(R.array.employ_array_career)
@@ -89,116 +114,98 @@ class Employment_01_01 : Fragment() {
         binding.placeOfWork.adapter = spinnerAdapterPlace
     }
 
+
     private fun getAllPosting() {
         testList.apply {
             add(
                 EmploymentJobPostingItem(
                     1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    "기획 업무",
+                    "기획나라",
+                    "성산동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12,
+                    "기획"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    2,
+                    "마케팅 팀 매니저 구인",
+                    "우리나라 마케팅",
+                    "공덕동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12,
+                    "마케팅"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    3,
+                    "프론트 개발자 모집",
+                    "마포구청(일자리 사업)",
+                    "합정동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12, "개발"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    4,
+                    "백엔드 개발자 모집",
+                    "마포구청(일자리 사업)",
+                    "합정동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12, "개발"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    5,
+                    "PM구인",
+                    "마포구청(일자리 사업)",
+                    "합정동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12, "개발"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    6,
+                    "기획 매니저 구인",
+                    "기획나라",
+                    "상암동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12,
+                    "기획"
                 )
             )
             add(
                 EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
+                    7,
+                    "디자이너 10명 모집중",
+                    "마포구청(일자리 사업)",
+                    "아현동",
                     "2021년 12월 12일",
                     "2021년 12월 30일",
                     "",
-                    12
+                    12, "개발"
                 )
             )
-            add(
-                EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    1,
-                    "마포구청 구내식당 영양사 모집",
-                    "마포구청",
-                    "서울특별시 마포구 성산로 22",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12
-                )
-            )
+
+
             adapter.data = testList
             adapter.notifyDataSetChanged()
         }

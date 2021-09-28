@@ -15,8 +15,9 @@ import com.mapo.mapoten.R
 import com.mapo.mapoten.data.EmploymentJobPostingItem
 import com.mapo.mapoten.ui.data.EmploymentPostingContents
 
-class GeneralEmploymentPostingAdapter(private val context: Context) : RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
-    var data : MutableList<EmploymentJobPostingItem> = ArrayList()
+class GeneralEmploymentPostingAdapter(private val context: Context) :
+    RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
+    var data: MutableList<EmploymentJobPostingItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
@@ -32,14 +33,25 @@ class GeneralEmploymentPostingAdapter(private val context: Context) : RecyclerVi
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val title : TextView = view.findViewById(R.id.postingTitle)
-        private val name : TextView = view.findViewById(R.id.CompanyName)
-        private val registrationDate : TextView = view.findViewById(R.id.registrationDate)
+        private val title: TextView = view.findViewById(R.id.postingTitle)
+        private val name: TextView = view.findViewById(R.id.CompanyName)
+        private val jobType: TextView = view.findViewById(R.id.jobType)
+        private val place: TextView = view.findViewById(R.id.place)
+        private val registrationDate: TextView = view.findViewById(R.id.registrationDate)
 
         fun bind(item: EmploymentJobPostingItem) {
             title.text = item.title
             name.text = item.name
-            registrationDate.text = item.startReception
+            jobType.text = item.job
+            place.text = item.address
+            registrationDate.text = item.startReception + " - " + item.endReception
+
+
+            itemView.setOnClickListener {
+
+                Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01)
+
+            }
         }
     }
 }

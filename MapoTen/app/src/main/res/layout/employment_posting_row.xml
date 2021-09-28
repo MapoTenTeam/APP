@@ -22,36 +22,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_8"
-            android:background="@drawable/bg_job_posting_category"
+            android:background="@drawable/bg_job_posting_category_career"
             android:paddingHorizontal="@dimen/padding_8"
             android:paddingVertical="@dimen/padding_2"
-            android:text="기획"
+            android:text="경력"
             android:textColor="@color/main_skyBlue"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_12"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/jobType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_8"
-            android:background="@drawable/bg_job_posting_category"
+            android:background="@drawable/bg_job_posting_category_job"
             android:paddingHorizontal="@dimen/padding_8"
             android:paddingVertical="@dimen/padding_2"
             android:text="기획"
-            android:textColor="@color/main_skyBlue"
-            android:textSize="12sp"
+            android:textColor="#FF50B9"
+            android:textSize="@dimen/text_12"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_8"
-            android:background="@drawable/bg_job_posting_category"
+            android:background="@drawable/bg_job_posting_category_place"
             android:paddingHorizontal="@dimen/padding_8"
             android:paddingVertical="@dimen/padding_2"
-            android:text="기획"
-            android:textColor="@color/main_skyBlue"
-            android:textSize="12sp"
+            android:text="공덕동"
+            android:textColor="#279725"
+            android:textSize="@dimen/text_12"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -61,17 +63,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_12"
         android:text="마포구 지역사회 보장 담당자 구인"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/text_16"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/CompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
         android:text="마포구청"
-        android:textSize="@dimen/text_16"
-        android:textStyle="normal" />
+        android:textColor="@color/text_middleGrey"
+        android:textSize="@dimen/text_14"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/registrationDate"

@@ -45,7 +45,6 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search"
-                style="@style/PasswordTextInputEditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:drawableRight="@drawable/ic_search_24"

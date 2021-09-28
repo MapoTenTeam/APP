@@ -15,5 +15,7 @@ data class EmploymentJobPostingItem(
     val endReception: String, // 접수 종료
 
     val image: String, // 사업체 사진
-    val count: Int // 일반 일자리 갯수
+    val count: Int, // 일반 일자리 갯수
+
+    val job : String, // 직무
 )
