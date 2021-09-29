@@ -54,6 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_32"
                 android:layout_marginEnd="@dimen/margin_32"
+                android:paddingTop="@dimen/padding_10"
                 android:layout_marginBottom="500dp">
 
 
@@ -64,7 +65,7 @@
                     android:text="adafdfsdfaddfasf"
                     android:textColor="@color/main_darkBlue"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_myProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollView"
                     tools:ignore="NotSibling" />
 
                 <TextView
