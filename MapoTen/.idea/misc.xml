@@ -8,6 +8,7 @@
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_drop_down.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_btn.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_detail.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_job_posting_row.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_employment_state.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_job_posting_category.xml" value="0.378125" />
@@ -22,14 +23,19 @@
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_search_spinner.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_serach_input.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_spinner.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_toggle_btn.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/button_background_radius30.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/employment_general.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/employment_public.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_baseline_arrow_back_16.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_bookmark_16.xml" value="0.3723076923076923" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_calendar_24.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_employment.xml" value="0.378125" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_full_heart_24.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_group_177.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_heart.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_home.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/ic_submit.xml" value="0.378125" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/input_stroke_radius30.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/radio_button_text_color.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/tab_item_selector.xml" value="0.29814814814814816" />
