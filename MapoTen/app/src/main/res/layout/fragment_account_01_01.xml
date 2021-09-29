@@ -15,7 +15,17 @@
         android:paddingBottom="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <Button
+            android:id="@+id/backBtn"
+            style="@style/BackButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_myProfile"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+       <!-- <ImageView
             android:id="@+id/backBtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -36,7 +46,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/backBtn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,7 +72,7 @@
                 android:text="adafdfsdfaddfasf"
                 android:textColor="@color/main_darkBlue"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_myProfile"
+                app:layout_constraintTop_toBottomOf="@+id/backBtn"
                 tools:ignore="NotSibling" />
 
             <TextView
@@ -178,7 +188,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/checkedValidEmail"
+                    android:id="@+id/userAddress"
                     style="@style/TextInputOutline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -188,9 +198,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userAddressText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"
+                        android:text="서울 서대문구 양평동"
                         android:textSize="@dimen/text_14" />
 
 
@@ -207,9 +219,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/address_detail_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"
+                        android:text="558"
                         android:textSize="@dimen/text_14" />
 
 
