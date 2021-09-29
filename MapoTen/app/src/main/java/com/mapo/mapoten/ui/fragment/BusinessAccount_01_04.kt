@@ -1,21 +1,33 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.employment.EmploymentResponse
+import com.mapo.mapoten.data.employment.SelectJobEnterpriseItem
+import com.mapo.mapoten.data.employment.SelectJobEnterpriseOutputDto
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
+import com.mapo.mapoten.service.EmploymentService
 import com.mapo.mapoten.ui.adapter.EmploymentPostingAdapter
 import com.mapo.mapoten.ui.data.EmploymentPostingContents
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BusinessAccount_01_04 : Fragment() {
 
-    lateinit var binding : FragmentBusinessAccount0104Binding
-    private lateinit var adapter : EmploymentPostingAdapter
-    private val testList = mutableListOf<EmploymentPostingContents>()
+    lateinit var binding: FragmentBusinessAccount0104Binding
+    private lateinit var adapter: EmploymentPostingAdapter
+    private val dataList = mutableListOf<SelectJobEnterpriseItem>()
+    private var resultDataList = mutableListOf<SelectJobEnterpriseItem>()
+    lateinit var employmentService: EmploymentService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +37,7 @@ class BusinessAccount_01_04 : Fragment() {
         binding = FragmentBusinessAccount0104Binding.inflate(inflater, container, false)
         val view = binding.root
 
-        adapter  = EmploymentPostingAdapter(this.requireContext())
+        adapter = EmploymentPostingAdapter(this.requireContext())
         binding.employmentPostingBoard.adapter = adapter
 
         // test
@@ -38,31 +50,28 @@ class BusinessAccount_01_04 : Fragment() {
 
         binding.filter.setOnCheckedChangeListener { _, position ->
 
-            testList.clear()
-            when(position){
+            dataList.clear()
+            when (position) {
                 R.id.allStates -> {
                     getAllPosting()
                 }
-                R.id.judging -> {
-                    getJudgingPosting()
+                R.id.request -> {
+                    getPosting("승인요청")
                 }
                 R.id.approval -> {
-                    getApprovalPosting()
+                    getPosting("승인완료")
                 }
                 R.id.reject -> {
-                    getRejectPosting()
+                    getPosting("승인거절")
                 }
                 else -> {
-                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()}
+                    getAllPosting()
+                }
             }
 
         }
 
         binding.refreshLayout.setOnRefreshListener {
-            var newDataTest = EmploymentPostingContents("title", "category","대기", "registrationDate")
-            testList.add(newDataTest)
-            adapter.notifyDataSetChanged()
-
             binding.refreshLayout.isRefreshing = false
         }
 
@@ -70,50 +79,61 @@ class BusinessAccount_01_04 : Fragment() {
     }
 
     private fun getAllPosting() {
-        testList.apply {
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            adapter.data = testList
-            adapter.notifyDataSetChanged()
-        }
+
+        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
+        val inquireGeneralDetailPosting = employmentService.getEnterpriseJobList()
+
+        inquireGeneralDetailPosting.enqueue(object : Callback<SelectJobEnterpriseOutputDto> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<SelectJobEnterpriseOutputDto>,
+                response: Response<SelectJobEnterpriseOutputDto>
+            ) {
+
+                Log.d("employmentDetail", "code : " + response.code())
+                Log.d("employmentDetail", "message : " + response.message())
+
+                if (response.isSuccessful) {
+
+                    resultDataList = response.body()!!.data
+
+                    Log.d("employmentDetail", "resultDataList : $resultDataList")
+
+                    if (resultDataList.size > 0) {
+                        binding.emptyBoardGuide.visibility = View.GONE
+                        binding.refreshLayout.visibility = View.VISIBLE
+                        adapter.data = resultDataList
+                        adapter.notifyDataSetChanged()
+
+                    } else {
+                        binding.emptyBoardGuide.visibility = View.VISIBLE
+                        binding.refreshLayout.visibility = View.GONE
+                    }
+
+
+                } else {
+                    Log.d("employmentDetail", "code : " + response.code())
+                }
+            }
+
+            override fun onFailure(call: Call<SelectJobEnterpriseOutputDto>, t: Throwable) {
+                Log.e("employmentDetail", "통신 실패" + t.localizedMessage)
+            }
+
+        })
     }
 
-    private fun getRejectPosting() {
-        testList.apply {
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","비승인", "등록일: 2021년 08월 31일 17시 34분"))
-            adapter.data = testList
-            adapter.notifyDataSetChanged()
+    private fun getPosting(jobStat: String) {
+
+        for (i: Int in 0 until resultDataList.size) {
+            if (resultDataList[i].jobStat == jobStat) {
+
+                dataList.add(resultDataList[i])
+            }
         }
+        adapter.data = dataList
+        adapter.notifyDataSetChanged()
+
     }
 
-    private fun getApprovalPosting() {
-        testList.apply {
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","승인", "등록일: 2021년 08월 31일 17시 34분"))
-            adapter.data = testList
-            adapter.notifyDataSetChanged()
-        }
-    }
-
-    private fun getJudgingPosting() {
-        testList.apply {
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "공공일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            add( EmploymentPostingContents("채용공고제목", "일반일자리","대기", "등록일: 2021년 08월 31일 17시 34분"))
-            adapter.data = testList
-            adapter.notifyDataSetChanged()
-        }
-    }
 }

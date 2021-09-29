@@ -2,6 +2,7 @@ package com.mapo.mapoten.service
 
 import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.PublicJobPostingResponse
+import com.mapo.mapoten.data.employment.SelectJobEnterpriseOutputDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,4 +20,10 @@ interface EmploymentService {
 
     @GET("job/general/detail/{id}")
     fun inquireGeneralDetailPosting(@Path("id") id : Int) : Call<EmploymentResponse>
+
+
+
+    // 기업 채용공고 목록 조회
+    @GET("job/enterprise/list")
+    fun getEnterpriseJobList() : Call<SelectJobEnterpriseOutputDto>
 }
