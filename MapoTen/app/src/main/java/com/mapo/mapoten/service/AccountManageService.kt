@@ -1,20 +1,25 @@
 package com.mapo.mapoten.service
 
-import android.provider.ContactsContract
+import com.mapo.mapoten.data.DuplicateIdInfoItem
 import com.mapo.mapoten.ui.data.PersonalProfile
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Path
+import com.mapo.mapoten.ui.data.PersonalProfileItems
+import retrofit2.Call
+import retrofit2.http.*
 
 interface AccountManageService {
 
-   /* @Headers(
-        "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzNDU2IiwiaWF0IjoxNjMyNzk0NDY0fQ.YJyId8cFzUAbsMKS6jNKV5CxBZBPuMMDmR4GUqnSADM"
-    )*/
+    @GET("user/personal/profile")
+    fun getUserProfile(): Call<PersonalProfile>
 
-   /* @GET(/user/personal/profile)
-    fun getUserProfile(): List<PersonalProfile>*/
+    @FormUrlEncoded
+    @PUT("user/personal/upload/profile")
+    fun updateUserProfile(
+        @Field("MBER_NM") name:String,
+        @Field("MBER_EMAIL_ADRES") email: String,
+        @Field("MBTLNUM") mobile : String,
+        @Field("ADRES") address: String,
+        @Field("DETAIL_ADRES") detailAd : String
+    ):Call<DuplicateIdInfoItem>
 }
 
 
