@@ -1,4 +1,4 @@
-package com.mapo.mapoten.data
+package com.mapo.mapoten.data.home
 
 import com.mapo.mapoten.R
 

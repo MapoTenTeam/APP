@@ -10,7 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
-import com.mapo.mapoten.data.BannerItem
+import com.mapo.mapoten.data.home.BannerItem
 
 class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
     : RecyclerView.Adapter<HomeViewPagerAdapter.BannerHolder>() {

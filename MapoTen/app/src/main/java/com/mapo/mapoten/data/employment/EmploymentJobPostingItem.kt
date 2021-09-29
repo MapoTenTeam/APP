@@ -1,4 +1,4 @@
-package com.mapo.mapoten.data
+package com.mapo.mapoten.data.employment
 
 import com.google.gson.annotations.SerializedName
 
