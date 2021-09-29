@@ -107,6 +107,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userNameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"
@@ -126,6 +127,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userIdText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"
@@ -145,6 +147,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userPhoneText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"
@@ -164,6 +167,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userEmailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/padding_14"

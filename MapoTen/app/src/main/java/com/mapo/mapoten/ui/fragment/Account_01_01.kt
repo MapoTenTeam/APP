@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.EditMyProfileItem
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.ui.data.PersonalProfile
+import com.mapo.mapoten.ui.data.PersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,20 +28,27 @@ class Account_01_01 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccount0101Binding.inflate(inflater, container, false)
+
         //회원정보 불러오기
         service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
-        val auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4MTkxMzB9.L7r4dwUxbKhSboeo15Pq-LkMZR3sUOTy-QX6Sx1oRW4"
-        service.getUserProfile(auth).enqueue(object : Callback<List<PersonalProfile>>{
+       // val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4MTkxMzB9.L7r4dwUxbKhSboeo15Pq-LkMZR3sUOTy-QX6Sx1oRW4"
+        service.getUserProfile().enqueue(object : Callback<PersonalProfile>{
             override fun onResponse(
-                call: Call<List<PersonalProfile>>,
-                response: Response<List<PersonalProfile>>
+                call: Call<PersonalProfile>,
+                response: Response<PersonalProfile>
             ) {
 
                 Log.d("profile", "res: "+response.code())
 
                 if(response.isSuccessful){
-                    val profileList = response.body()
-                    Log.d("profile", "res: "+profileList?.get(0)?.mber_id)
+                    val myProfile = response.body()
+                    Log.d("profile", "msg: "+ response.message())
+                    Log.d("profile", "res: "+ response.body())
+                    binding.userNameText.setText(myProfile?.data?.MBER_NM)
+                    binding.userIdText.setText(myProfile?.data?.MBER_ID)
+                    binding.userPhoneText.setText(myProfile?.data?.MBTLNUM)
+                    binding.userEmailText.setText(myProfile?.data?.MBER_EMAIL_ADRES)
+
 
                     val error = response.errorBody()
                     val header = response.headers()
@@ -50,8 +57,8 @@ class Account_01_01 : Fragment() {
 
             }
 
-            override fun onFailure(call: Call<List<PersonalProfile>>, t: Throwable) {
-                Log.d("profile", "error")
+            override fun onFailure(call: Call<PersonalProfile>, t: Throwable) {
+                Log.d("profile", "error" + t.message)
             }
         })
 
