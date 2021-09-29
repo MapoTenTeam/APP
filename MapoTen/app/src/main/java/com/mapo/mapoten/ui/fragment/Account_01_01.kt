@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.DuplicateIdInfoItem
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
-import com.mapo.mapoten.ui.data.PersonalProfile
-import com.mapo.mapoten.ui.data.PersonalProfileItems
+import com.mapo.mapoten.data.PersonalProfile
+import com.mapo.mapoten.data.PersonalProfileItems
+import com.mapo.mapoten.data.UpdatePersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +35,12 @@ class Account_01_01 : Fragment() {
         //뒤로가기
         binding.backBtn.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
+        }
+
+        //회원 정보 업데이트
+        binding.saveButton.setOnClickListener {
+            Log.d("profile", "눌림")
+            updateProfile()
         }
 
         //회원정보 불러오기
@@ -67,26 +73,7 @@ class Account_01_01 : Fragment() {
         })
 
 
-        //회원 정보 업데이트
-        binding.saveButton.setOnClickListener {
-            val name = binding.userNameText.text.toString()
-            val mobile = binding.userPhoneText.text.toString()
-            val email = binding.userEmailText.text.toString()
-            val address = binding.userAddressText.text.toString()
-            val detailAd = binding.addressDetailText.text.toString()
-            service.updateUserProfile(name,mobile,email,address,detailAd).enqueue(object :Callback<DuplicateIdInfoItem>{
-                override fun onResponse(
-                    call: Call<DuplicateIdInfoItem>,
-                    response: Response<DuplicateIdInfoItem>
-                ) {
-                    TODO("Not yet implemented")
-                }
 
-                override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
-            })
-        }
 
 
         return view
@@ -94,7 +81,7 @@ class Account_01_01 : Fragment() {
 
 
 
-       private fun setProfile(myProfile:PersonalProfile) {
+       private fun setProfile(myProfile: PersonalProfile) {
 
             val name = myProfile?.data?.MBER_NM
             binding.mypageUserName.setText(name)
@@ -105,6 +92,39 @@ class Account_01_01 : Fragment() {
             binding.userAddressText.setText(myProfile?.data?.ADRES)
             binding.addressDetailText.setText(myProfile!!.data.DETAIL_ADRES)
 
+        }
+
+
+        private fun updateProfile() {
+
+            val name = binding.userNameText.text.toString()
+            val mobile = binding.userPhoneText.text.toString()
+            val email = binding.userEmailText.text.toString()
+            val address = binding.userAddressText.text.toString()
+            val detailAd = binding.addressDetailText.text.toString()
+
+
+            val profile = UpdatePersonalProfileItems(name,email,mobile,address,detailAd)
+            Log.d("profile 수정", "profile : $profile")
+
+            service.updateUserProfile(profile).enqueue(object :Callback<Void>{
+                override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+                ) {
+                    Log.d("profile 수정", "code : ${response.code()}")
+
+                    if(response.isSuccessful){
+                        val msg = response.message()
+                        Log.d("profile 수정", "msg : $msg")
+                    }
+
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.d("profile 수정", "error" + t.message)
+                }
+            })
         }
 
 }

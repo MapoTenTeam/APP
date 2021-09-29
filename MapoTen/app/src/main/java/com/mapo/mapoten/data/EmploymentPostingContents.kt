@@ -1,4 +1,4 @@
-package com.mapo.mapoten.ui.data
+package com.mapo.mapoten.data
 
 data class EmploymentPostingContents (
     val title : String,

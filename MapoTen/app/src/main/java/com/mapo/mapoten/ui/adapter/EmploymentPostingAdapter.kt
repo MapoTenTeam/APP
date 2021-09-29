@@ -11,7 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
-import com.mapo.mapoten.ui.data.EmploymentPostingContents
+import com.mapo.mapoten.data.EmploymentPostingContents
 
 class EmploymentPostingAdapter(private val context: Context) : RecyclerView.Adapter<EmploymentPostingAdapter.ViewHolder>() {
 

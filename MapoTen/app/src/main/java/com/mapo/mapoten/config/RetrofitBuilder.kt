@@ -3,7 +3,6 @@ package com.mapo.mapoten.config
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.mapo.mapoten.config.NetworkSettings
 
 
 object RetrofitBuilder {
