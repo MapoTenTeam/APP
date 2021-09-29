@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
-import com.mapo.mapoten.data.EmploymentJobPostingItem
+import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
 import com.mapo.mapoten.data.SpinnerModel
-import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 import com.mapo.mapoten.databinding.FragmentEmployment0102Binding
 import com.mapo.mapoten.ui.adapter.GeneralEmploymentPostingAdapter
 import com.mapo.mapoten.ui.adapter.SpinnerAdapter

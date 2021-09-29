@@ -43,39 +43,44 @@
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="bottom"
+                android:lineSpacingExtra="@dimen/size_6"
+                android:text="@string/business_employment_detail_category_text"
+                android:textSize="@dimen/text_10" />
 
-                <TextView
-                    android:id="@+id/category"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="bottom"
-                    android:lineSpacingExtra="@dimen/size_6"
-                    android:text="@string/business_employment_detail_category_text"
-                    android:textSize="@dimen/text_10" />
-
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:layout_marginBottom="@dimen/margin_16"
                 android:text="@string/business_employment_title"
                 android:textColor="#474747"
                 android:textSize="@dimen/text_16"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:lineSpacingExtra="@dimen/size_6"
+                android:text="모집기간 : "
+                android:textSize="@dimen/text_10" />
+
+
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="234dp"
                 android:layout_marginBottom="@dimen/margin_16"
-                android:background="#50c4c4c4" />
+                android:background="#50c4c4c4"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/banner_image1" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -137,8 +142,44 @@
                 android:layout_marginBottom="@dimen/margin_8"
                 android:background="#10000000" />
 
+
         </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_gravity="bottom"
+        android:background="#ffffff"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_employment_detail"
+            android:drawableLeft="@drawable/ic_heart"
+            android:text="북마크"
+            android:paddingHorizontal="58dp"
+            android:layout_marginEnd="@dimen/size_1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_employment_detail"
+            android:drawableLeft="@drawable/ic_submit"
+            android:drawableTint="@color/white"
+            android:text="지원하기"
+            android:paddingHorizontal="52dp"
+            android:textSize="@dimen/text_16"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
 </FrameLayout>
