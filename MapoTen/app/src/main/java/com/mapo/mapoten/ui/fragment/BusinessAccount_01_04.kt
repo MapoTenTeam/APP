@@ -8,7 +8,7 @@ import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
 import com.mapo.mapoten.ui.adapter.EmploymentPostingAdapter
-import com.mapo.mapoten.ui.data.EmploymentPostingContents
+import com.mapo.mapoten.data.EmploymentPostingContents
 
 
 class BusinessAccount_01_04 : Fragment() {
