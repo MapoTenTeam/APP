@@ -95,6 +95,7 @@
             android:layout_marginTop="@dimen/margin_16"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
+            app:endIconMode="custom"
             app:errorEnabled="true"
             app:expandedHintEnabled="false">
 
