@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
-import com.mapo.mapoten.ui.adpater.EmploymentPostingAdapter
+import com.mapo.mapoten.ui.adapter.EmploymentPostingAdapter
 import com.mapo.mapoten.ui.data.EmploymentPostingContents
 
 

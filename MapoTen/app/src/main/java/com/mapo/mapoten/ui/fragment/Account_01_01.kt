@@ -13,6 +13,10 @@ class Account_01_01 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        //회원정보 불러오기
+
+
         return inflater.inflate(R.layout.fragment_account_01_01, container, false)
     }
 }

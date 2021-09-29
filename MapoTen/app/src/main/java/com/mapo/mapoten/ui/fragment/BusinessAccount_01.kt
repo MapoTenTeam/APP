@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.ui.activity.MainActivity
@@ -30,6 +31,10 @@ class BusinessAccount_01 : Fragment() {
         ): View? {
             // Inflate the layout for this fragment
             val view = inflater.inflate(R.layout.fragment_business_account_01, container, false)
+
+            view.findViewById<AppCompatButton>(R.id.statusButton).setOnClickListener{
+                statusButtonClicked()
+            }
             view.findViewById<View>(R.id.business_profile_button).setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_01)
             } //기업프로필작성/수정  이동
@@ -55,6 +60,8 @@ class BusinessAccount_01 : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.login_01)
             }
 
+
+
             return view
         }
 
@@ -62,9 +69,10 @@ class BusinessAccount_01 : Fragment() {
 
 
 
-        fun statusButtonClicked() {
+        private fun statusButtonClicked() {
             // 팝업 띄우기
-            AlertDialog.Builder(mainActivity).setTitle("승인여부 확인")
+            AlertDialog.Builder(requireContext())
+                .setTitle("승인여부 확인")
                 .setMessage("승인 되었습니다.")
                 .setPositiveButton("확인", { _, _ -> })
                 .create()

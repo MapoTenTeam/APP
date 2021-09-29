@@ -3,14 +3,13 @@ package com.mapo.mapoten.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mapo.mapoten.R
-import com.mapo.mapoten.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,7 +30,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.login_02_02 ||
                 destination.id == R.id.login_01_01 ||
                 destination.id == R.id.login_01_02 ||
-                destination.id == R.id.login_01_03
+                destination.id == R.id.login_01_03 ||
+                destination.id == R.id.employment_Detail_01
             ) {
                 bottomNavigationView.visibility = View.GONE
             } else {

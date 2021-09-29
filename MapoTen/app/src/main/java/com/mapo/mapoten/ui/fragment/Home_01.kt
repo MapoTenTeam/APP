@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import com.mapo.mapoten.data.ViewData
+import com.mapo.mapoten.data.home.ViewData
 import com.mapo.mapoten.databinding.FragmentHome01Binding
 import com.mapo.mapoten.ui.adapter.HomeViewPagerAdapter
 
