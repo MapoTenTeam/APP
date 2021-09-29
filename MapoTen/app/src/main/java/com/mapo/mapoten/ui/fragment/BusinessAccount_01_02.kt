@@ -22,7 +22,7 @@ class BusinessAccount_01_02 : Fragment() {
         binding= FragmentBusinessAccount0102Binding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 

@@ -48,7 +48,7 @@ class BusinessAccount_01 : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)
             } //채용공고 목록 이동
 
-            view.findViewById<View>(R.id.backBtn).setOnClickListener {
+            view.findViewById<View>(R.id.backButton).setOnClickListener {
                 Navigation.findNavController(view).navigateUp()
             } //뒤로가기
 

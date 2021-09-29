@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.login_01_01 ||
                 destination.id == R.id.login_01_02 ||
                 destination.id == R.id.login_01_03 ||
-                destination.id == R.id.employment_Detail_01
+                destination.id == R.id.employment_Detail_01 ||
+                destination.id == R.id.account_01_01
             ) {
                 bottomNavigationView.visibility = View.GONE
             } else {

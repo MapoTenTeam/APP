@@ -39,7 +39,7 @@ class BusinessProfile_01 : Fragment() {
 
         val view = binding.root
 
-        binding.backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 

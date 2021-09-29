@@ -19,7 +19,7 @@ class BusinessAccount_01_01 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_business_account_01_01, container, false)
         // Inflate the layout for this fragment
-        view.findViewById<View>(R.id.backBtn).setOnClickListener {
+        view.findViewById<View>(R.id.backButton).setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         } //뒤로가기
 

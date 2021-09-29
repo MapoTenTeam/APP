@@ -33,7 +33,7 @@ class Account_01_01 : Fragment() {
         val view = binding.root
 
         //뒤로가기
-        binding.backBtn.setOnClickListener {
+        binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 
