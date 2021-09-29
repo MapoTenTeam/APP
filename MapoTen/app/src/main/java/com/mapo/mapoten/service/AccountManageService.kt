@@ -1,8 +1,7 @@
 package com.mapo.mapoten.service
 
 import com.mapo.mapoten.data.DuplicateIdInfoItem
-import com.mapo.mapoten.ui.data.PersonalProfile
-import com.mapo.mapoten.ui.data.PersonalProfileItems
+import com.mapo.mapoten.data.PersonalProfile
 import retrofit2.Call
 import retrofit2.http.*
 
