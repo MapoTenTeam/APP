@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
 import com.mapo.mapoten.databinding.FragmentLogin0202Binding
 import com.mapo.mapoten.service.UserService
 import retrofit2.Call
@@ -132,7 +132,10 @@ class Login_02_02 : Fragment() {
 
                 })
             }
-
+            btnConfirm.setOnClickListener {
+                if(!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
+            }
             btnSignup.setOnClickListener {
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
@@ -204,6 +207,18 @@ class Login_02_02 : Fragment() {
                 false
             } else {
                 emailTiL.error = null
+                true
+            }
+        }
+    }
+    private fun authenticationRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = authenticationNumberTiL.editText?.text.toString()
+            return if (value.isEmpty()) {
+                authenticationNumberTiL.error = "인증번호를 입력하세요."
+                false
+            } else {
+                authenticationNumberTiL.error = null
                 true
             }
         }

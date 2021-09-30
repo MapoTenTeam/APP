@@ -8,17 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.LoginRequest
-import com.mapo.mapoten.data.LoginResponse
+import com.mapo.mapoten.data.Login.LoginRequest
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
-import retrofit2.Callback
-import retrofit2.Call
-import retrofit2.Response
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null

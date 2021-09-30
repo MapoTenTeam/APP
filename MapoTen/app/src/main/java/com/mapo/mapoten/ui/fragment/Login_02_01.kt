@@ -1,6 +1,5 @@
 package com.mapo.mapoten.ui.fragment
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +10,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.EmailAuth
 import com.mapo.mapoten.databinding.FragmentLogin0201Binding
 import com.mapo.mapoten.service.UserService
 import retrofit2.Call
@@ -23,6 +23,7 @@ class Login_02_01 : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var userService: UserService
+    var code: Int = 1
 
 
     override fun onCreateView(
@@ -100,6 +101,36 @@ class Login_02_01 : Fragment() {
                 })
             }
 
+            btnAuthenticationRequest.setOnClickListener {
+                if (!emailRequiredFieldChecker())
+                    return@setOnClickListener
+
+                val emailAuth = userService.emailAuth(emailEditText.text.toString())
+                Log.d("TAG","${emailEditText.text.toString()}")
+
+                emailAuth.enqueue(object : Callback<EmailAuth> {
+                    override fun onResponse(call: Call<EmailAuth>, response: Response<EmailAuth>) {
+                        if (response.isSuccessful) {
+                            code = response.body()?.code!!
+
+                        } else {
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<EmailAuth>, t: Throwable) {
+                        Log.e("error", "통신 실패" + t.localizedMessage)
+                    }
+
+
+                })
+            }
+
+            btnConfirm.setOnClickListener {
+                if (!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
+            }
+
             btnSignup.setOnClickListener {
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
@@ -158,6 +189,19 @@ class Login_02_01 : Fragment() {
                 false
             } else {
                 emailTiL.error = null
+                true
+            }
+        }
+    }
+
+    private fun authenticationRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = authenticationNumberTiL.editText?.text.toString()
+            return if (value.isEmpty()) {
+                authenticationNumberTiL.error = "인증번호를 입력하세요."
+                false
+            } else {
+                authenticationNumberTiL.error = null
                 true
             }
         }

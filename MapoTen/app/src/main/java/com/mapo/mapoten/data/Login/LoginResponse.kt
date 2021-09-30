@@ -1,4 +1,4 @@
-package com.mapo.mapoten.data
+package com.mapo.mapoten.data.Login
 
 data class LoginResponse (
     val statusCode: Int,

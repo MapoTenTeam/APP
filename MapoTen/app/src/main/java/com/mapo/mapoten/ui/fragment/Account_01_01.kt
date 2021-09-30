@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.ui.data.PersonalProfile
-import com.mapo.mapoten.ui.data.PersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

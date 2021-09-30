@@ -1,8 +1,9 @@
 package com.mapo.mapoten.service
 
-import com.mapo.mapoten.data.DuplicateIdInfoItem
-import com.mapo.mapoten.data.LoginRequest
-import com.mapo.mapoten.data.LoginResponse
+import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.EmailAuth
+import com.mapo.mapoten.data.Login.LoginRequest
+import com.mapo.mapoten.data.Login.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -21,6 +22,10 @@ interface UserService {
     fun requestLogin(
         @Body loginRequest: LoginRequest
     ) : Call<LoginResponse>
+
+    @POST("user/auth/email/{email}")
+    fun emailAuth (@Path("email") email :String ) : Call<EmailAuth>
+
 
 
 
