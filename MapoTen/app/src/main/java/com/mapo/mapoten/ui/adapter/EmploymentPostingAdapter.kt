@@ -18,7 +18,6 @@ import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseDetailOutputDto
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseItem
 import com.mapo.mapoten.service.EmploymentService
-import com.mapo.mapoten.ui.data.EmploymentPostingContents
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

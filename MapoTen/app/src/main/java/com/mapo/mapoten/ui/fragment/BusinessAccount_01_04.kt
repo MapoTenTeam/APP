@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseItem
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseOutputDto
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0104Binding
 import com.mapo.mapoten.service.EmploymentService
 import com.mapo.mapoten.ui.adapter.EmploymentPostingAdapter
-import com.mapo.mapoten.ui.data.EmploymentPostingContents
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
