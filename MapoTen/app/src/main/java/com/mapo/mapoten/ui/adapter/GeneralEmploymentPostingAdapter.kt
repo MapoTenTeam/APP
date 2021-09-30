@@ -25,7 +25,6 @@ import retrofit2.Response
 class GeneralEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
     var data: MutableList<GeneralEmpPostingDTO> = ArrayList()
-    lateinit var employmentService: EmploymentService
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)

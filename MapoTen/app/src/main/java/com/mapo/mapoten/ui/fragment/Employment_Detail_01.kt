@@ -44,18 +44,8 @@ class Employment_Detail_01 : Fragment() {
             Navigation.findNavController(view).navigateUp()
         }
 
-        when (type) {
-            0 -> {
-
-            }
-            1 -> {
-                if (id != null) {
-                    getGeneralJobPostingDetail(id)
-                }
-            }
-            else -> {
-                Log.d("detail", "no type!")
-            }
+        if (id != null) {
+            getGeneralJobPostingDetail(id)
         }
 
         return view

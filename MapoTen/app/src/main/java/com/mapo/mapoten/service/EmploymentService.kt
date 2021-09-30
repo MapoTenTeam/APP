@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface EmploymentService {
 
     @GET("job/public")
-    fun getPublicJobList(): Call<ArrayList<PublicJobPostingResponse>>
+    fun getPublicJobList(@Query("page") page : Int): Call<GeneralJobPostingResponse>
 
     @GET("job/public/detail/{id}")
     fun inquirePublicDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
