@@ -1,7 +1,8 @@
 package com.mapo.mapoten.data
 
-data class DuplicateIdInfoItem(
+data class LoginResponse (
     val statusCode: Int,
     val message: String,
-    val isDuplicate: Boolean
+    val accessToken: String
 )
+

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.Login_02_02">
 
     <LinearLayout
@@ -34,16 +34,16 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_TiL"
             style="@style/TextInputTheme"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_20"
-            android:isScrollContainer="false">
+            android:isScrollContainer="false"
+            app:errorEnabled="true"
+            app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/name_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -51,49 +51,101 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/name"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputTheme"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:isScrollContainer="false">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
-                android:id="@+id/id_edit_text"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_TiL"
+                style="@style/TextInputTheme"
+                android:layout_marginTop="@dimen/margin_6"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/id"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="0.9"
+                android:isScrollContainer="false"
+                app:errorEnabled="true"
+                app:expandedHintEnabled="false">
 
-        <Button
-            android:id="@+id/btn_id_double_check"
-            style="@style/btnStyle"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_edit_text"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/id"
+                    android:paddingVertical="@dimen/padding_14"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_id_double_check"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_weight="0.1"
+                android:text="@string/double_check" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_60"
-            android:text="@string/double_check" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/company_number_TiL"
+                style="@style/TextInputTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:isScrollContainer="false"
+                app:boxBackgroundMode="outline"
+                app:errorEnabled="true"
+                app:expandedHintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/company_registration_number"
+                    android:paddingVertical="@dimen/padding_14"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_companyNumber_double_check"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_weight="0.1"
+                android:text="@string/double_check" />
+        </LinearLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_TiL"
             style="@style/TextInputTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
+            android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
-            app:expandedHintEnabled="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
-            android:isScrollContainer="false">
+            app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/email_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -101,6 +153,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/email"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,33 +175,33 @@
             <Button
                 android:id="@+id/btn_authentication_request"
                 style="@style/btnStyle"
-                app:cornerRadius="@dimen/size_30"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_60"
                 android:layout_marginStart="@dimen/margin_10"
                 android:layout_weight="1"
-                android:text="@string/authentication_request" />
+                android:text="@string/authentication_request"
+                app:cornerRadius="@dimen/size_30" />
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/authentication_number_TiL"
             style="@style/TextInputTheme"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:isScrollContainer="false">
+            android:isScrollContainer="false"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
-                android:id="@+id/authentication_number_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/authentication_number"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -161,17 +214,17 @@
             android:text="@string/confirm" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pwd_TiL"
             style="@style/TextInputTheme"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:isScrollContainer="false">
+            android:isScrollContainer="false"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -179,20 +232,21 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/passWord"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pwd_confirm_TiL"
             style="@style/TextInputTheme"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:isScrollContainer="false">
+            android:isScrollContainer="false"
+            app:boxBackgroundMode="outline"
+            app:errorEnabled="true"
+            app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_confirm_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -200,51 +254,11 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/pwd_confirm"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputTheme"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:isScrollContainer="false">
-
-            <com.google.android.material.textfield.TextInputEditText
                 android:paddingVertical="@dimen/padding_14"
-                android:id="@+id/company_name_edit_text"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/company_name"
                 android:singleLine="true" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputTheme"
-            app:boxBackgroundMode="outline"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:isScrollContainer="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
-                android:id="@+id/company_registration_number_edit_text"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/company_registration_number"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -260,11 +274,10 @@
 
             <CheckBox
                 android:id="@+id/all_checkBox"
+                style="@style/title_text16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/text_middleGrey"
-                android:text="@string/all_check_tos"
-                style="@style/title_text16" />
+                android:text="@string/all_check_tos" />
 
             <View
                 android:id="@+id/view"
@@ -275,12 +288,12 @@
 
             <TextView
                 android:id="@+id/tv_tos_title"
+                style="@style/tos_text14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_6"
                 android:layout_marginTop="@dimen/margin_20"
-                android:text="@string/tos"
-                style="@style/tos_text14" />
+                android:text="@string/tos" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -290,11 +303,10 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos1"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
-                    android:text="[필수] 마포잡 서비스 이용약관"
-                    style="@style/text12" />
+                    android:text="[필수] 마포잡 서비스 이용약관" />
 
                 <View
                     android:layout_width="0dp"
@@ -302,13 +314,13 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
@@ -320,12 +332,11 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos2"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:buttonTint="@color/text_middleGrey"
-                    android:text="[필수] 개인정보 수집 및 이용약관"
-                    style="@style/text12" />
+                    android:text="[필수] 개인정보 수집 및 이용약관" />
 
                 <View
                     android:layout_width="0dp"
@@ -333,13 +344,13 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
@@ -350,11 +361,10 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos3"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
-                    android:text="[선택] 프로필 정보 추가 수집 동의"
-                    style="@style/text12" />
+                    android:text="[선택] 프로필 정보 추가 수집 동의" />
 
                 <View
                     android:layout_width="0dp"
@@ -362,13 +372,13 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12"/>
+                    android:text="@string/tos_look" />
             </LinearLayout>
 
             <LinearLayout
@@ -378,11 +388,10 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos4"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/text_middleGrey"
-                    android:text="[선택] 광고성 정보 수신 동의"
-                    style="@style/text12" />
+                    android:text="[선택] 광고성 정보 수신 동의" />
 
                 <View
                     android:layout_width="0dp"
@@ -390,14 +399,14 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/tos_look"
-                    android:textColor="@color/text_darkGrey"
-                    android:textSize="@dimen/text_14" />
+                    android:textColor="@color/text_darkGrey" />
             </LinearLayout>
 
         </LinearLayout>
@@ -405,8 +414,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_membership_question"
@@ -427,8 +436,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_membership_personal_question"
@@ -437,7 +446,7 @@
                 android:text="@string/membership_personal_question" />
 
             <TextView
-                android:id="@+id/tv_signUp"
+                android:id="@+id/tv_personal_signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_30"
                 android:layout_marginStart="@dimen/margin_10"
@@ -447,11 +456,12 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_signup"
+            style="@style/btnStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_60"
-            android:text="@string/sign_up_description"
             android:layout_marginBottom="@dimen/margin_40"
-            style="@style/btnStyle" />
+            android:text="@string/sign_up_description" />
 
 
     </LinearLayout>

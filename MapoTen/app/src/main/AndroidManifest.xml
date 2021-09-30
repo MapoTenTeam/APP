@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MapoTen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SocketClient"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
