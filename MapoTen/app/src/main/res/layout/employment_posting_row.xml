@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/companyImage"
             android:layout_width="match_parent"
             android:layout_height="142dp"
             android:src="@drawable/banner_image1" />
