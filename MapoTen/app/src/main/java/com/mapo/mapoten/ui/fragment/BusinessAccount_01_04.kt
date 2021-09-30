@@ -97,7 +97,7 @@ class BusinessAccount_01_04 : Fragment() {
     private fun getAllPosting() {
 
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val inquireGeneralDetailPosting = employmentService.getEnterpriseJobList()
+        val inquireGeneralDetailPosting = employmentService.getEnterpriseJobList(1)
 
         inquireGeneralDetailPosting.enqueue(object : Callback<SelectJobEnterpriseOutputDto> {
             @SuppressLint("NotifyDataSetChanged")
