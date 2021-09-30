@@ -13,6 +13,7 @@ import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
 import com.mapo.mapoten.data.employment.EmploymentResponse
+import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,7 @@ import retrofit2.Response
 
 class GeneralEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
-    var data: MutableList<EmploymentJobPostingItem> = ArrayList()
+    var data: MutableList<GeneralEmpPostingDTO> = ArrayList()
     lateinit var employmentService: EmploymentService
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,17 +39,19 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val title: TextView = view.findViewById(R.id.postingTitle)
-        private val name: TextView = view.findViewById(R.id.CompanyName)
+        private val companyName: TextView = view.findViewById(R.id.CompanyName)
         private val jobType: TextView = view.findViewById(R.id.jobType)
+        private val careerType: TextView = view.findViewById(R.id.careerType)
         private val place: TextView = view.findViewById(R.id.place)
-        private val date: TextView = view.findViewById(R.id.registrationDate)
+        private val date: TextView = view.findViewById(R.id.date)
 
-        fun bind(item: EmploymentJobPostingItem) {
+        fun bind(item: GeneralEmpPostingDTO) {
             title.text = item.title
-            name.text = item.name
-            jobType.text = item.job
+            companyName.text = item.companyName
+            jobType.text = item.jobType
+            careerType.text = item.career
             place.text = item.address
-            date.text = item.startReception + " - " + item.endReception
+            date.text = "모집기간: " + item.startReception + " - " + item.endReception
 
 
             itemView.setOnClickListener {

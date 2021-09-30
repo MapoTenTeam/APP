@@ -1,9 +1,6 @@
 package com.mapo.mapoten.service
 
-import com.mapo.mapoten.data.employment.EmploymentResponse
-import com.mapo.mapoten.data.employment.PublicJobPostingResponse
-import com.mapo.mapoten.data.employment.SelectJobEnterpriseDetailOutputDto
-import com.mapo.mapoten.data.employment.SelectJobEnterpriseOutputDto
+import com.mapo.mapoten.data.employment.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,7 +15,7 @@ interface EmploymentService {
     fun inquirePublicDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
 
     @GET("job/general")
-    fun getGeneralJobList(): Call<ArrayList<PublicJobPostingResponse>>
+    fun getGeneralJobList(@Query("page") page : Int): Call<GeneralJobPostingResponse>
 
     @GET("job/general/detail/{id}")
     fun inquireGeneralDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
