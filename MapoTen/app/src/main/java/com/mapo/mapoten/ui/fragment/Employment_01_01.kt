@@ -1,25 +1,35 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
 import com.mapo.mapoten.data.SpinnerModel
+import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
+import com.mapo.mapoten.data.employment.GeneralJobPostingResponse
 import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
+import com.mapo.mapoten.service.EmploymentService
 import com.mapo.mapoten.ui.adapter.PublicEmploymentPostingAdapter
 import com.mapo.mapoten.ui.adapter.SpinnerAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Employment_01_01 : Fragment() {
 
     lateinit var binding: FragmentEmployment0101Binding
     private lateinit var adapter: PublicEmploymentPostingAdapter
-    private val testList = mutableListOf<EmploymentJobPostingItem>()
+    private var resultDataList = mutableListOf<GeneralEmpPostingDTO>()
     private lateinit var spinnerAdapterPlace: SpinnerAdapter
     private val listOfPlace = ArrayList<SpinnerModel>()
+    lateinit var employmentService: EmploymentService
 
 
     override fun onCreateView(
@@ -67,98 +77,41 @@ class Employment_01_01 : Fragment() {
 
 
     private fun getAllPosting() {
-        testList.apply {
-            add(
-                EmploymentJobPostingItem(
-                    1,
-                    "기획 업무",
-                    "기획나라",
-                    "성산동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12,
-                    "기획"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    2,
-                    "마케팅 팀 매니저 구인",
-                    "우리나라 마케팅",
-                    "공덕동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12,
-                    "마케팅"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    3,
-                    "프론트 개발자 모집",
-                    "마포구청(일자리 사업)",
-                    "합정동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12, "개발"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    4,
-                    "백엔드 개발자 모집",
-                    "마포구청(일자리 사업)",
-                    "합정동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12, "개발"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    5,
-                    "PM구인",
-                    "마포구청(일자리 사업)",
-                    "합정동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12, "개발"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    6,
-                    "기획 매니저 구인",
-                    "기획나라",
-                    "상암동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12,
-                    "기획"
-                )
-            )
-            add(
-                EmploymentJobPostingItem(
-                    7,
-                    "디자이너 10명 모집중",
-                    "마포구청(일자리 사업)",
-                    "아현동",
-                    "2021년 12월 12일",
-                    "2021년 12월 30일",
-                    "",
-                    12, "개발"
-                )
-            )
+        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
+        val generalJobList = employmentService.getPublicJobList(1)
 
+        generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<GeneralJobPostingResponse>,
+                response: Response<GeneralJobPostingResponse>
+            ) {
 
-            adapter.data = testList
-            adapter.notifyDataSetChanged()
-        }
+                Log.d("employmentGeneral", "code : " + response.code())
+                Log.d("employmentGeneral", "message : " + response.message())
+
+                if (response.isSuccessful) {
+                    resultDataList = response.body()!!.data
+
+                    Log.d("employmentDetail", "resultDataList : $resultDataList")
+
+                    if (resultDataList.size > 0) {
+                        adapter.data = resultDataList
+                        adapter.notifyDataSetChanged()
+
+                    } else {
+                    }
+
+                } else {
+                    Log.d("employmentGeneral", "code : " + response.code())
+                }
+            }
+
+            override fun onFailure(call: Call<GeneralJobPostingResponse>, t: Throwable) {
+                Log.e("employmentGeneral", "통신 실패" + t.localizedMessage)
+
+            }
+
+        })
     }
 }
