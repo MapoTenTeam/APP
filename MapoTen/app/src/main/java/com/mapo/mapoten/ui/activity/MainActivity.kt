@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.login_01 ||
                 destination.id == R.id.login_02_01 ||
                 destination.id == R.id.login_02_02 ||
@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.login_01_02 ||
                 destination.id == R.id.login_01_03 ||
                 destination.id == R.id.employment_Detail_01 ||
+                destination.id == R.id.businessAccount_01_04 ||
+                destination.id == R.id.businessAccountEmploymentDetail_01||
                 destination.id == R.id.account_01_01
             ) {
                 bottomNavigationView.visibility = View.GONE

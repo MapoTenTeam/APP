@@ -2,41 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/RowStyle"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/size_108">
+    android:layout_height="100dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_12"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/category"
-            style="@style/Row.CategoryStyle"
+            android:id="@+id/title"
+            style="@style/Row.TitleStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/business_employment_row_category_text" />
+            android:text="@string/business_employment_row_title" />
 
         <TextView
             android:id="@+id/state"
             style="@style/Row.StateStyle"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/margin_16"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/margin_8"
             android:paddingHorizontal="@dimen/padding_4"
             android:text="@string/business_employment_row_state_text" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/title"
-        style="@style/Row.TitleStyle"
+        android:id="@+id/comments"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/business_employment_row_title" />
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_4"
+        android:text="비고: "
+        android:textSize="@dimen/text_12" />
 
-    <TextView
-        android:id="@+id/registrationDate"
-        style="@style/Row.RegistrationDateStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/business_employment_date" />
+
+        <TextView
+            android:id="@+id/createAt"
+            style="@style/Row.RegistrationDateStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_2"
+            android:text="@string/business_employment_date" />
+
+        <TextView
+            android:id="@+id/requestDate"
+            style="@style/Row.RegistrationDateStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="게시 심사 요청일: " />
 </LinearLayout>
