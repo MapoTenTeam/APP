@@ -114,6 +114,170 @@
                 android:textSize="@dimen/text_14"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="사업체명"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/nameValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/bizrNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="사업자 등록번호"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bizrNoValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ceo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="대표자"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ceoValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="소재지"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/addressValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sector"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="업종"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sectorValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/quaternion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="근로자 수"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/quaternionValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_1"

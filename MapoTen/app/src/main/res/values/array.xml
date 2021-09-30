@@ -44,6 +44,30 @@
         <item>승인심사중</item>
         <item>승인</item>
         <item>비승인</item>
+    </string-array>
 
+    <string-array name="employment_detial_contens_title">
+        <item>모집직종</item>
+        <item>모집인원</item>
+        <item>직무내용</item>
+        <item>학력</item>
+        <item>경력</item>
+        <item>근무예정지</item>
+        <item>고용형태</item>
+
+        <item>사업체명</item>
+        <item>사업자 등록번호</item>
+        <item>대표자</item>
+        <item>소재지</item>
+        <item>업종</item>
+        <item>사업내용</item>
+        <item>근로자수</item>
+
+        <item>임금지급형태</item>
+        <item>퇴직금형태</item>
+
+        <item>채용담당자</item>
+        <item>전호번호</item>
+        <item>전자우편편</item>
     </string-array>
 </resources>

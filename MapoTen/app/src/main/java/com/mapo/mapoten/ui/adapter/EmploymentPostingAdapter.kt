@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,15 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.employment.EmploymentResponse
+import com.mapo.mapoten.data.employment.SelectJobEnterpriseDetailOutputDto
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseItem
+import com.mapo.mapoten.service.EmploymentService
 import com.mapo.mapoten.ui.data.EmploymentPostingContents
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<EmploymentPostingAdapter.ViewHolder>() {
@@ -44,7 +52,7 @@ class EmploymentPostingAdapter(private val context: Context) :
         fun bind(item: SelectJobEnterpriseItem) {
             title.text = item.title
             state.text = item.jobStat
-            comments.text = if(item.comments != null) "비고: " + item.comments else ""
+            comments.text = if (item.comments != null) "비고: " + item.comments else ""
             createAt.text = "작성일: " + item.createAt.substring(0, 19)
             requestDate.text = "게시 요청일: " + item.createAt.substring(0, 19)
 
@@ -70,11 +78,14 @@ class EmploymentPostingAdapter(private val context: Context) :
             }
 
             itemView.setOnClickListener {
-                val bundle = bundleOf("state" to state.text)
+                val bundle = bundleOf("jobId" to item.jobId, "state" to item.jobStat)
+
                 Navigation.findNavController(itemView)
                     .navigate(R.id.businessAccountEmploymentDetail_01, bundle)
             }
 
         }
     }
+
+
 }
