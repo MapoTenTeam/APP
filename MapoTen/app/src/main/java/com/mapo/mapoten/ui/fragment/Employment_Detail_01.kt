@@ -1,6 +1,5 @@
 package com.mapo.mapoten.ui.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentResponse
-import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
-import com.mapo.mapoten.data.employment.GeneralJobPostingResponse
 import com.mapo.mapoten.databinding.FragmentEmploymentDetail01Binding
 import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
@@ -22,7 +19,6 @@ import kotlin.properties.Delegates
 
 class Employment_Detail_01 : Fragment() {
     lateinit var binding: FragmentEmploymentDetail01Binding
-    private var resultDataList = mutableListOf<EmploymentResponse>()
     lateinit var employmentService: EmploymentService
     var type by Delegates.notNull<Int>()
     override fun onCreateView(
