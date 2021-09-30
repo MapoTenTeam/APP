@@ -163,7 +163,7 @@
             android:background="@drawable/bg_employment_detail"
             android:drawableLeft="@drawable/ic_heart"
             android:text="북마크"
-            android:paddingHorizontal="58dp"
+            android:paddingHorizontal="52dp"
             android:layout_marginEnd="@dimen/size_1"
             android:textColor="@color/white"
             android:textSize="@dimen/text_16"
@@ -177,7 +177,7 @@
             android:drawableLeft="@drawable/ic_submit"
             android:drawableTint="@color/white"
             android:text="지원하기"
-            android:paddingHorizontal="52dp"
+            android:paddingHorizontal="50dp"
             android:textSize="@dimen/text_16"
             android:textColor="@color/white"
             android:textStyle="bold" />
