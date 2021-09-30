@@ -88,7 +88,30 @@
                 android:popupBackground="@drawable/bg_employment"
                 tools:listitem="@layout/item_spinner" />
         </LinearLayout>
-
+        <LinearLayout
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
+            >
+            <ProgressBar
+                style="@android:style/Widget.Holo.ProgressBar.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_middleGrey"
+                android:text="Loading..."/>
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/jobPostingBoard"
             android:layout_width="match_parent"

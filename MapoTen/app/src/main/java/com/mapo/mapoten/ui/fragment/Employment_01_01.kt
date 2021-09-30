@@ -21,6 +21,7 @@ import com.mapo.mapoten.ui.adapter.SpinnerAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 class Employment_01_01 : Fragment() {
 
@@ -43,11 +44,12 @@ class Employment_01_01 : Fragment() {
 
         adapter = PublicEmploymentPostingAdapter(this.requireContext())
         binding.jobPostingBoard.adapter = adapter
+
+        loading(true)
         getAllPosting()
 
         // init
         initialize()
-
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -76,6 +78,11 @@ class Employment_01_01 : Fragment() {
     }
 
 
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) binding.loading.visibility = View.VISIBLE
+        else binding.loading.visibility = View.GONE
+    }
+
     private fun getAllPosting() {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
         val generalJobList = employmentService.getPublicJobList(1)
@@ -91,13 +98,21 @@ class Employment_01_01 : Fragment() {
                 Log.d("employmentGeneral", "message : " + response.message())
 
                 if (response.isSuccessful) {
+                    binding.loading.visibility = View.GONE
                     resultDataList = response.body()!!.data
 
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
                     if (resultDataList.size > 0) {
-                        adapter.data = resultDataList
-                        adapter.notifyDataSetChanged()
+                        thread(start = true) {
+                            Thread.sleep(300)
+
+                            requireActivity().runOnUiThread {
+                                loading(false)
+                                adapter.data = resultDataList
+                                adapter.notifyDataSetChanged()
+                            }
+                        }
 
                     } else {
                     }
