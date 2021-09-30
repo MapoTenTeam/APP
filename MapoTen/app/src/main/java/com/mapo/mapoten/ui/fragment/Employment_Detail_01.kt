@@ -36,11 +36,15 @@ class Employment_Detail_01 : Fragment() {
         type = arguments?.getInt("type")!!
         val id = arguments?.getInt("jobId")
 
+        Log.d("generalDetail", "type : " + type)
+        Log.d("generalDetail", "id : " + id)
+
+
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 
-        when(type){
+        when (type) {
             0 -> {
 
             }
@@ -58,7 +62,7 @@ class Employment_Detail_01 : Fragment() {
     }
 
 
-    private fun getGeneralJobPostingDetail(id : Int) {
+    private fun getGeneralJobPostingDetail(id: Int) {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
         val generalJobList = employmentService.inquireGeneralDetailPosting(id)
 
@@ -89,10 +93,43 @@ class Employment_Detail_01 : Fragment() {
         })
     }
 
-    private fun setData(result : GeneralEmpPostingDetailDTO) {
-        binding.category.text = if(type === 1) "일반채용" else "공공채용"
+    private fun setData(result: GeneralEmpPostingDetailDTO) {
+        binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
         binding.date.text = "마감일: ${result.endReception}"
+
+        // 채용사항
+        binding.jobTypeDescValue.text = result.jobTypeDesc
+        binding.requireCountValue.text = result.requireCount
+        binding.jobDescValue.text = result.jobDesc
+        binding.educationValue.text = result.education
+        binding.careerValue.text = result.career
+        binding.workAreaValue.text = result.workArea
+        binding.employTypeValue.text = result.employTypeDet
+
+        // 업체현황
+        binding.companyNameValue.text = result.name
+        binding.bizrnoValue.text = result.bizrno
+        binding.ceoValue.text = result.ceo
+        binding.addressValue.text = result.address
+        binding.sectorValue.text = result.sector
+        binding.quaternionValue.text = result.quaternion
+
+        // 근로조건
+        binding.paycdValue.text = result.paycd
+        binding.payAmountValue.text = result.payAmount
+        binding.workTimeTypeValue.text = result.workTimeType
+        binding.mealCodValue.text = result.mealCod
+        binding.workingHoursValue.text = result.workingHours
+        binding.severancePayTypeValue.text = result.severancePayType
+        binding.socialInsuranceValue.text = result.socialInsurance
+
+        // 전형사항
+        binding.contactNameValue.text = result.contactName
+        binding.contactDepartmentValue.text = result.contactDepartment
+        binding.contactPhoneValue.text = result.contactPhone
+        binding.contactEmailValue.text = result.contactEmail
+
 
     }
 

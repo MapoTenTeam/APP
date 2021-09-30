@@ -17,7 +17,7 @@ interface EmploymentService {
     @GET("job/general")
     fun getGeneralJobList(@Query("page") page : Int): Call<GeneralJobPostingResponse>
 
-    @GET("job/general/detail/{jobid}")
+    @GET("job/detail/{jobid}")
     fun inquireGeneralDetailPosting(@Path("jobid") id: Int): Call<EmploymentResponse>
 
 

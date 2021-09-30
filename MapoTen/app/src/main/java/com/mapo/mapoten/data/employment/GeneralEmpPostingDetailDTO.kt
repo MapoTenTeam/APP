@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 data class GeneralEmpPostingDetailDTO(
     // 기업 소개
     @SerializedName("JOBID")
-    val jobId : Int,
+    val jobId: Int,
 
     @SerializedName("CMPNY_NM")
     val name: String, // 사업체명
 
     @SerializedName("BIZRNO")
-    val bizrno : String, // 사업자번호
+    val bizrno: String, // 사업자번호
 
     @SerializedName("ADRES")
     val address: String, // 주소
@@ -74,6 +74,8 @@ data class GeneralEmpPostingDetailDTO(
 
     @SerializedName("MEAL_COD")
     val mealCod: String, // 식사제공
+
+    @SerializedName("WORKINGHOURS")
     val workingHours: String, // 1주당 근로시간
 
     @SerializedName("SEVERANCE_PAY_TYPE")
@@ -117,5 +119,5 @@ data class GeneralEmpPostingDetailDTO(
     val contactEmail: String, // 채용 담당자 이메일
 
     @SerializedName("CMPNY_IM")
-val image : String // 사업체 사진
+    val image: String // 사업체 사진
 )
