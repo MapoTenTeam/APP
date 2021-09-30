@@ -8,9 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitBuilder {
 
     private val userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4ODI5OTJ9.qZWawMCoY9198_D0ZE1kacZwLFfixyMQ7e4Dho8Wgc0"
+    private val compToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzIiwiaWF0IjoxNjMyOTY4MzY4fQ.e3VfXD5Uq93lsh6vjppjX4ndcU1pPSwUx1hXd0TrSHg"
 
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(userToken))
+        addInterceptor(MyInterceptor(compToken))
     }.build()
 
     private var instance: Retrofit? = null

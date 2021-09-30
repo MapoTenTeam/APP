@@ -11,13 +11,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.net.toUri
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.BusinessProfile
+import com.mapo.mapoten.databinding.FragmentBusinessAccount01Binding
+import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.ui.activity.MainActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BusinessAccount_01 : Fragment() {
 
+    lateinit var binding : FragmentBusinessAccount01Binding
     lateinit var mainActivity: MainActivity
+    lateinit var service : AccountManageService
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,31 +41,36 @@ class BusinessAccount_01 : Fragment() {
             savedInstanceState: Bundle?
         ): View? {
             // Inflate the layout for this fragment
-            val view = inflater.inflate(R.layout.fragment_business_account_01, container, false)
+            binding = FragmentBusinessAccount01Binding.inflate(inflater, container, false)
+            val view = binding.root
+            service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
+            getCompanyInfo()
 
-            view.findViewById<AppCompatButton>(R.id.statusButton).setOnClickListener{
+
+            binding.statusButton.setOnClickListener{
                 statusButtonClicked()
             }
-            view.findViewById<View>(R.id.business_profile_button).setOnClickListener {
+            binding.businessProfileButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_01)
             } //기업프로필작성/수정  이동
-            view.findViewById<View>(R.id.person_profile_button).setOnClickListener {
+
+            binding.personProfileButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_02)
             } //회원 정보 수정으로 이동
-            view.findViewById<View>(R.id.password_change_button).setOnClickListener {
+            binding.passwordChangeButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_03)
             } //비번 변경 이동
-            view.findViewById<View>(R.id.career_button).setOnClickListener {
+            binding.careerButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)
             } //채용공고 목록 이동
 
-            view.findViewById<View>(R.id.backButton).setOnClickListener {
+           binding.backButton.setOnClickListener {
                 Navigation.findNavController(view).navigateUp()
             } //뒤로가기
 
 
             // logout 처리
-            view.findViewById<View>(R.id.logoutBtn).setOnClickListener {
+            binding.logoutBtn.setOnClickListener {
 
                 // login 화면 이동
                 Navigation.findNavController(view).navigate(R.id.login_01)
@@ -66,9 +82,40 @@ class BusinessAccount_01 : Fragment() {
         }
 
 
+        //프로필 -이미지, 이름, 메일 가져오기
+        private fun getCompanyInfo() {
+            Log.d("profile", "여기까지옴----")
+            service.getCompanyProfile().enqueue(object : Callback<BusinessProfile>{
+                override fun onResponse(
+                    call: Call<BusinessProfile>,
+                    response: Response<BusinessProfile>
+                ) {
+                    if (response.isSuccessful){
+                        Log.d("profile", "res: "+response.code())
+                        val img = response.body()?.data?.CMPNY_IM
+                        val cmpnyName = response.body()?.data?.CMPNY_NM
+                        val cmpnyEmail = response.body()?.data?.CEO_EMAIL_ADRES
+                        Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
+                        binding.nameMyPage.setText(cmpnyName)
+                        binding.emailMyPage.setText(cmpnyEmail)
+
+                        if (response.body()?.data?.PROFILE_STTUS == 3){
+                            binding.businessProfileButton.setOnClickListener {
+                                Navigation.findNavController(view!!).navigate(R.id.businessProfile_01)
+                            } //기업프로필작성/수정  이동
+
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<BusinessProfile>, t: Throwable) {
+                    Log.d("profile", "error" + t.message)
+                }
+            })
+        }
 
 
-
+        //승인여부 팝업
         private fun statusButtonClicked() {
             // 팝업 띄우기
             AlertDialog.Builder(requireContext())
