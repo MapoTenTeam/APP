@@ -66,37 +66,10 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             }
 
             itemView.setOnClickListener {
-                val bundle = bundleOf("title" to title.text, "date" to date.text)
+                val bundle = bundleOf("type" to 1, "jobId" to item.jobId)
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
-                getDetailInfo(1)
             }
         }
     }
 
-    private fun getDetailInfo(id: Int) {
-        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val inquireGeneralDetailPosting = employmentService.inquireGeneralDetailPosting(id)
-
-        inquireGeneralDetailPosting.enqueue(object : Callback<EmploymentResponse> {
-            override fun onResponse(
-                call: Call<EmploymentResponse>,
-                response: Response<EmploymentResponse>
-            ) {
-
-                Log.d("employmentDetail", "code : " + response.code())
-                Log.d("employmentDetail", "message : " + response.message())
-
-                if (response.isSuccessful) {
-                    Log.d("employmentDetail", "isSuccessful.. body : " + response.body())
-                } else {
-                    Log.d("employmentDetail", "code : " + response.code())
-                }
-            }
-
-            override fun onFailure(call: Call<EmploymentResponse>, t: Throwable) {
-                Log.e("employmentDetail", "통신 실패" + t.localizedMessage)
-            }
-
-        })
-    }
 }
