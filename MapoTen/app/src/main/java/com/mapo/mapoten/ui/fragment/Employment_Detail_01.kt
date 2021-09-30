@@ -15,6 +15,7 @@ import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 import kotlin.properties.Delegates
 
 class Employment_Detail_01 : Fragment() {
@@ -41,12 +42,21 @@ class Employment_Detail_01 : Fragment() {
         }
 
         if (id != null) {
+            loading(true)
             getGeneralJobPostingDetail(id)
         }
 
         return view
     }
 
+
+    private fun loading(isLoading : Boolean){
+        if(isLoading) binding.loading.visibility = View.VISIBLE
+        else  {
+            binding.loading.visibility = View.GONE
+            binding.detail.visibility = View.VISIBLE
+        }
+    }
 
     private fun getGeneralJobPostingDetail(id: Int) {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
@@ -64,7 +74,15 @@ class Employment_Detail_01 : Fragment() {
                 if (response.isSuccessful) {
 
                     Log.d("generalDetail", "resultDataList : ${response.body()?.data}")
-                    response.body()?.data?.let { setData(it) }
+
+                    thread(start = true) {
+                        Thread.sleep(200)
+
+                        requireActivity().runOnUiThread {
+                            loading(false)
+                            response.body()?.data?.let { setData(it) }
+                        }
+                    }
 
                 } else {
                     Log.d("generalDetail", "code : " + response.code())
