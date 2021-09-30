@@ -62,14 +62,13 @@
                     android:id="@+id/mypage_userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="adafdfsdfaddfasf"
+                    android:text=""
                     android:textColor="@color/main_darkBlue"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/scrollView"
                     tools:ignore="NotSibling" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 님"
@@ -110,6 +109,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userNameText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -129,6 +129,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userIdText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -167,6 +168,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userEmailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
