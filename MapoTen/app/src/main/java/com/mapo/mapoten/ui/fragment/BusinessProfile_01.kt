@@ -43,6 +43,9 @@ class BusinessProfile_01 : Fragment() {
             Navigation.findNavController(view).navigateUp()
         }
 
+        binding.businessNameText.setText(arguments?.getString("compNm"))
+        binding.businessNumberText.setText(arguments?.getString("compNum"))
+
         initiateLogoUpload()
         initiateFileUpload()
 

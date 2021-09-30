@@ -124,6 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="아이디 *"
+                        android:enabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
@@ -163,6 +164,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="이메일 *"
+                        android:enabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
@@ -177,40 +179,8 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/check_email_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_background_radius30"
-                        android:text="변경하기"
-                        android:textColor="#ffffff"
-                        android:textSize="@dimen/text_14"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessFile"
-                        tools:ignore="TextContrastCheck" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/checkedValidEmail"
-                        style="@style/TextInputOutline"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="이메일 인증 *"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessName">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="인증번호 6자리를 입력해주세요"
-                            android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14" />
 
 
-                    </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/save_button"
@@ -244,12 +214,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:paddingTop="@dimen/padding_10"
                     app:layout_constraintTop_toBottomOf="@+id/bottom_line">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="회원탈퇴" />
+                        android:text="회원탈퇴"
+                        android:textStyle="bold"/>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -265,7 +237,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="인증번호 6자리를 입력해주세요"
+                            android:hint="탈퇴 사유를 입력해주세요"
                             android:paddingVertical="@dimen/padding_14"
                             android:textSize="@dimen/text_14" />
 

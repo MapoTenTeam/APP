@@ -87,7 +87,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/title_textView">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/PasswordTextInputEditTextStyle"
+                            android:id="@+id/businessNameText"
+                            style="@style/TextInputLayoutStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14" />
@@ -106,6 +107,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessNumberText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"

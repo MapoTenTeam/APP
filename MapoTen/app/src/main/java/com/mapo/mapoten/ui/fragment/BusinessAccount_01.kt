@@ -12,6 +12,7 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
@@ -99,9 +100,13 @@ class BusinessAccount_01 : Fragment() {
                         binding.nameMyPage.setText(cmpnyName)
                         binding.emailMyPage.setText(cmpnyEmail)
 
-                        if (response.body()?.data?.PROFILE_STTUS == 3){
+                        if (response.body()?.data?.PROFILE_STTUS == 1){
+                            val profile = response.body()?.data
                             binding.businessProfileButton.setOnClickListener {
-                                Navigation.findNavController(view!!).navigate(R.id.businessProfile_01)
+                                val bundle = bundleOf("compNm" to profile?.CMPNY_NM, "compNum" to profile?.BIZRNO)
+                                Navigation.findNavController(view!!).navigate(R.id.businessProfile_01, bundle)
+
+                                //사업체명, 사업자등록번호 전달하기.
                             } //기업프로필작성/수정  이동
 
                         }
