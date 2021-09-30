@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-            android:text="기업로그인"
+            android:text="자동 로그인"
             android:textColor="@color/text_darkGrey"
             android:textSize="@dimen/text_12" />
 

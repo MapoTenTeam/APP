@@ -50,7 +50,7 @@
     </style>
 
     <style name="StateRadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_8</item>
         <item name="android:background">@drawable/bg_radio_button</item>
         <item name="android:button">@null</item>
         <item name="android:buttonTint">@color/main_skyBlue</item>
