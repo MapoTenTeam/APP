@@ -11,7 +11,7 @@ object RetrofitBuilder {
     private val compToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzIiwiaWF0IjoxNjMyOTY4MzY4fQ.e3VfXD5Uq93lsh6vjppjX4ndcU1pPSwUx1hXd0TrSHg"
 
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(compToken))
+        addInterceptor(MyInterceptor(userToken))
     }.build()
 
     private var instance: Retrofit? = null

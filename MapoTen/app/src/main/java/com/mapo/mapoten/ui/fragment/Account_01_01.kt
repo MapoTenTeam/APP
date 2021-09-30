@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.DuplicateIdInfoItem
@@ -41,6 +42,7 @@ class Account_01_01 : Fragment() {
         binding.saveButton.setOnClickListener {
             Log.d("profile", "눌림")
             updateProfile()
+            Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
         //회원정보 불러오기
