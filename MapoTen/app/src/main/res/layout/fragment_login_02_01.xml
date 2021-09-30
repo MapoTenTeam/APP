@@ -70,6 +70,7 @@
                 android:layout_weight="0.9"
                 android:layout_marginTop="@dimen/margin_6"
                 android:isScrollContainer="false"
+                app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:expandedHintEnabled="false">
 

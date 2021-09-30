@@ -14,9 +14,14 @@ interface UserService {
     @GET("user/duplicate/email/{email}")
     fun isDuplicateUserEmail(@Path("email") email : String) : Call<DuplicateIdInfoItem>
 
+    @GET("user/duplicate/bizrno/{bizrno}")
+    fun isDuplicateBizrno(@Path("bizrno") bizrno : String) : Call<DuplicateIdInfoItem>
+
     @POST("user/signin")
     fun requestLogin(
         @Body loginRequest: LoginRequest
     ) : Call<LoginResponse>
+
+
 
 }
