@@ -40,17 +40,19 @@ class Login_01 : Fragment() {
         with(binding) {
             textLengthChecker()
             btnLogin.setOnClickListener {
-
-                if (!idRequiredFieldChecker() == !pwdRequiredFieldChecker()) {
-                    Log.d("TAG", "클릭")
-                    if (autoLoginCheckBox.isChecked) {
-                        findNavController().navigate(R.id.businessAccount_01)
-                    } else {
-                        findNavController().navigate(R.id.home_01)
-                    }
+                if (!idRequiredFieldChecker()) {
                     return@setOnClickListener
-
                 }
+                if (!pwdRequiredFieldChecker()) {
+                    return@setOnClickListener
+                }
+
+                if (autoLoginCheckBox.isChecked) {
+                    findNavController().navigate(R.id.businessAccount_01)
+                } else {
+                    findNavController().navigate(R.id.home_01)
+                }
+
 //                    Log.d("TAG", "클릭")
                 var textId = idEditText.text.toString()
                 var textPwd = pwdEditText.text.toString()

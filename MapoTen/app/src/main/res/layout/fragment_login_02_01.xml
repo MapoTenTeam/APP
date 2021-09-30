@@ -36,7 +36,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_edit_textInputLayout"
+            android:id="@+id/name_TiL"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,42 +57,52 @@
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_edit_textInputLayout"
-            style="@style/TextInputTheme"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:isScrollContainer="false"
-            app:endIconMode="custom"
-            app:errorEnabled="true"
-            app:expandedHintEnabled="false">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_edit_text"
-                style="@style/EditTextStyle"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_TiL"
+                style="@style/TextInputTheme"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/id"
-                android:paddingVertical="@dimen/padding_14"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="0.9"
+                android:layout_marginTop="@dimen/margin_6"
+                android:isScrollContainer="false"
+                app:errorEnabled="true"
+                app:expandedHintEnabled="false">
 
-        <Button
-            android:id="@+id/btn_id_double_check"
-            style="@style/btnStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/size_60"
-            android:text="@string/double_check" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_edit_text"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/id"
+                    android:paddingVertical="@dimen/padding_14"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_id_double_check"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_weight="0.1"
+                android:text="@string/double_check" />
 
 
+        </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_edit_textInputLayout"
+            android:id="@+id/email_TiL"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_6"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:endIconMode="custom"
@@ -138,6 +148,7 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/authentication_number_TiL"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,7 +179,7 @@
             android:text="@string/confirm" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/pwd_edit_textInputLayout"
+            android:id="@+id/pwd_TiL"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,6 +202,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pwd_confirm_TiL"
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -400,7 +412,7 @@
             android:text="@string/membership_business_question" />
 
         <TextView
-            android:id="@+id/tv_signUp"
+            android:id="@+id/tv_business_signUp"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_30"
             android:layout_marginStart="@dimen/margin_10"
@@ -410,6 +422,7 @@
     </LinearLayout>
 
         <Button
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_60"
             android:text="@string/sign_up_description"
