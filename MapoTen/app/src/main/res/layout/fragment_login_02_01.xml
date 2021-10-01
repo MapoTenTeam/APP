@@ -188,10 +188,10 @@
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
-            app:expandedHintEnabled="false">
+            app:expandedHintEnabled="false"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -199,6 +199,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/passWord"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,10 +211,10 @@
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
-            app:expandedHintEnabled="false">
+            app:expandedHintEnabled="false"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_confirm_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -221,6 +222,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/pwd_confirm"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>

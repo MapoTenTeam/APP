@@ -1,6 +1,8 @@
 package com.mapo.mapoten.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,19 +25,21 @@ class Login_02_01 : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var userService: UserService
-    var code: Int = 1
+    var code: String = "1"
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
         _binding = FragmentLogin0201Binding.inflate(inflater, container, false)
 
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
 
 
         with(binding) {
+            textLengthChecker()
             btnIdDoubleCheck.setOnClickListener {
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
@@ -90,14 +94,12 @@ class Login_02_01 : Fragment() {
                             Toast.makeText(context,
                                 "${response.body()?.message}",
                                 Toast.LENGTH_SHORT).show()
-                            Log.d("TAG", "response : ${response.code()}")
                         }
                     }
 
                     override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
                         Log.e("error", "통신 실패" + t.localizedMessage)
                     }
-
                 })
             }
 
@@ -106,15 +108,16 @@ class Login_02_01 : Fragment() {
                     return@setOnClickListener
 
                 val emailAuth = userService.emailAuth(emailEditText.text.toString())
-                Log.d("TAG","${emailEditText.text.toString()}")
 
                 emailAuth.enqueue(object : Callback<EmailAuth> {
                     override fun onResponse(call: Call<EmailAuth>, response: Response<EmailAuth>) {
                         if (response.isSuccessful) {
-                            code = response.body()?.code!!
-
+                            code = response.body()?.code.toString()!!
+                            emailTiL.helperText = "인증번호가 전송되었습니다."
                         } else {
-
+                            Toast.makeText(context,
+                                "${response.body()?.message}",
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -122,13 +125,20 @@ class Login_02_01 : Fragment() {
                         Log.e("error", "통신 실패" + t.localizedMessage)
                     }
 
-
                 })
             }
+
+
 
             btnConfirm.setOnClickListener {
                 if (!authenticationRequiredFieldChecker())
                     return@setOnClickListener
+                val text = authenticationNumberEditText.text.toString()
+                if (text == code) {
+                    authenticationNumberTiL.helperText = "이메일 인증이 완료되었습니다."
+                    authenticationNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                }
+
             }
 
             btnSignup.setOnClickListener {
@@ -153,6 +163,35 @@ class Login_02_01 : Fragment() {
         }
         return binding.root
 
+    }
+
+    private fun textLengthChecker() {
+        with(binding) {
+            pwdEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if (pwdEditText.length() in 1..7) {
+                        pwdTiL.error = "비밀번호를 8글자 이상 입력해주세요"
+                    } else {
+                        pwdTiL.error = null
+                    }
+                }
+                override fun afterTextChanged(p0: Editable?) {}
+            })
+            pwdConfirmEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun afterTextChanged(p0: Editable?) {
+                    if (pwdEditText.text.isNullOrEmpty() == pwdConfirmEditText.text.isNullOrEmpty()){
+                        if (pwdEditText.text.toString() == pwdConfirmEditText.text.toString()){
+                            pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
+                        } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
+                    }
+
+                }
+
+            })
+        }
     }
 
     private fun nameRequiredFieldChecker(): Boolean {

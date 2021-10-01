@@ -33,7 +33,6 @@ class Login_01 : Fragment() {
 
         // Inflate the layout for this fragment
         with(binding) {
-            textLengthChecker()
             btnLogin.setOnClickListener {
                 if (!idRequiredFieldChecker()) {
                     return@setOnClickListener
@@ -106,22 +105,7 @@ class Login_01 : Fragment() {
 
     }
 
-    private fun textLengthChecker() {
-        with(binding) {
-            pwdEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                    if (pwdEditText.length() in 1..7) {
-//                        pwdEditTextInputLayout.error = "비밀번호를 8글자 이상 입력해주세요"
-//                    } else pwdEditTextInputLayout.error = null
-                }
 
-                override fun afterTextChanged(p0: Editable?) {}
-            })
-
-        }
-
-    }
 
     private fun idRequiredFieldChecker(): Boolean {
         with(binding) {
