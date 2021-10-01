@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
@@ -100,24 +102,26 @@ class Employment_Detail_01 : Fragment() {
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
-        binding.date.text = "마감일: ${result.endReception}"
-
+        binding.date.text = "${result.endReception} 지원마감 D-14"
+        if(result.image != null ){
+            Glide.with(requireActivity()).load(result.image).into(binding.image)
+        }else {
+            binding.image.setImageResource(R.drawable.banner_image1)
+        }
         // 채용사항
         binding.jobTypeDescValue.text = result.jobTypeDesc
         binding.requireCountValue.text = result.requireCount
         binding.jobDescValue.text = result.jobDesc
         binding.educationValue.text = result.education
         binding.careerValue.text = result.career
-        binding.workAreaValue.text = result.workArea
         binding.employTypeValue.text = result.employTypeDet
 
         // 업체현황
-        binding.companyNameValue.text = result.name
-        binding.bizrnoValue.text = result.bizrno
+        /*binding.companyNameValue.text = result.name
         binding.ceoValue.text = result.ceo
         binding.addressValue.text = result.address
-        binding.sectorValue.text = result.sector
-        binding.quaternionValue.text = result.quaternion
+        binding.sectorValue.text = result.sector*/
+        //binding.quaternionValue.text = result.quaternion
 
         // 근로조건
         binding.paycdValue.text = result.paycd
@@ -134,6 +138,8 @@ class Employment_Detail_01 : Fragment() {
         binding.contactPhoneValue.text = result.contactPhone
         binding.contactEmailValue.text = result.contactEmail
 
+        // 근무위치
+        binding.placeOfWorkValue.text = result.address
 
     }
 

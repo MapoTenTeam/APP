@@ -64,7 +64,7 @@
 
         <ScrollView
             android:id="@+id/detail"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="80dp"
@@ -83,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
+                    android:textStyle="bold"
                     android:lineSpacingExtra="@dimen/size_6"
                     android:text="@string/business_employment_detail_category_text"
                     android:textSize="@dimen/text_10" />
@@ -95,18 +96,8 @@
                     android:layout_marginTop="@dimen/margin_4"
                     android:text="@string/business_employment_title"
                     android:textColor="#474747"
-                    android:textSize="@dimen/text_16"
+                    android:textSize="@dimen/text_18"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_16"
-                    android:lineSpacingExtra="@dimen/size_6"
-                    android:text="모집기간 : "
-                    android:textSize="@dimen/text_10" />
-
 
                 <ImageView
                     android:id="@+id/image"
@@ -116,6 +107,43 @@
                     android:background="#50c4c4c4"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/banner_image1" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:lineSpacingExtra="@dimen/size_6"
+                    android:paddingHorizontal="@dimen/padding_8"
+                    android:textColor="@color/text_darkBlue"
+                    android:text="마감일 : "
+                    android:background="#204C67A6"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_14" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="#10000000"
+                    android:text="직무 내용"
+                    android:textColor="#474747"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/jobDescValue"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="코레시옹비탈레는 모바일 앱을 통한 비대면진료, 처방전 발급, 처방약 배달까지 하나의 프로세스를 통하여 환자가 편하게 진료받고 처방약까지 받을 수 있는 서비스를 구축 중입니다.  "
+                    android:textColor="@color/text_darkGrey"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold" />
 
 
                 <GridLayout
@@ -178,25 +206,6 @@
 
 
                     <TextView
-                        android:id="@+id/jobDesc"
-                        android:layout_row="4"
-                        android:layout_column="0"
-                        android:text="직무내용"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/jobDescValue"
-                        android:layout_row="4"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
                         android:id="@+id/education"
                         android:layout_row="5"
                         android:layout_column="0"
@@ -233,26 +242,6 @@
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
 
-
-                    <TextView
-                        android:id="@+id/workArea"
-                        android:layout_row="7"
-                        android:layout_column="0"
-                        android:text="근무예정지"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/workAreaValue"
-                        android:layout_row="7"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
                     <TextView
                         android:id="@+id/employType"
                         android:layout_row="8"
@@ -281,139 +270,9 @@
                         android:textStyle="bold" />
 
 
-                    <TextView
-                        android:layout_row="10"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:background="#10000000"
-                        android:text="@string/business_employment_content_title2"
-                        android:textColor="#474747"
-                        android:textSize="@dimen/text_14"
-                        android:textStyle="bold" />
 
 
-                    <TextView
-                        android:id="@+id/companyName"
-                        android:layout_row="11"
-                        android:layout_column="0"
-                        android:text="사업체명"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/companyNameValue"
-                        android:layout_row="11"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/bizrno"
-                        android:layout_row="12"
-                        android:layout_column="0"
-                        android:text="사업자 등록번호"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/bizrnoValue"
-                        android:layout_row="12"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/ceo"
-                        android:layout_row="13"
-                        android:layout_column="0"
-                        android:text="대표자"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/ceoValue"
-                        android:layout_row="13"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/address"
-                        android:layout_row="14"
-                        android:layout_column="0"
-                        android:text="소재지"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/addressValue"
-                        android:layout_row="14"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/sector"
-                        android:layout_row="15"
-                        android:layout_column="0"
-                        android:text="업종"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/sectorValue"
-                        android:layout_row="15"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/quaternion"
-                        android:layout_row="16"
-                        android:layout_column="0"
-                        android:text="근로자 수"
-                        android:textColor="@color/text_middleGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/quaternionValue"
-                        android:layout_row="16"
-                        android:layout_column="1"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:layout_row="17"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:textStyle="bold" />
 
 
                     <TextView
@@ -507,7 +366,7 @@
                         android:id="@+id/workingHours"
                         android:layout_row="23"
                         android:layout_column="0"
-                        android:text="1주당 근로시간"
+                        android:text="근로시간"
                         android:textColor="@color/text_middleGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
@@ -654,6 +513,42 @@
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
+
+                    <!-- 근무위치 -->
+                    <TextView
+                        android:layout_row="32"
+                        android:layout_column="0"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginBottom="@dimen/margin_4"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/placeOfWork"
+                        android:layout_row="33"
+                        android:layout_column="0"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginBottom="@dimen/margin_4"
+                        android:background="#10000000"
+                        android:text="근무위치"
+                        android:textColor="#474747"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/placeOfWorkValue"
+                        android:layout_row="34"
+                        android:layout_column="0"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                    <ImageView
+                        android:layout_row="35"
+                        android:layout_column="0"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="fill_horizontal"
+                        android:src="@drawable/test_map"
+                        />
 
                 </GridLayout>
 
