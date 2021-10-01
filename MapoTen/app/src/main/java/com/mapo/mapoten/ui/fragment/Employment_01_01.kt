@@ -85,7 +85,7 @@ class Employment_01_01 : Fragment() {
 
     private fun getAllPosting() {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getPublicJobList(1)
+        val generalJobList = employmentService.getPublicJobList(1, "")
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")
