@@ -5,14 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
 import com.mapo.mapoten.data.employment.EmploymentResponse
+import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +24,7 @@ import retrofit2.Response
 class PublicEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<PublicEmploymentPostingAdapter.ViewHolder>() {
 
-    var data: MutableList<EmploymentJobPostingItem> = ArrayList()
+    var data: MutableList<GeneralEmpPostingDTO> = ArrayList()
     lateinit var employmentService: EmploymentService
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,48 +45,26 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val name: TextView = view.findViewById(R.id.CompanyName)
         private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.registrationDate)
+        private val companyImage: ImageView = view.findViewById(R.id.companyImage)
 
-        fun bind(item: EmploymentJobPostingItem) {
+        fun bind(item: GeneralEmpPostingDTO) {
             title.text = item.title
-            name.text = item.name
+            name.text = item.companyName
             place.text = item.address
             date.text = item.startReception + " - " + item.endReception
-
+            if (item.companyImage != null) {
+                Glide.with(context).load(item.companyImage).into(companyImage)
+            } else {
+                companyImage.setImageResource(R.drawable.banner_image1)
+            }
 
             itemView.setOnClickListener {
 
-                val bundle = bundleOf("title" to title.text, "date" to date.text)
+                val bundle = bundleOf("type" to 0, "jobId" to item.jobId)
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
-                getDetailInfo(item.id)
             }
         }
     }
 
 
-    private fun getDetailInfo(id : Int ) {
-        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val inquireEmploymentDetailInfo = employmentService.inquirePublicDetailPosting(id)
-
-        inquireEmploymentDetailInfo.enqueue(object : Callback<EmploymentResponse> {
-            override fun onResponse(
-                call: Call<EmploymentResponse>,
-                response: Response<EmploymentResponse>
-            ) {
-
-                Log.d("employmentDetail", "code : " + response.code())
-                Log.d("employmentDetail", "message : " + response.message())
-
-                if (response.isSuccessful) {
-                    Log.d("employmentDetail", "isSuccessful.. body : " + response.body())
-                } else {
-                    Log.d("employmentDetail", "code : " + response.code())
-                }
-            }
-
-            override fun onFailure(call: Call<EmploymentResponse>, t: Throwable) {
-                Log.e("employmentDetail", "통신 실패" + t.localizedMessage)
-            }
-
-        })
-    }
 }
