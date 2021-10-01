@@ -147,6 +147,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/text_businessInfo">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ownerNameText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -166,6 +167,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ownerName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessEmailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -185,6 +187,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessEmail">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessAddressText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -205,6 +208,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessAddress1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessAddressDetailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -224,6 +228,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessAddress2">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessCategoryText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -244,6 +249,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessCategory">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessEmployeeNumberText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -263,6 +269,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessEmployeeNumber">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessWebsiteText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -353,7 +360,6 @@
                         android:id="@+id/business_save_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_marginTop="10dp"
                         android:background="@drawable/button_background_radius30"
                         android:text="@string/btn_save"

@@ -1,10 +1,9 @@
 package com.mapo.mapoten.service
 
 import com.mapo.mapoten.data.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.*
-import kotlin.collections.HashMap
 
 interface AccountManageService {
 
@@ -22,6 +21,13 @@ interface AccountManageService {
     //기업 마이페이지
     @GET("user/enterprise/profile")
     fun getCompanyProfile():Call<BusinessProfile>
+
+    @PUT("user/enterprise/upload/profile")
+    fun updateBusinessProfile(@Body updateProfile: UpdateBusinessProfileItems):Call<Void>
+
+    @Multipart
+    @PATCH("user/enterprise/upload/profile/image")
+    fun updateBusinessLogoImg( @Part file: MultipartBody.Part): Call<Void>
 
 }
 

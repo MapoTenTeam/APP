@@ -12,16 +12,19 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.navigation.Navigation
-import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.UpdateBusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessProfile01Binding
-import com.mapo.mapoten.ui.activity.MainActivity
-import java.io.InputStream
-import android.content.Context as Context
+import com.mapo.mapoten.service.AccountManageService
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File as File
 
 
@@ -29,7 +32,8 @@ class BusinessProfile_01 : Fragment() {
 
 
     lateinit var binding: FragmentBusinessProfile01Binding
-    val file = File("경로")
+    lateinit var service : AccountManageService
+    private var selectedImageUri : Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,16 +43,28 @@ class BusinessProfile_01 : Fragment() {
 
         val view = binding.root
 
+        service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
+
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
 
-        binding.businessNameText.setText(arguments?.getString("compNm"))
-        binding.businessNumberText.setText(arguments?.getString("compNum"))
-
         initiateLogoUpload()
         initiateFileUpload()
 
+        binding.businessNameText.setText(arguments?.getString("compNm"))
+        binding.businessNumberText.setText(arguments?.getString("compNum"))
+
+
+
+
+        binding.businessSaveButton.setOnClickListener {
+            Log.d("profile", "이미지없이 저장하기 눌럼")
+            addCompProfile()
+            if (selectedImageUri != null) {
+                addCompImg(selectedImageUri.toString())
+            }
+        }
         return view
     }
 
@@ -57,10 +73,17 @@ class BusinessProfile_01 : Fragment() {
 
         when(requestCode){
             2000 -> {
-                val selectedImageUri: Uri? = data?.data
+                selectedImageUri = data?.data!!
                 if(selectedImageUri != null){
+                    //selectedImageUri = data?.data!!
                     binding.businessLogo.setImageURI(selectedImageUri)
                     binding.iconImageUpload.visibility = GONE
+                    binding.businessSaveButton.setOnClickListener {
+                        Toast.makeText(requireContext(), "클릭리스너 눌림", Toast.LENGTH_SHORT).show()
+                        addCompProfile()
+                        addCompImg(selectedImageUri.toString())
+                        Log.d("profile", "이미지 uri : $selectedImageUri")
+                    }
                 }else{
                     Toast.makeText(requireContext(), "사진을 가져오지 못했습니다", Toast.LENGTH_SHORT).show()
                 }
@@ -81,6 +104,8 @@ class BusinessProfile_01 : Fragment() {
 
         }
     }
+
+
 
     fun initiateLogoUpload(){
         binding.iconImageUpload.setOnClickListener {
@@ -159,10 +184,74 @@ class BusinessProfile_01 : Fragment() {
         intent.type = "*/*"
         startActivityForResult(intent, 3000)
 
+    }
+
+    private fun addCompProfile() {
+        Log.d("profile", "이미지없이 저장하기 눌럼2222222")
+        val compName = binding.businessNameText.text.toString()
+        val compNum = binding.businessNumberText.text.toString()
+        val ceoName = binding.ownerNameText.text.toString()
+        val email = binding.businessEmailText.text.toString()
+        val address = binding.businessAddressText.text.toString()
+        val detailAd = binding.businessAddressDetailText.text.toString()
+        val category = binding.businessCategoryText.text.toString()
+        val empNum = binding.businessEmployeeNumberText.text.toString()
+        val homepage= binding.businessWebsiteText.text.toString()
+
+        val profile = UpdateBusinessProfileItems(compName,email,category,compName,compNum,ceoName,address,detailAd,category,empNum,homepage,email)
+        service.updateBusinessProfile(profile).enqueue(object :Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful){
+                    val msg = response.message()
+                    Log.d("profile 수정", "msg : $msg")
+                    Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("profile 수정", "error" + t.message)
+            }
+        })
+
 
     }
 
+    private fun addCompImg(path:String) {
+        Toast.makeText(requireContext(), "클릭리스너 이후 addCompimg 까지옴", Toast.LENGTH_SHORT).show()
+        Log.d("profile", "클릭리스너 이후 addCompimg 까지옴")
+        //creating a file
+        val imgFile = File(path)
+        //var fileName = imgFile.name.replace("%","").replace(".","")
+       /* var fileName = "test123"
+        fileName = "$fileName.png"*/
+        if (!imgFile.exists()) {       // 원하는 경로에 폴더가 있는지 확인
 
+            imgFile.mkdirs();    // 하위폴더를 포함한 폴더를 전부 생성
+            Log.d("profile", "이름 ${imgFile.name}")
+        }
+
+
+        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imgFile)
+
+       // var requestBody : RequestBody = RequestBody.create("image/*".toMediaTypeOrNull(),file)
+        var file : MultipartBody.Part = MultipartBody.Part.createFormData("file",imgFile.name,requestFile)
+        Log.d("profile", "이미지등록 $file")
+        Log.d("profile", "이미지등록  bodu ${file.body}")
+
+
+        service.updateBusinessLogoImg(file).enqueue(object : Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.d("profile", "이미지등록 ${response.code()}")
+                Log.d("profile", "이미지 등록 성공!!")
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("profile", "이미지 등록 실패!!")
+                Log.d("profile 수정", "error" + t.message)
+            }
+        })
+    }
 
 
 

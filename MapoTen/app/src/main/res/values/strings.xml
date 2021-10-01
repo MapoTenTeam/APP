@@ -43,6 +43,7 @@
 
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
+    <string name="business_profile_view">회사 프로필 조회</string>
     <string name="business_profile_textView">채용 공고 및 회사 페이지에 표시될 법인명을 입력해주세요</string>
     <string name="businessFile">사업자 등록증</string>
     <string name="btn_save">저장하기</string>
