@@ -69,7 +69,7 @@
             android:layout_marginBottom="80dp"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
