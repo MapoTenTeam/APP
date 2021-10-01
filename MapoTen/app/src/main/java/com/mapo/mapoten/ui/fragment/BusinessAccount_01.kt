@@ -95,7 +95,7 @@ class BusinessAccount_01 : Fragment() {
                         Log.d("profile", "res: "+response.code())
                         val img = response.body()?.data?.CMPNY_IM
                         val cmpnyName = response.body()?.data?.CMPNY_NM
-                        val cmpnyEmail = response.body()?.data?.CEO_EMAIL_ADRES
+                        val cmpnyEmail = response.body()?.data?.APPLCNT_EMAIL_ADRES
                         Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
                         binding.nameMyPage.setText(cmpnyName)
                         binding.emailMyPage.setText(cmpnyEmail)
