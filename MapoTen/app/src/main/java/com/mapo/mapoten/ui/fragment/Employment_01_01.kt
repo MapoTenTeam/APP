@@ -2,6 +2,8 @@ package com.mapo.mapoten.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,11 +47,18 @@ class Employment_01_01 : Fragment() {
         adapter = PublicEmploymentPostingAdapter(this.requireContext())
         binding.jobPostingBoard.adapter = adapter
 
-        loading(true)
-        getAllPosting()
 
         // init
         initialize()
+
+        binding.searchBtn.setOnClickListener {
+            val searchTerm = binding.searchText.text
+            if (binding.searchText.text.isNotEmpty()) {
+                getAllPosting(searchTerm.toString())
+            } else {
+                getAllPosting("")
+            }
+        }
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -59,12 +68,14 @@ class Employment_01_01 : Fragment() {
     }
 
     private fun initialize() {
-        listOfPlace.clear()
 
+        loading(true)
+        getAllPosting("")
+
+        listOfPlace.clear()
         setupSpinnerPlace()
 
     }
-
 
     private fun setupSpinnerPlace() {
         val places = resources.getStringArray(R.array.employ_array_country)
@@ -83,9 +94,9 @@ class Employment_01_01 : Fragment() {
         else binding.loading.visibility = View.GONE
     }
 
-    private fun getAllPosting() {
+    private fun getAllPosting(searchTerm: String) {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getPublicJobList(1, "")
+        val generalJobList = employmentService.getPublicJobList(1, searchTerm)
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")

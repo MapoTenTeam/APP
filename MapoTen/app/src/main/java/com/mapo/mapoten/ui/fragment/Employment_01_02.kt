@@ -46,12 +46,18 @@ class Employment_01_02 : Fragment() {
         adapter = GeneralEmploymentPostingAdapter(this.requireContext())
         binding.jobPostingBoard.adapter = adapter
 
-        loading(true)
-        getAllPosting()
 
         // init
         initialize()
 
+        binding.searchBtn.setOnClickListener {
+            val searchTerm = binding.searchText.text
+            if (binding.searchText.text.isNotEmpty()) {
+                getAllPosting(searchTerm.toString())
+            } else {
+                getAllPosting("")
+            }
+        }
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -61,14 +67,15 @@ class Employment_01_02 : Fragment() {
     }
 
     private fun initialize() {
+        loading(true)
+        getAllPosting("")
+
         listOfCareer.clear()
         listOfJob.clear()
         listOfPlace.clear()
-
         setupSpinnerCareer()
         setupSpinnerJob()
         setupSpinnerPlace()
-
     }
 
     private fun setupSpinnerCareer() {
@@ -105,15 +112,15 @@ class Employment_01_02 : Fragment() {
     }
 
 
-    private fun loading(isLoading : Boolean){
-        if(isLoading) binding.loading.visibility = View.VISIBLE
-        else  binding.loading.visibility = View.GONE
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) binding.loading.visibility = View.VISIBLE
+        else binding.loading.visibility = View.GONE
     }
 
-    private fun getAllPosting() {
+    private fun getAllPosting(searchTerm: String) {
 
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getGeneralJobList(1, "")
+        val generalJobList = employmentService.getGeneralJobList(1, searchTerm)
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")
@@ -121,7 +128,6 @@ class Employment_01_02 : Fragment() {
                 call: Call<GeneralJobPostingResponse>,
                 response: Response<GeneralJobPostingResponse>
             ) {
-
                 Log.d("employmentGeneral", "code : " + response.code())
                 Log.d("employmentGeneral", "message : " + response.message())
 
@@ -132,17 +138,15 @@ class Employment_01_02 : Fragment() {
 
                     if (resultDataList.size > 0) {
 
-                        thread(start=true) {
+                        thread(start = true) {
                             Thread.sleep(300)
 
-                            requireActivity().runOnUiThread  {
+                            requireActivity().runOnUiThread {
                                 loading(false)
                                 adapter.data = resultDataList
                                 adapter.notifyDataSetChanged()
                             }
                         }
-
-
 
 
                     } else {

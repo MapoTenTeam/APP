@@ -35,18 +35,32 @@
         android:layout_marginTop="90dp"
         tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/search"
+        <FrameLayout
+            android:id="@+id/searchLayout"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/bg_serach_input"
-            android:drawableRight="@drawable/ic_search_24"
-            android:drawableTint="@color/employment_search_icon"
-            android:hint="회사명이나 직무를 검색해보세요!"
-            android:paddingHorizontal="@dimen/padding_12"
-            android:paddingVertical="@dimen/padding_4"
-            android:textSize="@dimen/text_12"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_serach_input"
+                android:hint="채용공고를 검색해보세요!"
+                android:paddingHorizontal="@dimen/padding_12"
+                android:paddingVertical="@dimen/padding_4"
+                android:textSize="@dimen/text_12" />
+            <ImageView
+                android:id="@+id/searchBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search_24"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginEnd="12dp"
+                app:tint="@color/employment_search_icon"
+                tools:ignore="RtlHardcoded" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/spinnerContainer"
@@ -54,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_24"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/search">
+            app:layout_constraintTop_toBottomOf="@+id/searchLayout">
 
             <Spinner
                 android:id="@+id/employCareer"
