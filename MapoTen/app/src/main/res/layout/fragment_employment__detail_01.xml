@@ -64,12 +64,12 @@
 
         <ScrollView
             android:id="@+id/detail"
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="80dp"
             android:orientation="vertical"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,10 +83,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
-                    android:textStyle="bold"
                     android:lineSpacingExtra="@dimen/size_6"
                     android:text="@string/business_employment_detail_category_text"
-                    android:textSize="@dimen/text_10" />
+                    android:textSize="@dimen/text_10"
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -114,15 +114,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="@dimen/margin_16"
+                    android:background="#204C67A6"
                     android:lineSpacingExtra="@dimen/size_6"
                     android:paddingHorizontal="@dimen/padding_8"
-                    android:textColor="@color/text_darkBlue"
                     android:text="마감일 : "
-                    android:background="#204C67A6"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_14" />
+                    android:textColor="@color/text_darkBlue"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold" />
 
 
+                <!-- 직무내용 -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,9 +137,9 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/jobDescValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/jobDescValue"
                     android:layout_marginBottom="@dimen/margin_16"
                     android:text="코레시옹비탈레는 모바일 앱을 통한 비대면진료, 처방전 발급, 처방약 배달까지 하나의 프로세스를 통하여 환자가 편하게 진료받고 처방약까지 받을 수 있는 서비스를 구축 중입니다.  "
                     android:textColor="@color/text_darkGrey"
@@ -149,11 +150,11 @@
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical"
                     android:stretchColumns="*">
 
-
+                    <!-- 채용사항 -->
                     <TextView
                         android:layout_row="1"
                         android:layout_column="0"
@@ -179,7 +180,8 @@
                         android:id="@+id/jobTypeDescValue"
                         android:layout_row="2"
                         android:layout_column="1"
-                        android:layout_gravity="fill"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -199,6 +201,8 @@
                         android:id="@+id/requireCountValue"
                         android:layout_row="3"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -207,7 +211,7 @@
 
                     <TextView
                         android:id="@+id/education"
-                        android:layout_row="5"
+                        android:layout_row="4"
                         android:layout_column="0"
                         android:text="학력"
                         android:textColor="@color/text_middleGrey"
@@ -216,8 +220,10 @@
 
                     <TextView
                         android:id="@+id/educationValue"
-                        android:layout_row="5"
+                        android:layout_row="4"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -226,7 +232,7 @@
 
                     <TextView
                         android:id="@+id/career"
-                        android:layout_row="6"
+                        android:layout_row="5"
                         android:layout_column="0"
                         android:text="경력"
                         android:textColor="@color/text_middleGrey"
@@ -235,16 +241,18 @@
 
                     <TextView
                         android:id="@+id/careerValue"
-                        android:layout_row="6"
+                        android:layout_row="5"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
                         android:text=""
+                        android:paddingStart="@dimen/padding_16"
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/employType"
-                        android:layout_row="8"
+                        android:layout_row="6"
                         android:layout_column="0"
                         android:text="고용형태"
                         android:textColor="@color/text_middleGrey"
@@ -253,30 +261,27 @@
 
                     <TextView
                         android:id="@+id/employTypeValue"
-                        android:layout_row="8"
+                        android:layout_row="6"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
 
+                </GridLayout>
 
-                    <TextView
-                        android:layout_row="9"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:textStyle="bold" />
-
-
-
-
-
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical"
+                    android:stretchColumns="*">
 
 
                     <TextView
-                        android:layout_row="18"
+                        android:layout_row="1"
                         android:layout_column="0"
                         android:layout_columnSpan="2"
                         android:layout_gravity="fill_horizontal"
@@ -290,7 +295,7 @@
 
                     <TextView
                         android:id="@+id/paycd"
-                        android:layout_row="19"
+                        android:layout_row="2"
                         android:layout_column="0"
                         android:text="임금지급형태"
                         android:textColor="@color/text_middleGrey"
@@ -299,8 +304,10 @@
 
                     <TextView
                         android:id="@+id/paycdValue"
-                        android:layout_row="19"
+                        android:layout_row="2"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -309,7 +316,7 @@
 
                     <TextView
                         android:id="@+id/payAmount"
-                        android:layout_row="20"
+                        android:layout_row="3"
                         android:layout_column="0"
                         android:text="급여"
                         android:textColor="@color/text_middleGrey"
@@ -318,8 +325,10 @@
 
                     <TextView
                         android:id="@+id/payAmountValue"
-                        android:layout_row="20"
+                        android:layout_row="3"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -327,7 +336,7 @@
 
                     <TextView
                         android:id="@+id/workTimeType"
-                        android:layout_row="21"
+                        android:layout_row="4"
                         android:layout_column="0"
                         android:text="근무시간유형"
                         android:textColor="@color/text_middleGrey"
@@ -336,8 +345,10 @@
 
                     <TextView
                         android:id="@+id/workTimeTypeValue"
-                        android:layout_row="21"
+                        android:layout_row="4"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -346,7 +357,7 @@
 
                     <TextView
                         android:id="@+id/mealCod"
-                        android:layout_row="22"
+                        android:layout_row="5"
                         android:layout_column="0"
                         android:text="식사제공"
                         android:textColor="@color/text_middleGrey"
@@ -355,8 +366,10 @@
 
                     <TextView
                         android:id="@+id/mealCodValue"
-                        android:layout_row="22"
+                        android:layout_row="5"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -364,7 +377,7 @@
 
                     <TextView
                         android:id="@+id/workingHours"
-                        android:layout_row="23"
+                        android:layout_row="6"
                         android:layout_column="0"
                         android:text="근로시간"
                         android:textColor="@color/text_middleGrey"
@@ -373,8 +386,10 @@
 
                     <TextView
                         android:id="@+id/workingHoursValue"
-                        android:layout_row="23"
+                        android:layout_row="6"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -382,7 +397,7 @@
 
                     <TextView
                         android:id="@+id/severancePayType"
-                        android:layout_row="24"
+                        android:layout_row="7"
                         android:layout_column="0"
                         android:text="퇴직금 형태"
                         android:textColor="@color/text_middleGrey"
@@ -391,8 +406,10 @@
 
                     <TextView
                         android:id="@+id/severancePayTypeValue"
-                        android:layout_row="24"
+                        android:layout_row="7"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -401,7 +418,7 @@
 
                     <TextView
                         android:id="@+id/socialInsurance"
-                        android:layout_row="25"
+                        android:layout_row="8"
                         android:layout_column="0"
                         android:text="고용보험"
                         android:textColor="@color/text_middleGrey"
@@ -410,25 +427,27 @@
 
                     <TextView
                         android:id="@+id/socialInsuranceValue"
-                        android:layout_row="25"
+                        android:layout_row="8"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
 
+                </GridLayout>
+
+                <!-- 전형사항 -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical"
+                    android:stretchColumns="*">
 
                     <TextView
-                        android:layout_row="26"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:layout_row="27"
+                        android:layout_row="0"
                         android:layout_column="0"
                         android:layout_columnSpan="2"
                         android:layout_gravity="fill_horizontal"
@@ -442,7 +461,7 @@
 
                     <TextView
                         android:id="@+id/contactName"
-                        android:layout_row="28"
+                        android:layout_row="1"
                         android:layout_column="0"
                         android:text="채용담당자"
                         android:textColor="@color/text_middleGrey"
@@ -451,8 +470,10 @@
 
                     <TextView
                         android:id="@+id/contactNameValue"
-                        android:layout_row="28"
+                        android:layout_row="1"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -461,7 +482,7 @@
 
                     <TextView
                         android:id="@+id/contactDepartment"
-                        android:layout_row="29"
+                        android:layout_row="2"
                         android:layout_column="0"
                         android:text="채용부서"
                         android:textColor="@color/text_middleGrey"
@@ -470,8 +491,10 @@
 
                     <TextView
                         android:id="@+id/contactDepartmentValue"
-                        android:layout_row="29"
+                        android:layout_row="2"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -479,7 +502,7 @@
 
                     <TextView
                         android:id="@+id/contactPhone"
-                        android:layout_row="30"
+                        android:layout_row="3"
                         android:layout_column="0"
                         android:text="전화번호"
                         android:textColor="@color/text_middleGrey"
@@ -488,8 +511,10 @@
 
                     <TextView
                         android:id="@+id/contactPhoneValue"
-                        android:layout_row="30"
+                        android:layout_row="3"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
@@ -498,7 +523,7 @@
 
                     <TextView
                         android:id="@+id/contactEmail"
-                        android:layout_row="31"
+                        android:layout_row="4"
                         android:layout_column="0"
                         android:text="전자우편"
                         android:textColor="@color/text_middleGrey"
@@ -507,52 +532,44 @@
 
                     <TextView
                         android:id="@+id/contactEmailValue"
-                        android:layout_row="31"
+                        android:layout_row="4"
                         android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
-
-                    <!-- 근무위치 -->
-                    <TextView
-                        android:layout_row="32"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:id="@+id/placeOfWork"
-                        android:layout_row="33"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginBottom="@dimen/margin_4"
-                        android:background="#10000000"
-                        android:text="근무위치"
-                        android:textColor="#474747"
-                        android:textSize="@dimen/text_14"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:id="@+id/placeOfWorkValue"
-                        android:layout_row="34"
-                        android:layout_column="0"
-                        android:text=""
-                        android:textColor="@color/text_darkGrey"
-                        android:textSize="@dimen/text_12"
-                        android:textStyle="bold" />
-                    <ImageView
-                        android:layout_row="35"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_gravity="fill_horizontal"
-                        android:src="@drawable/test_map"
-                        />
-
                 </GridLayout>
 
 
+                <!-- 근무위치 -->
+                <TextView
+                    android:id="@+id/placeOfWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="#10000000"
+                    android:text="근무위치"
+                    android:textColor="#474747"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/placeOfWorkValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/text_darkGrey"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:src="@drawable/test_map" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
