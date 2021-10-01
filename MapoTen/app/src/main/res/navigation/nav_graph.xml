@@ -28,9 +28,9 @@
     </fragment>
     <fragment
         android:id="@+id/account_01"
-        android:name="com.mapo.mapoten.ui.fragment.Account_01"
+        android:name="com.mapo.mapoten.ui.fragment.BusinessAccount_01"
         android:label="fragment_account_01"
-        tools:layout="@layout/fragment_account_01">
+        tools:layout="@layout/fragment_business_account_01">
         <action
             android:id="@+id/action_account_01_to_account_01_01"
             app:destination="@id/account_01_01" />

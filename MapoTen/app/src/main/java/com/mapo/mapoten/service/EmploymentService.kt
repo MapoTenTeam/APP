@@ -1,22 +1,36 @@
 package com.mapo.mapoten.service
 
-import com.mapo.mapoten.data.employment.EmploymentResponse
-import com.mapo.mapoten.data.employment.PublicJobPostingResponse
+import com.mapo.mapoten.data.employment.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface EmploymentService {
 
-    @GET("job/public")
-    fun getPublicJobList() : Call<ArrayList<PublicJobPostingResponse>>
+    @FormUrlEncoded
+    @POST("job/public")
+    fun getPublicJobList(
+        @Query("page") page: Int,
+        @Field("SEARCH_NAME") searchTerm: String
+    ): Call<GeneralJobPostingResponse>
 
     @GET("job/public/detail/{id}")
-    fun inquirePublicDetailPosting(@Path("id") id : Int) : Call<EmploymentResponse>
+    fun inquirePublicDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
 
-    @GET("job/general")
-    fun getGeneralJobList() : Call<ArrayList<PublicJobPostingResponse>>
+    @FormUrlEncoded
+    @POST("job/general")
+    fun getGeneralJobList(
+        @Query("page") page: Int,
+        @Field("SEARCH_NAME") searchTerm: String
+    ): Call<GeneralJobPostingResponse>
 
-    @GET("job/general/detail/{id}")
-    fun inquireGeneralDetailPosting(@Path("id") id : Int) : Call<EmploymentResponse>
+    @GET("job/detail/{jobid}")
+    fun inquireGeneralDetailPosting(@Path("jobid") id: Int): Call<EmploymentResponse>
+
+
+    // 기업 채용공고 목록 조회
+    @GET("job/enterprise/list")
+    fun getEnterpriseJobList(@Query("page") page: Int): Call<SelectJobEnterpriseOutputDto>
+
+    @GET("job/enterprise/list/detail/{jobid}")
+    fun getEnterPriseJobDetail(@Path("jobid") jobId: Int): Call<SelectJobEnterpriseDetailOutputDto>
 }

@@ -38,7 +38,8 @@
         <RadioGroup
             android:id="@+id/filter"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="start"
+            android:layout_height="wrap_content"
+            android:gravity="start"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -48,12 +49,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_24"
                 android:checked="true"
-                android:paddingHorizontal="@dimen/padding_4"
+                android:paddingHorizontal="@dimen/padding_2"
                 android:text="@string/business_employment_radio_all"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
-                android:id="@+id/judging"
+                android:id="@+id/request"
                 style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_24"
@@ -66,7 +67,7 @@
                 style="@style/StateRadioButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_24"
-                android:paddingHorizontal="@dimen/padding_4"
+                android:paddingHorizontal="@dimen/padding_8"
                 android:text="@string/business_employment_radio_approval"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -80,18 +81,38 @@
                 tools:ignore="TouchTargetSizeCheck" />
         </RadioGroup>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employmentPostingBoard"
+        <TextView
+            android:id="@+id/emptyBoardGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="등록된 채용공고가 없습니다."
+            android:textAlignment="center"
+            android:textColor="@color/text_darkGrey"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/margin_32"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:overScrollMode="never"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filter"
-            tools:listitem="@layout/employment_list_row" />
+            app:layout_constraintTop_toBottomOf="@+id/filter">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/employmentPostingBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/employment_list_row" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

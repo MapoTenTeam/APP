@@ -3,15 +3,14 @@ package com.mapo.mapoten.config
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.mapo.mapoten.config.NetworkSettings
 
 
 object RetrofitBuilder {
 
     private val userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4ODI5OTJ9.qZWawMCoY9198_D0ZE1kacZwLFfixyMQ7e4Dho8Wgc0"
-
+    private val businessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzIiwiaWF0IjoxNjMyODk1MzUwfQ.KsoXnblx-49Wq2UV5Ez9AmJjPZiWGpgfwgFM-I7F4EA"
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(userToken))
+        addInterceptor(MyInterceptor(businessToken))
     }.build()
 
     private var instance: Retrofit? = null

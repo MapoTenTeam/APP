@@ -45,12 +45,12 @@
         <item name="android:drawableLeft">@drawable/ic_baseline_arrow_back_16</item>
         <item name="android:textColor">@color/text_darkBlue</item>
         <item name="drawableTint">@color/text_darkBlue</item>
-        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textSize">@dimen/text_16</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="StateRadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:layout_marginEnd">@dimen/margin_16</item>
+        <item name="android:layout_marginEnd">@dimen/margin_8</item>
         <item name="android:background">@drawable/bg_radio_button</item>
         <item name="android:button">@null</item>
         <item name="android:buttonTint">@color/main_skyBlue</item>
@@ -80,7 +80,7 @@
         <item name="android:layout_weight">1</item>
     </style>
     <style name="Row.StateStyle" parent="android:TextAppearance">
-        <item name="android:textSize">@dimen/text_10</item>
+        <item name="android:textSize">@dimen/text_12</item>
         <item name="android:gravity">center</item>
         <item name="android:lineSpacingExtra">6sp</item>
         <item name="android:textColor">@color/text_darkGrey</item>
@@ -89,7 +89,7 @@
         <item name="android:background">@drawable/bg_employment_state</item>
     </style>
     <style name="Row.TitleStyle" parent="android:TextAppearance">
-        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textSize">@dimen/text_14</item>
         <item name="android:textColor">@color/text_darkGrey</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_weight">1</item>
@@ -97,8 +97,6 @@
     <style name="Row.RegistrationDateStyle" parent="android:TextAppearance">
         <item name="android:textSize">@dimen/text_10</item>
         <item name="android:textColor">@color/text_darkGrey</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:gravity">bottom</item>
-        <item name="android:layout_marginBottom">@dimen/margin_8</item>
     </style>
 </resources>

@@ -1,24 +1,28 @@
 package com.mapo.mapoten.service
 
-import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
-import com.mapo.mapoten.ui.data.PersonalProfile
+import com.mapo.mapoten.data.*
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.*
+import kotlin.collections.HashMap
 
 interface AccountManageService {
+
+    //개인 마이페이지
 
     @GET("user/personal/profile")
     fun getUserProfile(): Call<PersonalProfile>
 
-    @FormUrlEncoded
+
     @PUT("user/personal/upload/profile")
-    fun updateUserProfile(
-        @Field("MBER_NM") name:String,
-        @Field("MBER_EMAIL_ADRES") email: String,
-        @Field("MBTLNUM") mobile : String,
-        @Field("ADRES") address: String,
-        @Field("DETAIL_ADRES") detailAd : String
-    ):Call<DuplicateIdInfoItem>
+    fun updateUserProfile(@Body updateProfile : UpdatePersonalProfileItems
+    ):Call<Void>
+
+
+    //기업 마이페이지
+    @GET("user/enterprise/profile")
+    fun getCompanyProfile():Call<BusinessProfile>
+
 }
 
 

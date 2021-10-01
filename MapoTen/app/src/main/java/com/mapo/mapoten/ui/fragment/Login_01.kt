@@ -42,7 +42,8 @@ class Login_01 : Fragment() {
                 }
 
                 if (autoLoginCheckBox.isChecked) {
-                    findNavController().navigate(R.id.businessAccount_01)
+                    findNavController().navigate(R.id.home_01)
+                    //findNavController().navigate(R.id.businessAccount_01)
                 } else {
                     findNavController().navigate(R.id.home_01)
                 }
