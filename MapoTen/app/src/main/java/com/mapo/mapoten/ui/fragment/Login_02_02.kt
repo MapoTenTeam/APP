@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
 import com.mapo.mapoten.databinding.FragmentLogin0202Binding
 import com.mapo.mapoten.service.UserService
 import retrofit2.Call
@@ -40,6 +40,8 @@ class Login_02_02 : Fragment() {
                 duplicateId.enqueue(object : Callback<DuplicateIdInfoItem> {
                     override fun onResponse(
                         call: Call<DuplicateIdInfoItem>,
+
+
                         response: Response<DuplicateIdInfoItem>,
                     ) {
                         if (response.isSuccessful) {
@@ -49,6 +51,40 @@ class Login_02_02 : Fragment() {
                                     idTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
                                 }
                                 true -> idTiL.error = "이미 사용중인 아이디입니다"
+                            }
+                        } else {
+                            Toast.makeText(context,
+                                "${response.body()?.message}",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                        Log.e("error", "통신 실패" + t.localizedMessage)
+                    }
+
+                })
+            }
+
+            btnCompanyNumberDoubleCheck.setOnClickListener {
+                if (!bizrnoRequiredFieldChecker())
+                    return@setOnClickListener
+                val duplicateBizrno = userService.isDuplicateBizrno(companyNumberTiL.editText?.text.toString())
+
+                duplicateBizrno.enqueue(object : Callback<DuplicateIdInfoItem> {
+                    override fun onResponse(
+                        call: Call<DuplicateIdInfoItem>,
+                        response: Response<DuplicateIdInfoItem>,
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.d("TAG","${response.body()?.isDuplicate}")
+                            Log.d("TAG","${companyNumberTiL.editText?.text.toString()}")
+                            when (response.body()?.isDuplicate) {
+                                false -> {
+                                    companyNumberTiL.helperText = "가입 가능한 기업입니다"
+                                    companyNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                                }
+                                true -> companyNumberTiL.error = "이미 등록된 기업입니다"
                             }
                         } else {
                             Toast.makeText(context,
@@ -96,7 +132,10 @@ class Login_02_02 : Fragment() {
 
                 })
             }
-
+            btnConfirm.setOnClickListener {
+                if(!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
+            }
             btnSignup.setOnClickListener {
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
@@ -147,6 +186,19 @@ class Login_02_02 : Fragment() {
         }
     }
 
+    private fun bizrnoRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = companyNumberTiL.editText?.text.toString()
+            return if (value.isEmpty()) {
+                companyNumberTiL.error = "사업자 등록번호를 입력하세요."
+                false
+            } else {
+                companyNumberTiL.error = null
+                true
+            }
+        }
+    }
+
     private fun emailRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = emailTiL.editText?.text.toString()
@@ -155,6 +207,18 @@ class Login_02_02 : Fragment() {
                 false
             } else {
                 emailTiL.error = null
+                true
+            }
+        }
+    }
+    private fun authenticationRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = authenticationNumberTiL.editText?.text.toString()
+            return if (value.isEmpty()) {
+                authenticationNumberTiL.error = "인증번호를 입력하세요."
+                false
+            } else {
+                authenticationNumberTiL.error = null
                 true
             }
         }

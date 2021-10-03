@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.DuplicateIdInfoItem
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.data.PersonalProfile

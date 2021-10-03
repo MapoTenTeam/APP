@@ -8,17 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.LoginRequest
-import com.mapo.mapoten.data.LoginResponse
+import com.mapo.mapoten.data.Login.LoginRequest
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
-import retrofit2.Callback
-import retrofit2.Call
-import retrofit2.Response
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -38,7 +33,6 @@ class Login_01 : Fragment() {
 
         // Inflate the layout for this fragment
         with(binding) {
-            textLengthChecker()
             btnLogin.setOnClickListener {
                 if (!idRequiredFieldChecker()) {
                     return@setOnClickListener
@@ -112,22 +106,7 @@ class Login_01 : Fragment() {
 
     }
 
-    private fun textLengthChecker() {
-        with(binding) {
-            pwdEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                    if (pwdEditText.length() in 1..7) {
-//                        pwdEditTextInputLayout.error = "비밀번호를 8글자 이상 입력해주세요"
-//                    } else pwdEditTextInputLayout.error = null
-                }
 
-                override fun afterTextChanged(p0: Editable?) {}
-            })
-
-        }
-
-    }
 
     private fun idRequiredFieldChecker(): Boolean {
         with(binding) {
