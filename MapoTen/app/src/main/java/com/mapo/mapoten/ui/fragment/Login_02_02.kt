@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.Login.DuplicateIdInfoItem
+import com.mapo.mapoten.data.Login.DuplicateInfoItem
 import com.mapo.mapoten.databinding.FragmentLogin0202Binding
 import com.mapo.mapoten.service.UserService
 import retrofit2.Call
@@ -37,12 +37,12 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 val duplicateId = userService.isDuplicateUserId(idEditText.text.toString())
 
-                duplicateId.enqueue(object : Callback<DuplicateIdInfoItem> {
+                duplicateId.enqueue(object : Callback<DuplicateInfoItem> {
                     override fun onResponse(
-                        call: Call<DuplicateIdInfoItem>,
+                        call: Call<DuplicateInfoItem>,
 
 
-                        response: Response<DuplicateIdInfoItem>,
+                        response: Response<DuplicateInfoItem>,
                     ) {
                         if (response.isSuccessful) {
                             when (response.body()?.isDuplicate) {
@@ -59,7 +59,7 @@ class Login_02_02 : Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                    override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                         Log.e("error", "통신 실패" + t.localizedMessage)
                     }
 
@@ -71,10 +71,10 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 val duplicateBizrno = userService.isDuplicateBizrno(companyNumberTiL.editText?.text.toString())
 
-                duplicateBizrno.enqueue(object : Callback<DuplicateIdInfoItem> {
+                duplicateBizrno.enqueue(object : Callback<DuplicateInfoItem> {
                     override fun onResponse(
-                        call: Call<DuplicateIdInfoItem>,
-                        response: Response<DuplicateIdInfoItem>,
+                        call: Call<DuplicateInfoItem>,
+                        response: Response<DuplicateInfoItem>,
                     ) {
                         if (response.isSuccessful) {
                             Log.d("TAG","${response.body()?.isDuplicate}")
@@ -93,7 +93,7 @@ class Login_02_02 : Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                    override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                         Log.e("error", "통신 실패" + t.localizedMessage)
                     }
 
@@ -105,10 +105,10 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 val duplicateEmail = userService.isDuplicateUserEmail(emailEditText.text.toString())
 
-                duplicateEmail.enqueue(object : Callback<DuplicateIdInfoItem> {
+                duplicateEmail.enqueue(object : Callback<DuplicateInfoItem> {
                     override fun onResponse(
-                        call: Call<DuplicateIdInfoItem>,
-                        response: Response<DuplicateIdInfoItem>,
+                        call: Call<DuplicateInfoItem>,
+                        response: Response<DuplicateInfoItem>,
                     ) {
                         if (response.isSuccessful) {
                             when (response.body()?.isDuplicate) {
@@ -126,7 +126,7 @@ class Login_02_02 : Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                    override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                         Log.e("error", "통신 실패" + t.localizedMessage)
                     }
 

@@ -42,6 +42,7 @@
     <dimen name="padding_24">24dp</dimen>
     <dimen name="padding_32">32dp</dimen>
     <dimen name="padding_36">32dp</dimen>
+    <dimen name="padding_60">60dp</dimen>
 
     <dimen name="size_2">2dp</dimen>
     <dimen name="size_4">4dp</dimen>
@@ -61,5 +62,6 @@
     <dimen name="size_30">30dp</dimen>
     <dimen name="size_60">60dp</dimen>
     <dimen name="size_140">140dp</dimen>
+    <dimen name="size_290">290dp</dimen>
 
 </resources>

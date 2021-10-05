@@ -8,12 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.Login.LoginRequest
+import com.mapo.mapoten.data.Login.LoginResponse
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -41,47 +46,12 @@ class Login_01 : Fragment() {
                     return@setOnClickListener
                 }
 
-                if (autoLoginCheckBox.isChecked) {
-                    findNavController().navigate(R.id.home_01)
-                    //findNavController().navigate(R.id.businessAccount_01)
-                } else {
-                    findNavController().navigate(R.id.home_01)
-                }
-
-//                    Log.d("TAG", "클릭")
-                var textId = idEditText.text.toString()
-                var textPwd = pwdEditText.text.toString()
-
-                val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
-
-                Log.d("TAG", "$textId , $textPwd")
-
-//                loginService.enqueue(object : Callback<LoginResponse> {
-//                    override fun onResponse(
-//                        call: Call<LoginResponse>,
-//                        response: Response<LoginResponse>,
-//                    ) { //정상응답이 올경우
-//                        if (response.isSuccessful) {
-//                            Log.d("TAG", "클릭")
-//                            Log.d("TAG", "${response.body()?.message}")
-//                            Toast.makeText(context,
-//                                "${response.body()?.message}",
-//                                Toast.LENGTH_SHORT)
-//                                .show()
-//                        }
-//                        else {
-//                            Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
-//                        Log.e("error", "통신 실패" + t.localizedMessage)
-//                    }
-//
-//
-//
-//                })
-
+//                if (autoLoginCheckBox.isChecked) {
+//                    //findNavController().navigate(R.id.businessAccount_01)
+//                } else {
+//                    findNavController().navigate(R.id.home_01)
+//                }
+                login()
 
             } //로그인 성공시 홈화면으로 이동
             tvFindIdPersonal.setOnClickListener {
@@ -133,4 +103,37 @@ class Login_01 : Fragment() {
             }
         }
     }
+
+    private fun login(){
+        with(binding){
+
+            var textId = idEditText.text.toString()
+            var textPwd = pwdEditText.text.toString()
+
+            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
+
+            Log.d("TAG", "$textId , $textPwd")
+
+            loginService.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>,
+                ) { //정상응답이 올경우
+                    if (response.isSuccessful) {
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                        Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                        findNavController().navigate(R.id.home_01)
+                    }
+                    else {
+                        Log.d("TAG", "${response.body()?.statusCode} , ${response.body()?.message}")
+                    }
+                }
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+            })
+
+        }
+    }
 }
+

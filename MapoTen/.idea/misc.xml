@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_employment.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_employment_btn.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_employment_detail.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_employment_state.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_serach_input.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_spinner.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/bg_toggle_btn.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/button_background_radius30.xml" value="0.2359375" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/ic_account_sign_up.xml" value="0.371875" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/ic_baseline_check_12.xml" value="0.23177083333333334" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/ic_baseline_check_12_white.xml" value="0.23177083333333334" />
@@ -10,8 +18,12 @@
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/ic_calendar_16.xml" value="0.23177083333333334" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/ic_checked_8dp.xml" value="0.23177083333333334" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/input_stroke_radius30.xml" value="0.26927083333333335" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/popup_background.xml" value="0.2359375" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/popup_dialog_background.xml" value="0.2359375" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/drawable/tos_stroke.xml" value="0.26927083333333335" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/activity_socket_client.xml" value="0.12132725430597771" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/dialog_find_id.xml" value="0.33" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_find_id_dialog.xml" value="0.25833333333333336" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_home_01.xml" value="0.35572916666666665" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_01.xml" value="0.1" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_01_01.xml" value="0.17299898682877407" />

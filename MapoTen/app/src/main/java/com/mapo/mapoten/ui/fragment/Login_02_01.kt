@@ -98,10 +98,10 @@ class Login_02_01 : Fragment() {
         with(binding){
             val duplicateId = userService.isDuplicateUserId(idEditText.text.toString())
 
-            duplicateId.enqueue(object : Callback<DuplicateIdInfoItem> {
+            duplicateId.enqueue(object : Callback<DuplicateInfoItem> {
                 override fun onResponse(
-                    call: Call<DuplicateIdInfoItem>,
-                    response: Response<DuplicateIdInfoItem>,
+                    call: Call<DuplicateInfoItem>,
+                    response: Response<DuplicateInfoItem>,
                 ) {
                     if (response.isSuccessful) {
                         when (response.body()?.isDuplicate) {
@@ -118,7 +118,7 @@ class Login_02_01 : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
 
@@ -130,16 +130,17 @@ class Login_02_01 : Fragment() {
         with(binding){
             val duplicateEmail = userService.isDuplicateUserEmail(emailEditText.text.toString())
 
-            duplicateEmail.enqueue(object : Callback<DuplicateIdInfoItem> {
+            duplicateEmail.enqueue(object : Callback<DuplicateInfoItem> {
                 override fun onResponse(
-                    call: Call<DuplicateIdInfoItem>,
-                    response: Response<DuplicateIdInfoItem>,
+                    call: Call<DuplicateInfoItem>,
+                    response: Response<DuplicateInfoItem>,
                 ) {
                     if (response.isSuccessful) {
                         when (response.body()?.isDuplicate) {
                             false -> {
                                 emailTiL.helperText = "사용 가능한 이메일입니다"
                                 emailTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                                Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                             }
                             true -> emailTiL.error = "이미 사용중인 이메일입니다"
                         }
@@ -150,7 +151,7 @@ class Login_02_01 : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<DuplicateIdInfoItem>, t: Throwable) {
+                override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
             })
@@ -161,19 +162,18 @@ class Login_02_01 : Fragment() {
         with(binding){
             val emailAuth = userService.emailAuth(emailEditText.text.toString())
 
-            emailAuth.enqueue(object : Callback<EmailAuth> {
-                override fun onResponse(call: Call<EmailAuth>, response: Response<EmailAuth>) {
+            emailAuth.enqueue(object : Callback<GetUserByEmailAuthDto> {
+                override fun onResponse(call: Call<GetUserByEmailAuthDto>, response: Response<GetUserByEmailAuthDto>) {
                     if (response.isSuccessful) {
                         code = response.body()?.code.toString()!!
                         emailTiL.helperText = "인증번호가 전송되었습니다."
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                     } else {
-                        Toast.makeText(context,
-                            "${response.body()?.message}",
-                            Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                     }
                 }
 
-                override fun onFailure(call: Call<EmailAuth>, t: Throwable) {
+                override fun onFailure(call: Call<GetUserByEmailAuthDto>, t: Throwable) {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
 
@@ -302,9 +302,16 @@ class Login_02_01 : Fragment() {
         }
     }
 
+    private fun getTerms(){
+        with(binding){
+
+        }
+    }
+
     private fun signUp(){
         with(binding) {
-            Log.d("TAG","클릭")
+            Log.d("TAG","회원가입")
+            Log.d("TAG","이메일인증 $emailAuthck 약관동의 $termAgreeck")
             val signUpService = userService.requestSignUp(
                     nameEditText.text.toString(),
                     idEditText.text.toString(),
@@ -313,7 +320,6 @@ class Login_02_01 : Fragment() {
                     emailAuthck,
                     termAgreeck
             )
-            Log.d("TAG","이메일인증 $emailAuthck 약관동의 $termAgreeck")
 
             signUpService.enqueue(object : Callback<SignUpResponse> {
                 override fun onResponse(
@@ -322,11 +328,12 @@ class Login_02_01 : Fragment() {
                 ) { //정상응답이 올경우
                     if (response.isSuccessful) {
                         Log.d("TAG", "성공")
-                        Log.d("TAG", "${response.body()?.statusCode}")
-                        Log.d("TAG", "${response.body()?.message}")
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                     } else {
                         Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
                             .show()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+
                     }
                 }
                 override fun onFailure(call: Call<SignUpResponse>, t: Throwable) { //실패할 경우
