@@ -1,18 +1,14 @@
 package com.mapo.mapoten.ui.fragment
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
@@ -99,6 +95,9 @@ class BusinessAccount_01 : Fragment() {
                         Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
                         binding.nameMyPage.setText(cmpnyName)
                         binding.emailMyPage.setText(cmpnyEmail)
+
+                        status = response.body()?.data?.PROFILE_STTUS
+                        Log.d("profile", "status: "+status)
 
                         if (response.body()?.data?.PROFILE_STTUS == 1){
                             val profile = response.body()?.data

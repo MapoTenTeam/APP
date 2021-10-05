@@ -26,8 +26,8 @@ interface AccountManageService {
     fun updateBusinessProfile(@Body updateProfile: UpdateBusinessProfileItems):Call<Void>
 
     @Multipart
-    @PATCH("user/enterprise/upload/profile/image")
-    fun updateBusinessLogoImg( @Part file: MultipartBody.Part): Call<Void>
+    @POST("user/enterprise/upload/profile/image")
+    fun updateBusinessLogoImg( @Part file: MultipartBody.Part): Call<ImageResponse>
 
 }
 

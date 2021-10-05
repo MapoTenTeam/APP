@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01.xml" value="0.15312815338042382" />
+        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_01.xml" value="0.22554347826086957" />
+        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_profile_01.xml" value="0.19791666666666666" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_profile_view.xml" value="0.16875" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable-v24/bg_employment_detail_state.xml" value="0.3296296296296296" />
         <entry key="..\:/Users/user/shj/mapoten/APP/MapoTen/app/src/main/res/drawable/bg_bookmark.xml" value="0.3723076923076923" />
@@ -75,5 +78,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK" />
 </project>
