@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/size_300"
+    android:layout_height="@dimen/size_300"
+    android:orientation="vertical"
+    android:background="@drawable/popup_dialog_background">
+
+    <TextView
+        android:id="@+id/tv_findId"
+        style="@style/title_text20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_40"
+        android:text="@string/sign_up_complete" />
+
+
+    <View
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/size_290"
+        android:layout_height="@dimen/size_1"
+        android:background="@color/text_lightGrey"/>
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/signup_complete" />
+
+
+    <Button
+        style="@style/btnStyle"
+        android:id="@+id/btn_confirm"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:text="@string/confirm" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_30"
+        android:text="@string/cancel"
+        style="@style/tos_text14"/>
+
+</LinearLayout>

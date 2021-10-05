@@ -23,20 +23,9 @@ interface UserService {
         @Body loginRequest: LoginRequest
     ) : Call<LoginResponse>
 
-//    @POST("user/personal/signup")
-//    fun requestSignUp(
-//        @Body signUpRequest: SignUpRequest
-//    ) : Call<SignUpResponse>
-
-    @FormUrlEncoded
     @POST("user/personal/signup")
     fun requestSignUp(
-        @Field("MBER_NM") name: String,
-        @Field("MBER_ID") id: String,
-        @Field("MBER_EMAIL_ADRES") email: String,
-        @Field("PASSWORD") password: String,
-        @Field("EMAIL_VRFCT") emailVrfct: Boolean,
-        @Field("TERMS") terms: Boolean,
+        @Body signUpRequest: SignUpRequest
     ) : Call<SignUpResponse>
 
     @POST("user/find/id")

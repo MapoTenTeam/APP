@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.mapo.mapoten.databinding.FindIdDialogBinding
+import com.mapo.mapoten.databinding.PopupFindIdDialogBinding
 
 class FindIdDialogFragment : DialogFragment() {
 
-    private var _binding: FindIdDialogBinding? = null
+    private var _binding: PopupFindIdDialogBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,9 +17,7 @@ class FindIdDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FindIdDialogBinding.inflate(inflater, container, false)
-
-
+        _binding = PopupFindIdDialogBinding.inflate(inflater, container, false)
 
 
         return binding.root

@@ -116,7 +116,7 @@ class Login_01_01 : Fragment() {
         dialog = Dialog(binding.root.context)
         with(dialog){
             requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setContentView(R.layout.find_id_dialog)
+            setContentView(R.layout.popup_find_id_dialog)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT)
 
@@ -133,12 +133,11 @@ class Login_01_01 : Fragment() {
             setCancelable(true)
             show()
 
-
             val btnLogin: AppCompatButton = dialog.findViewById(R.id.btn_login)
             btnLogin.setOnClickListener {
                 //로그인 화면 띄우기
                 dismiss()
-                findNavController().navigate(R.id.action_login_01_01_to_login_01)
+                findNavController().navigate(R.id.action_login_02_01_to_login_01)
 
             }
             val btnCancel: TextView = dialog.findViewById(R.id.tv_cancel)

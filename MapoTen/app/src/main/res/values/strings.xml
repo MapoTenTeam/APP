@@ -5,9 +5,7 @@
 
     <!-- LOGIN -->
     <string name="login">로그인</string>
-    <string name="login_do">로그인 하기</string>
     <string name="auto_login">자동로그인</string>
-    <string name="id_e">ID</string>
     <string name="id">아이디*</string>
     <string name="passWord">비밀번호*</string>
     <string name="signUp_personal_e">이메일로 개인 회원가입</string>
@@ -17,9 +15,13 @@
     <string name="find_id_business">기업 아이디찾기</string>
     <string name="find_pwd">비밀번호 찾기</string>
     <string name="or">또는</string>
+
+    <!-- Find ID-->
+    <string name="id_e">ID</string>
     <string name="information_message">안내 메시지</string>
     <string name="information_match_id">입력한 정보와 일치하는 아이디입니다.</string>
     <string name="information_mismatch">입력된 회원정보가 존재하지 않습니다.\n 비회원일 경우 회원가입 후 이용해주세요.</string>
+    <string name="login_do">로그인 하기</string>
     <string name="cancel">취소</string>
 
 
@@ -27,6 +29,7 @@
     <string name="signUp_personal">개인 회원가입</string>
     <string name="signUp_business">기업 회원가입</string>
     <string name="sign_up_description">회원가입</string>
+    <string name="sign_up_complete">회원 가입 완료</string>
     <string name="double_check">중복확인</string>
     <string name="authentication_request">인증요청</string>
     <string name="confirm">확인</string>

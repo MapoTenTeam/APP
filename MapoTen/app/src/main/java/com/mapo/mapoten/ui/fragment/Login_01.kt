@@ -120,12 +120,22 @@ class Login_01 : Fragment() {
                     response: Response<LoginResponse>,
                 ) { //정상응답이 올경우
                     if (response.isSuccessful) {
-                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-                        Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
-                        findNavController().navigate(R.id.home_01)
+//                        if (response.code() == 20){
+                            Log.d("TAG", "${response.code()} : ${response.body()?.message}")
+                            Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                            findNavController().navigate(R.id.home_01)
+//                        } else {
+//                            Toast.makeText(context,
+//                                "로그인 성공",
+//                                Toast.LENGTH_SHORT).show()
+//                        }
                     }
                     else {
-                        Log.d("TAG", "${response.body()?.statusCode} , ${response.body()?.message}")
+                        Toast.makeText(context,
+                                "로그인 실패",
+                                Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", "${response.body()?.statusCode} , ${response.message()}")
                     }
                 }
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우

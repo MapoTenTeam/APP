@@ -1,14 +1,16 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
@@ -27,7 +29,7 @@ class Login_02_01 : Fragment() {
     var code: String = "1"
     var termAgreeck: Boolean = false
     var emailAuthck: Boolean = false
-
+    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,8 +96,9 @@ class Login_02_01 : Fragment() {
 
     }
 
-    private fun duplicateId(){
-        with(binding){
+    // 아이디 중복확인
+    private fun duplicateId() {
+        with(binding) {
             val duplicateId = userService.isDuplicateUserId(idEditText.text.toString())
 
             duplicateId.enqueue(object : Callback<DuplicateInfoItem> {
@@ -112,9 +115,11 @@ class Login_02_01 : Fragment() {
                             true -> idTiL.error = "이미 사용중인 아이디입니다"
                         }
                     } else {
-                        Toast.makeText(context,
+                        Toast.makeText(
+                            context,
                             "${response.body()?.message}",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -126,8 +131,9 @@ class Login_02_01 : Fragment() {
         }
     }
 
-    private fun duplicateEmail(){
-        with(binding){
+    // 이메일 중복확인
+    private fun duplicateEmail() {
+        with(binding) {
             val duplicateEmail = userService.isDuplicateUserEmail(emailEditText.text.toString())
 
             duplicateEmail.enqueue(object : Callback<DuplicateInfoItem> {
@@ -140,14 +146,19 @@ class Login_02_01 : Fragment() {
                             false -> {
                                 emailTiL.helperText = "사용 가능한 이메일입니다"
                                 emailTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
-                                Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                                Log.d(
+                                    "TAG",
+                                    "${response.body()?.statusCode} : ${response.body()?.message}"
+                                )
                             }
                             true -> emailTiL.error = "이미 사용중인 이메일입니다"
                         }
                     } else {
-                        Toast.makeText(context,
+                        Toast.makeText(
+                            context,
                             "${response.body()?.message}",
-                            Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -158,12 +169,16 @@ class Login_02_01 : Fragment() {
         }
     }
 
-    private fun sendEmailAuth(){
-        with(binding){
+    // 이메일 인증
+    private fun sendEmailAuth() {
+        with(binding) {
             val emailAuth = userService.emailAuth(emailEditText.text.toString())
 
             emailAuth.enqueue(object : Callback<GetUserByEmailAuthDto> {
-                override fun onResponse(call: Call<GetUserByEmailAuthDto>, response: Response<GetUserByEmailAuthDto>) {
+                override fun onResponse(
+                    call: Call<GetUserByEmailAuthDto>,
+                    response: Response<GetUserByEmailAuthDto>
+                ) {
                     if (response.isSuccessful) {
                         code = response.body()?.code.toString()!!
                         emailTiL.helperText = "인증번호가 전송되었습니다."
@@ -181,6 +196,48 @@ class Login_02_01 : Fragment() {
         }
     }
 
+    // 회원가입
+    private fun signUp() {
+        with(binding) {
+            Log.d("TAG", "회원가입")
+            Log.d("TAG", "이메일인증 $emailAuthck 약관동의 $termAgreeck")
+            val signUpService = userService.requestSignUp(
+                SignUpRequest
+                    (
+                    nameEditText.text.toString(),
+                    idEditText.text.toString(),
+                    emailEditText.text.toString(),
+                    pwdEditText.text.toString(),
+                    emailAuthck,
+                    termAgreeck
+                )
+            )
+
+            signUpService.enqueue(object : Callback<SignUpResponse> {
+                override fun onResponse(
+                    call: Call<SignUpResponse>,
+                    response: Response<SignUpResponse>,
+                ) { //정상응답이 올경우
+                    if (response.isSuccessful) {
+                        Log.d("TAG", "성공")
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                    } else {
+                        Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                    }
+                }
+
+                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) { //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+
+            })
+        }
+
+    }
+
+    // 비밀번호 8자 이상 체크
     private fun textLengthChecker() {
         with(binding) {
             pwdEditText.addTextChangedListener(object : TextWatcher {
@@ -192,14 +249,15 @@ class Login_02_01 : Fragment() {
                         pwdTiL.error = null
                     }
                 }
+
                 override fun afterTextChanged(p0: Editable?) {}
             })
             pwdConfirmEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(p0: Editable?) {
-                    if (pwdEditText.text.isNullOrEmpty() == pwdConfirmEditText.text.isNullOrEmpty()){
-                        if (pwdEditText.text.toString() == pwdConfirmEditText.text.toString()){
+                    if (pwdEditText.text.isNullOrEmpty() == pwdConfirmEditText.text.isNullOrEmpty()) {
+                        if (pwdEditText.text.toString() == pwdConfirmEditText.text.toString()) {
                             pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
                         } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
                     }
@@ -209,6 +267,8 @@ class Login_02_01 : Fragment() {
             })
         }
     }
+
+    // <------------------------------------ 필수 입력 값 체크 ------------------------------------>
 
     private fun nameRequiredFieldChecker(): Boolean {
         with(binding) {
@@ -261,19 +321,6 @@ class Login_02_01 : Fragment() {
             }
         }
     }
-    private fun authenticationNumberChecker(){
-        with(binding){
-            val text = authenticationNumberEditText.text.toString()
-            if (text == code) {
-                emailAuthck = true
-                authenticationNumberTiL.helperText = "이메일 인증이 완료되었습니다."
-                authenticationNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
-            } else {
-                emailAuthck = false
-                authenticationNumberTiL.error = "인증번호가 일치하지 않습니다."
-            }
-        }
-    }
 
     private fun pwdRequiredFieldChecker(): Boolean {
         with(binding) {
@@ -287,10 +334,27 @@ class Login_02_01 : Fragment() {
             }
         }
     }
+    // <-------------------------------------------------------------------------------->
 
-    private fun setAllCheck(){
-        with(binding){
-            if (allCheckBox.isChecked){
+    // 인증번호 확인
+    private fun authenticationNumberChecker() {
+        with(binding) {
+            val text = authenticationNumberEditText.text.toString()
+            if (text == code) {
+                emailAuthck = true
+                authenticationNumberTiL.helperText = "이메일 인증이 완료되었습니다."
+                authenticationNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+            } else {
+                emailAuthck = false
+                authenticationNumberTiL.error = "인증번호가 일치하지 않습니다."
+            }
+        }
+    }
+
+    // 약관 전체동의
+    private fun setAllCheck() {
+        with(binding) {
+            if (allCheckBox.isChecked) {
                 tvTos1.isChecked = true
                 tvTos2.isChecked = true
                 termAgreeck = true
@@ -302,49 +366,14 @@ class Login_02_01 : Fragment() {
         }
     }
 
-    private fun getTerms(){
-        with(binding){
-
-        }
-    }
-
-    private fun signUp(){
+    private fun getTerms() {
         with(binding) {
-            Log.d("TAG","회원가입")
-            Log.d("TAG","이메일인증 $emailAuthck 약관동의 $termAgreeck")
-            val signUpService = userService.requestSignUp(
-                    nameEditText.text.toString(),
-                    idEditText.text.toString(),
-                    emailEditText.text.toString(),
-                    pwdEditText.text.toString(),
-                    emailAuthck,
-                    termAgreeck
-            )
 
-            signUpService.enqueue(object : Callback<SignUpResponse> {
-                override fun onResponse(
-                    call: Call<SignUpResponse>,
-                    response: Response<SignUpResponse>,
-                ) { //정상응답이 올경우
-                    if (response.isSuccessful) {
-                        Log.d("TAG", "성공")
-                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-                    } else {
-                        Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-
-                    }
-                }
-                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) { //실패할 경우
-                    Log.e("error", "통신 실패" + t.localizedMessage)
-                }
-
-
-            })
         }
-
     }
+
+
+
 
 }
 
