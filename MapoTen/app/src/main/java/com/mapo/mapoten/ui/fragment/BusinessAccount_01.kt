@@ -26,7 +26,7 @@ class BusinessAccount_01 : Fragment() {
     lateinit var binding : FragmentBusinessAccount01Binding
     lateinit var mainActivity: MainActivity
     lateinit var service : AccountManageService
-
+    private var status :Int? = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -48,7 +48,7 @@ class BusinessAccount_01 : Fragment() {
                 statusButtonClicked()
             }
             binding.businessProfileButton.setOnClickListener {
-                Navigation.findNavController(view).navigate(R.id.businessAccount_01_01)
+                checkStatus(status)
             } //기업프로필작성/수정  이동
 
             binding.personProfileButton.setOnClickListener {
@@ -81,7 +81,7 @@ class BusinessAccount_01 : Fragment() {
 
         //프로필 -이미지, 이름, 메일 가져오기
         private fun getCompanyInfo() {
-            Log.d("profile", "여기까지옴----")
+            Log.d("profile", "프로필 가져오기----")
             service.getCompanyProfile().enqueue(object : Callback<BusinessProfile>{
                 override fun onResponse(
                     call: Call<BusinessProfile>,
@@ -92,7 +92,11 @@ class BusinessAccount_01 : Fragment() {
                         val img = response.body()?.data?.CMPNY_IM
                         val cmpnyName = response.body()?.data?.CMPNY_NM
                         val cmpnyEmail = response.body()?.data?.APPLCNT_EMAIL_ADRES
-                        Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
+                        if (img != null) {
+                            Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
+                        }else{
+                            Glide.with(this@BusinessAccount_01).load(R.drawable.ic_img_basic_24).into(binding.myPageImageview)
+                        }
                         binding.nameMyPage.setText(cmpnyName)
                         binding.emailMyPage.setText(cmpnyEmail)
 
@@ -118,6 +122,15 @@ class BusinessAccount_01 : Fragment() {
             })
         }
 
+        private fun checkStatus(status: Int?){
+            if (status == 0){
+                Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01)
+            }else if(status ==1){
+                Navigation.findNavController(binding.root).navigate(R.id.businessProfileView)
+            }else {
+                return
+            }
+        }
 
         //승인여부 팝업
         private fun statusButtonClicked() {

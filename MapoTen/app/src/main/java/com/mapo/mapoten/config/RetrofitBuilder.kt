@@ -12,7 +12,7 @@ object RetrofitBuilder {
     private val businessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzIiwiaWF0IjoxNjMzNDEzNDU2fQ.bQBQ97i4gRcSYNeqim3IEBZ9XKwSy0_1OuaO0o0MSA4"
     private val businessToken2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9nZSIsImlhdCI6MTYzMzM5NDgzN30.jwne1Ip2yQoc-FLOM5we4lnACXZLV7KgsAUbqIMInJM"
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(businessToken))
+        addInterceptor(MyInterceptor(userToken))
     }.build()
 
 
@@ -41,11 +41,6 @@ object RetrofitBuilder {
         return instance!!
     }
 
-    fun imageRequest(additionalUrl:String, requestBody: RequestBody) = Request.Builder()
-        .addHeader("Authorization", "Bearer ")
-        .url(BASE_URL+additionalUrl)
-        .post(requestBody)
-        .build()
 
 
 
