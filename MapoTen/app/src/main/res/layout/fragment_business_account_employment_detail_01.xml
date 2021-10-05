@@ -90,7 +90,7 @@
                         android:layout_weight="1"
                         android:gravity="bottom"
                         android:lineSpacingExtra="@dimen/size_6"
-                        android:text="@string/business_employment_detail_category_text"
+                        android:text=""
                         android:textSize="@dimen/text_10" />
 
                     <TextView
