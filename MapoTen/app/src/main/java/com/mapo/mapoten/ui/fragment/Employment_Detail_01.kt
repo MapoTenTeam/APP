@@ -155,7 +155,7 @@ class Employment_Detail_01 : Fragment() {
         binding.contactEmailValue.text = result.contactEmail
 
         // 근무위치
-        binding.placeOfWorkValue.text = result.address
+        binding.placeOfWorkValue.text = result.workAddress
 
     }
 

@@ -11,6 +11,9 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
@@ -58,7 +61,12 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
             date.text = setDateFormat(item.startReception, item.endReception)
             dDay.text = getDDay(item.endReception)
             if (item.companyImage != null) {
-                Glide.with(context).load(item.companyImage).into(companyImage)
+                Glide.with(context).load(item.companyImage).transform(CenterCrop(), GranularRoundedCorners(
+                    32F,
+                    32F, 0F,
+                    0F
+                )).into(companyImage)
+
             } else {
                 companyImage.setImageResource(R.drawable.banner_image1)
             }

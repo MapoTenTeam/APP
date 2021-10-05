@@ -69,7 +69,7 @@
             android:layout_marginBottom="80dp"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:visibility="visible">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,6 +96,7 @@
                     android:layout_marginTop="@dimen/margin_4"
                     android:text="@string/business_employment_title"
                     android:textColor="#474747"
+                    android:layout_marginBottom="@dimen/margin_2"
                     android:textSize="@dimen/text_18"
                     android:textStyle="bold" />
 
@@ -141,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_16"
-                    android:text="코레시옹비탈레는 모바일 앱을 통한 비대면진료, 처방전 발급, 처방약 배달까지 하나의 프로세스를 통하여 환자가 편하게 진료받고 처방약까지 받을 수 있는 서비스를 구축 중입니다.  "
+                    android:text=""
                     android:textColor="@color/text_darkGrey"
                     android:textSize="@dimen/text_12"
                     android:textStyle="bold" />
