@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/companyImage"
             android:layout_width="match_parent"
-            android:layout_height="224dp"
+            android:layout_height="234dp"
             android:layout_margin="@dimen/size_1"
             android:src="@drawable/employment_test_img" />
 
@@ -83,7 +83,8 @@
             android:layout_weight="1"
             android:gravity="bottom"
             android:paddingHorizontal="@dimen/padding_20"
-            android:text="모집기간: 2021년 09월 18일 금요일"
+            android:textStyle="bold"
+            android:text="지원마감"
             android:textSize="@dimen/text_12" />
 
         <TextView

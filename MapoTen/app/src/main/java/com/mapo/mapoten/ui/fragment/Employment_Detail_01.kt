@@ -146,7 +146,7 @@ class Employment_Detail_01 : Fragment() {
         binding.applyMethodValue.text = result.applyMethod
         binding.testMethodValue.text = result.testMethod
         binding.applyDocumentValue.text = manufactureData(result.applyDocument)
-        binding.endReceptionValue.text = result.endReception.substring(0,10)
+        binding.endReceptionValue.text = result.endReception.substring(0, 10)
 
         // 채용 담당자 정보
         binding.contactNameValue.text = result.contactName
@@ -169,22 +169,23 @@ class Employment_Detail_01 : Fragment() {
     }
 
     private fun getDDay(endDay: String): String {
-        val dateFormat = SimpleDateFormat("yyyyMMdd")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val today = Calendar.getInstance()
-        val endDate = dateFormat.parse(endDay)
+        val endDate = dateFormat.parse(endDay.substring(0, 10))
 
-        Log.d("yyyyMMdd", "today : ${today}")
-        Log.d("yyyyMMdd", "today : ${today.time}")
-        Log.d("yyyyMMdd", "endDate : ${endDate}")
+        val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
 
-        return "${
-            endDay.substring(
-                0,
-                10
-            )
-        } 접수마감    D-${(today.time.time - endDate.time) / (24 * 60 * 60 * 1000)}"
+        return if (day.toString() == "0") {
+            "${endDay.substring(0, 10)} 지원마감  D-day"
+        } else {
+            "${
+                endDay.substring(
+                    0,
+                    10
+                )
+            } 지원마감  D-${day}"
 
-        // 86400000
+        }
     }
 
 }

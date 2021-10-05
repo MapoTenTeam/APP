@@ -58,14 +58,16 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
             title.text = item.title
             name.text = item.companyName
             place.text = item.address
-            date.text = setDateFormat(item.startReception, item.endReception)
+            date.text = "${item.endReception.substring(0, 4)}년 ${item.endReception.substring(5, 7)}월 ${item.endReception.substring(8, 10)}일 모집마감!"
             dDay.text = getDDay(item.endReception)
             if (item.companyImage != null) {
-                Glide.with(context).load(item.companyImage).transform(CenterCrop(), GranularRoundedCorners(
-                    32F,
-                    32F, 0F,
-                    0F
-                )).into(companyImage)
+                Glide.with(context).load(item.companyImage).transform(
+                    CenterCrop(), GranularRoundedCorners(
+                        32F,
+                        32F, 0F,
+                        0F
+                    )
+                ).into(companyImage)
 
             } else {
                 companyImage.setImageResource(R.drawable.banner_image1)
@@ -84,17 +86,19 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
             return "${startDate.substring(0, 10)} ~ ${endDate.substring(0, 10)}"
         }
 
-        fun getDDay(endDay: String): String {
-            val dateFormat = SimpleDateFormat("yyyyMMdd")
+        private fun getDDay(endDay: String): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val today = Calendar.getInstance()
-            val endDate = dateFormat.parse("20211025")
+            val endDate = dateFormat.parse(endDay.substring(0, 10))
 
-            Log.d("time", "today : ${today}")
-            Log.d("time", "today : ${today.time}")
-            Log.d("time", "endDate : ${endDate}")
+            val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
 
-            return "D-${(endDate.time - today.time.time) / (24 * 60 * 60 * 1000)}"
-            // 86400000
+            return if (day.toString() == "0") {
+                "D-day"
+            } else {
+                "D-${day}"
+
+            }
         }
     }
 

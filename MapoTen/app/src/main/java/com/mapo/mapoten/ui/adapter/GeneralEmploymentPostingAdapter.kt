@@ -12,6 +12,8 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.mapo.mapoten.R
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import java.text.SimpleDateFormat
@@ -53,11 +55,27 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             jobType.text = item.jobType
             careerType.text = item.career
             place.text = item.address
-            date.text = "모집기간: " + setDateFormat(item.startReception, item.endReception)
+            date.text = "${item.endReception.substring(0, 4)}년 ${
+                item.endReception.substring(
+                    5,
+                    7
+                )
+            }월 ${item.endReception.substring(8, 10)}일 모집마감!"
+
+            Log.d("dateTime", "endDate : ${item.endReception}")
+
+
             dDay.text = getDDay(item.endReception)
 
             if (item.companyImage != null) {
-                Glide.with(context).load(item.companyImage).into(companyImage)
+                Glide.with(context).load(item.companyImage).transform(
+                    CenterCrop(), GranularRoundedCorners(
+                        32F,
+                        32F, 0F,
+                        0F
+                    )
+                ).into(companyImage)
+
             } else {
                 companyImage.setImageResource(R.drawable.banner_image1)
             }
@@ -69,22 +87,22 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         }
 
         fun setDateFormat(startDate: String, endDate: String): String {
-            Log.d("time", "startDate : ${startDate.substring(0,10)}")
-            Log.d("time", "endDate : ${endDate.substring(0,10)}")
-            return "${startDate.substring(0,10)} ~ ${endDate.substring(0,10)}"
+            return "${startDate.substring(0, 10)} ~ ${endDate.substring(0, 10)}"
         }
 
-        fun getDDay(endDay: String): String {
-            val dateFormat = SimpleDateFormat("yyyyMMdd")
+        private fun getDDay(endDay: String): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val today = Calendar.getInstance()
-            val endDate = dateFormat.parse(endDay)
+            val endDate = dateFormat.parse(endDay.substring(0, 10))
 
-            Log.d("time", "today : ${today}")
-            Log.d("time", "today : ${today.time}")
-            Log.d("time", "endDate : ${endDate}")
+            val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
 
-            return "D-${(endDate.time - today.time.time) / (24 * 60 * 60 * 1000)}"
-            // 86400000
+            return if (day.toString() == "0") {
+                "D-day"
+            } else {
+                "D-${day}"
+
+            }
         }
     }
 

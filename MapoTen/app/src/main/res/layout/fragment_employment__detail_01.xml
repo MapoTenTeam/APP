@@ -94,9 +94,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginBottom="@dimen/margin_2"
                     android:text="@string/business_employment_title"
                     android:textColor="#474747"
-                    android:layout_marginBottom="@dimen/margin_2"
                     android:textSize="@dimen/text_18"
                     android:textStyle="bold" />
 
@@ -245,8 +245,8 @@
                         android:layout_row="5"
                         android:layout_column="1"
                         android:layout_gravity="fill_horizontal"
-                        android:text=""
                         android:paddingStart="@dimen/padding_16"
+                        android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
@@ -671,9 +671,13 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill_horizontal"
-                    android:src="@drawable/test_map" />
+                    android:layout_height="300dp"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="50dp"
+                    android:background="#10000000"
+
+                    />
+
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
