@@ -72,7 +72,7 @@
 
     <!-- 채용공고 관리 상세 -->
     <string name="business_employment_detail_action_bar_title">채용공고목록</string>
-    <string name="business_employment_detail_category_text">일반채용 정규직</string>
+    <string name="business_employment_detail_category_text">일반채용</string>
     <string name="business_employment_state_text">대기</string>
     <string name="business_employment_title">채용공고 제목</string>
     <string name="business_employment_content_title1">채용사항</string>

@@ -61,7 +61,7 @@ data class GeneralEmpPostingDetailDTO(
     val employType: String, // 고용형태
 
     @SerializedName("EMPLOYTYPE_DET")
-    val employTypeDet: String, // 고용형태 상세
+    val employTypeDet: ArrayList<CodeName>, // 고용형태 상세
 
     @SerializedName("PAYCD")
     val paycd: String, // 임금 지급형태
@@ -82,7 +82,7 @@ data class GeneralEmpPostingDetailDTO(
     val severancePayType: String, // 퇴직금 형태
 
     @SerializedName("SOCIAL_INSURANCE")
-    val socialInsurance: String, // 사회보험
+    val socialInsurance: ArrayList<CodeName>, // 사회보험
 
     @SerializedName("CLOSING_TYPE")
     val closingType: String, // 접수 마감일 구분
@@ -103,7 +103,7 @@ data class GeneralEmpPostingDetailDTO(
     val testMethodEtc: String, // 전형방법 상세
 
     @SerializedName("APPLY_DOCUMENT")
-    val applyDocument: String, // 제출서류
+    val applyDocument: ArrayList<CodeName>, // 제출서류
 
     // 채용 담당
     @SerializedName("CONTACT_NAME")
