@@ -69,7 +69,7 @@
             android:layout_marginBottom="80dp"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -460,10 +460,114 @@
 
 
                     <TextView
+                        android:id="@+id/applyMethod"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:text="접수방법"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/applyMethodValue"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/testMethod"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:text="전형방법"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/testMethodValue"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/applyDocument"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:text="제출서류"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/applyDocumentValue"
+                        android:layout_row="3"
+                        android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/endReception"
+                        android:layout_row="4"
+                        android:layout_column="0"
+                        android:text="접수마감일"
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/endReceptionValue"
+                        android:layout_row="4"
+                        android:layout_column="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:paddingStart="@dimen/padding_16"
+                        android:text=""
+                        android:textColor="@color/text_darkGrey"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold" />
+                </GridLayout>
+
+                <!-- 담당자 -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical"
+                    android:stretchColumns="*">
+
+                    <TextView
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_columnSpan="2"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginBottom="@dimen/margin_4"
+                        android:background="#10000000"
+                        android:text="채용 담당자 정보"
+                        android:textColor="#474747"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold" />
+
+
+                    <TextView
                         android:id="@+id/contactName"
                         android:layout_row="1"
                         android:layout_column="0"
-                        android:text="채용담당자"
+                        android:text="채용 담당자"
                         android:textColor="@color/text_middleGrey"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
@@ -541,7 +645,6 @@
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold" />
                 </GridLayout>
-
 
                 <!-- 근무위치 -->
                 <TextView

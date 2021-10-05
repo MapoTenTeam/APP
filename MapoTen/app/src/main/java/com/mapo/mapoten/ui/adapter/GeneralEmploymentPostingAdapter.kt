@@ -13,14 +13,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
-import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
-import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
-import com.mapo.mapoten.service.EmploymentService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GeneralEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
@@ -47,6 +43,7 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         private val careerType: TextView = view.findViewById(R.id.careerType)
         private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.date)
+        private val dDay: TextView = view.findViewById(R.id.dDay)
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GeneralEmpPostingDTO) {
@@ -56,11 +53,12 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             jobType.text = item.jobType
             careerType.text = item.career
             place.text = item.address
-            date.text = "모집기간: " + item.startReception + " - " + item.endReception
+            date.text = "모집기간: " + setDateFormat(item.startReception, item.endReception)
+            dDay.text = getDDay(item.endReception)
 
-            if(item.companyImage != null ){
+            if (item.companyImage != null) {
                 Glide.with(context).load(item.companyImage).into(companyImage)
-            }else {
+            } else {
                 companyImage.setImageResource(R.drawable.banner_image1)
             }
 
@@ -68,6 +66,25 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
                 val bundle = bundleOf("type" to 1, "jobId" to item.jobId)
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
             }
+        }
+
+        fun setDateFormat(startDate: String, endDate: String): String {
+            Log.d("time", "startDate : ${startDate.substring(0,10)}")
+            Log.d("time", "endDate : ${endDate.substring(0,10)}")
+            return "${startDate.substring(0,10)} ~ ${endDate.substring(0,10)}"
+        }
+
+        fun getDDay(endDay: String): String {
+            val dateFormat = SimpleDateFormat("yyyyMMdd")
+            val today = Calendar.getInstance()
+            val endDate = dateFormat.parse(endDay)
+
+            Log.d("time", "today : ${today}")
+            Log.d("time", "today : ${today.time}")
+            Log.d("time", "endDate : ${endDate}")
+
+            return "D-${(endDate.time - today.time.time) / (24 * 60 * 60 * 1000)}"
+            // 86400000
         }
     }
 

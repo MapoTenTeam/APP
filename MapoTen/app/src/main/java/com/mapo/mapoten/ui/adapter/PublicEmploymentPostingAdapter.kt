@@ -20,6 +20,9 @@ import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PublicEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<PublicEmploymentPostingAdapter.ViewHolder>() {
@@ -44,14 +47,16 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val title: TextView = view.findViewById(R.id.postingTitle)
         private val name: TextView = view.findViewById(R.id.CompanyName)
         private val place: TextView = view.findViewById(R.id.place)
-        private val date: TextView = view.findViewById(R.id.registrationDate)
+        private val date: TextView = view.findViewById(R.id.date)
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
+        private val dDay: TextView = view.findViewById(R.id.dDay)
 
         fun bind(item: GeneralEmpPostingDTO) {
             title.text = item.title
             name.text = item.companyName
             place.text = item.address
-            date.text = item.startReception + " - " + item.endReception
+            date.text = setDateFormat(item.startReception, item.endReception)
+            dDay.text = getDDay(item.endReception)
             if (item.companyImage != null) {
                 Glide.with(context).load(item.companyImage).into(companyImage)
             } else {
@@ -63,6 +68,25 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
                 val bundle = bundleOf("type" to 0, "jobId" to item.jobId)
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
             }
+        }
+
+        fun setDateFormat(startDate: String, endDate: String): String {
+            Log.d("time", "startDate : ${startDate.substring(0, 10)}")
+            Log.d("time", "endDate : ${endDate.substring(0, 10)}")
+            return "${startDate.substring(0, 10)} ~ ${endDate.substring(0, 10)}"
+        }
+
+        fun getDDay(endDay: String): String {
+            val dateFormat = SimpleDateFormat("yyyyMMdd")
+            val today = Calendar.getInstance()
+            val endDate = dateFormat.parse("20211025")
+
+            Log.d("time", "today : ${today}")
+            Log.d("time", "today : ${today.time}")
+            Log.d("time", "endDate : ${endDate}")
+
+            return "D-${(endDate.time - today.time.time) / (24 * 60 * 60 * 1000)}"
+            // 86400000
         }
     }
 
