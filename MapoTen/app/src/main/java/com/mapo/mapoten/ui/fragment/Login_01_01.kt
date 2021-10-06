@@ -165,12 +165,12 @@ class Login_01_01 : Fragment() {
                 "400" -> {
                     tvIdTitle.visibility = View.GONE
                     tvId.visibility = View.GONE
-                    tvInform.text = "가입된 회원정보가 없습니다."
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
                 }
                 "null" -> {
                     tvIdTitle.visibility = View.GONE
                     tvId.visibility = View.GONE
-                    tvInform.text = "가입된 회원정보가 없습니다."
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
                 }
             }
 
@@ -183,7 +183,6 @@ class Login_01_01 : Fragment() {
                 //로그인 화면 띄우기
                 dismiss()
                 findNavController().navigate(R.id.action_login_01_01_to_login_01)
-
             }
             val btnCancel: TextView = dialog.findViewById(R.id.tv_cancel)
             btnCancel.setOnClickListener {

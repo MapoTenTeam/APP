@@ -222,14 +222,5 @@
         android:name="com.mapo.mapoten.ui.fragment.BusinessAccountEmploymentDetail_01"
         android:label="BusinessAccountEmploymentDetail_01"
         tools:layout="@layout/fragment_business_account_employment_detail_01" />
-    <dialog
-        android:id="@+id/findIdDialogFragment"
-        android:name="com.mapo.mapoten.ui.fragment.FindIdDialogFragment"
-        android:label="fragment_find_id_dialog"
-        tools:layout="@layout/fragment_find_id_dialog">
-        <argument
-            android:name="data"
-            app:argType="com.mapo.mapoten.data.Login.FindIdDialogParam[]" />
-    </dialog>
 
 </navigation>
