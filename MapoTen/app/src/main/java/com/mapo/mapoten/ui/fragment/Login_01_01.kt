@@ -6,12 +6,17 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.Login.DialogInfo
 import com.mapo.mapoten.data.Login.GetUserByIdFindOutputDto
 import com.mapo.mapoten.data.Login.UserByIdFindInputDto
 import com.mapo.mapoten.databinding.FragmentLogin0101Binding
@@ -23,63 +28,91 @@ import retrofit2.Response
 class Login_01_01 : Fragment() {
     private var _binding: FragmentLogin0101Binding? = null
     private val binding get() = _binding!!
-
-    var code: String = "1"
-    var userId: String = "mapo"
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
+
+    //    val args = Bundle()
+//    val dialogFragment = FindIdDialogFragment()
+    var code: String = ""
+    var userId: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLogin0101Binding.inflate(inflater,container,false)
+        _binding = FragmentLogin0101Binding.inflate(inflater, container, false)
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
 
-        with(binding){
+
+
+        with(binding) {
             btnConfirm.setOnClickListener {
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
                 if (!emailRequiredFieldChecker())
                     return@setOnClickListener
                 getUserByFindId()
-                Log.d("TAG","code : $code userId : $userId")
-                showDialog(code,userId)
+//                Log.d("TAG", "code : $code userId : $userId")
+//                args.putString("code", code)
+//                args.putString("userId", userId)
+//                dialogFragment.arguments = args
+//                dialogFragment.show()
+//                showDialogFragment()
+
             }
         }
         return binding.root
     }
 
-    private fun getUserByFindId(){
-        with(binding){
+    private fun showDialogFragment() {
+        val bundle = bundleOf("code" to code, "userId" to userId)
+        val dialogFragment = FindIdDialogFragment()
+        dialogFragment.arguments = bundle
+//        findNavController().navigate(R.id.findIdDialogFragment, bundle)
+//        findNavController().navigate(R.id.findIdDialogFragment,
+//            bundleOf(DIALOG_PARAM to DialogInfo(
+//            code,userId
+//        )))
+    }
+
+    private fun getUserByFindId() {
+        with(binding) {
 
             var textName = nameEditText.text.toString()
             var textEmail = emailEditText.text.toString()
 
-            val loginService = userService.getUserByFindId(UserByIdFindInputDto(textName,textEmail))
+            val loginService =
+                userService.getUserByFindId(UserByIdFindInputDto(textName, textEmail))
 
             Log.d("TAG", "이름 : $textName , 아이디 : $textEmail")
 
             loginService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
                 override fun onResponse(
                     call: Call<GetUserByIdFindOutputDto>,
-                    response: Response<GetUserByIdFindOutputDto>,
+                    response: Response<GetUserByIdFindOutputDto>
                 ) { //정상응답이 올경우
                     if (response.isSuccessful) {
                         code = response.body()?.statusCode.toString()
                         userId = response.body()?.userId.toString()
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                         Log.d("TAG", "아이디 : ${response.body()?.userId}")
-                    }
-                    else {
+                        Log.d("TAG", "code : $code userId : $userId")
+                        showDialog(code, userId)
+                    } else {
                         code = response.body()?.statusCode.toString()
                         userId = response.body()?.userId.toString()
-                        Log.d("TAG", "${response.body()?.statusCode} ~~~ ${response.body()?.message}")
+                        Log.d(
+                            "TAG",
+                            "${response.body()?.statusCode} ~~~ ${response.body()?.message}"
+                        )
                     }
                 }
-                override fun onFailure(call: Call<GetUserByIdFindOutputDto>, t: Throwable) { //실패할 경우
+
+                override fun onFailure(call: Call<GetUserByIdFindOutputDto>, t: Throwable) {
+                    //실패할 경우
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
+
             })
 
         }
@@ -111,20 +144,29 @@ class Login_01_01 : Fragment() {
         }
     }
 
+    
+
     // dialog
-    private fun showDialog(code : String, userId: String) {
+    private fun showDialog(code: String, userId: String) {
         dialog = Dialog(binding.root.context)
-        with(dialog){
+        with(dialog) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setContentView(R.layout.popup_find_id_dialog)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT)
+            window!!.setLayout(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
 
-            val tvId: TextView = dialog.findViewById(R.id.tv_id)
-            val tvInform:TextView = findViewById(R.id.tv_information)
-            Log.d("TAG","code : $code")
-            when(code){
-                "200" -> tvId.text = userId
+            val tvId: TextView = findViewById(R.id.tv_id)
+            val tvInform: TextView = findViewById(R.id.tv_information)
+            val ivError: ImageView = findViewById(R.id.iv_error)
+            Log.d("TAG", "code : $code")
+            when (code) {
+                "200" -> {
+                    tvId.text = userId
+                    ivError.visibility = View.GONE
+                }
                 "400" -> tvInform.text = "가입된 회원정보가 없습니다."
                 "null" -> tvInform.text = "가입된 회원정보가 없습니다."
             }
