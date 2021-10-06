@@ -43,6 +43,7 @@
 
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
+    <string name="business_profile">회사 프로필</string>
     <string name="business_profile_view">회사 프로필 조회</string>
     <string name="business_profile_textView">채용 공고 및 회사 페이지에 표시될 법인명을 입력해주세요</string>
     <string name="businessFile">사업자 등록증</string>
@@ -58,6 +59,8 @@
     <string name="businessEmail">회사 대표 이메일</string>
     <string name="businessAddress1">소재지</string>
     <string name="businessInfo">회사 정보</string>
+    <string name="btn_update">수정하기</string>
+    <string name="btn_apply">승인 요청 하기</string>
 
 
     <!--password -->
@@ -99,5 +102,6 @@
     <string name="home_banner_content">매일 새로운 커리어 기회를 확인하고\n당신의 일을 찾아보세요:)</string>
     <string name="home_viewpager_title">공고제목</string>
     <string name="home_viewpager_contents">공고 내용</string>
+
 
 </resources>

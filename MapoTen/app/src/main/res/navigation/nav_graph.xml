@@ -217,5 +217,14 @@
         android:id="@+id/businessProfileView"
         android:name="com.mapo.mapoten.ui.fragment.BusinessProfileView"
         android:label="fragment_business_profile_view"
-        tools:layout="@layout/fragment_business_profile_view" />
+        tools:layout="@layout/fragment_business_profile_view" >
+        <action
+            android:id="@+id/action_businessProfileView_to_businessProfileEdit"
+            app:destination="@id/businessProfileEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessProfileEdit"
+        android:name="com.mapo.mapoten.ui.fragment.BusinessProfileEdit"
+        android:label="fragment_business_profile_edit"
+        tools:layout="@layout/fragment_business_profile_edit" />
 </navigation>
