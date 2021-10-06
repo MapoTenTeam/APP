@@ -6,23 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.mapo.mapoten.R
-import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
-import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.service.EmploymentService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -53,6 +48,9 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val date: TextView = view.findViewById(R.id.date)
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
         private val dDay: TextView = view.findViewById(R.id.dDay)
+        private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
+        private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
+
 
         fun bind(item: GeneralEmpPostingDTO) {
             title.text = item.title
@@ -80,12 +78,6 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
             }
         }
 
-        fun setDateFormat(startDate: String, endDate: String): String {
-            Log.d("time", "startDate : ${startDate.substring(0, 10)}")
-            Log.d("time", "endDate : ${endDate.substring(0, 10)}")
-            return "${startDate.substring(0, 10)} ~ ${endDate.substring(0, 10)}"
-        }
-
         private fun getDDay(endDay: String): String {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val today = Calendar.getInstance()
@@ -95,6 +87,9 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
 
             return if (day.toString() == "0") {
                 "D-day"
+            } else if(day < 0) {
+                closedBg.visibility = View.VISIBLE
+                "closed"
             } else {
                 "D-${day}"
 

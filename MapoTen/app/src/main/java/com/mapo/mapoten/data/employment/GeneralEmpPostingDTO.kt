@@ -9,7 +9,7 @@ data class GeneralEmpPostingDTO(
     @SerializedName("CMPNY_NM")
     val companyName: String, // 사업체명
 
-    @SerializedName("CMPNY_IM")
+    @SerializedName("JOB_IM")
     val companyImage: String, // 이미지 주소
 
     @SerializedName("TITLE")
