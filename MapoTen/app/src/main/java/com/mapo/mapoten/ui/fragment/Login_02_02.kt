@@ -159,6 +159,40 @@ class Login_02_02 : Fragment() {
         return binding.root
 
     }
+    // 아이디 중복확인
+    private fun duplicateId() {
+        with(binding) {
+            val duplicateId = userService.isDuplicateUserId(idEditText.text.toString())
+
+            duplicateId.enqueue(object : Callback<DuplicateInfoItem> {
+                override fun onResponse(
+                    call: Call<DuplicateInfoItem>,
+                    response: Response<DuplicateInfoItem>,
+                ) {
+                    if (response.isSuccessful) {
+                        when (response.body()?.isDuplicate) {
+                            false -> {
+                                idTiL.helperText = "사용 가능한 아이디입니다"
+                                idTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+                            }
+                            true -> idTiL.error = "이미 사용중인 아이디입니다"
+                        }
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "${response.body()?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+
+            })
+        }
+    }
 
     private fun nameRequiredFieldChecker(): Boolean {
         with(binding) {

@@ -20,6 +20,7 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class Login_02_01 : Fragment() {
     private var _binding: FragmentLogin0201Binding? = null
@@ -27,8 +28,8 @@ class Login_02_01 : Fragment() {
 
     lateinit var userService: UserService
     var code: String = "1"
-    var termAgreeck: Boolean = false
-    var emailAuthck: Boolean = false
+    private var termAgreeck: Boolean = false
+    private var emailAuthck: Boolean = false
     private lateinit var dialog: Dialog
 
     override fun onCreateView(
@@ -42,7 +43,8 @@ class Login_02_01 : Fragment() {
 
 
         with(binding) {
-            textLengthChecker()
+            idLengthChecker()
+            pwdLengthChecker()
             btnIdDoubleCheck.setOnClickListener {
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
@@ -51,6 +53,8 @@ class Login_02_01 : Fragment() {
 
             btnEmailDoubleCheck.setOnClickListener {
                 if (!emailRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!emailPatternChecker())
                     return@setOnClickListener
                 duplicateEmail()
             }
@@ -72,7 +76,7 @@ class Login_02_01 : Fragment() {
             }
 
             btnSignup.setOnClickListener {
-                showDialog()
+
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
@@ -81,8 +85,7 @@ class Login_02_01 : Fragment() {
                     return@setOnClickListener
                 if (!emailRequiredFieldChecker())
                     return@setOnClickListener
-                //signUp()
-
+                signUp()
 
             }
 
@@ -130,6 +133,24 @@ class Login_02_01 : Fragment() {
                 }
 
             })
+        }
+    }
+
+    // 이메일 형식 체크
+    private fun emailPatternChecker(): Boolean {
+        with(binding) {
+            // 검사 정규식
+            val emailValidation =
+                "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+            val value: String = emailTiL.editText?.text.toString().trim() // 공백제거
+            val p = Pattern.matches(emailValidation, value) // 패턴검사
+            return if (p) { // 정상일 경우
+                emailTiL.error = null
+                true
+            } else {
+                emailTiL.error = "이메일 형식에 맞게 입력하세요."
+                false
+            }
         }
     }
 
@@ -201,18 +222,14 @@ class Login_02_01 : Fragment() {
     // 회원가입
     private fun signUp() {
         with(binding) {
-            Log.d("TAG", "회원가입")
-            Log.d("TAG", "이메일인증 $emailAuthck 약관동의 $termAgreeck")
+            Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
             val signUpService = userService.requestSignUp(
-                SignUpRequest
-                    (
-                    nameEditText.text.toString(),
-                    idEditText.text.toString(),
-                    emailEditText.text.toString(),
-                    pwdEditText.text.toString(),
-                    emailAuthck,
-                    termAgreeck
-                )
+                nameEditText.text.toString(),
+                idEditText.text.toString(),
+                emailEditText.text.toString(),
+                pwdEditText.text.toString(),
+                emailAuthck,
+                termAgreeck
             )
 
             signUpService.enqueue(object : Callback<SignUpResponse> {
@@ -223,9 +240,11 @@ class Login_02_01 : Fragment() {
                     if (response.isSuccessful) {
                         Log.d("TAG", "성공")
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                        showDialog()
                     } else {
                         Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
                             .show()
+                        Log.d("TAG", "${response.code()} ")
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                     }
                 }
@@ -239,8 +258,8 @@ class Login_02_01 : Fragment() {
 
     }
 
-    // 비밀번호 8자 이상 체크
-    private fun textLengthChecker() {
+    // 글자수 체크
+    private fun pwdLengthChecker() {
         with(binding) {
             pwdEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -267,6 +286,24 @@ class Login_02_01 : Fragment() {
                 }
 
             })
+        }
+    }
+
+    private fun idLengthChecker() {
+        with(binding) {
+            idEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    return if (idEditText.length() in 1..4) {
+                        idTiL.error = "아이디를 4글자 이상 입력해주세요"
+                    } else {
+                        idTiL.error = null
+                    }
+                }
+
+                override fun afterTextChanged(p0: Editable?) {}
+            })
+
         }
     }
 
