@@ -33,6 +33,7 @@ class Employment_01_01 : Fragment() {
 
     private var postingCount = 1
     private var endPostingCount = 0
+    private var searchTerm = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,19 +52,15 @@ class Employment_01_01 : Fragment() {
         initialize()
 
         binding.searchBtn.setOnClickListener {
-            val searchTerm = binding.searchText.text
-            if (binding.searchText.text.isNotEmpty()) {
-                getAllPosting(1, searchTerm.toString())
-            } else {
-                getAllPosting(1, "")
-            }
+            searchTerm = binding.searchText.text.toString()
+            getAllPosting(1, searchTerm)
         }
 
         binding.refreshLayout.setOnRefreshListener {
             postingCount += 1
             if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
                 binding.refreshLayout.isRefreshing = true
-                getAllPosting(postingCount, "")
+                getAllPosting(postingCount, searchTerm)
             }
             binding.refreshLayout.isRefreshing = false
         }
