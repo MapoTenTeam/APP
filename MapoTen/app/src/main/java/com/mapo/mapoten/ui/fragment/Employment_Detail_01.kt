@@ -117,8 +117,8 @@ class Employment_Detail_01 : Fragment() {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
         binding.date.text = setDDay(result.endReception)
-        if (result.image != null) {
-            Glide.with(requireActivity()).load(result.image).into(binding.image)
+        if (result.jobImage != null) {
+            Glide.with(requireActivity()).load(result.jobImage).into(binding.image)
         } else {
             binding.image.setImageResource(R.drawable.banner_image1)
         }

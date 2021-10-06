@@ -106,8 +106,8 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.title.text = result.title
 
-        if (result.image != null) {
-            Glide.with(requireActivity()).load(result.image).into(binding.image)
+        if (result.jobImage != null) {
+            Glide.with(requireActivity()).load(result.jobImage).into(binding.image)
         } else {
             binding.image.setImageResource(R.drawable.banner_image1)
         }
