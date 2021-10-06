@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
@@ -55,6 +56,7 @@ class Login_01_01 : Fragment() {
         return binding.root
     }
 
+    // 아이디 찾기
     private fun getUserByFindId() {
         with(binding) {
 
@@ -98,6 +100,7 @@ class Login_01_01 : Fragment() {
         }
     }
 
+    // <-------------------------- 필수 입력 체크 -------------------------->
     private fun nameRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = nameTiL.editText?.text.toString()
@@ -123,7 +126,10 @@ class Login_01_01 : Fragment() {
             }
         }
     }
+    // <-------------------------------------------------------------------->
 
+
+    // 이메일 형식 검사
     private fun emailPatternChecker(): Boolean{
         with(binding) {
             // 검사 정규식
@@ -156,9 +162,11 @@ class Login_01_01 : Fragment() {
             val tvId: TextView = findViewById(R.id.tv_id)
             val tvInform: TextView = findViewById(R.id.tv_information)
             val ivError: ImageView = findViewById(R.id.iv_error)
+
+
             Log.d("TAG", "code : $code")
             when (code) {
-                "200" -> {
+                "200" -> { // 찾기 성공
                     tvId.text = userId
                     ivError.visibility = View.GONE
                 }
@@ -173,9 +181,6 @@ class Login_01_01 : Fragment() {
                     tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
                 }
             }
-
-            setCanceledOnTouchOutside(true)
-            setCancelable(true)
             show()
 
             val btnLogin: AppCompatButton = dialog.findViewById(R.id.btn_login)

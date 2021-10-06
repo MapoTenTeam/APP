@@ -7,6 +7,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
@@ -27,9 +29,9 @@ class Login_02_01 : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var userService: UserService
-    var code: String = "1"
-    private var termAgreeck: Boolean = false
-    private var emailAuthck: Boolean = false
+    var code: String = ""
+    private var termAgreeck: Int= 0
+    private var emailAuthck: Int= 0
     private lateinit var dialog: Dialog
 
     override fun onCreateView(
@@ -237,14 +239,16 @@ class Login_02_01 : Fragment() {
                     call: Call<SignUpResponse>,
                     response: Response<SignUpResponse>,
                 ) { //정상응답이 올경우
+
                     if (response.isSuccessful) {
-                        Log.d("TAG", "성공")
+                        code = response.body()?.statusCode.toString()
+                        Log.d("TAG", "${response.code()} + ${response.message()}")
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-                        showDialog()
+
+                        showDialog(code)
                     } else {
                         Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
                             .show()
-                        Log.d("TAG", "${response.code()} ")
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                     }
                 }
@@ -294,7 +298,7 @@ class Login_02_01 : Fragment() {
             idEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    return if (idEditText.length() in 1..4) {
+                    return if (idEditText.length() in 1..3) {
                         idTiL.error = "아이디를 4글자 이상 입력해주세요"
                     } else {
                         idTiL.error = null
@@ -380,11 +384,11 @@ class Login_02_01 : Fragment() {
         with(binding) {
             val text = authenticationNumberEditText.text.toString()
             if (text == code) {
-                emailAuthck = true
+                emailAuthck = 1
                 authenticationNumberTiL.helperText = "이메일 인증이 완료되었습니다."
                 authenticationNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
             } else {
-                emailAuthck = false
+                emailAuthck = 0
                 authenticationNumberTiL.error = "인증번호가 일치하지 않습니다."
             }
         }
@@ -396,11 +400,11 @@ class Login_02_01 : Fragment() {
             if (allCheckBox.isChecked) {
                 tvTos1.isChecked = true
                 tvTos2.isChecked = true
-                termAgreeck = true
+                termAgreeck = 1
             } else {
                 tvTos1.isChecked = false
                 tvTos2.isChecked = false
-                termAgreeck = false
+                termAgreeck = 0
             }
         }
     }
@@ -413,7 +417,7 @@ class Login_02_01 : Fragment() {
 
 
     // dialog
-    private fun showDialog() {
+    private fun showDialog(code: String) {
         dialog = Dialog(binding.root.context)
         with(dialog) {
             requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
@@ -423,17 +427,41 @@ class Login_02_01 : Fragment() {
                 android.view.WindowManager.LayoutParams.WRAP_CONTENT,
                 android.view.WindowManager.LayoutParams.WRAP_CONTENT
             )
-            setCanceledOnTouchOutside(true)
-            setCancelable(true)
-            show()
 
+            val tvTitle: TextView = findViewById(R.id.tv_title)
+            val tvInform: TextView = findViewById(R.id.tv_information)
+            val iv: ImageView = findViewById(R.id.imageView)
+            val btn: Button = findViewById(R.id.btn_confirm)
+
+            when (code) {
+                "201" -> {  // 가입 성공
+                    btn.text ="로그인 / 회원가입 하기"
+                }
+                "406" -> {  // 이메일 인증 or 이용약관 동의 실패
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "회원가입이 실패하였습니다. \n 이메일 인증 or 이용약관 동의를 확인해주세요."
+                }
+                "409" -> {  // 중복 ID 존재
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "중복된 아이디가 존재합니다. \n"
+                }
+                "null" -> {
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "회원가입이 실패하였습니다. \n 잘못된 요청입니다."
+                }
+
+            }
+
+            show()
 
             val btnConfirm: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.btn_confirm)
             btnConfirm.setOnClickListener {
                 //로그인 화면 띄우기
                 dismiss()
                 findNavController().navigate(com.mapo.mapoten.R.id.action_login_02_01_to_login_01)
-
             }
             val btnCancel: TextView = dialog.findViewById(com.mapo.mapoten.R.id.tv_cancel)
             btnCancel.setOnClickListener {

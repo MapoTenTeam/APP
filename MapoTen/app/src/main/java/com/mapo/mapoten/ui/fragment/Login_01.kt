@@ -1,5 +1,7 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
@@ -24,7 +30,9 @@ class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
     private val binding get() = _binding!!
 
+    var code: String = ""
     lateinit var userService: UserService
+    private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +53,6 @@ class Login_01 : Fragment() {
                 if (!pwdRequiredFieldChecker()) {
                     return@setOnClickListener
                 }
-
-//                if (autoLoginCheckBox.isChecked) {
-//                    //findNavController().navigate(R.id.businessAccount_01)
-//                } else {
-//                    findNavController().navigate(R.id.home_01)
-//                }
                 login()
 
             } //로그인 성공시 홈화면으로 이동
@@ -77,7 +79,7 @@ class Login_01 : Fragment() {
     }
 
 
-
+// <-------------------------- 필수 입력 체크 -------------------------->
     private fun idRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = idEditTextInputLayout.editText?.text.toString()
@@ -103,7 +105,10 @@ class Login_01 : Fragment() {
             }
         }
     }
+// <-------------------------------------------------------------------->
 
+
+    // 로그인
     private fun login(){
         with(binding){
 
@@ -112,7 +117,6 @@ class Login_01 : Fragment() {
 
             val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
 
-            Log.d("TAG", "$textId , $textPwd")
 
             loginService.enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
@@ -120,22 +124,18 @@ class Login_01 : Fragment() {
                     response: Response<LoginResponse>,
                 ) { //정상응답이 올경우
                     if (response.isSuccessful) {
-//                        if (response.code() == 20){
-                            Log.d("TAG", "${response.code()} : ${response.body()?.message}")
-                            Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                        code = response.body()?.statusCode.toString()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                             Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
                             findNavController().navigate(R.id.home_01)
-//                        } else {
-//                            Toast.makeText(context,
-//                                "로그인 성공",
-//                                Toast.LENGTH_SHORT).show()
-//                        }
                     }
                     else {
+                        showDialog()
                         Toast.makeText(context,
                                 "로그인 실패",
                                 Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "${response.body()?.statusCode} , ${response.message()}")
+                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
@@ -145,5 +145,26 @@ class Login_01 : Fragment() {
 
         }
     }
+
+    // dialog
+    private fun showDialog() {
+        dialog = Dialog(binding.root.context)
+        with(dialog) {
+            requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+            setContentView(com.mapo.mapoten.R.layout.popup_error_dialog)
+            window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+            window!!.setLayout(
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT,
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            show()
+
+            val btnConfirm: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.btn_confirm)
+            btnConfirm.setOnClickListener {
+                dismiss()
+            }
+        }
+    }
+
 }
 

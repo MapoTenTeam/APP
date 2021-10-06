@@ -35,8 +35,8 @@ interface UserService {
         @Field("MBER_ID") userId:String,
         @Field("MBER_EMAIL_ADRES") email:String,
         @Field("PASSWORD") userPw:String,
-        @Field("EMAIL_VRFCT") emailVrfct:Boolean,
-        @Field("TERMS") terms:Boolean,
+        @Field("EMAIL_VRFCT") emailVrfct:Int,
+        @Field("TERMS") terms:Int,
     ) : Call<SignUpResponse>
 
     @POST("user/find/id")
