@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.core.os.bundleOf
@@ -48,6 +49,7 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
         private val dDay: TextView = view.findViewById(R.id.dDay)
         private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
+        private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
 
 
         fun bind(item: GeneralEmpPostingDTO) {
@@ -85,6 +87,9 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
 
             return if (day.toString() == "0") {
                 "D-day"
+            } else if(day < 0) {
+                closedBg.visibility = View.VISIBLE
+                "closed"
             } else {
                 "D-${day}"
 

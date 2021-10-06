@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
@@ -46,6 +47,7 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.date)
         private val dDay: TextView = view.findViewById(R.id.dDay)
+        private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GeneralEmpPostingDTO) {
@@ -86,10 +88,6 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             }
         }
 
-        fun setDateFormat(startDate: String, endDate: String): String {
-            return "${startDate.substring(0, 10)} ~ ${endDate.substring(0, 10)}"
-        }
-
         private fun getDDay(endDay: String): String {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd")
             val today = Calendar.getInstance()
@@ -99,6 +97,9 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
 
             return if (day.toString() == "0") {
                 "D-day"
+            } else if(day < 0) {
+                closedBg.visibility = View.VISIBLE
+                "closed"
             } else {
                 "D-${day}"
 

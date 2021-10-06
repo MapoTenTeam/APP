@@ -187,15 +187,11 @@ class Employment_Detail_01 : Fragment() {
         val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
 
         return if (day.toString() == "0") {
-            "${endDay.substring(0, 10)} 지원마감  D-day"
-        }
-        else {
-            "${
-                endDay.substring(
-                    0,
-                    10
-                )
-            } 지원마감  D-${day}"
+            "D-day"
+        } else if(day < 0) {
+            "지원 모집이 마감된 공고입니다."
+        } else {
+            "D-${day}"
 
         }
     }
