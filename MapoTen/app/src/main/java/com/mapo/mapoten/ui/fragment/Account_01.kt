@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
@@ -21,6 +22,7 @@ class Account_01 : Fragment() {
 
     lateinit var binding: FragmentAccount01Binding
     lateinit var service : AccountManageService
+    private var userName :String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?
     ): View? {
@@ -42,7 +44,8 @@ class Account_01 : Fragment() {
             Navigation.findNavController(view).navigate(R.id.account_01_01)
         } //회원정보 화면으로 이동
         view.findViewById<View>(R.id.resume_button).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.account_01_02)
+            val bundle = bundleOf("name" to userName)
+            Navigation.findNavController(view).navigate(R.id.account_01_02, bundle)
         } //비번 번경 화면으로 이동
         view.findViewById<View>(R.id.scrapList_button).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.account_01_03)
@@ -63,7 +66,8 @@ class Account_01 : Fragment() {
             ) {
                 if(response.isSuccessful){
                     val myProfile = response.body()
-                    binding.nameMyPage.setText(myProfile?.data?.MBER_NM)
+                    userName = myProfile?.data?.MBER_NM.toString()
+                    binding.nameMyPage.setText(userName)
                     binding.emailMyPage.setText(myProfile?.data?.MBER_EMAIL_ADRES)
                 }
             }

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.data.UpdateBusinessProfileItems
@@ -62,6 +66,7 @@ class BusinessProfileEdit : Fragment() {
         binding.ownerNameText.setText(arguments?.getString("ceo"))
         binding.businessEmailText.setText(arguments?.getString("cmpny_email"))
         binding.businessAddressText.setText(arguments?.getString("address"))
+        binding.businessAddressDetailText.setText(arguments?.getString("detailad"))
         binding.businessCategoryText.setText(arguments?.getString("category"))
         binding.businessEmployeeNumberText.setText(arguments?.getString("empNum"))
         binding.businessWebsiteText.setText(arguments?.getString("webSite"))
@@ -72,10 +77,17 @@ class BusinessProfileEdit : Fragment() {
 
 
         binding.businessSaveButton.setOnClickListener {
-            Log.d("profile", "이미지없이 저장하기 눌럼")
-            addCompProfile()
-            if (selectedImageUri != null) {
-                addCompImg()
+            val check = checkAllNotEmpty()
+            if (check) {
+                if (selectedImageUri == null) {
+                    Log.d("profile", "이미지없이 저장하기 눌럼")
+                    addCompProfile()
+
+                } else {
+                    addCompImg()
+                }
+            }else{
+                Log.d("profile", "필수입력사항 입력오류----")
             }
         }
         return view
@@ -204,7 +216,7 @@ class BusinessProfileEdit : Fragment() {
     }
 
     private fun addCompProfile() {
-        Log.d("profile", "이미지없이 저장하기 눌럼2222222")
+        Log.d("profile", "이미지없이 저장하기 눌림림2222222")
         val compName = binding.businessNameText.text.toString()
         val compNum = binding.businessNumberText.text.toString()
         val ceoName = binding.ownerNameText.text.toString()
@@ -216,6 +228,7 @@ class BusinessProfileEdit : Fragment() {
         val homepage = binding.businessWebsiteText.text.toString()
 
         //모든 항목에 값이 있어야 통신되니까, 값이 없는 항목 처리해줘야함.
+
         val profile = UpdateBusinessProfileItems(
             compName,
             email,
@@ -230,13 +243,14 @@ class BusinessProfileEdit : Fragment() {
             homepage,
             email
         )
+
         service.updateBusinessProfile(profile).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     val msg = response.message()
                     Log.d("profile 수정", "msg : $msg")
                     Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
-
+                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01)
                 }
             }
 
@@ -246,6 +260,33 @@ class BusinessProfileEdit : Fragment() {
         })
 
 
+    }
+
+    fun checkAllNotEmpty():Boolean {
+        val textLayout = arrayListOf<Editable?>(binding.businessAddressDetailText.text,
+            binding.businessNameText.text,binding.businessNumberText.text,
+            binding.ownerNameText.text,binding.businessEmailText.text,
+            binding.businessAddressText.text,binding.businessAddressDetailText.text,
+            binding.businessCategoryText.text, binding.businessEmployeeNumberText.text,
+            binding.businessWebsiteText.text
+        )
+
+        val textInput = arrayListOf<TextInputLayout>(binding.businessAddress2,
+            binding.businessName,binding.businessValidNumber,binding.ownerName,
+            binding.businessEmail,binding.businessAddress1, binding.businessAddress2,
+            binding.businessCategory, binding.businessEmployeeNumber,binding.businessWebsite
+        )
+        for(index in textLayout.indices){
+            Log.d("id", "인덱스 : $index")
+            if(textLayout[index].isNullOrEmpty()){
+                textInput[index].error = "필수 입력사항 입니다."
+
+                return false
+            }
+
+        }
+
+        return true
     }
 
     fun getImageFilePath(contentUri: Uri): String {

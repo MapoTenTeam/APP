@@ -22,6 +22,7 @@ class BusinessProfileView : Fragment() {
     lateinit var bizrno: String
     lateinit var ceo: String
     lateinit var address: String
+    lateinit var detailAdd : String
     lateinit var category: String
     lateinit var empNum: String
     lateinit var webSite: String
@@ -49,6 +50,7 @@ class BusinessProfileView : Fragment() {
                 "bizrno" to bizrno,
                 "ceo" to ceo,
                 "address" to address,
+                "detailad" to detailAdd,
                 "category" to category,
                 "empNum" to empNum,
                 "webSite" to webSite,
@@ -68,6 +70,7 @@ class BusinessProfileView : Fragment() {
         bizrno = arguments?.getString("bizrno").toString()
         ceo = arguments?.getString("ceo").toString()
         address = arguments?.getString("address").toString()
+        detailAdd = arguments?.getString("detailad").toString()
         category = arguments?.getString("category").toString()
         empNum = arguments?.getString("empNum").toString()
         webSite = arguments?.getString("webSite").toString()
