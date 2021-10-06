@@ -137,7 +137,7 @@ class Login_01_01 : Fragment() {
             btnLogin.setOnClickListener {
                 //로그인 화면 띄우기
                 dismiss()
-                findNavController().navigate(R.id.action_login_02_01_to_login_01)
+                findNavController().navigate(R.id.action_login_01_01_to_login_01)
 
             }
             val btnCancel: TextView = dialog.findViewById(R.id.tv_cancel)

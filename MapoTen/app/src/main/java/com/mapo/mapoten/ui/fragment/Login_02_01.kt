@@ -72,6 +72,7 @@ class Login_02_01 : Fragment() {
             }
 
             btnSignup.setOnClickListener {
+                showDialog()
                 if (!nameRequiredFieldChecker())
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
@@ -80,7 +81,8 @@ class Login_02_01 : Fragment() {
                     return@setOnClickListener
                 if (!emailRequiredFieldChecker())
                     return@setOnClickListener
-                signUp()
+                //signUp()
+
 
             }
 
@@ -373,7 +375,36 @@ class Login_02_01 : Fragment() {
     }
 
 
+    // dialog
+    private fun showDialog() {
+        dialog = Dialog(binding.root.context)
+        with(dialog) {
+            requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+            setContentView(com.mapo.mapoten.R.layout.popup_signup_complete)
+            window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+            window!!.setLayout(
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT,
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            setCanceledOnTouchOutside(true)
+            setCancelable(true)
+            show()
 
+
+            val btnConfirm: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.btn_confirm)
+            btnConfirm.setOnClickListener {
+                //로그인 화면 띄우기
+                dismiss()
+                findNavController().navigate(com.mapo.mapoten.R.id.action_login_02_01_to_login_01)
+
+            }
+            val btnCancel: TextView = dialog.findViewById(com.mapo.mapoten.R.id.tv_cancel)
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
+        }
+
+    }
 
 }
 
