@@ -71,7 +71,7 @@ class BusinessAccount_01_04 : Fragment() {
 
         binding.refreshLayout.setOnRefreshListener {
 
-            when (binding.filter.checkedRadioButtonId) {
+            /*when (binding.filter.checkedRadioButtonId) {
                 R.id.allStates -> {
                     getAllPosting()
                 }
@@ -87,7 +87,7 @@ class BusinessAccount_01_04 : Fragment() {
                 else -> {
                     getAllPosting()
                 }
-            }
+            }*/
             binding.refreshLayout.isRefreshing = false
         }
 

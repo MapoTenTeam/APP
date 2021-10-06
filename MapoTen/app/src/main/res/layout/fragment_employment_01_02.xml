@@ -50,13 +50,14 @@
                 android:paddingHorizontal="@dimen/padding_12"
                 android:paddingVertical="@dimen/padding_4"
                 android:textSize="@dimen/text_12" />
+
             <ImageView
                 android:id="@+id/searchBtn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_search_24"
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_search_24"
                 app:tint="@color/employment_search_icon"
                 tools:ignore="RtlHardcoded" />
 
@@ -102,6 +103,7 @@
                 android:popupBackground="@drawable/bg_employment"
                 tools:listitem="@layout/item_spinner" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/loading"
             android:layout_width="wrap_content"
@@ -113,29 +115,44 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer">
+
             <ProgressBar
                 style="@android:style/Widget.Holo.ProgressBar.Large"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_middleGrey"
-                android:text="Loading..."/>
+                android:text="Loading..."
+                android:textColor="@color/text_middleGrey" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/jobPostingBoard"
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="86dp"
+            android:layoutDirection="locale"
             android:overScrollMode="never"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
-            tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/employment_posting_row" />
+            tools:layout_editor_absoluteX="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/jobPostingBoard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="86dp"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/employment_posting_row" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

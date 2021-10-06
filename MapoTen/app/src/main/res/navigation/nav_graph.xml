@@ -178,6 +178,9 @@
         <action
             android:id="@+id/action_businessAccount_01_to_businessAccount_01_04"
             app:destination="@id/businessAccount_01_04" />
+        <action
+            android:id="@+id/action_businessAccount_01_to_businessProfileView"
+            app:destination="@id/businessProfileView" />
     </fragment>
     <fragment
         android:id="@+id/businessAccount_01_01"
@@ -223,4 +226,18 @@
         android:label="BusinessAccountEmploymentDetail_01"
         tools:layout="@layout/fragment_business_account_employment_detail_01" />
 
+    <fragment
+        android:id="@+id/businessProfileView"
+        android:name="com.mapo.mapoten.ui.fragment.BusinessProfileView"
+        android:label="fragment_business_profile_view"
+        tools:layout="@layout/fragment_business_profile_view" >
+        <action
+            android:id="@+id/action_businessProfileView_to_businessProfileEdit"
+            app:destination="@id/businessProfileEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessProfileEdit"
+        android:name="com.mapo.mapoten.ui.fragment.BusinessProfileEdit"
+        android:label="fragment_business_profile_edit"
+        tools:layout="@layout/fragment_business_profile_edit" />
 </navigation>

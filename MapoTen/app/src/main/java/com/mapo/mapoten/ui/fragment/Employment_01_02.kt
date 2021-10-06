@@ -33,6 +33,9 @@ class Employment_01_02 : Fragment() {
     private val listOfPlace = ArrayList<SpinnerModel>()
     lateinit var employmentService: EmploymentService
 
+    private var postingCount = 1
+    private var endPostingCount = 0
+    private var searchTerm = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,12 +54,17 @@ class Employment_01_02 : Fragment() {
         initialize()
 
         binding.searchBtn.setOnClickListener {
-            val searchTerm = binding.searchText.text
-            if (binding.searchText.text.isNotEmpty()) {
-                getAllPosting(searchTerm.toString())
-            } else {
-                getAllPosting("")
+            searchTerm = binding.searchText.text.toString()
+            getAllPosting(1, searchTerm)
+        }
+
+        binding.refreshLayout.setOnRefreshListener {
+            postingCount += 1
+            if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
+                binding.refreshLayout.isRefreshing = true
+                getAllPosting(postingCount, searchTerm)
             }
+            binding.refreshLayout.isRefreshing = false
         }
 
         binding.backButton.setOnClickListener {
@@ -68,7 +76,7 @@ class Employment_01_02 : Fragment() {
 
     private fun initialize() {
         loading(true)
-        getAllPosting("")
+        getAllPosting(1,"")
 
         listOfCareer.clear()
         listOfJob.clear()
@@ -117,10 +125,10 @@ class Employment_01_02 : Fragment() {
         else binding.loading.visibility = View.GONE
     }
 
-    private fun getAllPosting(searchTerm: String) {
+    private fun getAllPosting(page: Int, searchTerm: String) {
 
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getGeneralJobList(1, searchTerm)
+        val generalJobList = employmentService.getGeneralJobList(page, searchTerm)
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")
@@ -132,8 +140,15 @@ class Employment_01_02 : Fragment() {
                 Log.d("employmentGeneral", "message : " + response.message())
 
                 if (response.isSuccessful) {
-                    resultDataList = response.body()!!.data
-
+                    if (page == 1) {
+                        resultDataList = response.body()!!.data
+                    } else {
+                        for (item in response.body()!!.data) {
+                            resultDataList.add(item)
+                        }
+                    }
+                    endPostingCount = response.body()!!.count
+                    Log.d("employmentGeneral", "resultDataList' size : " + resultDataList.size)
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
                     if (resultDataList.size > 0) {

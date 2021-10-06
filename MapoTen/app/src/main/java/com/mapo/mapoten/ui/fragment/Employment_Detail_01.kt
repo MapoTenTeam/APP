@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.employment.CodeName
 import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
 import com.mapo.mapoten.databinding.FragmentEmploymentDetail01Binding
@@ -15,6 +19,8 @@ import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.concurrent.thread
 import kotlin.properties.Delegates
 
@@ -46,13 +52,23 @@ class Employment_Detail_01 : Fragment() {
             getGeneralJobPostingDetail(id)
         }
 
+        binding.refreshLayout.setOnRefreshListener {
+            if (id != null) {
+                getGeneralJobPostingDetail(id)
+            } else {
+                Toast.makeText(requireContext(), "다시 실행해주세요..!", Toast.LENGTH_SHORT).show()
+            }
+            binding.refreshLayout.isRefreshing = false
+        }
+
+
         return view
     }
 
 
-    private fun loading(isLoading : Boolean){
-        if(isLoading) binding.loading.visibility = View.VISIBLE
-        else  {
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) binding.loading.visibility = View.VISIBLE
+        else {
             binding.loading.visibility = View.GONE
             binding.detail.visibility = View.VISIBLE
         }
@@ -100,24 +116,32 @@ class Employment_Detail_01 : Fragment() {
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
-        binding.date.text = "마감일: ${result.endReception}"
-
+        binding.date.text = setDDay(result.endReception)
+        if (result.jobImage != null) {
+            Glide.with(requireActivity()).load(result.jobImage).into(binding.image)
+        } else {
+            binding.image.setImageResource(R.drawable.banner_image1)
+        }
         // 채용사항
         binding.jobTypeDescValue.text = result.jobTypeDesc
         binding.requireCountValue.text = result.requireCount
         binding.jobDescValue.text = result.jobDesc
         binding.educationValue.text = result.education
         binding.careerValue.text = result.career
-        binding.workAreaValue.text = result.workArea
-        binding.employTypeValue.text = result.employTypeDet
+        binding.employTypeValue.text = manufactureData(result.employTypeDet)
+
+
+
+        Log.d("detail dept", "dept : ${result.employTypeDet}")
+        Log.d("detail dept", "size : ${result.employTypeDet.size}")
+
 
         // 업체현황
-        binding.companyNameValue.text = result.name
-        binding.bizrnoValue.text = result.bizrno
-        binding.ceoValue.text = result.ceo
-        binding.addressValue.text = result.address
-        binding.sectorValue.text = result.sector
-        binding.quaternionValue.text = result.quaternion
+//        binding.companyNameValue.text = result.name
+//        binding.ceoValue.text = result.ceo
+//        binding.addressValue.text = result.address
+//        binding.sectorValue.text = result.sector
+        //binding.quaternionValue.text = result.quaternion
 
         // 근로조건
         binding.paycdValue.text = result.paycd
@@ -126,15 +150,55 @@ class Employment_Detail_01 : Fragment() {
         binding.mealCodValue.text = result.mealCod
         binding.workingHoursValue.text = result.workingHours
         binding.severancePayTypeValue.text = result.severancePayType
-        binding.socialInsuranceValue.text = result.socialInsurance
+
+        binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 
         // 전형사항
+        binding.applyMethodValue.text = result.applyMethod
+        binding.testMethodValue.text = result.testMethod
+        binding.applyDocumentValue.text = manufactureData(result.applyDocument)
+        binding.endReceptionValue.text = result.endReception.substring(0, 10)
+
+        // 채용 담당자 정보
         binding.contactNameValue.text = result.contactName
         binding.contactDepartmentValue.text = result.contactDepartment
         binding.contactPhoneValue.text = result.contactPhone
         binding.contactEmailValue.text = result.contactEmail
 
+        // 근무위치
+        binding.placeOfWorkValue.text = result.workAddress
 
+    }
+
+    private fun manufactureData(data: ArrayList<CodeName>): String {
+        var tmpText = ""
+        data.forEach { it ->
+            tmpText += "${it.codeName}, "
+        }
+
+        return tmpText.substring(0, tmpText.length - 2)
+    }
+
+    private fun setDDay(endDay: String): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val today = Calendar.getInstance()
+        val endDate = dateFormat.parse(endDay.substring(0, 10))
+
+        val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
+
+        return if (day.toString() == "0") {
+            "D-day"
+        } else if (day < 0) {
+            "지원 모집이 마감된 공고입니다."
+        } else {
+            "${endDay.substring(0, 4)}년 ${
+                endDay.substring(
+                    5,
+                    7
+                )
+            }월 ${endDay.substring(8, 10)}일 모집마감  D-${day}"
+
+        }
     }
 
 }

@@ -99,4 +99,25 @@
         <item name="android:textColor">@color/text_darkGrey</item>
         <item name="android:gravity">bottom</item>
     </style>
+
+
+
+    <style name="profileTitleStyle" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/text_darkBlue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">@dimen/padding_10</item>
+        <item name="android:paddingBottom">@dimen/padding_10</item>
+    </style>
+
+    <style name="profileValueStyle" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textColor">@color/text_darkGrey</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingStart">@dimen/padding_16</item>
+        <item name="android:paddingTop">@dimen/padding_10</item>
+        <item name="android:paddingBottom">@dimen/padding_10</item>
+    </style>
 </resources>

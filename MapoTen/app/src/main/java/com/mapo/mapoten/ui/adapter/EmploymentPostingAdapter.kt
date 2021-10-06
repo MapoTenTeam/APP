@@ -78,6 +78,7 @@ class EmploymentPostingAdapter(private val context: Context) :
 
             itemView.setOnClickListener {
                 val bundle = bundleOf("jobId" to item.jobId, "state" to item.jobStat)
+                Log.d("employmentDetail", "item.jobId : " + item.jobId)
 
                 Navigation.findNavController(itemView)
                     .navigate(R.id.businessAccountEmploymentDetail_01, bundle)

@@ -22,4 +22,12 @@
     <color name="text_white">#ffffff</color>
     <color name="text_darkBlue">#4C67A6</color>
 
+    //승인 /비승인 버튼 텍스트, 배경
+    <color name="text_approval">#1A75FF</color>
+    <color name="bg_approval">#e8f1ff</color>
+    <color name="text_non_approval">#FF1A43</color>
+    <color name="bg_non_approval">#FFE8EC</color>
+    <color name="text_pending_approval">#FFA31A</color>
+    <color name="bg_pending_approval">#FFF6E8</color>
+
 </resources>

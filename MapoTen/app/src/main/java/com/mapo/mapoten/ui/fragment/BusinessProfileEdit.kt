@@ -16,10 +16,12 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.data.UpdateBusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessProfile01Binding
+import com.mapo.mapoten.databinding.FragmentBusinessProfileEditBinding
 import com.mapo.mapoten.service.AccountManageService
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -31,10 +33,10 @@ import retrofit2.Response
 import java.io.File
 
 
-class BusinessProfile_01 : Fragment() {
-        //회사프로필 등록하기
+class BusinessProfileEdit : Fragment() {
 
-    lateinit var binding: FragmentBusinessProfile01Binding
+
+    lateinit var binding: FragmentBusinessProfileEditBinding
     lateinit var service: AccountManageService
     private var selectedImageUri: Uri? = null
     private var filePath: String = ""
@@ -42,7 +44,7 @@ class BusinessProfile_01 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBusinessProfile01Binding.inflate(inflater, container, false)
+        binding = FragmentBusinessProfileEditBinding.inflate(inflater, container, false)
 
         val view = binding.root
 
@@ -55,7 +57,16 @@ class BusinessProfile_01 : Fragment() {
         initiateLogoUpload()
         initiateFileUpload()
 
+        binding.businessNameText.setText(arguments?.getString("cmpny_nm"))
+        binding.businessNumberText.setText(arguments?.getString("bizrno"))
+        binding.ownerNameText.setText(arguments?.getString("ceo"))
+        binding.businessEmailText.setText(arguments?.getString("cmpny_email"))
+        binding.businessAddressText.setText(arguments?.getString("address"))
+        binding.businessCategoryText.setText(arguments?.getString("category"))
+        binding.businessEmployeeNumberText.setText(arguments?.getString("empNum"))
+        binding.businessWebsiteText.setText(arguments?.getString("webSite"))
 
+       // Glide.with(binding.imgBusinessLogoValue).load(img).into(binding.imgBusinessLogoValue)
 
 
 
