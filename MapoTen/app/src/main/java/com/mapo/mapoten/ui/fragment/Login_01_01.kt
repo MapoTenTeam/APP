@@ -7,16 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.Login.DialogInfo
 import com.mapo.mapoten.data.Login.GetUserByIdFindOutputDto
 import com.mapo.mapoten.data.Login.UserByIdFindInputDto
 import com.mapo.mapoten.databinding.FragmentLogin0101Binding
@@ -24,6 +20,7 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class Login_01_01 : Fragment() {
     private var _binding: FragmentLogin0101Binding? = null
@@ -31,8 +28,6 @@ class Login_01_01 : Fragment() {
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
 
-    //    val args = Bundle()
-//    val dialogFragment = FindIdDialogFragment()
     var code: String = ""
     var userId: String = ""
 
@@ -51,28 +46,13 @@ class Login_01_01 : Fragment() {
                     return@setOnClickListener
                 if (!emailRequiredFieldChecker())
                     return@setOnClickListener
+                if (!emailPatternChecker())
+                    return@setOnClickListener
                 getUserByFindId()
-//                Log.d("TAG", "code : $code userId : $userId")
-//                args.putString("code", code)
-//                args.putString("userId", userId)
-//                dialogFragment.arguments = args
-//                dialogFragment.show()
-//                showDialogFragment()
 
             }
         }
         return binding.root
-    }
-
-    private fun showDialogFragment() {
-        val bundle = bundleOf("code" to code, "userId" to userId)
-        val dialogFragment = FindIdDialogFragment()
-        dialogFragment.arguments = bundle
-//        findNavController().navigate(R.id.findIdDialogFragment, bundle)
-//        findNavController().navigate(R.id.findIdDialogFragment,
-//            bundleOf(DIALOG_PARAM to DialogInfo(
-//            code,userId
-//        )))
     }
 
     private fun getUserByFindId() {
@@ -144,7 +124,21 @@ class Login_01_01 : Fragment() {
         }
     }
 
-    
+    private fun emailPatternChecker(): Boolean{
+        with(binding) {
+            // 검사 정규식
+            val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+            val value: String = emailTiL.editText?.text.toString().trim() // 공백제거
+            val p = Pattern.matches(emailValidation, value) // 패턴검사
+            return if (p) { // 정상일 경우
+                emailTiL.error = null
+                true
+            } else {
+                emailTiL.error = "이메일 형식에 맞게 입력하세요."
+                false
+            }
+        }
+    }
 
     // dialog
     private fun showDialog(code: String, userId: String) {
@@ -158,6 +152,7 @@ class Login_01_01 : Fragment() {
                 WindowManager.LayoutParams.WRAP_CONTENT
             )
 
+            val tvIdTitle: TextView = findViewById(R.id.tv_id_title)
             val tvId: TextView = findViewById(R.id.tv_id)
             val tvInform: TextView = findViewById(R.id.tv_information)
             val ivError: ImageView = findViewById(R.id.iv_error)
@@ -167,8 +162,16 @@ class Login_01_01 : Fragment() {
                     tvId.text = userId
                     ivError.visibility = View.GONE
                 }
-                "400" -> tvInform.text = "가입된 회원정보가 없습니다."
-                "null" -> tvInform.text = "가입된 회원정보가 없습니다."
+                "400" -> {
+                    tvIdTitle.visibility = View.GONE
+                    tvId.visibility = View.GONE
+                    tvInform.text = "가입된 회원정보가 없습니다."
+                }
+                "null" -> {
+                    tvIdTitle.visibility = View.GONE
+                    tvId.visibility = View.GONE
+                    tvInform.text = "가입된 회원정보가 없습니다."
+                }
             }
 
             setCanceledOnTouchOutside(true)
