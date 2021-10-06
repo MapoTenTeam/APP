@@ -55,7 +55,7 @@ class Employment_Detail_01 : Fragment() {
         binding.refreshLayout.setOnRefreshListener {
             if (id != null) {
                 getGeneralJobPostingDetail(id)
-            }else {
+            } else {
                 Toast.makeText(requireContext(), "다시 실행해주세요..!", Toast.LENGTH_SHORT).show()
             }
             binding.refreshLayout.isRefreshing = false
@@ -188,10 +188,15 @@ class Employment_Detail_01 : Fragment() {
 
         return if (day.toString() == "0") {
             "D-day"
-        } else if(day < 0) {
+        } else if (day < 0) {
             "지원 모집이 마감된 공고입니다."
         } else {
-            "D-${day}"
+            "${endDay.substring(0, 4)}년 ${
+                endDay.substring(
+                    5,
+                    7
+                )
+            }월 ${endDay.substring(8, 10)}일 모집마감  D-${day}"
 
         }
     }
