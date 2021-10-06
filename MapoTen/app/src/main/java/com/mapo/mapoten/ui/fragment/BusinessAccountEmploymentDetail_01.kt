@@ -14,14 +14,12 @@ import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.employment.CodeName
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
-import com.mapo.mapoten.data.employment.JobEnterpriseDetailOutputDto
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseDetailOutputDto
 import com.mapo.mapoten.databinding.FragmentBusinessAccountEmploymentDetail01Binding
 import com.mapo.mapoten.service.EmploymentService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 
 class BusinessAccountEmploymentDetail_01 : Fragment() {

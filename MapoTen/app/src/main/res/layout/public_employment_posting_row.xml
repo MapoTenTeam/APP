@@ -19,6 +19,7 @@
             android:src="@drawable/employment_test_img" />
 
         <ToggleButton
+            android:id="@+id/bookmarkBtn"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="right"

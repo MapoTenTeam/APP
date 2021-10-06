@@ -2,8 +2,6 @@ package com.mapo.mapoten.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
 import com.mapo.mapoten.data.SpinnerModel
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.data.employment.GeneralJobPostingResponse
@@ -34,6 +31,8 @@ class Employment_01_01 : Fragment() {
     private val listOfPlace = ArrayList<SpinnerModel>()
     lateinit var employmentService: EmploymentService
 
+    private var postingCount = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +53,21 @@ class Employment_01_01 : Fragment() {
         binding.searchBtn.setOnClickListener {
             val searchTerm = binding.searchText.text
             if (binding.searchText.text.isNotEmpty()) {
-                getAllPosting(searchTerm.toString())
+                getAllPosting(1, searchTerm.toString())
             } else {
-                getAllPosting("")
+                getAllPosting(1, "")
             }
         }
+
+        binding.refreshLayout.setOnRefreshListener {
+            if (postingCount > 0) {
+                binding.refreshLayout.isRefreshing = true
+                getAllPosting(postingCount, "")
+            }
+            binding.refreshLayout.isRefreshing = false
+
+        }
+
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -70,7 +79,7 @@ class Employment_01_01 : Fragment() {
     private fun initialize() {
 
         loading(true)
-        getAllPosting("")
+        getAllPosting(1,"")
 
         listOfPlace.clear()
         setupSpinnerPlace()
@@ -94,9 +103,9 @@ class Employment_01_01 : Fragment() {
         else binding.loading.visibility = View.GONE
     }
 
-    private fun getAllPosting(searchTerm: String) {
+    private fun getAllPosting(page: Int, searchTerm: String) {
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getPublicJobList(1, searchTerm)
+        val generalJobList = employmentService.getPublicJobList(page, searchTerm)
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")
@@ -111,7 +120,7 @@ class Employment_01_01 : Fragment() {
                 if (response.isSuccessful) {
                     binding.loading.visibility = View.GONE
                     resultDataList = response.body()!!.data
-
+                    postingCount = response.body()!!.count
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
                     if (resultDataList.size > 0) {

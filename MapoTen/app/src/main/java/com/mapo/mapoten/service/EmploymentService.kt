@@ -13,8 +13,6 @@ interface EmploymentService {
         @Field("SEARCH_NAME") searchTerm: String
     ): Call<GeneralJobPostingResponse>
 
-    @GET("job/public/detail/{id}")
-    fun inquirePublicDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
 
     @FormUrlEncoded
     @POST("job/general")

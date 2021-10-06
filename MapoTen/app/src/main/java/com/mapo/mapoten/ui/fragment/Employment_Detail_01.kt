@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
@@ -50,6 +51,16 @@ class Employment_Detail_01 : Fragment() {
             loading(true)
             getGeneralJobPostingDetail(id)
         }
+
+        binding.refreshLayout.setOnRefreshListener {
+            if (id != null) {
+                getGeneralJobPostingDetail(id)
+            }else {
+                Toast.makeText(requireContext(), "다시 실행해주세요..!", Toast.LENGTH_SHORT).show()
+            }
+            binding.refreshLayout.isRefreshing = false
+        }
+
 
         return view
     }
@@ -105,7 +116,7 @@ class Employment_Detail_01 : Fragment() {
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
-        binding.date.text = getDDay(result.endReception)
+        binding.date.text = setDDay(result.endReception)
         if (result.image != null) {
             Glide.with(requireActivity()).load(result.image).into(binding.image)
         } else {
@@ -168,7 +179,7 @@ class Employment_Detail_01 : Fragment() {
         return tmpText.substring(0, tmpText.length - 2)
     }
 
-    private fun getDDay(endDay: String): String {
+    private fun setDDay(endDay: String): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val today = Calendar.getInstance()
         val endDate = dateFormat.parse(endDay.substring(0, 10))
@@ -177,7 +188,8 @@ class Employment_Detail_01 : Fragment() {
 
         return if (day.toString() == "0") {
             "${endDay.substring(0, 10)} 지원마감  D-day"
-        } else {
+        }
+        else {
             "${
                 endDay.substring(
                     0,
