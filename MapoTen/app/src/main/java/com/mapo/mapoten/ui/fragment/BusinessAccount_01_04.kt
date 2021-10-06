@@ -110,18 +110,20 @@ class BusinessAccount_01_04 : Fragment() {
                 Log.d("employmentDetail", "message : " + response.message())
 
                 if (response.isSuccessful) {
+                    Log.d("employmentDetail", "response : ${response.body()!!.data}")
 
                     resultDataList = response.body()!!.data
 
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
-                    if (resultDataList.size > 0) {
+                    if (resultDataList != null) {
                         binding.emptyBoardGuide.visibility = View.GONE
                         binding.refreshLayout.visibility = View.VISIBLE
                         adapter.data = resultDataList
                         adapter.notifyDataSetChanged()
 
                     } else {
+                        Log.d("employmentDetail", "size xxxxx else")
                         binding.emptyBoardGuide.visibility = View.VISIBLE
                         binding.refreshLayout.visibility = View.GONE
                     }
@@ -145,6 +147,12 @@ class BusinessAccount_01_04 : Fragment() {
     }
 
     private fun getPosting(jobStat: String) {
+
+        if(resultDataList === null) {
+            binding.emptyBoardGuide.visibility = View.VISIBLE
+            binding.refreshLayout.visibility = View.GONE
+            return
+        }
 
         for (i: Int in 0 until resultDataList.size) {
             if (resultDataList[i].jobStat == jobStat) {
