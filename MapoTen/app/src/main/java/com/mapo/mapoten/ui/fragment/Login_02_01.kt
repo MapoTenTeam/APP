@@ -67,14 +67,14 @@ class Login_02_01 : Fragment() {
                 sendEmailAuth()
             }
 
-            allCheckBox.setOnClickListener {
-                setAllCheck()
-            }
-
             btnConfirm.setOnClickListener {
                 if (!authenticationRequiredFieldChecker())
                     return@setOnClickListener
                 authenticationNumberChecker()
+            }
+
+            allCheckBox.setOnClickListener {
+                setAllCheck()
             }
 
             btnSignup.setOnClickListener {
