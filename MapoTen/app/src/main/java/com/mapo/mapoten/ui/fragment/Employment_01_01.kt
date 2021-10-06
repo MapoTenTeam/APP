@@ -31,8 +31,8 @@ class Employment_01_01 : Fragment() {
     private val listOfPlace = ArrayList<SpinnerModel>()
     lateinit var employmentService: EmploymentService
 
-    private var postingCount = 0
-
+    private var postingCount = 1
+    private var endPostingCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,12 +60,12 @@ class Employment_01_01 : Fragment() {
         }
 
         binding.refreshLayout.setOnRefreshListener {
-            if (postingCount > 0) {
+            postingCount += 1
+            if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
                 binding.refreshLayout.isRefreshing = true
                 getAllPosting(postingCount, "")
             }
             binding.refreshLayout.isRefreshing = false
-
         }
 
 
@@ -79,7 +79,7 @@ class Employment_01_01 : Fragment() {
     private fun initialize() {
 
         loading(true)
-        getAllPosting(1,"")
+        getAllPosting(1, "")
 
         listOfPlace.clear()
         setupSpinnerPlace()
@@ -104,6 +104,7 @@ class Employment_01_01 : Fragment() {
     }
 
     private fun getAllPosting(page: Int, searchTerm: String) {
+        Log.d("employmentGeneral", "resultDataList' size : " + resultDataList.size)
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
         val generalJobList = employmentService.getPublicJobList(page, searchTerm)
 
@@ -119,16 +120,25 @@ class Employment_01_01 : Fragment() {
 
                 if (response.isSuccessful) {
                     binding.loading.visibility = View.GONE
-                    resultDataList = response.body()!!.data
-                    postingCount = response.body()!!.count
-                    Log.d("employmentDetail", "resultDataList : $resultDataList")
-
+                    if (page == 1) {
+                        resultDataList = response.body()!!.data
+                    } else {
+                        for (item in response.body()!!.data) {
+                            resultDataList.add(item)
+                        }
+                    }
+                    endPostingCount = response.body()!!.count
                     if (resultDataList.size > 0) {
+
                         thread(start = true) {
                             Thread.sleep(300)
 
                             requireActivity().runOnUiThread {
                                 loading(false)
+                                Log.d(
+                                    "employmentGeneral",
+                                    "all resultDataList's size : " + resultDataList.size
+                                )
                                 adapter.data = resultDataList
                                 adapter.notifyDataSetChanged()
                             }
