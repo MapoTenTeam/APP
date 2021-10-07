@@ -19,6 +19,7 @@
             android:src="@drawable/employment_test_img" />
 
         <ToggleButton
+            android:id="@+id/bookmarkBtn"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_gravity="right"
@@ -27,6 +28,27 @@
             android:background="@drawable/bg_toggle_btn"
             android:textOff=""
             android:textOn="" />
+
+        <LinearLayout
+            android:id="@+id/closedPosting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_closed_posting"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:rotation="-15"
+                android:text="마감된 공고"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_20"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
     </FrameLayout>
 
     <LinearLayout
@@ -83,19 +105,19 @@
             android:layout_weight="1"
             android:gravity="bottom"
             android:paddingHorizontal="@dimen/padding_20"
-            android:textStyle="bold"
             android:text="지원마감"
-            android:textSize="@dimen/text_12" />
+            android:textSize="@dimen/text_12"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/dDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_20"
             android:layout_weight="3"
             android:drawablePadding="@dimen/padding_4"
             android:gravity="bottom|right"
-            android:layout_marginEnd="@dimen/margin_20"
             android:text="D-Day"
             android:textColor="@color/main_skyBlue"
             android:textSize="@dimen/text_16"

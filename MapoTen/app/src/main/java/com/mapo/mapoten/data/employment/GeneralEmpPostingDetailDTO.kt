@@ -119,5 +119,8 @@ data class GeneralEmpPostingDetailDTO(
     val contactEmail: String, // 채용 담당자 이메일
 
     @SerializedName("CMPNY_IM")
-    val image: String // 사업체 사진
+    val companyImage: String, // 사업체 사진
+
+    @SerializedName("JOB_IM")
+    val jobImage: String // 사업체 사진
 )

@@ -69,7 +69,13 @@
         android:id="@+id/login_01_01"
         android:name="com.mapo.mapoten.ui.fragment.Login_01_01"
         android:label="fragment_login_01_01"
-        tools:layout="@layout/fragment_login_01_01" />
+        tools:layout="@layout/fragment_login_01_01" >
+        <action
+            android:id="@+id/action_login_01_01_to_login_01"
+            app:destination="@id/login_01"
+            app:popUpTo="@id/login_01"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/login_01_03"
         android:name="com.mapo.mapoten.ui.fragment.Login_01_03"
@@ -131,7 +137,13 @@
         android:id="@+id/login_01_02"
         android:name="com.mapo.mapoten.ui.fragment.Login_01_02"
         android:label="fragment_login_01_02"
-        tools:layout="@layout/fragment_login_01_02" />
+        tools:layout="@layout/fragment_login_01_02" >
+        <action
+            android:id="@+id/action_login_01_02_to_login_01"
+            app:destination="@id/login_01"
+            app:popUpTo="@id/login_01"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/login_02_02"
         android:name="com.mapo.mapoten.ui.fragment.Login_02_02"
@@ -213,6 +225,7 @@
         android:name="com.mapo.mapoten.ui.fragment.BusinessAccountEmploymentDetail_01"
         android:label="BusinessAccountEmploymentDetail_01"
         tools:layout="@layout/fragment_business_account_employment_detail_01" />
+
     <fragment
         android:id="@+id/businessProfileView"
         android:name="com.mapo.mapoten.ui.fragment.BusinessProfileView"

@@ -70,6 +70,7 @@
                 android:layout_weight="0.9"
                 android:layout_marginTop="@dimen/margin_6"
                 android:isScrollContainer="false"
+                app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:expandedHintEnabled="false">
 
@@ -187,10 +188,10 @@
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
-            app:expandedHintEnabled="false">
+            app:expandedHintEnabled="false"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -198,6 +199,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/passWord"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -209,10 +211,10 @@
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
-            app:expandedHintEnabled="false">
+            app:expandedHintEnabled="false"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/pwd_confirm_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -220,9 +222,18 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/pwd_confirm"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/all_checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/all_check_tos"
+            style="@style/title_text16"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -235,29 +246,21 @@
             android:paddingEnd="@dimen/padding_14"
             android:paddingBottom="@dimen/padding_20">
 
-
-            <CheckBox
-                android:id="@+id/all_checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/all_check_tos"
-                style="@style/title_text16"/>
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_1"
-                android:layout_marginTop="@dimen/margin_6"
-                android:background="@color/text_lightGrey" />
-
             <TextView
                 android:id="@+id/tv_tos_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_6"
                 android:text="@string/tos"
                 style="@style/tos_text14" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@color/text_lightGrey" />
+
 
             <LinearLayout
 
@@ -319,59 +322,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/tv_tos3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="[선택] 프로필 정보 추가 수집 동의"
-                    style="@style/text12"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_marginEnd="@dimen/margin_6"
-                    android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/tv_tos4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="[선택] 광고성 정보 수신 동의"
-                    style="@style/text12" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_marginEnd="@dimen/margin_6"
-                    android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
-            </LinearLayout>
 
         </LinearLayout>
 
