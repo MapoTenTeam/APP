@@ -122,5 +122,5 @@ data class GeneralEmpPostingDetailDTO(
     val companyImage: String, // 사업체 사진
 
     @SerializedName("JOB_IM")
-    val jobImage: String // 사업체 사진
+    val jobImage: String // 채용공고 사진
 )
