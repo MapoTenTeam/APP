@@ -66,71 +66,51 @@ class BusinessAccount_01_03 : Fragment() {
     }
 
     private fun validatePassword() {
-
-        // test - 현재 비밀번호 1234
-        // 모든 조건 만족시 return true
-        //현재 비밀번호 일치하고,
+        var checkedNewPw: Boolean = false
         result = checkCurrentPw()
-        if (!result){
+        Log.d("password", "현재비번체크 result: $result")
+        val newPw = binding.newPassword.text.toString()
+        val newPw2 = binding.confirmNewPassword.text.toString()
+
+        if (!result) {
             binding.passwordLayout.error = "현재 비밀번호가 일치하지 않습니다."
             Toast.makeText(context, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
 
-        }else{
-            checkNewPw()
+        } else {
             Toast.makeText(context, "현재 비밀번호가 일치합니다.", Toast.LENGTH_SHORT).show()
         }
+
         // 새 비번 일치하고, 새비번이 비어있지 않으면 true
-        //현재 비번 불일치 처리
-        //새비번 불일치 처리
-       /* return if (binding.password.text.toString() == "1234" && checkedPassword && binding.newPassword.text!!.isNotEmpty()) {
-            true
-        } else if (binding.password.text.toString() != "1234") {
-            Toast.makeText(context, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-            false
-        } else if (!checkedPassword) {
-            Toast.makeText(context, "새 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-            binding.newPassword.setText("")
-            binding.confirmNewPassword.setText("")
-            false
-        } else {
-            Toast.makeText(context, "입력란을 확인해주세요!", Toast.LENGTH_SHORT).show()
-            false
-        }*/
+        if (newPw == newPw2) {
+            checkedNewPw = true
+        }else if(newPw.isNullOrEmpty()){
+            checkedNewPw = false
+            binding.newPasswordLayout.error = "필수 입력 사항입니다."
+        }else if(newPw2.isNullOrEmpty()){
+            checkedNewPw = false
+            binding.confirmNewPasswordLayout.error = "필수 입력 사항입니다."
+        }else {
+            //새비번 불일치 처리
+        }
+
+        if (result && checkedNewPw) {
+            updatePassword(newPw2)
+        }
+
     }
 
-    // listener
-   /* private val editTextListener = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            Log.i("password", "입력전");
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            checkedPassword =
-                binding.newPassword.text.toString() == binding.confirmNewPassword.text.toString()
-        }
-
-        override fun afterTextChanged(p0: Editable) {
-            Log.i("password", "입력후");
-
-        }
-
-    }*/
-
-    private fun checkNewPw() {
-
-    }
 
     private fun checkCurrentPw() :Boolean {
-        //var result = false
         val password = binding.password.text.toString()
-      //  val password = binding.password.text.toString()
         Log.d("password", "현재비번 : $password")
+
         service.checkCurrentPw(password).enqueue(object : Callback<ImageResponse>{
             override fun onResponse(call: Call<ImageResponse>,response: Response<ImageResponse>) {
 
                 if (response.isSuccessful){
-                    Log.d("password", "현재 비번 확인 : ${response.body()!!.message}")
-                //    Toast.makeText(requireContext(), "현재 비밀번호 확인 완료", Toast.LENGTH_SHORT).show()
+                    Log.d("password", "code : ${response.code()}")
+                    Log.d("password", "현재 비번 확인 message : ${response.body()!!.message}")
+
                     result = true
                 }
             }
@@ -141,6 +121,21 @@ class BusinessAccount_01_03 : Fragment() {
         })
 
         return result
+    }
+
+    private fun updatePassword(newPw2: String) {
+        service.updateBusinessPassword(newPw2).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(binding.root).navigate(R.id.login_01)
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("password", "비번번경 실패 ")
+            }
+        })
     }
 
 

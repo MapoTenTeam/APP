@@ -139,7 +139,7 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
+                   <!-- <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/userPhone"
                         style="@style/TextInputOutline"
                         android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                             android:textSize="@dimen/text_14" />
 
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/userEmail"

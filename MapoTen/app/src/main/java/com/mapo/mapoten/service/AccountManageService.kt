@@ -37,6 +37,10 @@ interface AccountManageService {
     @FormUrlEncoded
     @PATCH("user/personal/change/password")
     fun updatePassword(@Field("PASSWORD") password: String):Call<Void>
+
+    @FormUrlEncoded
+    @PATCH("user/enterprise/change/password")
+    fun updateBusinessPassword(@Field("PASSWORD") password: String):Call<Void>
 }
 
 

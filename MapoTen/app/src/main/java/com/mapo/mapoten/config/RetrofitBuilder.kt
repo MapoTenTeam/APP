@@ -12,7 +12,7 @@ object RetrofitBuilder {
     private val businessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiaGVlMTIzIiwiaWF0IjoxNjMzNTY4Mzc1fQ.rfbrpkSCJG_gW7tI37wuzOQCquXOFT-EoOtaFzodERc"
     private val businessToken2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9nZSIsImlhdCI6MTYzMzM5NDgzN30.jwne1Ip2yQoc-FLOM5we4lnACXZLV7KgsAUbqIMInJM"
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(userToken))
+        addInterceptor(MyInterceptor(businessToken))
     }.build()
 
 

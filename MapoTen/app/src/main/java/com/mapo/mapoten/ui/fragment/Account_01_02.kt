@@ -80,9 +80,6 @@ class Account_01_02 : Fragment() {
             updatePassword(newPw2)
         }
 
-
-
-
     }
 
     private fun checkCurrentPw(): Boolean {
