@@ -58,6 +58,8 @@
     <string name="send_pwd">임시 비밀번호 발송</string>
 
 
+    <string name="user_profile">나의 프로필</string>
+    <string name="user_profile_view">회원 프로필 조회</string>
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
     <string name="business_profile">회사 프로필</string>

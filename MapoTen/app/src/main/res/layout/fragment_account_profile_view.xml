@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.BusinessProfileView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/actionBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_56"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/topBar">
+
+                <Button
+                    android:id="@+id/backButton"
+                    style="@style/BackButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_profile_view" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:background="#60c4c4c4" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_20"
+            android:paddingStart="@dimen/padding_32"
+            android:paddingEnd="@dimen/padding_32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:stretchColumns="*"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="#10000000"
+                    android:text="@string/user_profile"
+                    android:textColor="#474747"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/businessName"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:text="이름"
+                    />
+
+                <TextView
+                    android:id="@+id/businessNameValue"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:text=""
+                    style="@style/profileValueStyle"
+                   />
+
+
+                <TextView
+                    android:id="@+id/businessNumber"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:text="아이디" />
+
+                <TextView
+                    android:id="@+id/businessNumberValue"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                     />
+
+
+                <TextView
+                    android:id="@+id/ownerName"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    android:text="이메일" />
+
+                <TextView
+                    android:id="@+id/ownerNameValue"
+                    android:layout_row="4"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                    />
+
+
+                <TextView
+                    android:id="@+id/businessAddress1"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="5"
+                    android:layout_column="0"
+                    android:text="휴대폰번호" />
+
+                <TextView
+                    android:id="@+id/businessAddress1Value"
+                    android:layout_row="5"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                     />
+
+                <TextView
+                    android:id="@+id/businessCategorty"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="6"
+                    android:layout_column="0"
+                    android:text="주소" />
+
+                <TextView
+                    android:id="@+id/businessCategortyValue"
+                    android:layout_row="6"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                    />
+
+                <TextView
+                    android:id="@+id/businessEmpNum"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="7"
+                    android:layout_column="0"
+                    android:text="상세주소" />
+
+                <TextView
+                    android:id="@+id/businessEmpNumValue"
+                    android:layout_row="7"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                     />
+
+             <!--   <TextView
+                    android:id="@+id/businessWeb"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="8"
+                    android:layout_column="0"
+                    android:text="@string/businessWeb" />
+
+                <TextView
+                    android:id="@+id/businessWebValue"
+                    android:layout_row="8"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                    />
+
+                <TextView
+                    android:id="@+id/businessEmail"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="9"
+                    android:layout_column="0"
+                    android:text="@string/businessEmail" />
+
+                <TextView
+                    android:id="@+id/businessEmailValue"
+                    android:layout_row="9"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                    />
+
+                <TextView
+                    android:id="@+id/text_businessLogo"
+                    style="@style/profileTitleStyle"
+                    android:layout_row="10"
+                    android:layout_column="0"
+                    android:text="@string/text_businessLogo" />
+                <TextView
+                    android:id="@+id/text_businessLogo2"
+                    android:layout_row="10"
+                    android:layout_column="1"
+                    android:layout_gravity="fill_horizontal"
+                    style="@style/profileValueStyle"
+                    android:text=""
+                    />
+
+
+                <ImageView
+                    android:id="@+id/img_businessLogoValue"
+                    android:layout_row="11"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    />-->
+
+
+
+            </GridLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/update_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:background="@drawable/button_background_radius30"
+            android:text="@string/btn_update"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraint_body"
+            tools:ignore="TextContrastCheck" />
+
+        <!--<androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/apply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:background="@drawable/button_background_radius30"
+            android:text="@string/btn_apply"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_button"
+            tools:ignore="TextContrastCheck" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
@@ -42,11 +43,13 @@ class Account_01_01 : Fragment() {
             Log.d("profile", "눌림")
             updateProfile()
             Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
+
+
         }
 
         //회원정보 불러오기
         service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
-       // val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4MTkxMzB9.L7r4dwUxbKhSboeo15Pq-LkMZR3sUOTy-QX6Sx1oRW4"
+
         service.getUserProfile().enqueue(object : Callback<PersonalProfile>{
             override fun onResponse(
                 call: Call<PersonalProfile>,

@@ -53,7 +53,7 @@ class BusinessProfile_01 : Fragment() {
         }
 
         initiateLogoUpload()
-        initiateFileUpload()
+       // initiateFileUpload()  사업자등록증 파일업로드 > 보류
 
 
 
@@ -97,9 +97,9 @@ class BusinessProfile_01 : Fragment() {
                 val selectedFile: Uri? = data?.data
                 if (selectedFile != null) {
                     val file = selectedFile!!
-                    binding.fileView.text = file.encodedPath
-                    binding.iconFileUpload.visibility = GONE
-                    binding.fileView.visibility = VISIBLE
+                   // binding.fileView.text = file.encodedPath
+                  //  binding.iconFileUpload.visibility = GONE
+                   // binding.fileView.visibility = VISIBLE
                 }
             }
 
@@ -156,7 +156,7 @@ class BusinessProfile_01 : Fragment() {
     }
 
 
-    private fun initiateFileUpload() {
+   /* private fun initiateFileUpload() {
         binding.iconFileUpload.setOnClickListener {
             when {
                 ContextCompat.checkSelfPermission(
@@ -183,7 +183,7 @@ class BusinessProfile_01 : Fragment() {
                 }
             }
         }
-    }
+    }*/
 
     private fun navigateFiles() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

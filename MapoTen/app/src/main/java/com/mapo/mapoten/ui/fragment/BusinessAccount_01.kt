@@ -60,7 +60,8 @@ class BusinessAccount_01 : Fragment() {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_02)
             } //회원 정보 수정으로 이동
             binding.passwordChangeButton.setOnClickListener {
-                Navigation.findNavController(view).navigate(R.id.businessAccount_01_03)
+                val bundle = bundleOf("cmpny_nm" to profile?.CMPNY_NM)
+                Navigation.findNavController(view).navigate(R.id.businessAccount_01_03,bundle)
             } //비번 변경 이동
             binding.careerButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)

@@ -1,12 +1,19 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
@@ -28,6 +35,8 @@ class Employment_Detail_01 : Fragment() {
     lateinit var binding: FragmentEmploymentDetail01Binding
     lateinit var employmentService: EmploymentService
     var type by Delegates.notNull<Int>()
+    private lateinit var dialog: Dialog
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,10 +47,6 @@ class Employment_Detail_01 : Fragment() {
 
         type = arguments?.getInt("type")!!
         val id = arguments?.getInt("jobId")
-
-        Log.d("generalDetail", "type : " + type)
-        Log.d("generalDetail", "id : " + id)
-
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -61,6 +66,17 @@ class Employment_Detail_01 : Fragment() {
             binding.refreshLayout.isRefreshing = false
         }
 
+        if (arguments?.getString("dDay") === "closed") {
+            binding.submitBtn.isEnabled = false
+            binding.submitBtn.setBackgroundColor(Color.parseColor("#C4C4C4"))
+        }
+
+        binding.submitBtn.setOnClickListener {
+            dialog = Dialog(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.popup_emp_posting_detail_submit)
+            showDialog()
+        }
 
         return view
     }
@@ -113,6 +129,14 @@ class Employment_Detail_01 : Fragment() {
         })
     }
 
+    private fun registerBookmark() {
+
+    }
+
+    private fun cancelBookmark() {
+
+    }
+
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
@@ -137,11 +161,12 @@ class Employment_Detail_01 : Fragment() {
 
 
         // 업체현황
-//        binding.companyNameValue.text = result.name
-//        binding.ceoValue.text = result.ceo
-//        binding.addressValue.text = result.address
-//        binding.sectorValue.text = result.sector
-        //binding.quaternionValue.text = result.quaternion
+        Glide.with(requireActivity()).load(result.companyImage).into(binding.companyImage)
+        binding.companyNameValue.text = result.name
+        binding.ceoValue.text = result.ceo
+        binding.addressValue.text = result.address
+        binding.sectorValue.text = result.sector
+        binding.quaternionValue.text = result.quaternion
 
         // 근로조건
         binding.paycdValue.text = result.paycd
@@ -150,7 +175,6 @@ class Employment_Detail_01 : Fragment() {
         binding.mealCodValue.text = result.mealCod
         binding.workingHoursValue.text = result.workingHours
         binding.severancePayTypeValue.text = result.severancePayType
-
         binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 
         // 전형사항
@@ -201,4 +225,19 @@ class Employment_Detail_01 : Fragment() {
         }
     }
 
+    private fun showDialog() {
+        dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val deleteBtn: AppCompatButton = dialog.findViewById(R.id.deleteBtn)
+        deleteBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+
+        val closeBtn: ImageView = dialog.findViewById(R.id.closeBtn)
+        closeBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
 }
