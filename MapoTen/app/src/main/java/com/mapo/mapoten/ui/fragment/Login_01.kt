@@ -79,7 +79,7 @@ class Login_01 : Fragment() {
     }
 
 
-// <-------------------------- 필수 입력 체크 -------------------------->
+    // <-------------------------- 필수 입력 체크 -------------------------->
     private fun idRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = idEditTextInputLayout.editText?.text.toString()
@@ -109,41 +109,43 @@ class Login_01 : Fragment() {
 
 
     // 로그인
-    private fun login(){
-        with(binding){
+    private fun login() {
+        findNavController().navigate(R.id.home_01)
 
-            var textId = idEditText.text.toString()
-            var textPwd = pwdEditText.text.toString()
-
-            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
-
-
-            loginService.enqueue(object : Callback<LoginResponse> {
-                override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>,
-                ) { //정상응답이 올경우
-                    if (response.isSuccessful) {
-                        code = response.body()?.statusCode.toString()
-                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
-                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
-                            findNavController().navigate(R.id.home_01)
-                    }
-                    else {
-                        showDialog()
-                        Toast.makeText(context,
-                                "로그인 실패",
-                                Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
-                    }
-                }
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
-                    Log.e("error", "통신 실패" + t.localizedMessage)
-                }
-            })
-
-        }
+//        with(binding){
+//
+//            var textId = idEditText.text.toString()
+//            var textPwd = pwdEditText.text.toString()
+//
+//            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
+//
+//
+//            loginService.enqueue(object : Callback<LoginResponse> {
+//                override fun onResponse(
+//                    call: Call<LoginResponse>,
+//                    response: Response<LoginResponse>,
+//                ) { //정상응답이 올경우
+//                    if (response.isSuccessful) {
+//                        code = response.body()?.statusCode.toString()
+//                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+//                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+//                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
+//                            findNavController().navigate(R.id.home_01)
+//                    }
+//                    else {
+//                        showDialog()
+//                        Toast.makeText(context,
+//                                "로그인 실패",
+//                                Toast.LENGTH_SHORT).show()
+//                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
+//                    }
+//                }
+//                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
+//                    Log.e("error", "통신 실패" + t.localizedMessage)
+//                }
+//            })
+//
+//        }
     }
 
     // dialog
