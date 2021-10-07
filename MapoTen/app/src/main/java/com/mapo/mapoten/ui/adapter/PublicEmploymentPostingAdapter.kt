@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -21,12 +22,12 @@ import com.mapo.mapoten.service.EmploymentService
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 class PublicEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<PublicEmploymentPostingAdapter.ViewHolder>() {
 
     var data: MutableList<GeneralEmpPostingDTO> = ArrayList()
-    lateinit var employmentService: EmploymentService
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context)
