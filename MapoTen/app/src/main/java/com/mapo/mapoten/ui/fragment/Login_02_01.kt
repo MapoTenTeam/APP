@@ -231,7 +231,7 @@ class Login_02_01 : Fragment() {
     private fun signUp() {
         with(binding) {
             Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
-            val signUpService = userService.requestPersonalSignUp(SignUpRequest(
+            val signUpService = userService.requestPersonalSignUp(AuthCredentialsPersonalDto(
                 nameEditText.text.toString(),
                 idEditText.text.toString(),
                 emailEditText.text.toString(),

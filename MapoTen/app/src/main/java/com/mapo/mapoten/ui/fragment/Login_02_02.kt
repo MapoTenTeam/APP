@@ -97,7 +97,6 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 if (!termCheck())
                     return@setOnClickListener
-
             }
 
 
@@ -284,20 +283,31 @@ class Login_02_02 : Fragment() {
     private fun termCheck() : Boolean{
         with(binding) {
             return if (allCheckBox.isChecked) {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
                 termAgreeck = 1
                 true
             } else if(tvTos1.isChecked && tvTos2.isChecked){
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
                 termAgreeck = 1
-               true
+                true
+            } else if (!tvTos1.isChecked && !tvTos2.isChecked){
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.VISIBLE
+                termAgreeck = 0
+                false
             } else if (!tvTos1.isChecked){
-                tosError1.visibility = View.INVISIBLE
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.GONE
                 termAgreeck = 0
                 false
-            } else if (!tvTos2.isChecked){
-                tosError2.visibility = View.INVISIBLE
+            } else {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.VISIBLE
                 termAgreeck = 0
                 false
-            } else false
+            }
         }
     }
 
