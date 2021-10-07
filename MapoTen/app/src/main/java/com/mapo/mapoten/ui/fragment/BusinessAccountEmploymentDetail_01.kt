@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
 import com.mapo.mapoten.data.employment.SelectJobEnterpriseDetailOutputDto
 import com.mapo.mapoten.databinding.FragmentBusinessAccountEmploymentDetail01Binding
 import com.mapo.mapoten.service.EmploymentService
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +46,13 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
 
         arguments?.getInt("jobId")?.let { getDetail(it) }
         binding.state.text = arguments?.getString("state")
+        Log.d("employmentDetail", "text : ${binding.state.text}" )
+        if(binding.state.text.equals("승인거절")){
+            Log.d("employmentDetail", "state : ${binding.state.text}" )
+            arguments?.getString("comments")?.let { getRejectReason(it) }
+
+        }
+
         changeStateBackground()
 
         binding.deleteBtn.setOnClickListener {
@@ -60,6 +69,32 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         return view
     }
 
+    // 거절 사유 다이얼로그 제공
+    private fun getRejectReason(comments : String) {
+        dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.popup_enterprise_emp_reject)
+        arguments?.getInt("jobId")?.let { showRejectPopup(it, comments) }
+    }
+
+    private fun showRejectPopup(id : Int, comments: String){
+        dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val commentsTv : TextView = dialog.findViewById(R.id.rejectComments)
+        commentsTv.text = comments
+
+        val deleteBtn: AppCompatButton = dialog.findViewById(R.id.deleteBtn)
+        deleteBtn.setOnClickListener {
+                dialog.dismiss()
+        }
+
+
+        val closeBtn: ImageView = dialog.findViewById(R.id.closeBtn)
+        closeBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
 
     private fun changeStateBackground() {
         val stateBackground: GradientDrawable = binding.state.background as GradientDrawable
@@ -176,6 +211,7 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
 
 
         // 업체현황
+        Glide.with(requireActivity()).load(result.companyImage).into(binding.companyImage)
         binding.companyNameValue.text = result.name
         binding.ceoValue.text = result.ceo
         binding.addressValue.text = result.address
