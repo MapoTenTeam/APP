@@ -81,43 +81,43 @@ class Employment_01_02 : Fragment() {
         listOfCareer.clear()
         listOfJob.clear()
         listOfPlace.clear()
-        setupSpinnerCareer()
-        setupSpinnerJob()
-        setupSpinnerPlace()
+//        setupSpinnerCareer()
+//        setupSpinnerJob()
+//        setupSpinnerPlace()
     }
 
-    private fun setupSpinnerCareer() {
-        val careers = resources.getStringArray(R.array.employ_array_career)
-
-        for (i in careers.indices) {
-            val career = SpinnerModel(careers[i])
-            listOfCareer.add(career)
-        }
-        spinnerAdapterCareer = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfCareer)
-        binding.employCareer.adapter = spinnerAdapterCareer
-    }
-
-    private fun setupSpinnerJob() {
-        val jobs = resources.getStringArray(R.array.employ_array_job)
-
-        for (i in jobs.indices) {
-            val job = SpinnerModel(jobs[i])
-            listOfJob.add(job)
-        }
-        spinnerAdapterJob = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfJob)
-        binding.employJob.adapter = spinnerAdapterJob
-    }
-
-    private fun setupSpinnerPlace() {
-        val places = resources.getStringArray(R.array.employ_array_country)
-
-        for (i in places.indices) {
-            val place = SpinnerModel(places[i])
-            listOfPlace.add(place)
-        }
-        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
-        binding.placeOfWork.adapter = spinnerAdapterPlace
-    }
+//    private fun setupSpinnerCareer() {
+//        val careers = resources.getStringArray(R.array.employ_array_career)
+//
+//        for (i in careers.indices) {
+//            val career = SpinnerModel(careers[i])
+//            listOfCareer.add(career)
+//        }
+//        spinnerAdapterCareer = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfCareer)
+//        binding.employCareer.adapter = spinnerAdapterCareer
+//    }
+//
+//    private fun setupSpinnerJob() {
+//        val jobs = resources.getStringArray(R.array.employ_array_job)
+//
+//        for (i in jobs.indices) {
+//            val job = SpinnerModel(jobs[i])
+//            listOfJob.add(job)
+//        }
+//        spinnerAdapterJob = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfJob)
+//        binding.employJob.adapter = spinnerAdapterJob
+//    }
+//
+//    private fun setupSpinnerPlace() {
+//        val places = resources.getStringArray(R.array.employ_array_country)
+//
+//        for (i in places.indices) {
+//            val place = SpinnerModel(places[i])
+//            listOfPlace.add(place)
+//        }
+//        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
+//        binding.placeOfWork.adapter = spinnerAdapterPlace
+//    }
 
 
     private fun loading(isLoading: Boolean) {

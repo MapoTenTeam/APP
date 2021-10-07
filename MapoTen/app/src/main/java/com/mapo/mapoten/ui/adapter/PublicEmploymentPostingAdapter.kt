@@ -48,7 +48,7 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val date: TextView = view.findViewById(R.id.date)
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
         private val dDay: TextView = view.findViewById(R.id.dDay)
-        private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
+        //private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
         private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
 
 

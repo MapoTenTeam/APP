@@ -79,20 +79,20 @@ class Employment_01_01 : Fragment() {
         getAllPosting(1, "")
 
         listOfPlace.clear()
-        setupSpinnerPlace()
+        //setupSpinnerPlace()
 
     }
 
-    private fun setupSpinnerPlace() {
-        val places = resources.getStringArray(R.array.employ_array_country)
-
-        for (i in places.indices) {
-            val place = SpinnerModel(places[i])
-            listOfPlace.add(place)
-        }
-        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
-        binding.placeOfWork.adapter = spinnerAdapterPlace
-    }
+//    private fun setupSpinnerPlace() {
+//        val places = resources.getStringArray(R.array.employ_array_country)
+//
+//        for (i in places.indices) {
+//            val place = SpinnerModel(places[i])
+//            listOfPlace.add(place)
+//        }
+//        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
+//        binding.placeOfWork.adapter = spinnerAdapterPlace
+//    }
 
 
     private fun loading(isLoading: Boolean) {
