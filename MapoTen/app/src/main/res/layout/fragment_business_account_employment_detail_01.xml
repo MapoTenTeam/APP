@@ -701,7 +701,7 @@
                         android:id="@+id/deleteBtn"
                         android:layout_width="80dp"
                         android:layout_height="@dimen/size_24"
-                        android:background="@drawable/bg_spinner"
+                        android:background="@android:color/transparent"
                         android:text="삭제하기"
                         android:layout_gravity="right"
                         android:textColor="@color/text_middleGrey"
