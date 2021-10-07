@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitBuilder {
 
     private val userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoiMTEiLCJpYXQiOjE2MzI4ODI5OTJ9.qZWawMCoY9198_D0ZE1kacZwLFfixyMQ7e4Dho8Wgc0"
-    private val businessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9wdSIsImlhdCI6MTYzMzU3MTI1MX0.008IlL24RjKPhJ0PtONfuGFdP2uhVBu7w8L4j7Dk3wE"
+    private val businessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9wdSIsImlhdCI6MTYzMzU5MTgyN30.M-aQWvEgvqvLjHGwGYnfr248oNIwKECTWIqjzRXHb7w"
     private val businessToken2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9nZSIsImlhdCI6MTYzMzM5NDgzN30.jwne1Ip2yQoc-FLOM5we4lnACXZLV7KgsAUbqIMInJM"
     private val client = OkHttpClient.Builder().apply {
         addInterceptor(MyInterceptor(businessToken))

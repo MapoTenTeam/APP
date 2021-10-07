@@ -49,7 +49,9 @@ class EmploymentPostingAdapter(private val context: Context) :
 
         @SuppressLint("SetTextI18n")
         fun bind(item: SelectJobEnterpriseItem) {
-            title.text = item.title
+            title.text = if (item.title.length > 14) {
+                item.title.substring(0, 14) + "..."
+            } else item.title
             state.text = item.jobStat
             comments.text = if (item.comments != null) "비고: " + item.comments else ""
             createAt.text = "작성일: " + item.createAt.substring(0, 19)

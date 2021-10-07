@@ -176,11 +176,11 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
 
 
         // 업체현황
-//        binding.companyNameValue.text = result.name
-//        binding.ceoValue.text = result.ceo
-//        binding.addressValue.text = result.address
-//        binding.sectorValue.text = result.sector
-        //binding.quaternionValue.text = result.quaternion
+        binding.companyNameValue.text = result.name
+        binding.ceoValue.text = result.ceo
+        binding.addressValue.text = result.address
+        binding.sectorValue.text = result.sector
+        binding.quaternionValue.text = result.quaternion
 
         // 근로조건
         binding.paycdValue.text = result.paycd
