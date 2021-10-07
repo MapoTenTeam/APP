@@ -12,7 +12,7 @@ data class SignUpRequest(
     @SerializedName("PASSWORD")
     val password: String,
     @SerializedName("EMAIL_VRFCT")
-    val emailVrfct: Boolean,
+    val emailVrfct: Int,
     @SerializedName("TERMS")
-    val termAgree: Boolean
+    val termAgree: Int
     )

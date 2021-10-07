@@ -83,9 +83,15 @@ class Login_02_01 : Fragment() {
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
+                if (!emailRequiredFieldChecker())
+                return@setOnClickListener
+                if (!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
                 if (!pwdRequiredFieldChecker())
                     return@setOnClickListener
-                if (!emailRequiredFieldChecker())
+                if (!pwdCnfRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!termCheck())
                     return@setOnClickListener
                 signUp()
 
@@ -225,13 +231,13 @@ class Login_02_01 : Fragment() {
     private fun signUp() {
         with(binding) {
             Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
-            val signUpService = userService.requestSignUp(
+            val signUpService = userService.requestPersonalSignUp(SignUpRequest(
                 nameEditText.text.toString(),
                 idEditText.text.toString(),
                 emailEditText.text.toString(),
                 pwdEditText.text.toString(),
                 emailAuthck,
-                termAgreeck
+                termAgreeck)
             )
 
             signUpService.enqueue(object : Callback<SignUpResponse> {
@@ -377,6 +383,18 @@ class Login_02_01 : Fragment() {
             }
         }
     }
+    private fun pwdCnfRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = pwdConfirmEditText.text.toString()
+            return if (value.isEmpty()) {
+                pwdConfirmTiL.error = "비밀번호 확인을 입력하세요."
+                false
+            } else {
+                pwdConfirmTiL.error = null
+                true
+            }
+        }
+    }
     // <-------------------------------------------------------------------------------->
 
     // 인증번호 확인
@@ -405,6 +423,36 @@ class Login_02_01 : Fragment() {
                 tvTos1.isChecked = false
                 tvTos2.isChecked = false
                 termAgreeck = 0
+            }
+        }
+    }
+    private fun termCheck() : Boolean{
+        with(binding) {
+            return if (allCheckBox.isChecked) {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
+                termAgreeck = 1
+                true
+            } else if(tvTos1.isChecked && tvTos2.isChecked){
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
+                termAgreeck = 1
+                true
+            } else if (!tvTos1.isChecked && !tvTos2.isChecked){
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.VISIBLE
+                termAgreeck = 0
+                false
+            } else if (!tvTos1.isChecked){
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.GONE
+                termAgreeck = 0
+                false
+            } else {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.VISIBLE
+                termAgreeck = 0
+                false
             }
         }
     }

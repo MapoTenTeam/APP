@@ -32,7 +32,7 @@
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_01_02.xml" value="0.13333333333333333" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_01_03.xml" value="0.1" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_02_01.xml" value="0.1" />
-        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_02_02.xml" value="0.22" />
+        <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/fragment_login_02_02.xml" value="0.25" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/popup_error_dialog.xml" value="0.22" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/popup_find_id_dialog.xml" value="0.25" />
         <entry key="..\:/Programming/mapoten_project/APP/MapoTen/app/src/main/res/layout/popup_signup_complete.xml" value="0.20364583333333333" />
@@ -69,4 +69,11 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
 </project>

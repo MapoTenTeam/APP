@@ -28,15 +28,15 @@ class Login_02_02 : Fragment() {
 
     lateinit var userService: UserService
     var code: String = ""
-    private var termAgreeck: Int= 0
-    private var emailAuthck: Int= 0
+    private var termAgreeck: Int = 0
+    private var emailAuthck: Int = 0
     private lateinit var dialog: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = FragmentLogin0202Binding.inflate(inflater,container,false)
+        _binding = FragmentLogin0202Binding.inflate(inflater, container, false)
 
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
 
@@ -50,12 +50,6 @@ class Login_02_02 : Fragment() {
                 duplicateId()
             }
 
-            btnCompanyNumberDoubleCheck.setOnClickListener {
-                if (!bizrnoRequiredFieldChecker())
-                    return@setOnClickListener
-                duplicateBizrno()
-
-            }
 
             btnEmailDoubleCheck.setOnClickListener {
                 if (!emailRequiredFieldChecker())
@@ -71,14 +65,17 @@ class Login_02_02 : Fragment() {
                 sendEmailAuth()
             }
             btnConfirm.setOnClickListener {
-                if(!authenticationRequiredFieldChecker())
+                if (!authenticationRequiredFieldChecker())
                     return@setOnClickListener
             }
-
             btnCompanyNumberDoubleCheck.setOnClickListener {
-                if (!bizRequiredFieldChecker())
+                if (!bizrnoRequiredFieldChecker())
                     return@setOnClickListener
+                duplicateBizrno()
 
+            }
+            allCheckBox.setOnClickListener {
+                setAllCheck()
             }
 
             btnSignup.setOnClickListener {
@@ -86,9 +83,19 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
+                if (!emailRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
                 if (!pwdRequiredFieldChecker())
                     return@setOnClickListener
-                if (!emailRequiredFieldChecker())
+                if (!pwdCnfRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!bizrnoRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!companyRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!termCheck())
                     return@setOnClickListener
 
             }
@@ -105,6 +112,7 @@ class Login_02_02 : Fragment() {
         return binding.root
 
     }
+
     // 아이디 중복확인
     private fun duplicateId() {
         with(binding) {
@@ -226,7 +234,9 @@ class Login_02_02 : Fragment() {
     // 사업자등록번호 중복확인
     private fun duplicateBizrno() {
         with(binding) {
-            val duplicateBizrno = userService.isDuplicateBizrno(companyNumberTiL.editText!!.text.toString())
+            val duplicateBizrno =
+                userService.isDuplicateBizrno(companyNumberEditText.text.toString())
+
 
             duplicateBizrno.enqueue(object : Callback<DuplicateInfoItem> {
                 override fun onResponse(
@@ -234,6 +244,7 @@ class Login_02_02 : Fragment() {
                     response: Response<DuplicateInfoItem>,
                 ) {
                     if (response.isSuccessful) {
+                        Log.d("TAG", "중복확인 ${response.body()?.isDuplicate}")
                         when (response.body()?.isDuplicate) {
                             false -> {
                                 companyNumberTiL.helperText = "가입 가능한 사업자등록번호 입니다."
@@ -258,7 +269,39 @@ class Login_02_02 : Fragment() {
         }
     }
 
-// <------------------------------------ 글자 수 체크 ------------------------------------>
+    // 약관 전체동의
+    private fun setAllCheck(){
+        with(binding) {
+            if (allCheckBox.isChecked) {
+                tvTos1.isChecked = true
+                tvTos2.isChecked = true
+            } else {
+                tvTos1.isChecked = false
+                tvTos2.isChecked = false
+            }
+        }
+    }
+    private fun termCheck() : Boolean{
+        with(binding) {
+            return if (allCheckBox.isChecked) {
+                termAgreeck = 1
+                true
+            } else if(tvTos1.isChecked && tvTos2.isChecked){
+                termAgreeck = 1
+               true
+            } else if (!tvTos1.isChecked){
+                tosError1.visibility = View.INVISIBLE
+                termAgreeck = 0
+                false
+            } else if (!tvTos2.isChecked){
+                tosError2.visibility = View.INVISIBLE
+                termAgreeck = 0
+                false
+            } else false
+        }
+    }
+
+    // <------------------------------------ 글자 수 체크 ------------------------------------>
     private fun pwdLengthChecker() {
         with(binding) {
             pwdEditText.addTextChangedListener(object : TextWatcher {
@@ -320,7 +363,6 @@ class Login_02_02 : Fragment() {
             }
         }
     }
-
     private fun idRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = idTiL.editText?.text.toString()
@@ -333,20 +375,6 @@ class Login_02_02 : Fragment() {
             }
         }
     }
-
-    private fun bizrnoRequiredFieldChecker(): Boolean {
-        with(binding) {
-            val value: String = companyNumberTiL.editText?.text.toString()
-            return if (value.isEmpty()) {
-                companyNumberTiL.error = "사업자 등록번호를 입력하세요."
-                false
-            } else {
-                companyNumberTiL.error = null
-                true
-            }
-        }
-    }
-
     private fun emailRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = emailTiL.editText?.text.toString()
@@ -371,10 +399,9 @@ class Login_02_02 : Fragment() {
             }
         }
     }
-
     private fun pwdRequiredFieldChecker(): Boolean {
         with(binding) {
-            val value: String = pwdTiL.editText?.text.toString()
+            val value: String = pwdEditText.text.toString()
             return if (value.isEmpty()) {
                 pwdTiL.error = "비밀번호를 입력하세요."
                 false
@@ -384,12 +411,23 @@ class Login_02_02 : Fragment() {
             }
         }
     }
-
-    private fun bizRequiredFieldChecker(): Boolean {
+    private fun pwdCnfRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = pwdConfirmEditText.text.toString()
+            return if (value.isEmpty()) {
+                pwdConfirmTiL.error = "비밀번호 확인을 입력하세요."
+                false
+            } else {
+                pwdConfirmTiL.error = null
+                true
+            }
+        }
+    }
+    private fun bizrnoRequiredFieldChecker(): Boolean {
         with(binding) {
             val value: String = companyNumberTiL.editText?.text.toString()
             return if (value.isEmpty()) {
-                companyNumberTiL.error = "사업자등록번호를 입력하세요."
+                companyNumberTiL.error = "사업자 등록번호를 입력하세요."
                 false
             } else {
                 companyNumberTiL.error = null
@@ -397,5 +435,18 @@ class Login_02_02 : Fragment() {
             }
         }
     }
+    private fun companyRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = companyNameEditText.text.toString()
+            return if (value.isEmpty()) {
+                companyNameTiL.error = "사업체명을 입력하세요."
+                false
+            } else {
+                companyNameTiL.error = null
+                true
+            }
+        }
+    }
+
 
 }
