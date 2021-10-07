@@ -48,15 +48,21 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val date: TextView = view.findViewById(R.id.date)
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
         private val dDay: TextView = view.findViewById(R.id.dDay)
+
         //private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
-        private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
+        private val closedBg: LinearLayout = view.findViewById(R.id.closedPosting)
 
 
         fun bind(item: GeneralEmpPostingDTO) {
             title.text = item.title
             name.text = item.companyName
             place.text = item.address
-            date.text = "${item.endReception.substring(0, 4)}년 ${item.endReception.substring(5, 7)}월 ${item.endReception.substring(8, 10)}일 모집마감!"
+            date.text = "${item.endReception.substring(0, 4)}년 ${
+                item.endReception.substring(
+                    5,
+                    7
+                )
+            }월 ${item.endReception.substring(8, 10)}일 모집마감!"
             dDay.text = getDDay(item.endReception)
             if (item.companyImage != null) {
                 Glide.with(context).load(item.companyImage).transform(
@@ -73,7 +79,11 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
 
             itemView.setOnClickListener {
 
-                val bundle = bundleOf("type" to 0, "jobId" to item.jobId)
+                val bundle = bundleOf(
+                    "type" to 0,
+                    "jobId" to item.jobId,
+                    "dDay" to getDDay(item.endReception)
+                )
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
             }
         }
@@ -87,7 +97,7 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
 
             return if (day.toString() == "0") {
                 "D-day"
-            } else if(day < 0) {
+            } else if (day < 0) {
                 closedBg.visibility = View.VISIBLE
                 "closed"
             } else {

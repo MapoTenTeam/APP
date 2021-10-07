@@ -47,7 +47,7 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.date)
         private val dDay: TextView = view.findViewById(R.id.dDay)
-        private val closedBg : LinearLayout = view.findViewById(R.id.closedPosting)
+        private val closedBg: LinearLayout = view.findViewById(R.id.closedPosting)
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GeneralEmpPostingDTO) {
@@ -83,7 +83,11 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             }
 
             itemView.setOnClickListener {
-                val bundle = bundleOf("type" to 1, "jobId" to item.jobId)
+                val bundle = bundleOf(
+                    "type" to 1,
+                    "jobId" to item.jobId,
+                    "dDay" to getDDay(item.endReception)
+                )
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
             }
         }
@@ -97,7 +101,7 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
 
             return if (day.toString() == "0") {
                 "D-day"
-            } else if(day < 0) {
+            } else if (day < 0) {
                 closedBg.visibility = View.VISIBLE
                 "closed"
             } else {

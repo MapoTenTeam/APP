@@ -49,7 +49,7 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         binding.deleteBtn.setOnClickListener {
             dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.delete_guide_popup)
+            dialog.setContentView(R.layout.popup_delete_guide)
             showDialog(arguments?.getInt("jobId"))
         }
 

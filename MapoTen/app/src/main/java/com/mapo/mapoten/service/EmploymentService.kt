@@ -34,4 +34,12 @@ interface EmploymentService {
 
     @DELETE("job/enterprise/delete/{jobid}")
     fun deleteMyJobPosting(@Path("jobid") jobId: Int): Call<Objects>
+
+
+    // bookmark
+    @POST("bookmarks/{jobid}")
+    fun registerBookmark(@Field("jobid") id : Int) : Call<Objects>
+
+    @PATCH("bookmarks/{bookid}")
+    fun cancelBookmark(@Field("jobid") id : Int) : Call<Objects>
 }
