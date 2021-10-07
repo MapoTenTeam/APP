@@ -23,6 +23,7 @@ class Account_01 : Fragment() {
     lateinit var binding: FragmentAccount01Binding
     lateinit var service : AccountManageService
     private var userName :String = ""
+    private var myProfile :PersonalProfile? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?
     ): View? {
@@ -41,7 +42,16 @@ class Account_01 : Fragment() {
         }
 
         view.findViewById<View>(R.id.info_button).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.account_01_01)
+            val bundle = bundleOf(
+                "mber_nm" to myProfile?.data?.MBER_NM,
+                "mber_id" to myProfile?.data?.MBER_ID,
+                "mber_email" to myProfile?.data?.MBER_EMAIL_ADRES,
+                "mobile" to myProfile?.data?.MBTLNUM,
+                "address" to myProfile?.data?.ADRES,
+                "detailad" to myProfile?.data?.DETAIL_ADRES,
+
+            )
+            Navigation.findNavController(view).navigate(R.id.accountProfileView, bundle)
         } //회원정보 화면으로 이동
         view.findViewById<View>(R.id.resume_button).setOnClickListener {
             val bundle = bundleOf("name" to userName)
@@ -59,16 +69,19 @@ class Account_01 : Fragment() {
 
     private fun getUserInfo() {
         service =RetrofitBuilder.getInstance().create(AccountManageService::class.java)
+
         service.getUserProfile().enqueue(object : Callback<PersonalProfile>{
             override fun onResponse(
                 call: Call<PersonalProfile>,
                 response: Response<PersonalProfile>
             ) {
                 if(response.isSuccessful){
-                    val myProfile = response.body()
+                    myProfile = response.body()
                     userName = myProfile?.data?.MBER_NM.toString()
                     binding.nameMyPage.setText(userName)
                     binding.emailMyPage.setText(myProfile?.data?.MBER_EMAIL_ADRES)
+
+
                 }
             }
 
@@ -78,4 +91,41 @@ class Account_01 : Fragment() {
         })
 
     }
+
+
+   /* private fun checkStatus(status: Int?){
+        when (status) {
+            0 -> {
+                //프로필 없음
+                binding.businessProfileButton.setOnClickListener {
+                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01)
+                }
+
+            }
+            1 -> {
+                //프로필 있음
+                binding.businessProfileButton.setOnClickListener {
+                    val bundle = bundleOf(
+                        "cmpny_nm" to profile?.CMPNY_NM,
+                        "bizrno" to profile?.BIZRNO,
+                        "ceo" to profile?.CEO,
+                        "address" to profile?.ADRES,
+                        "detailad" to profile?.DETAIL_ADRES,
+                        "category" to profile?.INDUTY,
+                        "empNum" to profile?.NMBR_WRKRS,
+                        "webSite" to profile?.WEB_ADRES,
+                        "cmpny_email" to profile?.CEO_EMAIL_ADRES,
+                        "cmpny_img" to profile?.CMPNY_IM,
+                        "approval" to profile?.BSNNM_APRVL
+                    )
+                    Log.d("bundle", "이미지주소!! : ${profile?.CMPNY_IM}")
+                    Navigation.findNavController(binding.root).navigate(R.id.businessProfileView, bundle)
+                }
+
+            }
+            else -> {
+                return
+            }
+        }
+    }*/
 }

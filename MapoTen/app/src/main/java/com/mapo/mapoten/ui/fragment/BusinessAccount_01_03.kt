@@ -72,9 +72,11 @@ class BusinessAccount_01_03 : Fragment() {
         //현재 비밀번호 일치하고,
         result = checkCurrentPw()
         if (!result){
+            binding.passwordLayout.error = "현재 비밀번호가 일치하지 않습니다."
             Toast.makeText(context, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
 
         }else{
+            checkNewPw()
             Toast.makeText(context, "현재 비밀번호가 일치합니다.", Toast.LENGTH_SHORT).show()
         }
         // 새 비번 일치하고, 새비번이 비어있지 않으면 true
@@ -114,17 +116,20 @@ class BusinessAccount_01_03 : Fragment() {
 
     }*/
 
+    private fun checkNewPw() {
+
+    }
+
     private fun checkCurrentPw() :Boolean {
         //var result = false
-        val password = CheckCurrentPW(binding.password.text.toString())
+        val password = binding.password.text.toString()
       //  val password = binding.password.text.toString()
         Log.d("password", "현재비번 : $password")
         service.checkCurrentPw(password).enqueue(object : Callback<ImageResponse>{
             override fun onResponse(call: Call<ImageResponse>,response: Response<ImageResponse>) {
 
                 if (response.isSuccessful){
-                    val a = response.message()
-                    Log.d("password", "현재 비번 확인 : $a")
+                    Log.d("password", "현재 비번 확인 : ${response.body()!!.message}")
                 //    Toast.makeText(requireContext(), "현재 비밀번호 확인 완료", Toast.LENGTH_SHORT).show()
                     result = true
                 }
