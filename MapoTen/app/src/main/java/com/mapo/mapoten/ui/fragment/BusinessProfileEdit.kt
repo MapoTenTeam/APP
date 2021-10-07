@@ -59,7 +59,7 @@ class BusinessProfileEdit : Fragment() {
         }
 
         initiateLogoUpload()
-        initiateFileUpload()
+       // initiateFileUpload()
 
         binding.businessNameText.setText(arguments?.getString("cmpny_nm"))
         binding.businessNumberText.setText(arguments?.getString("bizrno"))
@@ -120,9 +120,9 @@ class BusinessProfileEdit : Fragment() {
                 val selectedFile: Uri? = data?.data
                 if (selectedFile != null) {
                     val file = selectedFile!!
-                    binding.fileView.text = file.encodedPath
-                    binding.iconFileUpload.visibility = GONE
-                    binding.fileView.visibility = VISIBLE
+                  //  binding.fileView.text = file.encodedPath
+                //    binding.iconFileUpload.visibility = GONE
+                  //  binding.fileView.visibility = VISIBLE
                 }
             }
 
@@ -179,7 +179,7 @@ class BusinessProfileEdit : Fragment() {
     }
 
 
-    private fun initiateFileUpload() {
+   /* private fun initiateFileUpload() {
         binding.iconFileUpload.setOnClickListener {
             when {
                 ContextCompat.checkSelfPermission(
@@ -206,7 +206,7 @@ class BusinessProfileEdit : Fragment() {
                 }
             }
         }
-    }
+    }*/
 
     private fun navigateFiles() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

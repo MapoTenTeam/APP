@@ -28,9 +28,9 @@ class BusinessAccount_01_02 : Fragment() {
     ): View? {
         binding= FragmentBusinessAccount0102Binding.inflate(inflater, container, false)
         val view = binding.root
-
-        init()
         service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
+        init()
+
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()

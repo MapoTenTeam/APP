@@ -291,9 +291,7 @@
                         android:id="@+id/businessLogo"
                         android:layout_width="match_parent"
                         android:layout_height="190sp"
-
                         android:background="@drawable/input_stroke_radius30"
-                        app:layout_constraintBottom_toTopOf="@+id/text_businessFile"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_businesslogo" />
@@ -309,7 +307,7 @@
                         app:layout_constraintStart_toStartOf="@+id/businessLogo"
                         app:layout_constraintTop_toTopOf="@+id/businessLogo" />
 
-                    <TextView
+                <!--    <TextView
                         android:id="@+id/text_businessFile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -341,9 +339,9 @@
                         app:layout_constraintEnd_toEndOf="@+id/businessFile"
                         app:layout_constraintBottom_toBottomOf="@+id/businessFile"
                         android:src="@drawable/icon_image_upload"
-                        />
+                        />-->
 
-                    <TextView
+                 <!--   <TextView
                         android:id="@+id/fileView"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -352,7 +350,7 @@
                         app:layout_constraintTop_toTopOf="@+id/businessFile"
                         app:layout_constraintStart_toStartOf="@+id/businessFile"
                         app:layout_constraintEnd_toEndOf="@+id/businessFile"
-                        app:layout_constraintBottom_toBottomOf="@+id/businessFile"/>
+                        app:layout_constraintBottom_toBottomOf="@+id/businessFile"/>-->
 
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -367,7 +365,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessFile"
+                        app:layout_constraintTop_toBottomOf="@+id/businessLogo"
                         tools:ignore="TextContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
