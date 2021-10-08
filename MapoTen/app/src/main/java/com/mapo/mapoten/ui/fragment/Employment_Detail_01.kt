@@ -3,7 +3,8 @@ package com.mapo.mapoten.ui.fragment
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.GradientDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,30 +24,48 @@ import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
 import com.mapo.mapoten.databinding.FragmentEmploymentDetail01Binding
 import com.mapo.mapoten.service.EmploymentService
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapView
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.properties.Delegates
 
-class Employment_Detail_01 : Fragment() {
+class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
     lateinit var binding: FragmentEmploymentDetail01Binding
     lateinit var employmentService: EmploymentService
     var type by Delegates.notNull<Int>()
     private lateinit var dialog: Dialog
+
+    private lateinit var mapView : MapView
+    private lateinit var geocoder: Geocoder
+    private lateinit var geoLatLng : LatLng
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentEmploymentDetail01Binding.inflate(inflater, container, false)
         val view = binding.root
 
+
+        geocoder = Geocoder(requireContext())
         type = arguments?.getInt("type")!!
         val id = arguments?.getInt("jobId")
+
+
+        mapView = binding.mapView
+        mapView.onCreate(savedInstanceState)
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -82,6 +101,40 @@ class Employment_Detail_01 : Fragment() {
     }
 
 
+    private fun getLatLng(address: String?) {
+
+        var list : ArrayList<Address>? = null
+
+        val test = "서울특별시 은평구 응암동 응암로22길 9-4"
+        try {
+            list = geocoder.getFromLocationName(test, 10) as ArrayList<Address>?
+
+        }catch (e : IOException) {
+            e.printStackTrace()
+            Log.d("map", "error")
+        }
+
+        if(list!=null) {
+            if(list.size == 0) {
+                Log.d("map", "list size : 0")
+
+            }else {
+                val lat = list[0].latitude
+                val long = list[0].longitude
+
+                Log.d("map", "list : ${list[0].latitude}")
+                Log.d("map", "long : ${list[0].longitude}")
+
+
+                geoLatLng = LatLng(lat, long)
+                Log.d("map", "list : ${geoLatLng}")
+
+                mapView.getMapAsync(this)
+
+            }
+        }
+    }
+
     private fun loading(isLoading: Boolean) {
         if (isLoading) binding.loading.visibility = View.VISIBLE
         else {
@@ -113,6 +166,7 @@ class Employment_Detail_01 : Fragment() {
                         requireActivity().runOnUiThread {
                             loading(false)
                             response.body()?.data?.let { setData(it) }
+                            getLatLng(response.body()?.data?.address)
                         }
                     }
 
@@ -240,4 +294,59 @@ class Employment_Detail_01 : Fragment() {
             dialog.dismiss()
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mapView = view.findViewById(R.id.mapView)
+        mapView.onCreate(savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onMapReady(naverMap: NaverMap) {
+
+        Log.d("map", "onMapReady()...$geoLatLng")
+
+        val marker = Marker()
+        marker.position = geoLatLng
+        marker.map = naverMap
+
+        val cameraUpdate = CameraUpdate.scrollTo(geoLatLng)
+        naverMap.moveCamera(cameraUpdate)
+
+    }
+
 }
