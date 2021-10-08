@@ -23,20 +23,14 @@ interface UserService {
         @Body loginRequest: LoginRequest
     ) : Call<LoginResponse>
 
-//    @POST("user/personal/signup")
-//    fun requestSignUp(
-//        @Body signUpRequest: SignUpRequest
-//    ) : Call<SignUpResponse>
-
-    @FormUrlEncoded
     @POST("user/personal/signup")
-    fun requestSignUp(
-        @Field("MBER_NM") name:String,
-        @Field("MBER_ID") userId:String,
-        @Field("MBER_EMAIL_ADRES") email:String,
-        @Field("PASSWORD") userPw:String,
-        @Field("EMAIL_VRFCT") emailVrfct:Int,
-        @Field("TERMS") terms:Int,
+    fun requestPersonalSignUp(
+        @Body authCredentialsPersonalDto: AuthCredentialsPersonalDto
+    ) : Call<SignUpResponse>
+
+    @POST("user/enterprise/signup")
+    fun requestEnterpriseSignUp(
+        @Body authCredentialsEnterpriseDto: AuthCredentialsEnterpriseDto
     ) : Call<SignUpResponse>
 
     @POST("user/find/id")
@@ -48,3 +42,4 @@ interface UserService {
 
 
 }
+

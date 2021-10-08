@@ -39,7 +39,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/information_signUp_fail" />
+        android:text="@string/sign_up_complete" />
 
 
     <Button

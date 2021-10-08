@@ -292,6 +292,14 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tos_error1"
+                style="@style/tos_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="@string/tos_error1"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -322,6 +330,14 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tos_error2"
+                style="@style/tos_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="@string/tos_error2"
+                android:visibility="gone" />
 
         </LinearLayout>
 
