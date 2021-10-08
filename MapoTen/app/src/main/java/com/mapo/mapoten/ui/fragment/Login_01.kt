@@ -129,6 +129,7 @@ class Login_01 : Fragment() {
                             Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
                         if (token != null) {
                             AppPrefs.saveToken(requireActivity(), token)
+                            AppPrefs.saveUserType(requireActivity(), response.body()!!.user_se)
                         }
                         findNavController().navigate(R.id.home_01)
                     }
