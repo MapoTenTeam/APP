@@ -25,6 +25,9 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.DigestException
+import java.security.MessageDigest
+import java.time.LocalDate
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -78,44 +81,75 @@ class Login_01 : Fragment() {
 
     }
 
-
-    // <-------------------------- 필수 입력 체크 -------------------------->
-    private fun idRequiredFieldChecker(): Boolean {
-        with(binding) {
-            val value: String = idEditTextInputLayout.editText?.text.toString()
-            return if (value.isEmpty()) {
-                idEditTextInputLayout.error = "아이디를 입력하세요."
-                false
-            } else {
-                idEditTextInputLayout.error = null
-                true
-            }
+    fun hashSHA256(msg: String): String {
+        val hash: ByteArray
+        try {
+            val md = MessageDigest.getInstance("SHA-256")
+            md.update(msg.toByteArray())
+            md.update(salt.toByteArray())
+            hash = md.digest()
+        } catch (e: CloneNotSupportedException) {
+            throw DigestException("couldn't make digest of partial content");
         }
+
+        return bytesToHex(hash)
     }
 
-    private fun pwdRequiredFieldChecker(): Boolean {
-        with(binding) {
-            val value: String = pwdEditTextInputLayout.editText?.text.toString()
-            return if (value.isEmpty()) {
-                pwdEditTextInputLayout.error = "비밀번호를 입력하세요."
-                false
-            } else {
-                pwdEditTextInputLayout.error = null
-                true
-            }
+    private val digits = "0123456789ABCDEF"
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
         }
+        return String(hexChars)
     }
-// <-------------------------------------------------------------------->
+
+
 
 
     // 로그인
     private fun login() {
-        findNavController().navigate(R.id.home_01)
 
-//        with(binding){
-//
-//            var textId = idEditText.text.toString()
-//            var textPwd = pwdEditText.text.toString()
+        with(binding) {
+
+            var textId = idEditText.text.toString()
+            var textPwd = pwdEditText.text.toString()
+            Log.d("TAG", "클릭")
+            Log.d("TAG", "${hashSHA256(textPwd)}")
+
+            val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
+
+
+            loginService.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>,
+                ) { //정상응답이 올경우
+                    if (response.isSuccessful) {
+                        code = response.body()?.statusCode.toString()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
+                            findNavController().navigate(R.id.home_01)
+                    }
+                    else {
+                        showDialog()
+                        Toast.makeText(context,
+                                "로그인 실패",
+                                Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", "${hashSHA256(textPwd)}")
+                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
+                    }
+                }
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+            })
+
+
 //
 //            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
 //
@@ -144,9 +178,37 @@ class Login_01 : Fragment() {
 //                    Log.e("error", "통신 실패" + t.localizedMessage)
 //                }
 //            })
-//
-//        }
+
+        }
     }
+
+    // <-------------------------- 필수 입력 체크 -------------------------->
+    private fun idRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = idEditTextInputLayout.editText?.text.toString()
+            return if (value.isEmpty()) {
+                idEditTextInputLayout.error = "아이디를 입력하세요."
+                false
+            } else {
+                idEditTextInputLayout.error = null
+                true
+            }
+        }
+    }
+
+    private fun pwdRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = pwdEditTextInputLayout.editText?.text.toString()
+            return if (value.isEmpty()) {
+                pwdEditTextInputLayout.error = "비밀번호를 입력하세요."
+                false
+            } else {
+                pwdEditTextInputLayout.error = null
+                true
+            }
+        }
+    }
+
 
     // dialog
     private fun showDialog() {

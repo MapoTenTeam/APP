@@ -22,11 +22,15 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.DigestException
+import java.security.MessageDigest
 import java.util.regex.Pattern
+const val salt = "rHQOMrYQAJp8+XICMU2SP+YTC8YkRnWEj825pffj0GE"
 
 class Login_02_01 : Fragment() {
     private var _binding: FragmentLogin0201Binding? = null
     private val binding get() = _binding!!
+
 
     lateinit var userService: UserService
     var code: String = ""
@@ -227,15 +231,43 @@ class Login_02_01 : Fragment() {
         }
     }
 
+    fun hashSHA256(msg: String): String {
+        val hash: ByteArray
+        try {
+            val md = MessageDigest.getInstance("SHA-256")
+            md.update(msg.toByteArray())
+            md.update(salt.toByteArray())
+            hash = md.digest()
+        } catch (e: CloneNotSupportedException) {
+            throw DigestException("couldn't make digest of partial content");
+        }
+
+        return bytesToHex(hash)
+    }
+
+    private val digits = "0123456789ABCDEF"
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
+        }
+        return String(hexChars)
+    }
+
     // 회원가입
     private fun signUp() {
         with(binding) {
+            var textPwd = pwdEditText.text.toString()
+
             Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
             val signUpService = userService.requestPersonalSignUp(AuthCredentialsPersonalDto(
                 nameEditText.text.toString(),
                 idEditText.text.toString(),
                 emailEditText.text.toString(),
-                pwdEditText.text.toString(),
+                hashSHA256(textPwd),
                 emailAuthck,
                 termAgreeck)
             )
