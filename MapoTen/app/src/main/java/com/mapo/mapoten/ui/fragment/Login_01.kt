@@ -3,18 +3,13 @@ package com.mapo.mapoten.ui.fragment
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
@@ -25,6 +20,8 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.DigestException
+import java.security.MessageDigest
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -33,12 +30,12 @@ class Login_01 : Fragment() {
     var code: String = ""
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
+    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
 
         _binding = FragmentLogin01Binding.inflate(inflater, container, false)
 
@@ -78,6 +75,69 @@ class Login_01 : Fragment() {
 
     }
 
+    // 암호화
+    fun hashSHA256(msg: String): String {
+        val hash: ByteArray
+        try {
+            val md = MessageDigest.getInstance("SHA-256")
+            md.update(msg.toByteArray())
+            md.update(salt.toByteArray())
+            hash = md.digest()
+        } catch (e: CloneNotSupportedException) {
+            throw DigestException("couldn't make digest of partial content");
+        }
+        return bytesToHex(hash)
+    }
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
+        }
+        return String(hexChars)
+    }
+
+    // 로그인
+    private fun login() {
+
+        with(binding) {
+
+            var textId = idEditText.text.toString()
+            var textPwd = pwdEditText.text.toString()
+            Log.d("TAG", "클릭")
+            Log.d("TAG", "${hashSHA256(textPwd)}")
+
+            val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
+            loginService.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>,
+                ) { //정상응답이 올경우
+                    if (response.isSuccessful) {
+                        code = response.body()?.statusCode.toString()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
+                            findNavController().navigate(R.id.home_01)
+                    }
+                    else {
+                        showDialog()
+                        Toast.makeText(context,
+                                "로그인 실패",
+                                Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", "${hashSHA256(textPwd)}")
+                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
+                    }
+                }
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+            })
+
+        }
+    }
 
     // <-------------------------- 필수 입력 체크 -------------------------->
     private fun idRequiredFieldChecker(): Boolean {
@@ -104,48 +164,6 @@ class Login_01 : Fragment() {
                 true
             }
         }
-    }
-// <-------------------------------------------------------------------->
-
-
-    // 로그인
-    private fun login() {
-        findNavController().navigate(R.id.home_01)
-
-//        with(binding){
-//
-//            var textId = idEditText.text.toString()
-//            var textPwd = pwdEditText.text.toString()
-//
-//            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
-//
-//
-//            loginService.enqueue(object : Callback<LoginResponse> {
-//                override fun onResponse(
-//                    call: Call<LoginResponse>,
-//                    response: Response<LoginResponse>,
-//                ) { //정상응답이 올경우
-//                    if (response.isSuccessful) {
-//                        code = response.body()?.statusCode.toString()
-//                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-//                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
-//                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
-//                            findNavController().navigate(R.id.home_01)
-//                    }
-//                    else {
-//                        showDialog()
-//                        Toast.makeText(context,
-//                                "로그인 실패",
-//                                Toast.LENGTH_SHORT).show()
-//                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
-//                    }
-//                }
-//                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
-//                    Log.e("error", "통신 실패" + t.localizedMessage)
-//                }
-//            })
-//
-//        }
     }
 
     // dialog

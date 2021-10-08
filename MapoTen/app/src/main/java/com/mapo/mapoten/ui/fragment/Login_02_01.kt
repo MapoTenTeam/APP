@@ -22,7 +22,10 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.DigestException
+import java.security.MessageDigest
 import java.util.regex.Pattern
+const val salt = "rHQOMrYQAJp8+XICMU2SP+YTC8YkRnWEj825pffj0GE"
 
 class Login_02_01 : Fragment() {
     private var _binding: FragmentLogin0201Binding? = null
@@ -33,6 +36,7 @@ class Login_02_01 : Fragment() {
     private var termAgreeck: Int= 0
     private var emailAuthck: Int= 0
     private lateinit var dialog: Dialog
+    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +46,6 @@ class Login_02_01 : Fragment() {
         _binding = FragmentLogin0201Binding.inflate(inflater, container, false)
 
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
-
 
         with(binding) {
             idLengthChecker()
@@ -83,12 +86,17 @@ class Login_02_01 : Fragment() {
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
+                if (!emailRequiredFieldChecker())
+                return@setOnClickListener
+                if (!authenticationRequiredFieldChecker())
+                    return@setOnClickListener
                 if (!pwdRequiredFieldChecker())
                     return@setOnClickListener
-                if (!emailRequiredFieldChecker())
+                if (!pwdCnfRequiredFieldChecker())
+                    return@setOnClickListener
+                if (!termCheck())
                     return@setOnClickListener
                 signUp()
-
             }
 
             tvLogin.setOnClickListener {
@@ -100,7 +108,6 @@ class Login_02_01 : Fragment() {
 
         }
         return binding.root
-
     }
 
     // 아이디 중복확인
@@ -133,7 +140,6 @@ class Login_02_01 : Fragment() {
                 override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
-
             })
         }
     }
@@ -221,17 +227,43 @@ class Login_02_01 : Fragment() {
         }
     }
 
+    // 암호화
+    fun hashSHA256(msg: String): String {
+        val hash: ByteArray
+        try {
+            val md = MessageDigest.getInstance("SHA-256")
+            md.update(msg.toByteArray())
+            md.update(salt.toByteArray())
+            hash = md.digest()
+        } catch (e: CloneNotSupportedException) {
+            throw DigestException("couldn't make digest of partial content");
+        }
+        return bytesToHex(hash)
+    }
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
+        }
+        return String(hexChars)
+    }
+
     // 회원가입
     private fun signUp() {
         with(binding) {
+            var textPwd = pwdEditText.text.toString()
+
             Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
-            val signUpService = userService.requestSignUp(
+            val signUpService = userService.requestPersonalSignUp(AuthCredentialsPersonalDto(
                 nameEditText.text.toString(),
                 idEditText.text.toString(),
                 emailEditText.text.toString(),
-                pwdEditText.text.toString(),
+                hashSHA256(textPwd),
                 emailAuthck,
-                termAgreeck
+                termAgreeck)
             )
 
             signUpService.enqueue(object : Callback<SignUpResponse> {
@@ -377,6 +409,18 @@ class Login_02_01 : Fragment() {
             }
         }
     }
+    private fun pwdCnfRequiredFieldChecker(): Boolean {
+        with(binding) {
+            val value: String = pwdConfirmEditText.text.toString()
+            return if (value.isEmpty()) {
+                pwdConfirmTiL.error = "비밀번호 확인을 입력하세요."
+                false
+            } else {
+                pwdConfirmTiL.error = null
+                true
+            }
+        }
+    }
     // <-------------------------------------------------------------------------------->
 
     // 인증번호 확인
@@ -408,13 +452,42 @@ class Login_02_01 : Fragment() {
             }
         }
     }
+    private fun termCheck() : Boolean{
+        with(binding) {
+            return if (allCheckBox.isChecked) {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
+                termAgreeck = 1
+                true
+            } else if(tvTos1.isChecked && tvTos2.isChecked){
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.GONE
+                termAgreeck = 1
+                true
+            } else if (!tvTos1.isChecked && !tvTos2.isChecked){
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.VISIBLE
+                termAgreeck = 0
+                false
+            } else if (!tvTos1.isChecked){
+                tosError1.visibility = View.VISIBLE
+                tosError2.visibility = View.GONE
+                termAgreeck = 0
+                false
+            } else {
+                tosError1.visibility = View.GONE
+                tosError2.visibility = View.VISIBLE
+                termAgreeck = 0
+                false
+            }
+        }
+    }
 
     private fun getTerms() {
         with(binding) {
 
         }
     }
-
 
     // dialog
     private fun showDialog(code: String) {
@@ -452,7 +525,6 @@ class Login_02_01 : Fragment() {
                     iv.setImageResource(R.drawable.ic_error_dialog)
                     tvInform.text = "회원가입이 실패하였습니다. \n 잘못된 요청입니다."
                 }
-
             }
 
             show()
@@ -468,7 +540,6 @@ class Login_02_01 : Fragment() {
                 dismiss()
             }
         }
-
     }
 
 }
