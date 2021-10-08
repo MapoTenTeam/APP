@@ -33,12 +33,12 @@ class HomeViewPagerAdapter(private val bannerItemList:ArrayList<BannerItem>)
             bannerTitle.text = bannerData.homeTitle
             bannerContent.text = bannerData.homeContent
 
-            itemView.setOnClickListener {
-                val bundle = bundleOf(
-                    "title" to bannerData.homeTitle,
-                    "content" to bannerData.homeContent)
-                Navigation.findNavController(it).navigate(R.id.action_home_01_to_employment_Detail_01, bundle)
-            }
+//            itemView.setOnClickListener {
+//                val bundle = bundleOf(
+//                    "title" to bannerData.homeTitle,
+//                    "content" to bannerData.homeContent)
+//                Navigation.findNavController(it).navigate(R.id.action_home_01_to_employment_Detail_01, bundle)
+//            }
         }
     }
 
