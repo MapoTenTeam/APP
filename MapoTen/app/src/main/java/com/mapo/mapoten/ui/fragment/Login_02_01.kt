@@ -31,12 +31,12 @@ class Login_02_01 : Fragment() {
     private var _binding: FragmentLogin0201Binding? = null
     private val binding get() = _binding!!
 
-
     lateinit var userService: UserService
     var code: String = ""
     private var termAgreeck: Int= 0
     private var emailAuthck: Int= 0
     private lateinit var dialog: Dialog
+    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +46,6 @@ class Login_02_01 : Fragment() {
         _binding = FragmentLogin0201Binding.inflate(inflater, container, false)
 
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
-
 
         with(binding) {
             idLengthChecker()
@@ -98,7 +97,6 @@ class Login_02_01 : Fragment() {
                 if (!termCheck())
                     return@setOnClickListener
                 signUp()
-
             }
 
             tvLogin.setOnClickListener {
@@ -110,7 +108,6 @@ class Login_02_01 : Fragment() {
 
         }
         return binding.root
-
     }
 
     // 아이디 중복확인
@@ -143,7 +140,6 @@ class Login_02_01 : Fragment() {
                 override fun onFailure(call: Call<DuplicateInfoItem>, t: Throwable) {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
-
             })
         }
     }
@@ -231,6 +227,7 @@ class Login_02_01 : Fragment() {
         }
     }
 
+    // 암호화
     fun hashSHA256(msg: String): String {
         val hash: ByteArray
         try {
@@ -241,11 +238,8 @@ class Login_02_01 : Fragment() {
         } catch (e: CloneNotSupportedException) {
             throw DigestException("couldn't make digest of partial content");
         }
-
         return bytesToHex(hash)
     }
-
-    private val digits = "0123456789ABCDEF"
 
     fun bytesToHex(byteArray: ByteArray): String {
         val hexChars = CharArray(byteArray.size * 2)
@@ -495,7 +489,6 @@ class Login_02_01 : Fragment() {
         }
     }
 
-
     // dialog
     private fun showDialog(code: String) {
         dialog = Dialog(binding.root.context)
@@ -532,7 +525,6 @@ class Login_02_01 : Fragment() {
                     iv.setImageResource(R.drawable.ic_error_dialog)
                     tvInform.text = "회원가입이 실패하였습니다. \n 잘못된 요청입니다."
                 }
-
             }
 
             show()
@@ -548,7 +540,6 @@ class Login_02_01 : Fragment() {
                 dismiss()
             }
         }
-
     }
 
 }

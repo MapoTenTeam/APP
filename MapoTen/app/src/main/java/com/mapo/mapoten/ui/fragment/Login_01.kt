@@ -3,18 +3,13 @@ package com.mapo.mapoten.ui.fragment
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
@@ -27,7 +22,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.security.DigestException
 import java.security.MessageDigest
-import java.time.LocalDate
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -36,12 +30,12 @@ class Login_01 : Fragment() {
     var code: String = ""
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
+    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
 
         _binding = FragmentLogin01Binding.inflate(inflater, container, false)
 
@@ -81,6 +75,7 @@ class Login_01 : Fragment() {
 
     }
 
+    // 암호화
     fun hashSHA256(msg: String): String {
         val hash: ByteArray
         try {
@@ -91,11 +86,8 @@ class Login_01 : Fragment() {
         } catch (e: CloneNotSupportedException) {
             throw DigestException("couldn't make digest of partial content");
         }
-
         return bytesToHex(hash)
     }
-
-    private val digits = "0123456789ABCDEF"
 
     fun bytesToHex(byteArray: ByteArray): String {
         val hexChars = CharArray(byteArray.size * 2)
@@ -106,9 +98,6 @@ class Login_01 : Fragment() {
         }
         return String(hexChars)
     }
-
-
-
 
     // 로그인
     private fun login() {
@@ -121,8 +110,6 @@ class Login_01 : Fragment() {
             Log.d("TAG", "${hashSHA256(textPwd)}")
 
             val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
-
-
             loginService.enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
@@ -148,36 +135,6 @@ class Login_01 : Fragment() {
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
             })
-
-
-//
-//            val loginService = userService.requestLogin(LoginRequest(textId,textPwd))
-//
-//
-//            loginService.enqueue(object : Callback<LoginResponse> {
-//                override fun onResponse(
-//                    call: Call<LoginResponse>,
-//                    response: Response<LoginResponse>,
-//                ) { //정상응답이 올경우
-//                    if (response.isSuccessful) {
-//                        code = response.body()?.statusCode.toString()
-//                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-//                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
-//                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
-//                            findNavController().navigate(R.id.home_01)
-//                    }
-//                    else {
-//                        showDialog()
-//                        Toast.makeText(context,
-//                                "로그인 실패",
-//                                Toast.LENGTH_SHORT).show()
-//                        Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
-//                    }
-//                }
-//                override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
-//                    Log.e("error", "통신 실패" + t.localizedMessage)
-//                }
-//            })
 
         }
     }
@@ -208,7 +165,6 @@ class Login_01 : Fragment() {
             }
         }
     }
-
 
     // dialog
     private fun showDialog() {
