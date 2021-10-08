@@ -13,13 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.Login.DuplicateInfoItem
-import com.mapo.mapoten.data.Login.GetUserByEmailAuthDto
+import com.mapo.mapoten.data.Login.*
 import com.mapo.mapoten.databinding.FragmentLogin0202Binding
 import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.DigestException
+import java.security.MessageDigest
 import java.util.regex.Pattern
 
 class Login_02_02 : Fragment() {
@@ -31,6 +32,7 @@ class Login_02_02 : Fragment() {
     private var termAgreeck: Int = 0
     private var emailAuthck: Int = 0
     private lateinit var dialog: Dialog
+    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,6 +111,79 @@ class Login_02_02 : Fragment() {
 
         }
         return binding.root
+
+    }
+
+    // 암호화
+    fun hashSHA256(msg: String): String {
+        val hash: ByteArray
+        try {
+            val md = MessageDigest.getInstance("SHA-256")
+            md.update(msg.toByteArray())
+            md.update(salt.toByteArray())
+            hash = md.digest()
+        } catch (e: CloneNotSupportedException) {
+            throw DigestException("couldn't make digest of partial content");
+        }
+        return bytesToHex(hash)
+    }
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
+        }
+        return String(hexChars)
+    }
+
+    // 회원가입
+    private fun signUp() {
+        with(binding) {
+            var textPwd = pwdEditText.text.toString()
+
+            Log.d("TAG", "회원가입 이메일인증 $emailAuthck 약관동의 $termAgreeck")
+            val signUpService = userService.requestEnterpriseSignUp(
+                AuthCredentialsEnterpriseDto(
+                companyNameEditText.text.toString(),
+                idEditText.text.toString(),
+                emailEditText.text.toString(),
+                hashSHA256(textPwd),
+                    nameEditText.text.toString(),
+                    companyNumberEditText.text.toString(),
+                emailAuthck,
+                termAgreeck)
+            )
+
+            signUpService.enqueue(object : Callback<SignUpResponse> {
+                override fun onResponse(
+                    call: Call<SignUpResponse>,
+                    response: Response<SignUpResponse>,
+                ) { //정상응답이 올경우
+
+                    if (response.isSuccessful) {
+                        code = response.body()?.statusCode.toString()
+
+
+                        
+                        Log.d("TAG", "${response.code()} + ${response.message()}")
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+
+                        //showDialog(code)
+                    } else {
+                        Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                    }
+                }
+
+                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) { //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+
+            })
+        }
 
     }
 
