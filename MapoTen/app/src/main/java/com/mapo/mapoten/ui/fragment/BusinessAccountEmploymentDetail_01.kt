@@ -229,8 +229,8 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 
         // 전형사항
-        binding.applyMethodValue.text = result.applyMethod
-        binding.testMethodValue.text = result.testMethod
+        binding.applyMethodValue.text = manufactureData(result.applyMethod)
+        binding.testMethodValue.text = manufactureData(result.testMethod)
         binding.applyDocumentValue.text = manufactureData(result.applyDocument)
 
         // 채용 담당자 정보
