@@ -17,6 +17,7 @@ import com.mapo.mapoten.data.Login.LoginRequest
 import com.mapo.mapoten.data.Login.LoginResponse
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
+import com.mapo.mapoten.system.AppPrefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,6 +69,11 @@ class Login_01 : Fragment() {
             btnSignUpBusiness.setOnClickListener {
                 findNavController().navigate(R.id.login_02_02)
             } //기업 회원가입 화면으로 이동
+//            autoLoginCheckBox.setOnClickListener {
+//                Log.d("TAG","클릭")
+//                val log = AppPrefs.getToken(requireActivity())
+//                Log.d("TAG","$log")
+//            }
 
         }
         return binding.root
@@ -119,8 +125,12 @@ class Login_01 : Fragment() {
                         code = response.body()?.statusCode.toString()
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
                             Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                        val token = response.body()?.accessToken
                             Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
-                            findNavController().navigate(R.id.home_01)
+                        if (token != null) {
+                            AppPrefs.saveToken(requireActivity(), token)
+                        }
+                        findNavController().navigate(R.id.home_01)
                     }
                     else {
                         showDialog()
