@@ -695,7 +695,7 @@
                         android:id="@+id/placeOfWorkValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/margin_20"
+                        android:layout_marginBottom="@dimen/margin_12"
                         android:text=""
                         android:textColor="@color/text_darkGrey"
                         android:textSize="@dimen/text_12"

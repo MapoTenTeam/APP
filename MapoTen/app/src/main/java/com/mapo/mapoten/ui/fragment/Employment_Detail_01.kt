@@ -107,7 +107,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
         val test = "서울특별시 은평구 응암동 응암로22길 9-4"
         try {
-            list = geocoder.getFromLocationName(test, 10) as ArrayList<Address>?
+            list = geocoder.getFromLocationName(address, 10) as ArrayList<Address>?
 
         }catch (e : IOException) {
             e.printStackTrace()
