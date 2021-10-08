@@ -122,5 +122,6 @@
     <string name="home_viewpager_title">공고제목</string>
     <string name="home_viewpager_contents">공고 내용</string>
 
+    <string name="google_map_key">AIzaSyDT71OSfBpTw4cR3hHnovixcjYLy6gSEE4</string>
 
 </resources>
