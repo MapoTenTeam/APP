@@ -1,7 +1,6 @@
 package com.mapo.mapoten.data.employment
 
 import com.google.gson.annotations.SerializedName
-
 data class GeneralEmpPostingDetailDTO(
     // 기업 소개
     @SerializedName("JOBID")
