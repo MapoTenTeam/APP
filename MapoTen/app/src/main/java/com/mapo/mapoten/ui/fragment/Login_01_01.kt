@@ -62,12 +62,12 @@ class Login_01_01 : Fragment() {
             var textName = nameEditText.text.toString()
             var textEmail = emailEditText.text.toString()
 
-            val loginService =
+            val findIdService =
                 userService.getUserByFindId(UserByIdFindInputDto(textName, textEmail))
 
             Log.d("TAG", "이름 : $textName , 아이디 : $textEmail")
 
-            loginService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
+            findIdService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
                 override fun onResponse(
                     call: Call<GetUserByIdFindOutputDto>,
                     response: Response<GetUserByIdFindOutputDto>
