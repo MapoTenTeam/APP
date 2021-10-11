@@ -1,6 +1,8 @@
 package com.mapo.mapoten.ui.fragment
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,7 +10,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
@@ -31,6 +37,7 @@ class Login_02_02 : Fragment() {
     var code: String = ""
     private var termAgreeck: Int = 0
     private var emailAuthck: Int = 0
+    private var bizrnock: Int = 0
     private lateinit var dialog: Dialog
     private val digits = "0123456789ABCDEF"
 
@@ -69,6 +76,7 @@ class Login_02_02 : Fragment() {
             btnConfirm.setOnClickListener {
                 if (!authenticationRequiredFieldChecker())
                     return@setOnClickListener
+                authenticationNumberChecker()
             }
             btnCompanyNumberDoubleCheck.setOnClickListener {
                 if (!bizrnoRequiredFieldChecker())
@@ -85,6 +93,8 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 if (!idRequiredFieldChecker())
                     return@setOnClickListener
+                if (!bizrnoRequiredFieldChecker())
+                    return@setOnClickListener
                 if (!emailRequiredFieldChecker())
                     return@setOnClickListener
                 if (!authenticationRequiredFieldChecker())
@@ -93,12 +103,11 @@ class Login_02_02 : Fragment() {
                     return@setOnClickListener
                 if (!pwdCnfRequiredFieldChecker())
                     return@setOnClickListener
-                if (!bizrnoRequiredFieldChecker())
-                    return@setOnClickListener
                 if (!companyRequiredFieldChecker())
                     return@setOnClickListener
                 if (!termCheck())
                     return@setOnClickListener
+                signUp()
             }
 
 
@@ -150,10 +159,11 @@ class Login_02_02 : Fragment() {
                 idEditText.text.toString(),
                 emailEditText.text.toString(),
                 hashSHA256(textPwd),
-                    nameEditText.text.toString(),
-                    companyNumberEditText.text.toString(),
+                nameEditText.text.toString(),
+                companyNumberEditText.text.toString(),
                 emailAuthck,
-                termAgreeck)
+                termAgreeck,
+                bizrnock)
             )
 
             signUpService.enqueue(object : Callback<SignUpResponse> {
@@ -164,13 +174,10 @@ class Login_02_02 : Fragment() {
 
                     if (response.isSuccessful) {
                         code = response.body()?.statusCode.toString()
-
-
-                        
                         Log.d("TAG", "${response.code()} + ${response.message()}")
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
 
-                        //showDialog(code)
+                        showDialog(code)
                     } else {
                         Toast.makeText(context, "${response.body()?.message}", Toast.LENGTH_SHORT)
                             .show()
@@ -304,6 +311,20 @@ class Login_02_02 : Fragment() {
             })
         }
     }
+    // 인증번호 확인
+    private fun authenticationNumberChecker() {
+        with(binding) {
+            val text = authenticationNumberTiL.editText?.text.toString()
+            if (text == code) {
+                emailAuthck = 1
+                authenticationNumberTiL.helperText = "이메일 인증이 완료되었습니다."
+                authenticationNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
+            } else {
+                emailAuthck = 0
+                authenticationNumberTiL.error = "인증번호가 일치하지 않습니다."
+            }
+        }
+    }
 
     // 사업자등록번호 중복확인
     private fun duplicateBizrno() {
@@ -321,10 +342,13 @@ class Login_02_02 : Fragment() {
                         Log.d("TAG", "중복확인 ${response.body()?.isDuplicate}")
                         when (response.body()?.isDuplicate) {
                             false -> {
+                                bizrnock = 1
                                 companyNumberTiL.helperText = "가입 가능한 사업자등록번호 입니다."
                                 companyNumberTiL.setEndIconDrawable(R.drawable.ic_baseline_check_circle_24)
                             }
-                            true -> companyNumberTiL.error = "이미 가입된 사업자등록번호 입니다."
+                            true -> {
+                                bizrnock = 0
+                                companyNumberTiL.error = "이미 가입된 사업자등록번호 입니다."}
                         }
                     } else {
                         Toast.makeText(
@@ -533,5 +557,57 @@ class Login_02_02 : Fragment() {
         }
     }
 
+    // dialog
+    private fun showDialog(code: String) {
+        dialog = Dialog(binding.root.context)
+        with(dialog) {
+            requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+            setContentView(com.mapo.mapoten.R.layout.popup_signup_complete)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setLayout(
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT,
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT
+            )
+
+            val tvTitle: TextView = findViewById(R.id.tv_title)
+            val tvInform: TextView = findViewById(R.id.tv_information)
+            val iv: ImageView = findViewById(R.id.imageView)
+            val btn: Button = findViewById(R.id.btn_confirm)
+
+            when (code) {
+                "201" -> {  // 가입 성공
+                    btn.text ="로그인 / 회원가입 하기"
+                }
+                "406" -> {  // 이메일 인증 or 이용약관 동의 실패
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "회원가입이 실패하였습니다. \n 이메일 인증 or 이용약관 동의를 확인해주세요."
+                }
+                "409" -> {  // 중복 ID 존재
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "중복된 아이디가 존재합니다. \n"
+                }
+                "null" -> {
+                    tvTitle.text = "안내 메시지"
+                    iv.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "회원가입이 실패하였습니다. \n 잘못된 요청입니다."
+                }
+            }
+
+            show()
+
+            val btnConfirm: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.btn_confirm)
+            btnConfirm.setOnClickListener {
+                //로그인 화면 띄우기
+                dismiss()
+                findNavController().navigate(com.mapo.mapoten.R.id.action_login_02_02_to_login_01)
+            }
+            val btnCancel: TextView = dialog.findViewById(com.mapo.mapoten.R.id.tv_cancel)
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
+        }
+    }
 
 }
