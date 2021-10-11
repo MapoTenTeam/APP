@@ -1,7 +1,6 @@
 package com.mapo.mapoten.data.employment
 
 import com.google.gson.annotations.SerializedName
-
 data class GeneralEmpPostingDetailDTO(
     // 기업 소개
     @SerializedName("JOBID")
@@ -91,13 +90,13 @@ data class GeneralEmpPostingDetailDTO(
     val endReception: String, // 접수 마감일
 
     @SerializedName("APPLY_METHOD")
-    val applyMethod: String, // 접수 방법
+    val applyMethod: ArrayList<CodeName>, // 접수 방법
 
     @SerializedName("APPLY_METHOD_ETC")
     val applyMethodEtc: String, // 접수 방법 상세
 
     @SerializedName("TEST_METHOD")
-    val testMethod: String, // 전형방법
+    val testMethod: ArrayList<CodeName>, // 전형방법
 
     @SerializedName("TEST_METHOD_DTC")
     val testMethodEtc: String, // 전형방법 상세

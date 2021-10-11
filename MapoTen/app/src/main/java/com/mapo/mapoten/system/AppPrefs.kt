@@ -6,6 +6,7 @@ import android.content.Context
 object AppPrefs {
     private const val LOGIN_STATE = "login"
     const val TOKEN = "token"
+    const val TYPE = "type"
     const val APP_PRESFS = "app_prefs"
 
 //    fun loginApp(context: Context) {
@@ -27,6 +28,17 @@ object AppPrefs {
         return context.getSharedPreferences(APP_PRESFS, Application.MODE_PRIVATE)
             .getString(TOKEN, "")
     }
+    fun saveUserType(context: Context, type: String) {
+        val prefs = context.getSharedPreferences(APP_PRESFS, Application.MODE_PRIVATE)
+        with(prefs.edit()) {
+            putString(TYPE, type)
+            putBoolean(LOGIN_STATE, true)
+        }.apply()
+    }
 
+    fun getUserType(context: Context) : String? {
+        return context.getSharedPreferences(APP_PRESFS, Application.MODE_PRIVATE)
+            .getString(TYPE, "")
+    }
 
 }

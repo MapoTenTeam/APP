@@ -177,6 +177,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
             override fun onFailure(call: Call<EmploymentResponse>, t: Throwable) {
                 Log.e("generalDetail", "통신 실패" + t.localizedMessage)
+                Log.e("generalDetail", "통신 실패" + t.cause)
 
             }
 
@@ -232,8 +233,8 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 
         // 전형사항
-        binding.applyMethodValue.text = result.applyMethod
-        binding.testMethodValue.text = result.testMethod
+        binding.applyMethodValue.text = manufactureData(result.applyMethod)
+        binding.testMethodValue.text = manufactureData(result.testMethod)
         binding.applyDocumentValue.text = manufactureData(result.applyDocument)
         binding.endReceptionValue.text = result.endReception.substring(0, 10)
 

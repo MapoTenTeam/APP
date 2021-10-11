@@ -33,8 +33,16 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.login_01_03 ||
                 destination.id == R.id.employment_Detail_01 ||
                 destination.id == R.id.businessAccount_01_04 ||
-                destination.id == R.id.businessAccountEmploymentDetail_01||
-                destination.id == R.id.account_01_01
+                destination.id == R.id.businessAccountEmploymentDetail_01 ||
+                destination.id == R.id.accountProfileView ||
+                destination.id == R.id.account_01_01 ||
+                destination.id == R.id.account_01_02 ||
+                destination.id == R.id.account_01_03 ||
+                destination.id == R.id.businessAccount_01_01 ||
+                destination.id == R.id.businessAccount_01_02 ||
+                destination.id == R.id.businessAccount_01_03
+
+
             ) {
                 bottomNavigationView.visibility = View.GONE
             } else {
