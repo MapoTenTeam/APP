@@ -3,6 +3,7 @@ package com.mapo.mapoten.service
 import com.mapo.mapoten.data.employment.*
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.*
 
 interface EmploymentService {
 
@@ -12,9 +13,6 @@ interface EmploymentService {
         @Query("page") page: Int,
         @Field("SEARCH_NAME") searchTerm: String
     ): Call<GeneralJobPostingResponse>
-
-    @GET("job/public/detail/{id}")
-    fun inquirePublicDetailPosting(@Path("id") id: Int): Call<EmploymentResponse>
 
     @FormUrlEncoded
     @POST("job/general")
@@ -33,4 +31,15 @@ interface EmploymentService {
 
     @GET("job/enterprise/list/detail/{jobid}")
     fun getEnterPriseJobDetail(@Path("jobid") jobId: Int): Call<SelectJobEnterpriseDetailOutputDto>
+
+    @DELETE("job/enterprise/delete/{jobid}")
+    fun deleteMyJobPosting(@Path("jobid") jobId: Int): Call<Objects>
+
+
+    // bookmark
+    @POST("bookmarks/{jobid}")
+    fun registerBookmark(@Field("jobid") id : Int) : Call<Objects>
+
+    @PATCH("bookmarks/{bookid}")
+    fun cancelBookmark(@Field("jobid") id : Int) : Call<Objects>
 }

@@ -11,26 +11,37 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
+import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.CheckCurrentPW
+import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0103Binding
+import com.mapo.mapoten.service.AccountManageService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BusinessAccount_01_03 : Fragment() {
 
     lateinit var binding: FragmentBusinessAccount0103Binding
     private var checkedPassword: Boolean = false
+    lateinit var service : AccountManageService
+    private var result :Boolean =false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBusinessAccount0103Binding.inflate(inflater, container, false)
-
         val view = binding.root
 
+        service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
+
+        binding.userNickName.setText(arguments?.getString("cmpny_nm"))
 
         // add listener
-        binding.password.addTextChangedListener(editTextListener)
+       /* binding.password.addTextChangedListener(editTextListener)
         binding.newPassword.addTextChangedListener(editTextListener)
-        binding.confirmNewPassword.addTextChangedListener(editTextListener)
+        binding.confirmNewPassword.addTextChangedListener(editTextListener)*/
 
         // back button
         binding.backButton.setOnClickListener {
@@ -39,12 +50,14 @@ class BusinessAccount_01_03 : Fragment() {
 
         // submit button
         binding.submitButton.setOnClickListener {
-            if (validatePassword()) {
+            //현재비번체크
+            validatePassword()
+          /*  if (validatePassword()) {
                 Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(view).navigate(R.id.login_01)
             } else {
                 // 전송 실패 처리
-            }
+            }*/
         }
 
         return view
@@ -52,42 +65,79 @@ class BusinessAccount_01_03 : Fragment() {
 
     }
 
-    private fun validatePassword(): Boolean {
+    private fun validatePassword() {
+        var checkedNewPw: Boolean = false
+        result = checkCurrentPw()
+        Log.d("password", "현재비번체크 result: $result")
+        val newPw = binding.newPassword.text.toString()
+        val newPw2 = binding.confirmNewPassword.text.toString()
 
-        // test - 현재 비밀번호 1234
-        // 모든 조건 만족시 return true
-        return if (binding.password.text.toString() == "1234" && checkedPassword && binding.newPassword.text!!.isNotEmpty()) {
-            true
-        } else if (binding.password.text.toString() != "1234") {
+        if (!result) {
+            binding.passwordLayout.error = "현재 비밀번호가 일치하지 않습니다."
             Toast.makeText(context, "현재 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-            false
-        } else if (!checkedPassword) {
-            Toast.makeText(context, "새 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-            binding.newPassword.setText("")
-            binding.confirmNewPassword.setText("")
-            false
+
         } else {
-            Toast.makeText(context, "입력란을 확인해주세요!", Toast.LENGTH_SHORT).show()
-            false
+            Toast.makeText(context, "현재 비밀번호가 일치합니다.", Toast.LENGTH_SHORT).show()
         }
+
+        // 새 비번 일치하고, 새비번이 비어있지 않으면 true
+        if (newPw == newPw2) {
+            checkedNewPw = true
+        }else if(newPw.isNullOrEmpty()){
+            checkedNewPw = false
+            binding.newPasswordLayout.error = "필수 입력 사항입니다."
+        }else if(newPw2.isNullOrEmpty()){
+            checkedNewPw = false
+            binding.confirmNewPasswordLayout.error = "필수 입력 사항입니다."
+        }else {
+            //새비번 불일치 처리
+        }
+
+        if (result && checkedNewPw) {
+            updatePassword(newPw2)
+        }
+
     }
 
-    // listener
-    private val editTextListener = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            Log.i("password", "입력전");
-        }
 
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            checkedPassword =
-                binding.newPassword.text.toString() == binding.confirmNewPassword.text.toString()
-        }
+    private fun checkCurrentPw() :Boolean {
+        val password = binding.password.text.toString()
+        Log.d("password", "현재비번 : $password")
 
-        override fun afterTextChanged(p0: Editable) {
-            Log.i("password", "입력후");
-        }
+        service.checkCurrentPw(password).enqueue(object : Callback<ImageResponse>{
+            override fun onResponse(call: Call<ImageResponse>,response: Response<ImageResponse>) {
 
+                if (response.isSuccessful){
+                    Log.d("password", "code : ${response.code()}")
+                    Log.d("password", "현재 비번 확인 message : ${response.body()!!.message}")
+
+                    result = true
+                }
+            }
+
+            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
+                Log.d("password", "서버통신실패 ")
+            }
+        })
+
+        return result
     }
+
+    private fun updatePassword(newPw2: String) {
+        service.updateBusinessPassword(newPw2).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(binding.root).navigate(R.id.login_01)
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("password", "비번번경 실패 ")
+            }
+        })
+    }
+
 
 
 }

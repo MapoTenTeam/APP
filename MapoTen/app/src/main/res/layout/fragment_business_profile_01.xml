@@ -87,7 +87,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/title_textView">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            style="@style/PasswordTextInputEditTextStyle"
+                            android:id="@+id/businessNameText"
+                            style="@style/TextInputLayoutStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14" />
@@ -106,6 +107,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessNumberText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -145,6 +147,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/text_businessInfo">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ownerNameText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -164,6 +167,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/ownerName">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessEmailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -183,6 +187,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessEmail">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessAddressText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -203,6 +208,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessAddress1">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessAddressDetailText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -222,6 +228,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessAddress2">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessCategoryText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -242,6 +249,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessCategory">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessEmployeeNumberText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -261,6 +269,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/businessEmployeeNumber">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessWebsiteText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/padding_14"
@@ -283,9 +292,7 @@
                         android:id="@+id/businessLogo"
                         android:layout_width="match_parent"
                         android:layout_height="190sp"
-
                         android:background="@drawable/input_stroke_radius30"
-                        app:layout_constraintBottom_toTopOf="@+id/text_businessFile"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_businesslogo" />
@@ -301,7 +308,7 @@
                         app:layout_constraintStart_toStartOf="@+id/businessLogo"
                         app:layout_constraintTop_toTopOf="@+id/businessLogo" />
 
-                    <TextView
+                  <!--  <TextView
                         android:id="@+id/text_businessFile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -311,9 +318,9 @@
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/businessLogo" />
+-->
 
-
-                    <ImageView
+                   <!-- <ImageView
                         android:id="@+id/businessFile"
                         android:layout_width="match_parent"
                         android:layout_height="190sp"
@@ -321,9 +328,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_businessFile"/>
+-->
 
-
-                    <ImageView
+                   <!-- <ImageView
                         android:id="@+id/icon_file_upload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -334,8 +341,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/businessFile"
                         android:src="@drawable/icon_image_upload"
                         />
-
-                        <TextView
+-->
+                     <!--   <TextView
                             android:id="@+id/fileView"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
@@ -345,13 +352,12 @@
                             app:layout_constraintStart_toStartOf="@+id/businessFile"
                             app:layout_constraintEnd_toEndOf="@+id/businessFile"
                             app:layout_constraintBottom_toBottomOf="@+id/businessFile"/>
-
+-->
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/business_save_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_marginTop="10dp"
                         android:background="@drawable/button_background_radius30"
                         android:text="@string/btn_save"
@@ -360,7 +366,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessFile"
+                        app:layout_constraintTop_toBottomOf="@+id/businessLogo"
                         tools:ignore="TextContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

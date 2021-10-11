@@ -7,20 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.mapo.mapoten.R
-import com.mapo.mapoten.config.RetrofitBuilder
-import com.mapo.mapoten.data.employment.EmploymentJobPostingItem
-import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
-import com.mapo.mapoten.service.EmploymentService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GeneralEmploymentPostingAdapter(private val context: Context) :
     RecyclerView.Adapter<GeneralEmploymentPostingAdapter.ViewHolder>() {
@@ -47,6 +46,8 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         private val careerType: TextView = view.findViewById(R.id.careerType)
         private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.date)
+        private val dDay: TextView = view.findViewById(R.id.dDay)
+        private val closedBg: LinearLayout = view.findViewById(R.id.closedPosting)
 
         @SuppressLint("SetTextI18n")
         fun bind(item: GeneralEmpPostingDTO) {
@@ -56,17 +57,56 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             jobType.text = item.jobType
             careerType.text = item.career
             place.text = item.address
-            date.text = "모집기간: " + item.startReception + " - " + item.endReception
+            date.text = "${item.endReception.substring(0, 4)}년 ${
+                item.endReception.substring(
+                    5,
+                    7
+                )
+            }월 ${item.endReception.substring(8, 10)}일 모집마감!"
 
-            if(item.companyImage != null ){
-                Glide.with(context).load(item.companyImage).into(companyImage)
-            }else {
+            Log.d("dateTime", "endDate : ${item.endReception}")
+
+
+            dDay.text = getDDay(item.endReception)
+
+            if (item.companyImage != null) {
+                Glide.with(context).load(item.companyImage).transform(
+                    CenterCrop(), GranularRoundedCorners(
+                        32F,
+                        32F, 0F,
+                        0F
+                    )
+                ).into(companyImage)
+
+            } else {
                 companyImage.setImageResource(R.drawable.banner_image1)
             }
 
             itemView.setOnClickListener {
-                val bundle = bundleOf("type" to 1, "jobId" to item.jobId)
+                val bundle = bundleOf(
+                    "type" to 1,
+                    "jobId" to item.jobId,
+                    "dDay" to getDDay(item.endReception)
+                )
                 Navigation.findNavController(itemView).navigate(R.id.employment_Detail_01, bundle)
+            }
+        }
+
+        private fun getDDay(endDay: String): String {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val today = Calendar.getInstance()
+            val endDate = dateFormat.parse(endDay.substring(0, 10))
+
+            val day = (endDate.time - today.time.time) / (24 * 60 * 60 * 1000)
+
+            return if (day.toString() == "0") {
+                "D-day"
+            } else if (day < 0) {
+                closedBg.visibility = View.VISIBLE
+                "closed"
+            } else {
+                "D-${day}"
+
             }
         }
     }

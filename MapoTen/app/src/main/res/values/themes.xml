@@ -58,6 +58,11 @@
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">@color/text_darkGrey</item>
     </style>
+    <style name="tos_error">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/text_non_approval</item>
+    </style>
     <style name="title_text16">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_16</item>
@@ -70,6 +75,5 @@
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">@color/text_darkGrey</item>
     </style>
-
 
 </resources>

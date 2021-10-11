@@ -50,37 +50,18 @@
                 android:paddingHorizontal="@dimen/padding_12"
                 android:paddingVertical="@dimen/padding_4"
                 android:textSize="@dimen/text_12" />
+
             <ImageView
                 android:id="@+id/searchBtn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_search_24"
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_search_24"
                 app:tint="@color/employment_search_icon"
                 tools:ignore="RtlHardcoded" />
 
         </FrameLayout>
-
-
-        <LinearLayout
-            android:id="@+id/spinnerContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_24"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/searchLayout">
-
-            <Spinner
-                android:id="@+id/placeOfWork"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="@dimen/margin_6"
-                android:layout_weight="1"
-                android:background="@drawable/bg_search_spinner"
-                android:popupBackground="@drawable/bg_employment"
-                tools:listitem="@layout/item_spinner" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/loading"
@@ -93,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer">
+            app:layout_constraintTop_toBottomOf="@+id/searchLayout">
 
             <ProgressBar
                 style="@android:style/Widget.Holo.ProgressBar.Large"
@@ -112,13 +93,23 @@
             android:id="@+id/jobPostingBoard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="86dp"
+            android:layout_marginTop="56dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchLayout"
             tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/public_employment_posting_row" />
+            tools:listitem="@layout/public_employment_posting_row"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ProgressBar
+        android:id="@+id/moreLoading"
+        style="@android:style/Widget.Holo.ProgressBar.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:visibility="invisible"
+        />
 
 </FrameLayout>

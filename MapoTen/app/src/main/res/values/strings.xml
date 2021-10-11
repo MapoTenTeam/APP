@@ -10,19 +10,32 @@
     <string name="passWord">비밀번호*</string>
     <string name="signUp_personal_e">이메일로 개인 회원가입</string>
     <string name="signUp_business_e">이메일로 기업 회원가입</string>
-    <string name="find_id">아이디찾기</string>
+    <string name="find_id">아이디 찾기</string>
     <string name="find_id_personal">개인 아이디찾기</string>
     <string name="find_id_business">기업 아이디찾기</string>
     <string name="find_pwd">비밀번호 찾기</string>
     <string name="or">또는</string>
 
+    <!-- Find ID-->
+    <string name="id_e">ID</string>
+    <string name="information_message">안내 메시지</string>
+    <string name="information_match_id">입력한 정보와 일치하는 아이디입니다.</string>
+    <string name="information_mismatch">입력된 회원정보가 존재하지 않습니다.\n 비회원일 경우 회원가입 후 이용해주세요.</string>
+    <string name="information_signUp_fail">회원가입이 실패하였습니다. \n 이메일 인증 or 이용약관 동의를 확인해주세요.</string>
+    <string name="information_signIn_fail">잘못된 아이디 또는 비밀번호 입니다.</string>
+    <string name="login_do">로그인 / 회원가입 하기</string>
+    <string name="cancel">취소</string>
+
+
     <!-- Sign Up -->
     <string name="signUp_personal">개인 회원가입</string>
     <string name="signUp_business">기업 회원가입</string>
     <string name="sign_up_description">회원가입</string>
+    <string name="sign_up_complete">회원 가입 완료</string>
     <string name="double_check">중복확인</string>
     <string name="authentication_request">인증요청</string>
     <string name="confirm">확인</string>
+    <string name="company">사업체명*</string>
     <string name="name">이름*</string>
     <string name="email">이메일*</string>
     <string name="authentication_number">인증번호를 입력해주세요.</string>
@@ -35,14 +48,22 @@
 
     <string name="all_check_tos">약관 전체 동의</string>
     <string name="tos">서비스 이용약관</string>
+    <string name="tos1">[필수] 마포잡 서비스 이용약관</string>
+    <string name="tos2">[필수] 개인정보 수집 및 이용약관</string>
     <string name="tos_look">[보기]</string>
+    <string name="tos_error1">서비스 이용약관 항목은 필수 정보입니다</string>
+    <string name="tos_error2">개인정보 수집 및 이용 항목은 필수 정보입니다</string>
     <string name="find_id_information">아이디를 찾기 위해 필요한 정보를 입력하세요.</string>
     <string name="find_pwd_information">비밀번호를 찾기 위해 필요한 정보를 입력하세요.</string>
     <string name="send_pwd">임시 비밀번호 발송</string>
 
 
+    <string name="user_profile">나의 프로필</string>
+    <string name="user_profile_view">회원 프로필 조회</string>
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
+    <string name="business_profile">회사 프로필</string>
+    <string name="business_profile_view">회사 프로필 조회</string>
     <string name="business_profile_textView">채용 공고 및 회사 페이지에 표시될 법인명을 입력해주세요</string>
     <string name="businessFile">사업자 등록증</string>
     <string name="btn_save">저장하기</string>
@@ -57,6 +78,8 @@
     <string name="businessEmail">회사 대표 이메일</string>
     <string name="businessAddress1">소재지</string>
     <string name="businessInfo">회사 정보</string>
+    <string name="btn_update">수정하기</string>
+    <string name="btn_apply">승인 요청 하기</string>
 
 
     <!--password -->
@@ -71,7 +94,7 @@
 
     <!-- 채용공고 관리 상세 -->
     <string name="business_employment_detail_action_bar_title">채용공고목록</string>
-    <string name="business_employment_detail_category_text">일반채용 정규직</string>
+    <string name="business_employment_detail_category_text">일반채용</string>
     <string name="business_employment_state_text">대기</string>
     <string name="business_employment_title">채용공고 제목</string>
     <string name="business_employment_content_title1">채용사항</string>
@@ -98,5 +121,7 @@
     <string name="home_banner_content">매일 새로운 커리어 기회를 확인하고\n당신의 일을 찾아보세요:)</string>
     <string name="home_viewpager_title">공고제목</string>
     <string name="home_viewpager_contents">공고 내용</string>
+
+    <string name="google_map_key">AIzaSyDT71OSfBpTw4cR3hHnovixcjYLy6gSEE4</string>
 
 </resources>

@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.SpinnerModel
@@ -25,14 +27,11 @@ class Employment_01_02 : Fragment() {
     lateinit var binding: FragmentEmployment0102Binding
     private lateinit var adapter: GeneralEmploymentPostingAdapter
     private var resultDataList = mutableListOf<GeneralEmpPostingDTO>()
-    private lateinit var spinnerAdapterCareer: SpinnerAdapter
-    private val listOfCareer = ArrayList<SpinnerModel>()
-    private lateinit var spinnerAdapterJob: SpinnerAdapter
-    private val listOfJob = ArrayList<SpinnerModel>()
-    private lateinit var spinnerAdapterPlace: SpinnerAdapter
-    private val listOfPlace = ArrayList<SpinnerModel>()
     lateinit var employmentService: EmploymentService
 
+    private var postingCount = 1
+    private var endPostingCount = 0
+    private var searchTerm = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,13 +50,25 @@ class Employment_01_02 : Fragment() {
         initialize()
 
         binding.searchBtn.setOnClickListener {
-            val searchTerm = binding.searchText.text
-            if (binding.searchText.text.isNotEmpty()) {
-                getAllPosting(searchTerm.toString())
-            } else {
-                getAllPosting("")
-            }
+            searchTerm = binding.searchText.text.toString()
+            getAllPosting(1, searchTerm)
         }
+        val linearLayoutManager: LinearLayoutManager =
+            binding.jobPostingBoard.layoutManager as LinearLayoutManager
+
+        binding.jobPostingBoard.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                var lastItem = linearLayoutManager.findLastVisibleItemPosition()
+                Log.d("refresh test", "lastItem count : $lastItem")
+
+
+                // 리스트 마지막 데이터가 맞다면
+                if (linearLayoutManager != null && lastItem == adapter.itemCount - 1) {
+                    isLoading(true)
+                }
+            }
+        })
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
@@ -67,60 +78,33 @@ class Employment_01_02 : Fragment() {
     }
 
     private fun initialize() {
+        postingCount = 1
         loading(true)
-        getAllPosting("")
-
-        listOfCareer.clear()
-        listOfJob.clear()
-        listOfPlace.clear()
-        setupSpinnerCareer()
-        setupSpinnerJob()
-        setupSpinnerPlace()
+        getAllPosting(1, "")
     }
 
-    private fun setupSpinnerCareer() {
-        val careers = resources.getStringArray(R.array.employ_array_career)
+    private fun isLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.moreLoading.visibility = View.VISIBLE
+            postingCount += 1
+            if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
+                getAllPosting(postingCount, searchTerm)
 
-        for (i in careers.indices) {
-            val career = SpinnerModel(careers[i])
-            listOfCareer.add(career)
+            } else {
+                binding.moreLoading.visibility = View.INVISIBLE
+            }
         }
-        spinnerAdapterCareer = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfCareer)
-        binding.employCareer.adapter = spinnerAdapterCareer
     }
-
-    private fun setupSpinnerJob() {
-        val jobs = resources.getStringArray(R.array.employ_array_job)
-
-        for (i in jobs.indices) {
-            val job = SpinnerModel(jobs[i])
-            listOfJob.add(job)
-        }
-        spinnerAdapterJob = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfJob)
-        binding.employJob.adapter = spinnerAdapterJob
-    }
-
-    private fun setupSpinnerPlace() {
-        val places = resources.getStringArray(R.array.employ_array_country)
-
-        for (i in places.indices) {
-            val place = SpinnerModel(places[i])
-            listOfPlace.add(place)
-        }
-        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
-        binding.placeOfWork.adapter = spinnerAdapterPlace
-    }
-
 
     private fun loading(isLoading: Boolean) {
         if (isLoading) binding.loading.visibility = View.VISIBLE
         else binding.loading.visibility = View.GONE
     }
 
-    private fun getAllPosting(searchTerm: String) {
+    private fun getAllPosting(page: Int, searchTerm: String) {
 
         employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
-        val generalJobList = employmentService.getGeneralJobList(1, searchTerm)
+        val generalJobList = employmentService.getGeneralJobList(page, searchTerm)
 
         generalJobList.enqueue(object : Callback<GeneralJobPostingResponse> {
             @SuppressLint("NotifyDataSetChanged")
@@ -132,8 +116,15 @@ class Employment_01_02 : Fragment() {
                 Log.d("employmentGeneral", "message : " + response.message())
 
                 if (response.isSuccessful) {
-                    resultDataList = response.body()!!.data
-
+                    if (page == 1) {
+                        resultDataList = response.body()!!.data
+                    } else {
+                        for (item in response.body()!!.data) {
+                            resultDataList.add(item)
+                        }
+                    }
+                    endPostingCount = response.body()!!.count
+                    Log.d("employmentGeneral", "resultDataList' size : " + resultDataList.size)
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
                     if (resultDataList.size > 0) {

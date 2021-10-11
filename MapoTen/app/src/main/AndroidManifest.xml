@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -14,10 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MapoTen"
+        android:name=".system.Mapoten"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".SocketClient"
-            android:exported="true" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="1l4vl3gz3p" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">

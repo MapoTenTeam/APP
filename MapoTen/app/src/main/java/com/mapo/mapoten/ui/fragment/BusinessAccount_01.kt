@@ -1,22 +1,24 @@
 package com.mapo.mapoten.ui.fragment
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.net.toUri
+import androidx.appcompat.widget.DialogTitle
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.BusinessProfile
+import com.mapo.mapoten.data.BusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessAccount01Binding
 import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.ui.activity.MainActivity
@@ -29,7 +31,9 @@ class BusinessAccount_01 : Fragment() {
     lateinit var binding : FragmentBusinessAccount01Binding
     lateinit var mainActivity: MainActivity
     lateinit var service : AccountManageService
-
+    private var status :Int? = 0
+    private var businessApproval :String? = ""
+    private var profile : BusinessProfileItems? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -47,18 +51,17 @@ class BusinessAccount_01 : Fragment() {
             getCompanyInfo()
 
 
-            binding.statusButton.setOnClickListener{
-                statusButtonClicked()
-            }
+
             binding.businessProfileButton.setOnClickListener {
-                Navigation.findNavController(view).navigate(R.id.businessAccount_01_01)
+                checkStatus(status)
             } //기업프로필작성/수정  이동
 
             binding.personProfileButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_02)
             } //회원 정보 수정으로 이동
             binding.passwordChangeButton.setOnClickListener {
-                Navigation.findNavController(view).navigate(R.id.businessAccount_01_03)
+                val bundle = bundleOf("cmpny_nm" to profile?.CMPNY_NM)
+                Navigation.findNavController(view).navigate(R.id.businessAccount_01_03,bundle)
             } //비번 변경 이동
             binding.careerButton.setOnClickListener {
                 Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)
@@ -84,7 +87,7 @@ class BusinessAccount_01 : Fragment() {
 
         //프로필 -이미지, 이름, 메일 가져오기
         private fun getCompanyInfo() {
-            Log.d("profile", "여기까지옴----")
+            Log.d("profile", "프로필 가져오기----")
             service.getCompanyProfile().enqueue(object : Callback<BusinessProfile>{
                 override fun onResponse(
                     call: Call<BusinessProfile>,
@@ -92,19 +95,21 @@ class BusinessAccount_01 : Fragment() {
                 ) {
                     if (response.isSuccessful){
                         Log.d("profile", "res: "+response.code())
-                        val img = response.body()?.data?.CMPNY_IM
-                        val cmpnyName = response.body()?.data?.CMPNY_NM
-                        val cmpnyEmail = response.body()?.data?.CEO_EMAIL_ADRES
-                        Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
-                        binding.nameMyPage.setText(cmpnyName)
-                        binding.emailMyPage.setText(cmpnyEmail)
+                        profile =  response.body()?.data
 
-                        if (response.body()?.data?.PROFILE_STTUS == 3){
-                            binding.businessProfileButton.setOnClickListener {
-                                Navigation.findNavController(view!!).navigate(R.id.businessProfile_01)
-                            } //기업프로필작성/수정  이동
+                        setInit(profile)
 
-                        }
+
+                        //profile 등록 여부
+                        status = response.body()?.data?.PROFILE_STTUS
+                        Log.d("profile", "status: "+status)
+                        checkStatus(status)
+
+                        //가입 승인 (사업자) 여부
+                        businessApproval = response.body()?.data?.BSNNM_APRVL
+                        Log.d("profile", "승인여부: $businessApproval")
+                        businessApproval?.let { setStatusButton(it) }
+
                     }
                 }
 
@@ -114,18 +119,103 @@ class BusinessAccount_01 : Fragment() {
             })
         }
 
+        private fun setInit(profileItems: BusinessProfileItems?){
+            val img = profileItems?.CMPNY_IM
+            val cmpnyName = profileItems?.CMPNY_NM
+            val cmpnyEmail = profileItems?.APPLCNT_EMAIL_ADRES
+            if (img != null) {
+                Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
+            }else{
+                Glide.with(this@BusinessAccount_01).load(R.drawable.ic_img_basic_24).into(binding.myPageImageview)
+            }
+            binding.nameMyPage.text = cmpnyName
+            binding.emailMyPage.text = cmpnyEmail
+        }
+
+        private fun checkStatus(status: Int?){
+            when (status) {
+                0 -> {
+                    //프로필 없음
+                    binding.businessProfileButton.setOnClickListener {
+                        Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01)
+                    }
+
+                }
+                1 -> {
+                    //프로필 있음
+                    binding.businessProfileButton.setOnClickListener {
+                        val bundle = bundleOf(
+                            "cmpny_nm" to profile?.CMPNY_NM,
+                            "bizrno" to profile?.BIZRNO,
+                            "ceo" to profile?.CEO,
+                            "address" to profile?.ADRES,
+                            "detailad" to profile?.DETAIL_ADRES,
+                            "category" to profile?.INDUTY,
+                            "empNum" to profile?.NMBR_WRKRS,
+                            "webSite" to profile?.WEB_ADRES,
+                            "cmpny_email" to profile?.CEO_EMAIL_ADRES,
+                            "cmpny_img" to profile?.CMPNY_IM,
+                            "approval" to profile?.BSNNM_APRVL
+                        )
+                        Log.d("bundle", "이미지주소!! : ${profile?.CMPNY_IM}")
+                        Navigation.findNavController(binding.root).navigate(R.id.businessProfileView, bundle)
+                    }
+
+                }
+                else -> {
+                    return
+                }
+            }
+        }
 
         //승인여부 팝업
-        private fun statusButtonClicked() {
+        private fun statusButtonClicked(title: String, message: String) {
             // 팝업 띄우기
             AlertDialog.Builder(requireContext())
-                .setTitle("승인여부 확인")
-                .setMessage("승인 되었습니다.")
+                .setTitle(title)
+                .setMessage(message)
                 .setPositiveButton("확인", { _, _ -> })
                 .create()
                 .show()
 
+        }
 
+        @SuppressLint("ResourceAsColor")
+        private fun setStatusButton(businessApproval : String){
+            //10	승인 요청 필요
+            //20	승인 대기중
+            //30	승인 완료
+            when(businessApproval){
+                "승인 요청 필요" -> {
+                //버튼 배경색, 텍스트 바꾸기
+                binding.statusButton.setText("승인요청필요")
+                binding.statusButton.setBackgroundResource(R.color.bg_pending_approval)
+                binding.statusButton.setTextColor(Color.parseColor("#FFA31A"))
+                    binding.statusButton.setOnClickListener{
+                        statusButtonClicked("승인요청필요", "승인 요청이 필요합니다.")
+                    }
+                }
+
+                "승인 대기중" -> {
+                    binding.statusButton.setText("승인 대기")
+                    binding.statusButton.setBackgroundResource(R.color.bg_non_approval)
+                    binding.statusButton.setTextColor(Color.parseColor("#FF1A43"))
+
+                    binding.statusButton.setOnClickListener{
+                        statusButtonClicked("승인 대기", "승인 대기중 입니다.")
+                    }
+                }
+                "승인 완료" -> {
+                    binding.statusButton.setText("승인 완료")
+                    binding.statusButton.setBackgroundResource(R.color.bg_approval)
+                    binding.statusButton.setTextColor(Color.parseColor("#1A75FF"))
+
+                    binding.statusButton.setOnClickListener{
+                        statusButtonClicked("승인 완료","승인이 완료되었습니다.")
+                    }
+                }
+                else -> {return }
+            }
         }
 
 
