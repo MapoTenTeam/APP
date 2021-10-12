@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
-import androidx.navigation.R
 import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
 import com.mapo.mapoten.data.PersonalProfile
-import com.mapo.mapoten.data.PersonalProfileItems
 import com.mapo.mapoten.data.UpdatePersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,21 +46,26 @@ class Account_01_01 : Fragment() {
 
         }
 
+        // 탈퇴 연결
+        binding.dismiss.setOnClickListener {
+            deleteAccount()
+        }
+
         //회원정보 불러오기
         service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
 
-        service.getUserProfile().enqueue(object : Callback<PersonalProfile>{
+        service.getUserProfile().enqueue(object : Callback<PersonalProfile> {
             override fun onResponse(
                 call: Call<PersonalProfile>,
                 response: Response<PersonalProfile>
             ) {
 
-                Log.d("profile", "res: "+response.code())
+                Log.d("profile", "res: " + response.code())
 
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val myProfile = response.body()
-                    Log.d("profile", "msg: "+ response.message())
-                    Log.d("profile", "res: "+ response.body())
+                    Log.d("profile", "msg: " + response.message())
+                    Log.d("profile", "res: " + response.body())
 
                     setProfile(myProfile!!)
                     val error = response.errorBody()
@@ -84,51 +88,70 @@ class Account_01_01 : Fragment() {
     }
 
 
+    private fun setProfile(myProfile: PersonalProfile) {
 
-       private fun setProfile(myProfile: PersonalProfile) {
+        val name = myProfile.data.MBER_NM
+        binding.mypageUserName.text = name
+        binding.userNameText.setText(name)
+        binding.userIdText.setText(myProfile.data.MBER_ID)
+        binding.userPhoneText.setText(myProfile.data.MBTLNUM)
+        binding.userEmailText.setText(myProfile.data.MBER_EMAIL_ADRES)
+        binding.userAddressText.setText(myProfile.data.ADRES)
+        binding.addressDetailText.setText(myProfile.data.DETAIL_ADRES)
 
-            val name = myProfile?.data?.MBER_NM
-            binding.mypageUserName.setText(name)
-            binding.userNameText.setText(name)
-            binding.userIdText.setText(myProfile?.data?.MBER_ID)
-            binding.userPhoneText.setText(myProfile?.data?.MBTLNUM)
-            binding.userEmailText.setText(myProfile?.data?.MBER_EMAIL_ADRES)
-            binding.userAddressText.setText(myProfile?.data?.ADRES)
-            binding.addressDetailText.setText(myProfile!!.data.DETAIL_ADRES)
-
-        }
-
-
-        private fun updateProfile() {
-
-            val name = binding.userNameText.text.toString()
-            val mobile = binding.userPhoneText.text.toString()
-            val email = binding.userEmailText.text.toString()
-            val address = binding.userAddressText.text.toString()
-            val detailAd = binding.addressDetailText.text.toString()
+    }
 
 
-            val profile = UpdatePersonalProfileItems(name,email,mobile,address,detailAd)
-            Log.d("profile 수정", "profile : $profile")
+    private fun updateProfile() {
 
-            service.updateUserProfile(profile).enqueue(object :Callback<Void>{
-                override fun onResponse(
-                    call: Call<Void>,
-                    response: Response<Void>
-                ) {
-                    Log.d("profile 수정", "code : ${response.code()}")
+        val name = binding.userNameText.text.toString()
+        val mobile = binding.userPhoneText.text.toString()
+        val email = binding.userEmailText.text.toString()
+        val address = binding.userAddressText.text.toString()
+        val detailAd = binding.addressDetailText.text.toString()
 
-                    if(response.isSuccessful){
-                        val msg = response.message()
-                        Log.d("profile 수정", "msg : $msg")
-                    }
 
+        val profile = UpdatePersonalProfileItems(name, email, mobile, address, detailAd)
+        Log.d("profile 수정", "profile : $profile")
+
+        service.updateUserProfile(profile).enqueue(object : Callback<Void> {
+            override fun onResponse(
+                call: Call<Void>,
+                response: Response<Void>
+            ) {
+                Log.d("profile 수정", "code : ${response.code()}")
+
+                if (response.isSuccessful) {
+                    val msg = response.message()
+                    Log.d("profile 수정", "msg : $msg")
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("profile 수정", "error" + t.message)
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("profile 수정", "error" + t.message)
+            }
+        })
+    }
+
+
+    // 개인 회원 탈퇴 api 연결
+    private fun deleteAccount() {
+        service.deleteUserAccount().enqueue(object : Callback<ImageResponse> {
+            override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
+                Log.d("UserAccount", "code: " + response.code())
+
+                if (response.isSuccessful) {
+                    Log.d("UserAccount", "code: " + response.code())
+                    Log.d("UserAccount", "msg: " + response.body()?.message)
                 }
-            })
-        }
+            }
+
+            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
+                Log.d("UserAccount", "error" + t.message)
+            }
+
+        })
+    }
 
 }

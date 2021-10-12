@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
 
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:id="@+id/actionBar"
             android:layout_width="match_parent"
@@ -20,8 +21,8 @@
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <Button
                 android:id="@+id/backButton"
@@ -31,8 +32,7 @@
 
                 android:background="@android:color/transparent"
                 android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
-                android:text="@string/title_myProfile"
-                />
+                android:text="@string/title_myProfile" />
 
             <View
                 android:layout_width="match_parent"
@@ -125,8 +125,8 @@
                     style="@style/TextInputOutline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="아이디 *"
                     android:enabled="false"
+                    android:hint="아이디 *"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/businessName">
@@ -251,70 +251,71 @@
 
 
             <LinearLayout
-                android:layout_marginTop="@dimen/margin_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/bottom_line">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="회원 탈퇴 하시겠습니까? "/>
+                    android:text="회원 탈퇴 하시겠습니까? " />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/dismiss"
-                    android:background="@color/text_lightGrey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="@dimen/size_24"
                     android:layout_gravity="right"
                     android:layout_marginStart="120dp"
-                    android:text="회원탈퇴" />
-
-
-               <!-- <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/secession"
-                    style="@style/TextInputOutline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="탈퇴 사유 *"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/businessName">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="인증번호 6자리를 입력해주세요"
-                        android:paddingVertical="@dimen/padding_14"
-                        android:textSize="@dimen/text_14" />
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/secession_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="@dimen/margin_16"
-                    android:background="@drawable/input_stroke_radius30"
-                    android:text="탈퇴 시 유의사항" />-->
-
-               <!-- <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/secession_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="80dp"
-                    android:background="@drawable/button_background_radius30"
+                    android:background="@android:color/transparent"
                     android:text="탈퇴하기"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/secession_info"
-                    tools:ignore="TextContrastCheck" />-->
+                    android:textColor="@color/text_middleGrey"
+                    android:textSize="@dimen/text_12" />
+
+                <!-- <com.google.android.material.textfield.TextInputLayout
+                     android:id="@+id/secession"
+                     style="@style/TextInputOutline"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:hint="탈퇴 사유 *"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                     <com.google.android.material.textfield.TextInputEditText
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:hint="인증번호 6자리를 입력해주세요"
+                         android:paddingVertical="@dimen/padding_14"
+                         android:textSize="@dimen/text_14" />
+
+
+                 </com.google.android.material.textfield.TextInputLayout>
+
+                 <TextView
+                     android:id="@+id/secession_info"
+                     android:layout_width="match_parent"
+                     android:layout_height="150dp"
+                     android:layout_marginTop="@dimen/margin_16"
+                     android:background="@drawable/input_stroke_radius30"
+                     android:text="탈퇴 시 유의사항" />-->
+
+                <!-- <androidx.appcompat.widget.AppCompatButton
+                     android:id="@+id/secession_button"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="10dp"
+                     android:layout_marginBottom="80dp"
+                     android:background="@drawable/button_background_radius30"
+                     android:text="탈퇴하기"
+                     android:textColor="#ffffff"
+                     android:textSize="@dimen/text_14"
+                     android:textStyle="bold"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/secession_info"
+                     tools:ignore="TextContrastCheck" />-->
 
 
             </LinearLayout>
