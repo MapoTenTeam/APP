@@ -313,11 +313,11 @@ class Login_02_01 : Fragment() {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(p0: Editable?) {
-                    if (pwdEditText.text.isNullOrEmpty() == pwdConfirmEditText.text.isNullOrEmpty()) {
-                        if (pwdEditText.text.toString() == pwdConfirmEditText.text.toString()) {
-                            pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
-                        } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
-                    }
+//                    if (!pwdEditText.text.!!isEmpty() == !pwdConfirmEditText.text.isNullOrEmpty()) {
+//                        if (pwdTiL.editText!!.text.toString() == pwdConfirmTiL.editText!!.text.toString()) {
+//                            pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
+//                        } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
+//                    }
 
                 }
 

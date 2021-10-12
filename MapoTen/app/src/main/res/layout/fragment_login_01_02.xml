@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/company_number_TiL"
+        android:id="@+id/email_TiL"
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="@string/company_registration_number"
+            android:hint="@string/email"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

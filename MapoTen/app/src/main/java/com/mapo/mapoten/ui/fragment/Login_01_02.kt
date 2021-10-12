@@ -1,12 +1,16 @@
 package com.mapo.mapoten.ui.fragment
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.Login.GetUserByIdFindOutputDto
@@ -17,6 +21,7 @@ import com.mapo.mapoten.service.UserService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class Login_01_02 : Fragment() {
     private var _binding: FragmentLogin0102Binding? = null
@@ -40,10 +45,11 @@ class Login_01_02 : Fragment() {
             btnConfirm.setOnClickListener {
                 if (!companyNameRequiredFieldChecker())
                     return@setOnClickListener
-                if (!companyNumberRequiredFieldChecker())
+                if (!emailRequiredFieldChecker())
                     return@setOnClickListener
-                //getUserByFindId()
-
+                if (!emailPatternChecker())
+                    return@setOnClickListener
+                getUserByFindId()
             }
         }
 
@@ -51,48 +57,48 @@ class Login_01_02 : Fragment() {
     }
 
     // 아이디 찾기
-//    private fun getUserByFindId() {
-//        with(binding) {
-//
-//            var textName = companyNameTiL.editText!!.text.toString()
-//            var textNumber = companyNumberTiL.editText!!.text.toString()
-//
-//            val loginService =
-//                userService.getUserByFindId(UserByIdFindInputDto(textName, textEmail))
-//
-//            Log.d("TAG", "이름 : $textName , 아이디 : $textEmail")
-//
-//            loginService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
-//                override fun onResponse(
-//                    call: Call<GetUserByIdFindOutputDto>,
-//                    response: Response<GetUserByIdFindOutputDto>
-//                ) { //정상응답이 올경우
-//                    if (response.isSuccessful) {
-//                        code = response.body()?.statusCode.toString()
-//                        userId = response.body()?.userId.toString()
-//                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-//                        Log.d("TAG", "아이디 : ${response.body()?.userId}")
-//                        Log.d("TAG", "code : $code userId : $userId")
-//                        //showDialog(code, userId)
-//                    } else {
-//                        code = response.body()?.statusCode.toString()
-//                        userId = response.body()?.userId.toString()
-//                        Log.d(
-//                            "TAG",
-//                            "${response.body()?.statusCode} ~~~ ${response.body()?.message}"
-//                        )
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<GetUserByIdFindOutputDto>, t: Throwable) {
-//                    //실패할 경우
-//                    Log.e("error", "통신 실패" + t.localizedMessage)
-//                }
-//
-//            })
-//
-//        }
-//    }
+    private fun getUserByFindId() {
+        with(binding) {
+
+            var textName = companyNameTiL.editText!!.text.toString()
+            var textEmail = emailTiL.editText!!.text.toString()
+
+            val findIdService =
+                userService.getUserByFindId(UserByIdFindInputDto(textName, textEmail))
+
+            Log.d("TAG", "이름 : $textName , 아이디 : $textEmail")
+
+            findIdService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
+                override fun onResponse(
+                    call: Call<GetUserByIdFindOutputDto>,
+                    response: Response<GetUserByIdFindOutputDto>
+                ) { //정상응답이 올경우
+                    if (response.isSuccessful) {
+                        code = response.body()?.statusCode.toString()
+                        userId = response.body()?.userId.toString()
+                        Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                        Log.d("TAG", "아이디 : ${response.body()?.userId}")
+                        Log.d("TAG", "code : $code userId : $userId")
+                        showDialog(code, userId)
+                    } else {
+                        code = response.body()?.statusCode.toString()
+                        userId = response.body()?.userId.toString()
+                        Log.d(
+                            "TAG",
+                            "${response.body()?.statusCode} ~~~ ${response.body()?.message}"
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<GetUserByIdFindOutputDto>, t: Throwable) {
+                    //실패할 경우
+                    Log.e("error", "통신 실패" + t.localizedMessage)
+                }
+
+            })
+
+        }
+    }
 
     // <-------------------------- 필수 입력 체크 -------------------------->
     private fun companyNameRequiredFieldChecker(): Boolean {
@@ -108,17 +114,85 @@ class Login_01_02 : Fragment() {
         }
     }
 
-    private fun companyNumberRequiredFieldChecker(): Boolean {
+    private fun emailRequiredFieldChecker(): Boolean {
         with(binding) {
-            val value: String = companyNumberTiL.editText?.text.toString()
+            val value: String = emailTiL.editText?.text.toString()
             return if (value.isEmpty()) {
-                companyNumberTiL.error = "사업자등록번호를 입력하세요."
+                emailTiL.error = "이메일을 입력하세요."
                 false
             } else {
-                companyNumberTiL.error = null
+                emailTiL.error = null
                 true
             }
         }
+    }
+
+    // 이메일 형식 검사
+    private fun emailPatternChecker(): Boolean{
+        with(binding) {
+            // 검사 정규식
+            val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+            val value: String = emailTiL.editText?.text.toString().trim() // 공백제거
+            val p = Pattern.matches(emailValidation, value) // 패턴검사
+            return if (p) { // 정상일 경우
+                emailTiL.error = null
+                true
+            } else {
+                emailTiL.error = "이메일 형식에 맞게 입력하세요."
+                false
+            }
+        }
+    }
+
+    // dialog
+    private fun showDialog(code: String, userId: String) {
+        dialog = Dialog(binding.root.context)
+        with(dialog) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.popup_find_id_dialog)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setLayout(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+
+            val tvIdTitle: TextView = findViewById(R.id.tv_id_title)
+            val tvId: TextView = findViewById(R.id.tv_id)
+            val tvInform: TextView = findViewById(R.id.tv_information)
+            val ivError: ImageView = findViewById(R.id.iv_error)
+
+
+            Log.d("TAG", "code : $code")
+            when (code) {
+                "200" -> { // 찾기 성공
+                    tvId.text = userId
+                    ivError.visibility = View.GONE
+                }
+                "400" -> {
+                    tvIdTitle.visibility = View.GONE
+                    tvId.visibility = View.GONE
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
+                }
+                "null" -> {
+                    tvIdTitle.visibility = View.GONE
+                    tvId.visibility = View.GONE
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
+                }
+            }
+            show()
+
+            val btnLogin: AppCompatButton = dialog.findViewById(R.id.btn_login)
+            btnLogin.setOnClickListener {
+                //로그인 화면 띄우기
+                dismiss()
+                findNavController().navigate(R.id.action_login_01_02_to_login_01)
+            }
+            val btnCancel: TextView = dialog.findViewById(R.id.tv_cancel)
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
+        }
+
     }
 
 }

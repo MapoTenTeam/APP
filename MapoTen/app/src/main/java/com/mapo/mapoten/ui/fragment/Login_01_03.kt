@@ -51,7 +51,7 @@ class Login_01_03 : Fragment() {
 
     }
 
-    // 비밀번 찾기
+    // 비밀번호 찾기
     private fun getUserByFindPwd() {
         with(binding) {
 

@@ -3,6 +3,7 @@ package com.mapo.mapoten.ui.fragment
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -82,7 +83,7 @@ class Login_01 : Fragment() {
     }
 
     // 암호화
-    fun hashSHA256(msg: String): String {
+    fun hashSHA256(msg: String) : String{
         val hash: ByteArray
         try {
             val md = MessageDigest.getInstance("SHA-256")
@@ -114,6 +115,8 @@ class Login_01 : Fragment() {
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
             Log.d("TAG", "${hashSHA256(textPwd)}")
+//
+//            val base64Encoded = Base64.encodeToString(hashSHA256(textPwd),Base64.DEFAULT)
 
             val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
@@ -127,6 +130,7 @@ class Login_01 : Fragment() {
                             Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
                         val token = response.body()?.accessToken
                             Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
+                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
                         if (token != null) {
                             AppPrefs.saveToken(requireActivity(), token)
                             AppPrefs.saveUserType(requireActivity(), response.body()!!.user_se)
@@ -138,7 +142,7 @@ class Login_01 : Fragment() {
                         Toast.makeText(context,
                                 "로그인 실패",
                                 Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "${hashSHA256(textPwd)}")
+                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
                         Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }
