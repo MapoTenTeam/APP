@@ -105,8 +105,16 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
         var list : ArrayList<Address>? = null
 
-        val test = "서울특별시 은평구 응암동 응암로22길 9-4"
         try {
+
+            if(address === null) {
+
+                binding.placeOfWorkValue.text = "위치 미등록으로 정보 제공이 불가능합니다."
+                binding.mapView.visibility = View.GONE
+
+                return
+            }
+
             list = geocoder.getFromLocationName(address, 10) as ArrayList<Address>?
 
         }catch (e : IOException) {
@@ -166,7 +174,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
                         requireActivity().runOnUiThread {
                             loading(false)
                             response.body()?.data?.let { setData(it) }
-                            getLatLng(response.body()?.data?.address)
+                            getLatLng(response.body()?.data!!.address)
                         }
                     }
 
