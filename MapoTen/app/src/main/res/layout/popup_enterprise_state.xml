@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
-    android:layout_height="wrap_content"
+    android:layout_height="280dp"
     android:background="@drawable/bg_popup">
 
     <LinearLayout
@@ -23,13 +23,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="채용공고 승인 상태"
+            android:text="기업 승인 상태"
             android:textAlignment="center"
             android:textColor="@color/text_darkGrey"
             android:textSize="@dimen/text_18"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12"
@@ -39,15 +40,6 @@
             android:textSize="@dimen/text_16"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:text="거절사유"
-            android:textAlignment="center"
-            android:textColor="@color/text_darkGrey"
-            android:textSize="@dimen/text_14"
-            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -59,7 +51,7 @@
 
 
         <TextView
-            android:id="@+id/rejectComments"
+            android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4"
