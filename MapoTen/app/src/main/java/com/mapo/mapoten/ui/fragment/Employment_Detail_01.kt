@@ -195,14 +195,6 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         })
     }
 
-    private fun registerBookmark() {
-
-    }
-
-    private fun cancelBookmark() {
-
-    }
-
     private fun setData(result: GeneralEmpPostingDetailDTO) {
         binding.category.text = if (type === 1) "일반채용" else "공공채용"
         binding.title.text = result.title
