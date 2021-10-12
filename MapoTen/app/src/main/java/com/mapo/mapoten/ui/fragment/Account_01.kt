@@ -36,11 +36,6 @@ class Account_01 : Fragment() {
 
         // Inflate the layout for this fragment
 
-        // back button
-        binding.backButton.setOnClickListener {
-            Navigation.findNavController(view).navigateUp()
-        }
-
         view.findViewById<View>(R.id.info_button).setOnClickListener {
             val bundle = bundleOf(
                 "mber_nm" to myProfile?.data?.MBER_NM,
@@ -76,6 +71,7 @@ class Account_01 : Fragment() {
                 response: Response<PersonalProfile>
             ) {
                 if(response.isSuccessful){
+                    Log.d("user", "마이페이지 : ${response.body()}")
                     myProfile = response.body()
                     userName = myProfile?.data?.MBER_NM.toString()
                     binding.nameMyPage.setText(userName)

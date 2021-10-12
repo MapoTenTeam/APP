@@ -30,6 +30,7 @@ import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.util.MarkerIcons
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,9 +46,9 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
     var type by Delegates.notNull<Int>()
     private lateinit var dialog: Dialog
 
-    private lateinit var mapView : MapView
+    private lateinit var mapView: MapView
     private lateinit var geocoder: Geocoder
-    private lateinit var geoLatLng : LatLng
+    private lateinit var geoLatLng: LatLng
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,22 +104,32 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
     private fun getLatLng(address: String?) {
 
-        var list : ArrayList<Address>? = null
+        Log.d("EmpDetail", "address Info : $address")
 
-        val test = "서울특별시 은평구 응암동 응암로22길 9-4"
+        var list: ArrayList<Address>? = null
+
         try {
+
+            if (address === null) {
+
+                binding.placeOfWorkValue.text = "위치 미등록으로 정보 제공이 불가능합니다."
+                binding.mapView.visibility = View.GONE
+
+                return
+            }
+
             list = geocoder.getFromLocationName(address, 10) as ArrayList<Address>?
 
-        }catch (e : IOException) {
+        } catch (e: IOException) {
             e.printStackTrace()
             Log.d("map", "error")
         }
 
-        if(list!=null) {
-            if(list.size == 0) {
+        if (list != null) {
+            if (list.size == 0) {
                 Log.d("map", "list size : 0")
 
-            }else {
+            } else {
                 val lat = list[0].latitude
                 val long = list[0].longitude
 
@@ -166,7 +177,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
                         requireActivity().runOnUiThread {
                             loading(false)
                             response.body()?.data?.let { setData(it) }
-                            getLatLng(response.body()?.data?.address)
+                            getLatLng(response.body()?.data!!.workAddress)
                         }
                     }
 
@@ -182,14 +193,6 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
             }
 
         })
-    }
-
-    private fun registerBookmark() {
-
-    }
-
-    private fun cancelBookmark() {
-
     }
 
     private fun setData(result: GeneralEmpPostingDetailDTO) {
@@ -342,7 +345,14 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         Log.d("map", "onMapReady()...$geoLatLng")
 
         val marker = Marker()
+        marker.icon = MarkerIcons.BLACK
+        marker.iconTintColor = Color.parseColor("#7C9FF2")
         marker.position = geoLatLng
+        marker.captionText = "근무예정지"
+        marker.captionRequestedWidth = 300
+        marker.captionColor = Color.parseColor("#4C67A6")
+        marker.captionHaloColor = Color.parseColor("#ffffff")
+        marker.isHideCollidedSymbols = true
         marker.map = naverMap
 
         val cameraUpdate = CameraUpdate.scrollTo(geoLatLng)

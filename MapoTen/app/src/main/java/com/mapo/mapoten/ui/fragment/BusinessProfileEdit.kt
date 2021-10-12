@@ -339,7 +339,7 @@ class BusinessProfileEdit : Fragment() {
 
 
         private fun addCompImg() {
-            Toast.makeText(requireContext(), "클릭리스너 이후 addCompimg 까지옴", Toast.LENGTH_SHORT).show()
+
             Log.d("profile", "클릭리스너 이후 addCompimg 까지옴")
             //creating a file
             if(filePath ==""){
