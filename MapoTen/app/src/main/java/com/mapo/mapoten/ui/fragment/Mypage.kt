@@ -35,7 +35,7 @@ class Mypage : Fragment() {
 
 
         if (AppPrefs.getUserType(requireContext()).equals("GNR")) {
-            findNavController().navigate(R.id.businessAccount_01)
+            findNavController().navigate(R.id.account_01)
         } else {
             findNavController().navigate(R.id.businessAccount_01)
         }

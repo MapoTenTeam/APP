@@ -14,7 +14,7 @@ object RetrofitBuilder {
     private val token = AppPrefs.getToken(App.getContext())
     private val testToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSX0lEIjoidGVzdF9wdSIsImlhdCI6MTYzNDAxNjU4M30.4-m0kMj_xPq2jUE8-A9ucf-vFPr-hhOgARxfn3rYEJI"
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(testToken))
+        addInterceptor(MyInterceptor(token!!))
     }.build()
 
 
