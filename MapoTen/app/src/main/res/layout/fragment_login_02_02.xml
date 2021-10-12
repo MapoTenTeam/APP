@@ -244,6 +244,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/EditTextStyle"
+                    android:id="@+id/company_number_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -268,6 +269,7 @@
             style="@style/TextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6"
             android:isScrollContainer="false"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
@@ -309,12 +311,13 @@
 
             <TextView
                 android:id="@+id/tv_tos_title"
+                style="@style/tos_text14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_6"
                 android:layout_marginTop="@dimen/margin_6"
-                android:text="@string/tos"
-                style="@style/tos_text14" />
+                android:text="@string/tos" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
@@ -332,10 +335,10 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos1"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[필수] 마포잡 서비스 이용약관"
-                    style="@style/text12" />
+                    android:text="@string/tos1" />
 
                 <View
                     android:layout_width="0dp"
@@ -343,16 +346,24 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tos_error1"
+                style="@style/tos_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="@string/tos_error1"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -361,11 +372,11 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos2"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="[필수] 개인정보 수집 및 이용약관"
-                    style="@style/text12"/>
+                    android:text="@string/tos2" />
 
                 <View
                     android:layout_width="0dp"
@@ -373,16 +384,24 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tos_error2"
+                style="@style/tos_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="@string/tos_error2"
+                android:visibility="gone" />
 
         </LinearLayout>
 

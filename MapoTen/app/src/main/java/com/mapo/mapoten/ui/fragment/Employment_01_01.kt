@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.SpinnerModel
@@ -27,7 +29,6 @@ class Employment_01_01 : Fragment() {
     lateinit var binding: FragmentEmployment0101Binding
     private lateinit var adapter: PublicEmploymentPostingAdapter
     private var resultDataList = mutableListOf<GeneralEmpPostingDTO>()
-    private lateinit var spinnerAdapterPlace: SpinnerAdapter
     private val listOfPlace = ArrayList<SpinnerModel>()
     lateinit var employmentService: EmploymentService
 
@@ -56,14 +57,22 @@ class Employment_01_01 : Fragment() {
             getAllPosting(1, searchTerm)
         }
 
-        binding.refreshLayout.setOnRefreshListener {
-            postingCount += 1
-            if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
-                binding.refreshLayout.isRefreshing = true
-                getAllPosting(postingCount, searchTerm)
+        val linearLayoutManager: LinearLayoutManager =
+            binding.jobPostingBoard.layoutManager as LinearLayoutManager
+
+        binding.jobPostingBoard.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                var lastItem = linearLayoutManager.findLastVisibleItemPosition()
+                Log.d("refresh test", "lastItem count : $lastItem")
+
+
+                // 리스트 마지막 데이터가 맞다면
+                if (linearLayoutManager != null && lastItem == adapter.itemCount - 1) {
+                    isLoading(true)
+                }
             }
-            binding.refreshLayout.isRefreshing = false
-        }
+        })
 
 
         binding.backButton.setOnClickListener {
@@ -74,24 +83,23 @@ class Employment_01_01 : Fragment() {
     }
 
     private fun initialize() {
-
+        postingCount = 1
         loading(true)
         getAllPosting(1, "")
 
         listOfPlace.clear()
-        setupSpinnerPlace()
-
     }
 
-    private fun setupSpinnerPlace() {
-        val places = resources.getStringArray(R.array.employ_array_country)
-
-        for (i in places.indices) {
-            val place = SpinnerModel(places[i])
-            listOfPlace.add(place)
+    private fun isLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.moreLoading.visibility = View.VISIBLE
+            postingCount += 1
+            if (endPostingCount > 0 && (endPostingCount / 12 + 1) >= postingCount) {
+                getAllPosting(postingCount, searchTerm)
+            } else {
+                binding.moreLoading.visibility = View.INVISIBLE
+            }
         }
-        spinnerAdapterPlace = SpinnerAdapter(requireContext(), R.layout.item_spinner, listOfPlace)
-        binding.placeOfWork.adapter = spinnerAdapterPlace
     }
 
 
@@ -120,8 +128,11 @@ class Employment_01_01 : Fragment() {
                     if (page == 1) {
                         resultDataList = response.body()!!.data
                     } else {
+                        Log.d("employmentGeneral", "moredata code : " + response.code())
+                        Log.d("employmentGeneral", "moredata code : " + response.body()?.count)
                         for (item in response.body()!!.data) {
                             resultDataList.add(item)
+                            binding.moreLoading.visibility = View.INVISIBLE
                         }
                     }
                     endPostingCount = response.body()!!.count

@@ -14,10 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MapoTen"
+        android:name=".ui.activity.App"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".SocketClient"
-            android:exported="true" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="1l4vl3gz3p" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">

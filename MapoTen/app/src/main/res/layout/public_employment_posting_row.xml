@@ -18,7 +18,7 @@
             android:layout_margin="@dimen/size_1"
             android:src="@drawable/employment_test_img" />
 
-        <ToggleButton
+       <!-- <ToggleButton
             android:id="@+id/bookmarkBtn"
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -27,7 +27,7 @@
             android:layout_marginEnd="@dimen/margin_20"
             android:background="@drawable/bg_toggle_btn"
             android:textOff=""
-            android:textOn="" />
+            android:textOn="" />-->
 
         <LinearLayout
             android:id="@+id/closedPosting"
