@@ -5,22 +5,27 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.R
+import androidx.navigation.fragment.findNavController
+import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.ImageResponse
+import com.mapo.mapoten.data.PersonalProfile
+import com.mapo.mapoten.data.UpdatePersonalProfileItems
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
 import com.mapo.mapoten.service.AccountManageService
-import com.mapo.mapoten.data.PersonalProfile
-import com.mapo.mapoten.data.PersonalProfileItems
-import com.mapo.mapoten.data.UpdatePersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class Account_01_01 : Fragment() {
@@ -48,13 +53,14 @@ class Account_01_01 : Fragment() {
             Log.d("profile", "눌림")
             updateProfile()
             Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(view).navigate(R.id.account_01)
         }
 
         // 탈퇴 연결
         binding.dismiss.setOnClickListener {
             dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.popup_delete_guide)
+            dialog.setContentView(com.mapo.mapoten.R.layout.popup_delete_guide)
             showDialog()
         }
 
@@ -100,14 +106,14 @@ class Account_01_01 : Fragment() {
         dialog.show()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val deleteBtn: AppCompatButton = dialog.findViewById(R.id.deleteBtn)
+        val deleteBtn: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.deleteBtn)
         deleteBtn.setOnClickListener {
             loading(true)
             deleteAccount()
             dialog.dismiss()
         }
 
-        val closeBtn: ImageView = dialog.findViewById(R.id.closeBtn)
+        val closeBtn: ImageView = dialog.findViewById(com.mapo.mapoten.R.id.closeBtn)
         closeBtn.setOnClickListener {
             dialog.dismiss()
         }
@@ -190,7 +196,7 @@ class Account_01_01 : Fragment() {
                             )
                                 .show()
                             view?.let {
-                                findNavController().navigate(R.id.login_01)
+                                findNavController().navigate(com.mapo.mapoten.R.id.login_01)
                             }
 
                         }

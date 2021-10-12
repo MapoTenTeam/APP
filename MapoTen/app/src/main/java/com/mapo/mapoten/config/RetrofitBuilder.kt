@@ -1,20 +1,18 @@
 package com.mapo.mapoten.config
 
-import com.mapo.mapoten.system.AppPrefs
 import com.mapo.mapoten.ui.activity.App
-import com.mapo.mapoten.ui.activity.MainActivity
 import retrofit2.Retrofit
 import okhttp3.*
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 
 object RetrofitBuilder {
 
-    private val token = AppPrefs.getToken(App.getContext())
+    private var token = App.prefs.token
+
 
     private val client = OkHttpClient.Builder().apply {
-        addInterceptor(MyInterceptor(token!!))
+        addInterceptor(MyInterceptor())
     }.build()
 
 
@@ -43,9 +41,11 @@ object RetrofitBuilder {
         return instance!!
     }
 
+    fun getToken() : String = token!!
 
-
-
+    fun setToken(token :String) {
+        this.token = token
+    }
 }
 
 
