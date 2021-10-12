@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.ImageResponse
@@ -24,6 +25,7 @@ import com.mapo.mapoten.data.UpdatePersonalProfileItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 class Account_01_01 : Fragment() {
@@ -105,6 +107,7 @@ class Account_01_01 : Fragment() {
 
         val deleteBtn: AppCompatButton = dialog.findViewById(R.id.deleteBtn)
         deleteBtn.setOnClickListener {
+            loading(true)
             deleteAccount()
             dialog.dismiss()
         }
@@ -161,6 +164,14 @@ class Account_01_01 : Fragment() {
         })
     }
 
+    // laoding
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loading.visibility = View.VISIBLE
+            binding.scrollView.visibility = View.INVISIBLE
+        } else binding.loading.visibility = View.GONE
+    }
+
 
     // 개인 회원 탈퇴 api 연결
     private fun deleteAccount() {
@@ -171,6 +182,26 @@ class Account_01_01 : Fragment() {
                 if (response.isSuccessful) {
                     Log.d("UserAccount", "code: " + response.code())
                     Log.d("UserAccount", "msg: " + response.body()?.message)
+
+                    thread(start = true) {
+                        Thread.sleep(2000)
+
+                        requireActivity().runOnUiThread {
+                            loading(false)
+                            Toast.makeText(
+                                requireContext(),
+                                "정상적으로 탈퇴처리 되었습니다. :)",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            view?.let {
+                                findNavController().navigate(R.id.login_01)
+                            }
+
+                        }
+                    }
+
+
                 }
             }
 
