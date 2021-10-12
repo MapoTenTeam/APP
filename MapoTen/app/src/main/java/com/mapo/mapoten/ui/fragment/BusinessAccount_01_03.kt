@@ -38,8 +38,8 @@ class BusinessAccount_01_03 : Fragment() {
 
         binding.userNickName.setText(arguments?.getString("cmpny_nm"))
 
-        // add listener
-       /* binding.password.addTextChangedListener(editTextListener)
+      /*  // add listener
+        binding.password.addTextChangedListener(editTextListener)
         binding.newPassword.addTextChangedListener(editTextListener)
         binding.confirmNewPassword.addTextChangedListener(editTextListener)*/
 
@@ -98,6 +98,8 @@ class BusinessAccount_01_03 : Fragment() {
         }
 
     }
+
+
 
 
     private fun checkCurrentPw() :Boolean {
