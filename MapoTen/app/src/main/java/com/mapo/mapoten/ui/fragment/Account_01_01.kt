@@ -1,13 +1,20 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.navigation.Navigation
+import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.databinding.FragmentAccount0101Binding
@@ -23,6 +30,8 @@ class Account_01_01 : Fragment() {
 
     lateinit var binding: FragmentAccount0101Binding
     lateinit var service: AccountManageService
+    private lateinit var dialog: Dialog
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +51,16 @@ class Account_01_01 : Fragment() {
             Log.d("profile", "눌림")
             updateProfile()
             Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
-
-
         }
 
         // 탈퇴 연결
         binding.dismiss.setOnClickListener {
-            deleteAccount()
+            dialog = Dialog(requireContext())
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.popup_delete_guide)
+            showDialog()
         }
+
 
         //회원정보 불러오기
         service = RetrofitBuilder.getInstance().create(AccountManageService::class.java)
@@ -87,6 +98,22 @@ class Account_01_01 : Fragment() {
         return view
     }
 
+
+    private fun showDialog() {
+        dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val deleteBtn: AppCompatButton = dialog.findViewById(R.id.deleteBtn)
+        deleteBtn.setOnClickListener {
+            deleteAccount()
+            dialog.dismiss()
+        }
+
+        val closeBtn: ImageView = dialog.findViewById(R.id.closeBtn)
+        closeBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
 
     private fun setProfile(myProfile: PersonalProfile) {
 
