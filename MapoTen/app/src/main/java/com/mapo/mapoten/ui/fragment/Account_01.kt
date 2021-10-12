@@ -36,18 +36,8 @@ class Account_01 : Fragment() {
 
         // Inflate the layout for this fragment
 
-        view.findViewById<View>(R.id.info_button).setOnClickListener {
-            val bundle = bundleOf(
-                "mber_nm" to myProfile?.data?.MBER_NM,
-                "mber_id" to myProfile?.data?.MBER_ID,
-                "mber_email" to myProfile?.data?.MBER_EMAIL_ADRES,
-                "mobile" to myProfile?.data?.MBTLNUM,
-                "address" to myProfile?.data?.ADRES,
-                "detailad" to myProfile?.data?.DETAIL_ADRES,
 
-            )
-            Navigation.findNavController(view).navigate(R.id.accountProfileView, bundle)
-        } //회원정보 화면으로 이동
+
         view.findViewById<View>(R.id.resume_button).setOnClickListener {
             val bundle = bundleOf("name" to userName)
             Navigation.findNavController(view).navigate(R.id.account_01_02, bundle)
@@ -77,7 +67,7 @@ class Account_01 : Fragment() {
                     binding.nameMyPage.setText(userName)
                     binding.emailMyPage.setText(myProfile?.data?.MBER_EMAIL_ADRES)
 
-
+                    checkStatus(myProfile?.data?.PROFILE_STTUS)
                 }
             }
 
@@ -89,39 +79,33 @@ class Account_01 : Fragment() {
     }
 
 
-   /* private fun checkStatus(status: Int?){
+    private fun checkStatus(status: Int?){
         when (status) {
             0 -> {
                 //프로필 없음
-                binding.businessProfileButton.setOnClickListener {
-                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01)
+                binding.infoButton.setOnClickListener {
+                    Navigation.findNavController(binding.root).navigate(R.id.accountCheckProfile)
                 }
 
             }
             1 -> {
                 //프로필 있음
-                binding.businessProfileButton.setOnClickListener {
-                    val bundle = bundleOf(
-                        "cmpny_nm" to profile?.CMPNY_NM,
-                        "bizrno" to profile?.BIZRNO,
-                        "ceo" to profile?.CEO,
-                        "address" to profile?.ADRES,
-                        "detailad" to profile?.DETAIL_ADRES,
-                        "category" to profile?.INDUTY,
-                        "empNum" to profile?.NMBR_WRKRS,
-                        "webSite" to profile?.WEB_ADRES,
-                        "cmpny_email" to profile?.CEO_EMAIL_ADRES,
-                        "cmpny_img" to profile?.CMPNY_IM,
-                        "approval" to profile?.BSNNM_APRVL
-                    )
-                    Log.d("bundle", "이미지주소!! : ${profile?.CMPNY_IM}")
-                    Navigation.findNavController(binding.root).navigate(R.id.businessProfileView, bundle)
+                binding.infoButton.setOnClickListener {  val bundle = bundleOf(
+                    "mber_nm" to myProfile?.data?.MBER_NM,
+                    "mber_id" to myProfile?.data?.MBER_ID,
+                    "mber_email" to myProfile?.data?.MBER_EMAIL_ADRES,
+                    "mobile" to myProfile?.data?.MBTLNUM,
+                    "address" to myProfile?.data?.ADRES,
+                    "detailad" to myProfile?.data?.DETAIL_ADRES,
+                )
+                    Navigation.findNavController(binding.root).navigate(R.id.accountProfileView, bundle)
                 }
+
 
             }
             else -> {
                 return
             }
         }
-    }*/
+    }
 }

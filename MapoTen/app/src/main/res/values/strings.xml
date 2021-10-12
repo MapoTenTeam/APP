@@ -60,6 +60,9 @@
 
     <string name="user_profile">나의 프로필</string>
     <string name="user_profile_view">회원 프로필 조회</string>
+    <string name="user_profile_title">회원 프로필 등록</string>
+    <string name="user_new_mobile_hint">예시와 같이 입력하기 ex)010-1234-1234</string>
+    <string name="user_new_address_hint">ex)서울특별시 마포구 성산동</string>
     //business my page part
     <string name="business_profile_title">회사 프로필 등록</string>
     <string name="business_profile">회사 프로필</string>

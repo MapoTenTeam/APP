@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
                 destination.id == R.id.account_01_03 ||
                 destination.id == R.id.businessAccount_01_01 ||
                 destination.id == R.id.businessAccount_01_02 ||
-                destination.id == R.id.businessAccount_01_03
+                destination.id == R.id.businessAccount_01_03 ||
+                destination.id == R.id.accountNewProfile
 
 
             ) {

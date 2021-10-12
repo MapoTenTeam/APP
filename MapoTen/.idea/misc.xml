@@ -11,6 +11,8 @@
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01.xml" value="0.15760869565217392" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01_01.xml" value="0.5" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_01_02.xml" value="0.25475285171102663" />
+        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_check_profile.xml" value="0.26458333333333334" />
+        <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_new_profile.xml" value="0.21614583333333334" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_account_profile_view.xml" value="0.33" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01.xml" value="0.33" />
         <entry key="..\:/JIYOON/MAPOTEN-APP/APP/MapoTen/app/src/main/res/layout/fragment_business_account_01_01.xml" value="0.22554347826086957" />
@@ -101,5 +103,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

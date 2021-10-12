@@ -87,6 +87,8 @@ class Account_01_01 : Fragment() {
 
        private fun setProfile(myProfile: PersonalProfile) {
 
+            Log.d("phoneNum", "${myProfile?.data?.MBTLNUM}")
+
             val name = myProfile?.data?.MBER_NM
             binding.mypageUserName.setText(name)
             binding.userNameText.setText(name)
