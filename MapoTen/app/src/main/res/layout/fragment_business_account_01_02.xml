@@ -24,8 +24,8 @@
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="@+id/topBar"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/topBar">
 
                 <Button
                     android:id="@+id/backButton"
@@ -42,20 +42,46 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ProgressBar
+                style="@android:style/Widget.Holo.ProgressBar.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading..."
+                android:textColor="@color/text_middleGrey" />
+        </LinearLayout>
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/topBar"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_32"
                 android:layout_marginEnd="@dimen/margin_32"
-                android:paddingTop="@dimen/padding_10"
-                android:layout_marginBottom="500dp">
+                android:layout_marginBottom="500dp"
+                android:paddingTop="@dimen/padding_10">
 
 
                 <TextView
@@ -123,8 +149,8 @@
                         style="@style/TextInputOutline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="아이디 *"
                         android:enabled="false"
+                        android:hint="아이디 *"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
@@ -139,32 +165,32 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                   <!-- <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/userPhone"
-                        style="@style/TextInputOutline"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="휴대폰 번호 *"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+                    <!-- <com.google.android.material.textfield.TextInputLayout
+                         android:id="@+id/userPhone"
+                         style="@style/TextInputOutline"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:hint="휴대폰 번호 *"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/businessName">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14" />
+                         <com.google.android.material.textfield.TextInputEditText
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:paddingVertical="@dimen/padding_14"
+                             android:textSize="@dimen/text_14" />
 
 
-                    </com.google.android.material.textfield.TextInputLayout>-->
+                     </com.google.android.material.textfield.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/userEmail"
                         style="@style/TextInputOutline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="이메일 *"
                         android:enabled="false"
+                        android:hint="이메일 *"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/businessName">
@@ -178,8 +204,6 @@
 
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -213,64 +237,73 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/bottom_line">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="회원탈퇴"
-                        android:textStyle="bold"/>
-
-
-                  <!--  <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/secession"
-                        style="@style/TextInputOutline"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="탈퇴 사유 *"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/businessName">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="탈퇴 사유를 입력해주세요"
-                            android:paddingVertical="@dimen/padding_14"
-                            android:textSize="@dimen/text_14" />
-
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/secession_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:background="@drawable/input_stroke_radius30"
-                        android:text="탈퇴 시 유의사항"
-                        android:layout_marginTop="@dimen/margin_16"
-                        />
+                        android:text="회원 탈퇴 하시겠습니까? " />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/secession_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/button_background_radius30"
+                        android:id="@+id/dismiss"
+                        android:layout_width="80dp"
+                        android:layout_height="@dimen/size_24"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="120dp"
+                        android:background="@android:color/transparent"
                         android:text="탈퇴하기"
-                        android:textColor="#ffffff"
-                        android:textSize="@dimen/text_14"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="80dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/secession_info"
-                        tools:ignore="TextContrastCheck" />
+                        android:textColor="@color/text_middleGrey"
+                        android:textSize="@dimen/text_12" />
+                </LinearLayout>
+
+                <!--  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/secession"
+                      style="@style/TextInputOutline"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="탈퇴 사유 *"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:hint="탈퇴 사유를 입력해주세요"
+                          android:paddingVertical="@dimen/padding_14"
+                          android:textSize="@dimen/text_14" />
+
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <TextView
+                      android:id="@+id/secession_info"
+                      android:layout_width="match_parent"
+                      android:layout_height="150dp"
+                      android:background="@drawable/input_stroke_radius30"
+                      android:text="탈퇴 시 유의사항"
+                      android:layout_marginTop="@dimen/margin_16"
+                      />
+
+                  <androidx.appcompat.widget.AppCompatButton
+                      android:id="@+id/secession_button"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:background="@drawable/button_background_radius30"
+                      android:text="탈퇴하기"
+                      android:textColor="#ffffff"
+                      android:textSize="@dimen/text_14"
+                      android:textStyle="bold"
+                      android:layout_marginBottom="80dp"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/secession_info"
+                      tools:ignore="TextContrastCheck" />
 -->
 
-                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
