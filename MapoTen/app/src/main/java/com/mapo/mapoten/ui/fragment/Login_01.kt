@@ -70,9 +70,9 @@ class Login_01 : Fragment() {
             tvFindIdPersonal.setOnClickListener {
                 findNavController().navigate(R.id.login_01_01)
             } //개인 아이디찾기 화면으로 이동
-            tvFindIdBusiness.setOnClickListener {
-                findNavController().navigate(R.id.login_01_02)
-            } //기업 아이디찾기 화면으로 이동
+//            tvFindIdBusiness.setOnClickListener {
+//                findNavController().navigate(R.id.login_01_02)
+//            } //기업 아이디찾기 화면으로 이동
             tvFindPwd.setOnClickListener {
                 findNavController().navigate(R.id.login_01_03)
             } //비밀번호 찾기 화면으로 이동
