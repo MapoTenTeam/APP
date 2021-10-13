@@ -205,8 +205,8 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         binding.jobTypeDescValue.text = result.jobTypeDesc
         binding.requireCountValue.text = result.requireCount
         binding.jobDescValue.text = result.jobDesc
-        binding.educationValue.text = result.education
-        binding.careerValue.text = result.career
+        binding.educationValue.text = result.education.codeName
+        binding.careerValue.text = result.career.codeName
         binding.employTypeValue.text = manufactureData(result.employTypeDet)
 
 
@@ -219,12 +219,12 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         binding.quaternionValue.text = result.quaternion
 
         // 근로조건
-        binding.paycdValue.text = result.paycd
+        binding.paycdValue.text = result.paycd.codeName
         binding.payAmountValue.text = result.payAmount
-        binding.workTimeTypeValue.text = result.workTimeType
-        binding.mealCodValue.text = result.mealCod
+        binding.workTimeTypeValue.text = result.workTimeType.codeName
+        binding.mealCodValue.text = result.mealCod.codeName
         binding.workingHoursValue.text = result.workingHours
-        binding.severancePayTypeValue.text = result.severancePayType
+        binding.severancePayTypeValue.text = result.severancePayType.codeName
 
         binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 

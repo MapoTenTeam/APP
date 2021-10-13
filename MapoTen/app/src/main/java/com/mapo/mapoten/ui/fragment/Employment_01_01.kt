@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.SpinnerModel
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
@@ -18,7 +17,6 @@ import com.mapo.mapoten.data.employment.GeneralJobPostingResponse
 import com.mapo.mapoten.databinding.FragmentEmployment0101Binding
 import com.mapo.mapoten.service.EmploymentService
 import com.mapo.mapoten.ui.adapter.PublicEmploymentPostingAdapter
-import com.mapo.mapoten.ui.adapter.SpinnerAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
