@@ -1,9 +1,9 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.R.attr
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,16 +18,22 @@ import com.mapo.mapoten.data.Login.LoginRequest
 import com.mapo.mapoten.data.Login.LoginResponse
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
-import com.mapo.mapoten.system.AppPrefs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
-import java.lang.StringBuilder
+import com.mapo.mapoten.system.AppPrefs
+import java.nio.charset.Charset
 import java.security.DigestException
 import java.security.MessageDigest
-import java.math.BigInteger
-import java.nio.charset.Charset
+import java.util.Base64
+import java.util.Base64.getEncoder
+import android.R.attr.password
+import java.lang.Exception
+import java.security.spec.KeySpec
+import java.security.spec.MGF1ParameterSpec.SHA256
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
+import kotlin.experimental.and
 
 
 class Login_01 : Fragment() {
@@ -75,57 +81,13 @@ class Login_01 : Fragment() {
             btnSignUpBusiness.setOnClickListener {
                 findNavController().navigate(R.id.login_02_02)
             } //기업 회원가입 화면으로 이동
-//            autoLoginCheckBox.setOnClickListener {
-//                Log.d("TAG","클릭")
-//                val log = AppPrefs.getToken(requireActivity())
-//                Log.d("TAG","$log")
-//            }
 
         }
         return binding.root
 
-
-    }
-
-    // 암호화
-    fun hashSHA256(msg: String): String {
-        var hash: ByteArray = msg.toByteArray()
-        val md = MessageDigest.getInstance("SHA-256")
-        Log.d("TAG","msg: $msg ByteArray :$hash")
-        try {
-            for (i in 0..99999) {
-            val temp: String = msg + salt
-//            md.update(salt.toByteArray())
-//            md.update(msg.toByteArray())
-            md.update(temp.toByteArray())
-            hash = md.digest()
-
-            }
-
-        } catch (e: CloneNotSupportedException) {
-            throw DigestException("couldn't make digest of partial content");
-        }
-//        return bytesToHex(hash)
-        return Base64.encodeToString(hash, Base64.DEFAULT)
     }
 
 
-//    // 비밀번호 해싱
-//    @Throws(Exception::class)
-//    private fun hashing(password: ByteArray, salt: String): String {
-//        var password: ByteArray = password
-//        val md = MessageDigest.getInstance("SHA-256") // SHA-256 해시함수를 사용
-//
-//        // key-stretching
-//        for (i in 0..99999) {
-//            val temp: String =
-//                Byte_to_String(password).toString() + salt // 패스워드와 Salt 를 합쳐 새로운 문자열 생성
-//            md.update(temp.toByteArray()) // temp 의 문자열을 해싱하여 md 에 저장해둔다
-//            password = md.digest() // md 객체의 다이제스트를 얻어 password 를 갱신한다
-//        }
-//        return Base64.encodeToString(password, Base64.DEFAULT)
-////        return Byte_to_String(password)
-//    }
 
     // 바이트 값을 16진수로 변경해준다
     private fun Byte_to_String(temp: ByteArray): String {
@@ -136,15 +98,68 @@ class Login_01 : Fragment() {
         return sb.toString()
     }
 
-//    fun bytesToHex(byteArray: ByteArray): String {
-//        val hexChars = CharArray(byteArray.size * 2)
-//        for (i in byteArray.indices) {
-//            val v = byteArray[i].toInt() and 0xff
-//            hexChars[i * 2] = digits[v shr 4]
-//            hexChars[i * 2 + 1] = digits[v and 0xf]
+    fun byteArrayToHexaString(bytes: ByteArray): String? {
+        val builder = java.lang.StringBuilder()
+        for (data in bytes) {
+            builder.append(String.format("%02X ", data))
+        }
+        return builder.toString()
+    }
+
+    fun bytesToHex(byteArray: ByteArray): String {
+        val hexChars = CharArray(byteArray.size * 2)
+        for (i in byteArray.indices) {
+            val v = byteArray[i].toInt() and 0xff
+            hexChars[i * 2] = digits[v shr 4]
+            hexChars[i * 2 + 1] = digits[v and 0xf]
+        }
+        return String(hexChars)
+    }
+
+//    // 비밀번호 해싱
+//    @Throws(Exception::class)
+//    private fun Hashing(password : String): String? {
+//        var password: ByteArray? = password.toByteArray()
+//        val md = MessageDigest.getInstance("SHA-256") // SHA-256 해시함수를 사용
+//
+//        // key-stretching
+//        for (i in 0..9999) {
+//            var temp: String = Byte_to_String(password!!) + salt
+//                var input = temp.toByteArray()
+//                md.update(input)
+//                password  = md.digest()
 //        }
-//        return String(hexChars)
+//        return Base64.getEncoder().encodeToString(password!!)
 //    }
+
+
+//    @Throws(Exception::class)
+//    private fun hashing(password: ByteArray): String? {
+//        var password: ByteArray = password
+//       // Log.d("hash","$password, ${password.contentHashCode()}, ${password}")
+//        val md = MessageDigest.getInstance("SHA-256") // SHA-256 해시함수를 사용
+//
+//        // key-stretching
+//  //      for (i in 0..9999) {
+//            val temp = Byte_to_String(password) + salt // 패스워드와 Salt 를 합쳐 새로운 문자열 생성
+//            md.update(temp.byte()) // temp 의 문자열을 해싱하여 md 에 저장해둔다
+//            password = md.digest() // md 객체의 다이제스트를 얻어 password 를 갱신한다
+//  //      }
+//        return Byte_to_String(password)
+//    }
+
+
+    // 암호화
+    fun hashSHA256(password: String): String {
+        val spec: KeySpec = PBEKeySpec(
+            password.toCharArray(), salt.toByteArray(),
+            100000, 512
+        )
+        val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+        val hash = f.generateSecret(spec).getEncoded()
+        return Base64.getEncoder().encodeToString(hash)
+    }
+
 
     // 로그인
     private fun login() {
@@ -154,8 +169,29 @@ class Login_01 : Fragment() {
             var textId = idEditText.text.toString()
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
-//            Log.d("TAG", "해시 ${hashing(textPwd.toByteArray(), salt)}")
-            Log.d("TAG", "해시 ${hashSHA256(textPwd)}")
+  //         Log.d("TAG", "해시 ${hashing(textPwd.toByteArray())}")
+ //           Log.d("TAG", "해시 ${hashSHA256(textPwd)}")
+
+
+            //var str = Hashing(textPwd)
+//            val md = MessageDigest.getInstance("SHA-256")
+//            for (i in 0..9999){
+//                var temp: String = textPwd + salt
+//                md.update(temp.toByteArray())
+//                textPwd = md.digest()
+//                //str = Base64.getEncoder().encodeToString(bytes)
+//                println(Base64.getEncoder().encodeToString(bytes))
+//            }
+
+//            val spec: KeySpec = PBEKeySpec(
+//                textPwd.toCharArray(), salt.toByteArray(),
+//                100000, 512
+//            )
+//            val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+//            val hash = f.generateSecret(spec).getEncoded()
+//            val str = Base64.getEncoder().encodeToString(hash)
+
+            //Log.d("str", "$str")
 
             val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
@@ -183,7 +219,7 @@ class Login_01 : Fragment() {
                                 "로그인 실패",
                                 Toast.LENGTH_SHORT).show()
 //                        Log.d("TAG", "비밀번호 ${hashing(textPwd.toByteArray(), salt)}")
-                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
+//                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
                         Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }

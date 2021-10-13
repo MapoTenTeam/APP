@@ -38,7 +38,7 @@ interface UserService {
         @Body idFindInputDto: UserByIdFindInputDto
     ) : Call<GetUserByIdFindOutputDto>
 
-    @POST("user/find/personal/password")
+    @POST("user/find/password")
     fun getUserByFindPwd(
         @Body pwdFindInputDto: UserByPasswordFindInputDto
     ) : Call<GetUserByPasswordFindOutputDto>
