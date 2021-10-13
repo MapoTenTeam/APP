@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.mapo.mapoten.R
 
@@ -24,12 +23,8 @@ class BusinessAccount_01_01 : Fragment() {
             Navigation.findNavController(view).navigateUp()
         } //뒤로가기
 
-        val cmpny_nm = arguments?.getString("cmpny_nm").toString()
-        val bizrno = arguments?.getString("bizrno").toString()
-
         view.findViewById<Button>(R.id.business_profile_button).setOnClickListener {
-            val bundle = bundleOf("cmpny_nm" to cmpny_nm, "bizrno" to bizrno)
-            Navigation.findNavController(view).navigate(R.id.businessProfile_01, bundle)
+            Navigation.findNavController(view).navigate(R.id.businessProfile_01)
         } //기업프로필작성/수정  이동
 
         return view

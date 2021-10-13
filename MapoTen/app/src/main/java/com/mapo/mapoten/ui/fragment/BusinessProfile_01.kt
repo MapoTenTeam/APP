@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +16,11 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.google.android.material.textfield.TextInputLayout
-import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.ImageResponse
 import com.mapo.mapoten.data.UpdateBusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessProfile01Binding
 import com.mapo.mapoten.service.AccountManageService
-import com.mapo.mapoten.ui.activity.MainActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.MultipartBody.Part.Companion.createFormData
@@ -42,9 +38,6 @@ class BusinessProfile_01 : Fragment() {
     lateinit var service: AccountManageService
     private var selectedImageUri: Uri? = null
     private var filePath: String = ""
-    private var isImgUploaded : Boolean = false
-    private var code = ""
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,32 +55,16 @@ class BusinessProfile_01 : Fragment() {
         initiateLogoUpload()
        // initiateFileUpload()  사업자등록증 파일업로드 > 보류
 
-        val cmpny_nm = arguments?.getString("cmpny_nm").toString()
-        val bizrno = arguments?.getString("bizrno").toString()
-        binding.businessNameText.setText(cmpny_nm)
-        binding.businessNumberText.setText(bizrno)
 
-        binding.radioGroup.setOnCheckedChangeListener { _, i ->
-            code = when(i){
-                R.id.radio_button_1 -> {
-                    "10"
-                }
-                R.id.radio_button_2 -> {
-                    "20"
-                }
-                else -> {
-                    "30"
-                }
-            }
-        }
+
+
+
 
         binding.businessSaveButton.setOnClickListener {
+            Log.d("profile", "이미지없이 저장하기 눌럼")
+            addCompProfile()
             if (selectedImageUri != null) {
-                Log.d("profile", "이미지 저장하기 눌럼")
-                addCompanyProfile()
                 addCompImg()
-            }else{
-                addCompanyProfile()
             }
         }
         return view
@@ -106,7 +83,7 @@ class BusinessProfile_01 : Fragment() {
                     Log.d("profile", "절대주소: $filePath")
                     binding.businessSaveButton.setOnClickListener {
                         Toast.makeText(requireContext(), "클릭리스너 눌림", Toast.LENGTH_SHORT).show()
-                        addCompanyProfile()
+                        addCompProfile()
                         addCompImg()
                         Log.d("profile", "이미지 uri : $selectedImageUri")
                     }
@@ -179,8 +156,6 @@ class BusinessProfile_01 : Fragment() {
     }
 
 
-
-
    /* private fun initiateFileUpload() {
         binding.iconFileUpload.setOnClickListener {
             when {
@@ -217,8 +192,8 @@ class BusinessProfile_01 : Fragment() {
 
     }
 
-    private fun addCompanyProfile() {
-        Log.d("profile", "이미지없이 저장하기 눌림-------------")
+    private fun addCompProfile() {
+        Log.d("profile", "이미지없이 저장하기 눌럼2222222")
         val compName = binding.businessNameText.text.toString()
         val compNum = binding.businessNumberText.text.toString()
         val ceoName = binding.ownerNameText.text.toString()
@@ -228,13 +203,12 @@ class BusinessProfile_01 : Fragment() {
         val category = binding.businessCategoryText.text.toString()
         val empNum = binding.businessEmployeeNumberText.text.toString()
         val homepage = binding.businessWebsiteText.text.toString()
-        val code = code
-        Log.d("profile", "code: $code")
+
         //모든 항목에 값이 있어야 통신되니까, 값이 없는 항목 처리해줘야함.
         val profile = UpdateBusinessProfileItems(
             compName,
             email,
-            code,
+            category,
             compName,
             compNum,
             ceoName,
@@ -245,30 +219,21 @@ class BusinessProfile_01 : Fragment() {
             homepage,
             email
         )
-        val checkstatus = checkAllNotEmpty()
-        Log.d("profile", "리턴값 뭐야?! : ${checkstatus}")
-        if(checkstatus) {
+        service.updateBusinessProfile(profile).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    val msg = response.message()
+                    Log.d("profile 수정", "msg : $msg")
+                    Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
 
-            service.updateBusinessProfile(profile).enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    if (response.isSuccessful) {
-                        val msg = response.message()
-                        Log.d("profile 수정", "msg : $msg")
-                        Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01)
-                    }
-                    Log.d("profile", "라디오 이후 code ${response.code()}")
-                    Log.d("profile", "라디오 메시지 ${response.message()}")
-                    Log.d("profile", "라디오 오류 ${response.errorBody()?.string()}")
                 }
+            }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.d("profile 수정", "error" + t.message)
-                }
-            })
-        }else{
-            Log.d("proflie", "라디오버튼 넣고 나서 에러남 -- ")
-        }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("profile 수정", "error" + t.message)
+            }
+        })
+
 
     }
 
@@ -313,14 +278,17 @@ class BusinessProfile_01 : Fragment() {
             }
         }
 
-
+            /*if (cursor!!.moveToFirst()) {
+                columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            } cursor.getString(columnIndex)*/
 
             return filePath
         }
 
 
         private fun addCompImg() {
-            Log.d("profile", "이미지 등록 : addCompimg 까지옴")
+            Toast.makeText(requireContext(), "클릭리스너 이후 addCompimg 까지옴", Toast.LENGTH_SHORT).show()
+            Log.d("profile", "클릭리스너 이후 addCompimg 까지옴")
             //creating a file
             if(filePath ==""){
                 Log.d("profile", "file path가 없음-----")
@@ -342,16 +310,11 @@ class BusinessProfile_01 : Fragment() {
                     override fun onResponse(call: Call<ImageResponse>,response: Response<ImageResponse>) {
                         if (response.isSuccessful){
                             Log.d("profile", "이미지 등록 성공!!")
-                            isImgUploaded = true
-                            checkImgStatus()
                         }
                         Log.d("profile", "이미지 등록 ${response.code()}")
                         Log.d("profile", "이미지 등록 ${response.message()}")
                         Log.d("profile", "이미지 오류 ${response.errorBody()?.string()}")
-                        if(response.code() == 400){
-                            isImgUploaded = false
-                            checkImgStatus()
-                        }
+
                     }
 
                     override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
@@ -365,42 +328,6 @@ class BusinessProfile_01 : Fragment() {
 
         }
 
-    private fun checkImgStatus() {
-        if(isImgUploaded){
-            //이미지 등록 성공
-            Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01)
-        }else {
-            //실패
-            Toast.makeText(requireContext(), "지원하지 않는 이미지 형식입니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun checkAllNotEmpty():Boolean {
-        val textInput = arrayListOf<Editable?>(
-            binding.businessNameText.text,binding.businessNumberText.text,
-            binding.ownerNameText.text,binding.businessEmailText.text,
-            binding.businessAddressText.text,binding.businessAddressDetailText.text,
-            binding.businessCategoryText.text, binding.businessEmployeeNumberText.text,
-            binding.businessWebsiteText.text
-        )
-
-        val textLayout = arrayListOf<TextInputLayout>(
-            binding.businessName,binding.businessValidNumber,binding.ownerName,
-            binding.businessEmail,binding.businessAddress1, binding.businessAddress2,
-            binding.businessCategory, binding.businessEmployeeNumber,binding.businessWebsite
-        )
-        for(index in textInput.indices){
-            Log.d("id", "인덱스 : $index")
-            if(textInput[index].isNullOrEmpty()){
-                textLayout[index].error = "필수 입력사항 입니다."
-                return false
-            }else{
-                textLayout[index].error = null
-            }
-        }
-
-        return true
-    }
 
 
 }

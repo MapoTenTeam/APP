@@ -86,11 +86,8 @@ class BusinessProfileView : Fragment() {
         binding.businessEmpNumValue.setText(empNum)
         binding.businessWebValue.setText(webSite)
         binding.businessEmailValue.setText(cmpny_email)
-        if (img.isNullOrBlank()){
-            Glide.with(binding.imgBusinessLogoValue).load(R.drawable.ic_img_basic_24).into(binding.imgBusinessLogoValue)
-        }else {
-            Glide.with(binding.imgBusinessLogoValue).load(img).into(binding.imgBusinessLogoValue)
-        }
+        Glide.with(binding.imgBusinessLogoValue).load(img).into(binding.imgBusinessLogoValue)
+
         val approvalStatus = arguments?.getString("approval")
         when (approvalStatus) {
 
