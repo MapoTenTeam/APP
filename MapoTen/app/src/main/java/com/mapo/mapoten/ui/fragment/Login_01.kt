@@ -93,7 +93,7 @@ class Login_01 : Fragment() {
     fun hashSHA256(password: String): String {
         val spec: KeySpec = PBEKeySpec(
             password.toCharArray(), salt.toByteArray(),
-            100000, 512
+            10000, 512
         )
         val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
         val hash = f.generateSecret(spec).getEncoded()
@@ -107,7 +107,6 @@ class Login_01 : Fragment() {
             var textId = idEditText.text.toString()
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
-            Log.d("TAG", "${hashSHA256(textPwd)}")
 
             val loginService = userService.requestLogin(LoginRequest(textId, hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
@@ -141,6 +140,7 @@ class Login_01 : Fragment() {
                         Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }
+
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
