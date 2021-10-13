@@ -19,7 +19,7 @@ data class SelectJobEnterpriseItem(
     @SerializedName("COMENTS")
     val comments: String,
 
-    @SerializedName("JOB_STAT")
+    @SerializedName("JOB_STAT_NAME")
     val jobStat: String,
 
     )

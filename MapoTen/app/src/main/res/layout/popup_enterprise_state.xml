@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="280dp"
@@ -24,27 +23,44 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="안내 메시지"
+            android:text="기업 승인 상태"
             android:textAlignment="center"
             android:textColor="@color/text_darkGrey"
             android:textSize="@dimen/text_18"
             android:textStyle="bold" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:src="@drawable/ic_x" />
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="승인거절"
+            android:textAlignment="center"
+            android:textColor="#FF1A43"
+            android:textSize="@dimen/text_16"
+            android:textStyle="bold" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1"
+            android:layout_marginHorizontal="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/text_lightGrey" />
+
 
         <TextView
+            android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16"
-            android:text="정말로 삭제하시겠습니까?"
+            android:layout_marginTop="@dimen/margin_4"
+            android:background="@drawable/bg_spinner"
+            android:text="채용공고 내용 중 상세 정보가 누락되었습니다. 작성부탁드립니다:)"
             android:textAlignment="center"
             android:textColor="@color/text_darkGrey"
-            android:textSize="@dimen/text_14"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteBtn"
@@ -52,6 +68,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="삭제하기" />
+            android:text="확인" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

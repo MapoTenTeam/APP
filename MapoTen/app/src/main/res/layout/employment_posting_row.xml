@@ -5,7 +5,7 @@
     android:layout_marginBottom="@dimen/margin_32"
     android:background="@drawable/bg_employment_job_posting_row"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/padding_20">
+    android:paddingBottom="@dimen/padding_12">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/companyImage"
             android:layout_width="match_parent"
-            android:layout_height="234dp"
+            android:layout_height="150dp"
             android:layout_margin="@dimen/size_1"
             android:src="@drawable/employment_test_img" />
 
@@ -83,18 +83,6 @@
             android:textSize="@dimen/text_12"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_8"
-            android:background="@drawable/bg_job_posting_category_place"
-            android:paddingHorizontal="@dimen/padding_8"
-            android:paddingVertical="@dimen/padding_2"
-            android:text="공덕동"
-            android:textColor="#279725"
-            android:textSize="@dimen/text_12"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView

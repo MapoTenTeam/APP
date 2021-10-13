@@ -17,8 +17,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.mapo.mapoten.R
+import com.mapo.mapoten.data.employment.BookmarkResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDTO
 import com.mapo.mapoten.service.EmploymentService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -50,7 +54,6 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
         private val companyImage: ImageView = view.findViewById(R.id.companyImage)
         private val dDay: TextView = view.findViewById(R.id.dDay)
 
-        //private val bookmark : ToggleButton = view.findViewById(R.id.bookmarkBtn)
         private val closedBg: LinearLayout = view.findViewById(R.id.closedPosting)
 
 
@@ -106,6 +109,7 @@ class PublicEmploymentPostingAdapter(private val context: Context) :
 
             }
         }
+
     }
 
 

@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:text="마포고용지원센터"
+                android:text=""
                 android:textColor="#5F5F5F"
                 android:textSize="16sp"
                 android:textStyle="bold"
