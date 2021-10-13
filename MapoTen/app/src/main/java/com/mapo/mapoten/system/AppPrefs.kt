@@ -27,7 +27,6 @@ class AppPrefs(context: Context) {
     fun logout() {
         val editor = context.getSharedPreferences(prefNm, Application.MODE_PRIVATE)
         with(editor.edit()){
-            //remove(TOKEN)
             clear()
             commit()
             apply()

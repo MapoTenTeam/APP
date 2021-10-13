@@ -76,9 +76,9 @@ class BusinessAccount_01 : Fragment() {
             Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)
         } //채용공고 목록 이동
 
-        binding.backButton.setOnClickListener {
+        /*binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
-        } //뒤로가기
+        } //뒤로가기*/
 
 
         // logout 처리
@@ -112,10 +112,10 @@ class BusinessAccount_01 : Fragment() {
                     //profile 등록 여부
                     status = response.body()?.data?.PROFILE_STTUS
                     Log.d("profile", "status: " + status)
-                    checkStatus(status)
+                    //checkStatus(status)
 
                     //가입 승인 (사업자) 여부
-                    businessApproval = response.body()?.data?.BSNNM_APRVL
+                    businessApproval = response.body()?.data?.BSNNM_APRVL_NAME
                     Log.d("profile", "승인여부: $businessApproval")
                     businessApproval?.let { setStatusButton(it) }
 
@@ -132,7 +132,7 @@ class BusinessAccount_01 : Fragment() {
         val img = profileItems?.CMPNY_IM
         val cmpnyName = profileItems?.CMPNY_NM
         val cmpnyEmail = profileItems?.APPLCNT_EMAIL_ADRES
-        if (img != null) {
+        if (img != "") {
             Glide.with(this@BusinessAccount_01).load(img).into(binding.myPageImageview)
         } else {
             Glide.with(this@BusinessAccount_01).load(R.drawable.ic_img_basic_24)
@@ -147,7 +147,10 @@ class BusinessAccount_01 : Fragment() {
             0 -> {
                 //프로필 없음
                 binding.businessProfileButton.setOnClickListener {
-                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01)
+                    val bundle = bundleOf(
+                        "cmpny_nm" to profile?.CMPNY_NM,
+                        "bizrno" to profile?.BIZRNO)
+                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01,bundle)
                 }
 
             }
@@ -165,7 +168,7 @@ class BusinessAccount_01 : Fragment() {
                         "webSite" to profile?.WEB_ADRES,
                         "cmpny_email" to profile?.CEO_EMAIL_ADRES,
                         "cmpny_img" to profile?.CMPNY_IM,
-                        "approval" to profile?.BSNNM_APRVL
+                        "approval" to profile?.BSNNM_APRVL_NAME
                     )
                     Log.d("bundle", "이미지주소!! : ${profile?.CMPNY_IM}")
                     Navigation.findNavController(binding.root)
