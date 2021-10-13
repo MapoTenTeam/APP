@@ -24,7 +24,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.security.DigestException
 import java.security.MessageDigest
+import java.security.spec.KeySpec
+import java.util.*
 import java.util.regex.Pattern
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
+
 const val salt = "rHQOMrYQAJp8+XICMU2SP+YTC8YkRnWEj825pffj0GE"
 
 class Login_02_01 : Fragment() {
@@ -36,7 +41,6 @@ class Login_02_01 : Fragment() {
     private var termAgreeck: Int= 0
     private var emailAuthck: Int= 0
     private lateinit var dialog: Dialog
-    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -228,27 +232,14 @@ class Login_02_01 : Fragment() {
     }
 
     // 암호화
-    fun hashSHA256(msg: String): String {
-        val hash: ByteArray
-        try {
-            val md = MessageDigest.getInstance("SHA-256")
-            md.update(msg.toByteArray())
-            md.update(salt.toByteArray())
-            hash = md.digest()
-        } catch (e: CloneNotSupportedException) {
-            throw DigestException("couldn't make digest of partial content");
-        }
-        return bytesToHex(hash)
-    }
-
-    fun bytesToHex(byteArray: ByteArray): String {
-        val hexChars = CharArray(byteArray.size * 2)
-        for (i in byteArray.indices) {
-            val v = byteArray[i].toInt() and 0xff
-            hexChars[i * 2] = digits[v shr 4]
-            hexChars[i * 2 + 1] = digits[v and 0xf]
-        }
-        return String(hexChars)
+    fun hashSHA256(password: String): String {
+        val spec: KeySpec = PBEKeySpec(
+            password.toCharArray(), salt.toByteArray(),
+            10000, 512
+        )
+        val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+        val hash = f.generateSecret(spec).getEncoded()
+        return Base64.getEncoder().encodeToString(hash)
     }
 
     // 회원가입
@@ -313,11 +304,11 @@ class Login_02_01 : Fragment() {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(p0: Editable?) {
-                    if (pwdEditText.text.isNullOrEmpty() == pwdConfirmEditText.text.isNullOrEmpty()) {
-                        if (pwdEditText.text.toString() == pwdConfirmEditText.text.toString()) {
-                            pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
-                        } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
-                    }
+//                    if (!pwdEditText.text.!!isEmpty() == !pwdConfirmEditText.text.isNullOrEmpty()) {
+//                        if (pwdTiL.editText!!.text.toString() == pwdConfirmTiL.editText!!.text.toString()) {
+//                            pwdConfirmTiL.helperText = "비밀번호가 일치합니다."
+//                        } else pwdConfirmTiL.error = "비밀번호가 일치하지 않습니다."
+//                    }
 
                 }
 

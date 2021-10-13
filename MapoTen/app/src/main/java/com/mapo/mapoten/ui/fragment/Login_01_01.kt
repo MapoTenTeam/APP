@@ -26,6 +26,7 @@ import java.util.regex.Pattern
 class Login_01_01 : Fragment() {
     private var _binding: FragmentLogin0101Binding? = null
     private val binding get() = _binding!!
+
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
 
@@ -37,9 +38,8 @@ class Login_01_01 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLogin0101Binding.inflate(inflater, container, false)
+
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
-
-
 
         with(binding) {
             btnConfirm.setOnClickListener {
@@ -50,7 +50,6 @@ class Login_01_01 : Fragment() {
                 if (!emailPatternChecker())
                     return@setOnClickListener
                 getUserByFindId()
-
             }
         }
         return binding.root
@@ -63,12 +62,12 @@ class Login_01_01 : Fragment() {
             var textName = nameEditText.text.toString()
             var textEmail = emailEditText.text.toString()
 
-            val loginService =
+            val findIdService =
                 userService.getUserByFindId(UserByIdFindInputDto(textName, textEmail))
 
             Log.d("TAG", "이름 : $textName , 아이디 : $textEmail")
 
-            loginService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
+            findIdService.enqueue(object : Callback<GetUserByIdFindOutputDto> {
                 override fun onResponse(
                     call: Call<GetUserByIdFindOutputDto>,
                     response: Response<GetUserByIdFindOutputDto>

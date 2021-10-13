@@ -19,6 +19,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
+import com.mapo.mapoten.data.employment.BookmarkResponse
 import com.mapo.mapoten.data.employment.CodeName
 import com.mapo.mapoten.data.employment.EmploymentResponse
 import com.mapo.mapoten.data.employment.GeneralEmpPostingDetailDTO
@@ -49,6 +50,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var geocoder: Geocoder
     private lateinit var geoLatLng: LatLng
+    private var jobId : Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,11 +61,11 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         binding = FragmentEmploymentDetail01Binding.inflate(inflater, container, false)
         val view = binding.root
 
+        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
 
         geocoder = Geocoder(requireContext())
         type = arguments?.getInt("type")!!
-        val id = arguments?.getInt("jobId")
-
+        jobId = arguments?.getInt("jobId")
 
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
@@ -72,14 +74,14 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
             Navigation.findNavController(view).navigateUp()
         }
 
-        if (id != null) {
+        if (jobId != null) {
             loading(true)
-            getGeneralJobPostingDetail(id)
+            getGeneralJobPostingDetail(jobId!!)
         }
 
         binding.refreshLayout.setOnRefreshListener {
-            if (id != null) {
-                getGeneralJobPostingDetail(id)
+            if (jobId != null) {
+                getGeneralJobPostingDetail(jobId!!)
             } else {
                 Toast.makeText(requireContext(), "다시 실행해주세요..!", Toast.LENGTH_SHORT).show()
             }
@@ -98,6 +100,10 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
             showDialog()
         }
 
+
+        binding.bookmarkBtn.setOnClickListener {
+            jobId?.let { registerBookmark(it) }
+        }
         return view
     }
 
@@ -155,7 +161,10 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
     }
 
     private fun getGeneralJobPostingDetail(id: Int) {
-        employmentService = RetrofitBuilder.getInstance().create(EmploymentService::class.java)
+
+        Log.d("generalDetail", "id : " +id)
+
+
         val generalJobList = employmentService.inquireGeneralDetailPosting(id)
 
         generalJobList.enqueue(object : Callback<EmploymentResponse> {
@@ -169,7 +178,7 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
                 if (response.isSuccessful) {
 
-                    Log.d("generalDetail", "resultDataList : ${response.body()?.data}")
+                    Log.d("generalDetail", "resultDataList : ${response.body()}")
 
                     thread(start = true) {
                         Thread.sleep(200)
@@ -183,13 +192,35 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
 
                 } else {
                     Log.d("generalDetail", "code : " + response.code())
+                    Log.d("generalDetail", "message : " + response.message())
+
                 }
             }
 
             override fun onFailure(call: Call<EmploymentResponse>, t: Throwable) {
                 Log.e("generalDetail", "통신 실패" + t.localizedMessage)
-                Log.e("generalDetail", "통신 실패" + t.cause)
 
+            }
+
+        })
+    }
+
+    // bookmark
+    private fun registerBookmark(id: Int) {
+
+        Log.d("generalDetail", "id : $id")
+
+        employmentService.registerBookmark(id).enqueue(object : Callback<Objects> {
+            override fun onResponse(call: Call<Objects>, response: Response<Objects>) {
+                if (response.isSuccessful) {
+
+                    Log.d("generalDetail", "message : ${response.message()}")
+                    Toast.makeText(requireContext(), "북마크 등록되었습니다:)", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Objects>, t: Throwable) {
+                Log.e("generalDetail", "통신 실패" + t.localizedMessage)
             }
 
         })
@@ -208,8 +239,8 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         binding.jobTypeDescValue.text = result.jobTypeDesc
         binding.requireCountValue.text = result.requireCount
         binding.jobDescValue.text = result.jobDesc
-        binding.educationValue.text = result.education
-        binding.careerValue.text = result.career
+        binding.educationValue.text = result.education.codeName
+        binding.careerValue.text = result.career.codeName
         binding.employTypeValue.text = manufactureData(result.employTypeDet)
 
 
@@ -227,12 +258,12 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         binding.quaternionValue.text = result.quaternion
 
         // 근로조건
-        binding.paycdValue.text = result.paycd
+        binding.paycdValue.text = result.paycd.codeName
         binding.payAmountValue.text = result.payAmount
-        binding.workTimeTypeValue.text = result.workTimeType
-        binding.mealCodValue.text = result.mealCod
+        binding.workTimeTypeValue.text = result.workTimeType.codeName
+        binding.mealCodValue.text = result.mealCod.codeName
         binding.workingHoursValue.text = result.workingHours
-        binding.severancePayTypeValue.text = result.severancePayType
+        binding.severancePayTypeValue.text = result.severancePayType.codeName
         binding.socialInsuranceValue.text = manufactureData(result.socialInsurance)
 
         // 전형사항

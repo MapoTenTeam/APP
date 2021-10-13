@@ -1,5 +1,6 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.R.attr
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -21,8 +22,20 @@ import com.mapo.mapoten.ui.activity.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.mapo.mapoten.system.AppPrefs
+import java.nio.charset.Charset
 import java.security.DigestException
 import java.security.MessageDigest
+import java.util.Base64
+import java.util.Base64.getEncoder
+import android.R.attr.password
+import java.lang.Exception
+import java.security.spec.KeySpec
+import java.security.spec.MGF1ParameterSpec.SHA256
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
+import kotlin.experimental.and
+
 
 class Login_01 : Fragment() {
     private var _binding: FragmentLogin01Binding? = null
@@ -31,7 +44,6 @@ class Login_01 : Fragment() {
     var code: String = ""
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
-    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,11 +82,6 @@ class Login_01 : Fragment() {
             btnSignUpBusiness.setOnClickListener {
                 findNavController().navigate(R.id.login_02_02)
             } //기업 회원가입 화면으로 이동
-//            autoLoginCheckBox.setOnClickListener {
-//                Log.d("TAG","클릭")
-//                val log = AppPrefs.getToken(requireActivity())
-//                Log.d("TAG","$log")
-//            }
 
         }
         return binding.root
@@ -83,27 +90,14 @@ class Login_01 : Fragment() {
     }
 
     // 암호화
-    fun hashSHA256(msg: String): String {
-        val hash: ByteArray
-        try {
-            val md = MessageDigest.getInstance("SHA-256")
-            md.update(msg.toByteArray())
-            md.update(salt.toByteArray())
-            hash = md.digest()
-        } catch (e: CloneNotSupportedException) {
-            throw DigestException("couldn't make digest of partial content");
-        }
-        return bytesToHex(hash)
-    }
-
-    fun bytesToHex(byteArray: ByteArray): String {
-        val hexChars = CharArray(byteArray.size * 2)
-        for (i in byteArray.indices) {
-            val v = byteArray[i].toInt() and 0xff
-            hexChars[i * 2] = digits[v shr 4]
-            hexChars[i * 2 + 1] = digits[v and 0xf]
-        }
-        return String(hexChars)
+    fun hashSHA256(password: String): String {
+        val spec: KeySpec = PBEKeySpec(
+            password.toCharArray(), salt.toByteArray(),
+            10000, 512
+        )
+        val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+        val hash = f.generateSecret(spec).getEncoded()
+        return Base64.getEncoder().encodeToString(hash)
     }
 
     // 로그인
@@ -113,7 +107,6 @@ class Login_01 : Fragment() {
             var textId = idEditText.text.toString()
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
-            Log.d("TAG", "${hashSHA256(textPwd)}")
 
             val loginService = userService.requestLogin(LoginRequest(textId, textPwd))
             loginService.enqueue(object : Callback<LoginResponse> {

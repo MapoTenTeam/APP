@@ -38,8 +38,11 @@ interface EmploymentService {
 
     // bookmark
     @POST("bookmarks/{jobid}")
-    fun registerBookmark(@Field("jobid") id : Int) : Call<Objects>
+    fun registerBookmark(@Path("jobid") id: Int): Call<Objects>
 
     @PATCH("bookmarks/{bookid}")
-    fun cancelBookmark(@Field("jobid") id : Int) : Call<Objects>
+    fun cancelBookmark(@Field("jobid") id: Int): Call<Objects>
+
+    @GET("bookmarks")
+    fun getBookmarks(@Query("page") page: Int): Call<BookmarkResponse>
 }

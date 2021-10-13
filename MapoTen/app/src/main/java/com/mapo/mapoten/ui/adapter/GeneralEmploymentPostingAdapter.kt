@@ -44,7 +44,6 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
         private val companyName: TextView = view.findViewById(R.id.CompanyName)
         private val jobType: TextView = view.findViewById(R.id.jobType)
         private val careerType: TextView = view.findViewById(R.id.careerType)
-        private val place: TextView = view.findViewById(R.id.place)
         private val date: TextView = view.findViewById(R.id.date)
         private val dDay: TextView = view.findViewById(R.id.dDay)
         private val closedBg: LinearLayout = view.findViewById(R.id.closedPosting)
@@ -56,7 +55,6 @@ class GeneralEmploymentPostingAdapter(private val context: Context) :
             companyName.text = item.companyName
             jobType.text = item.jobType
             careerType.text = item.career
-            place.text = item.address
             date.text = "${item.endReception.substring(0, 4)}년 ${
                 item.endReception.substring(
                     5,

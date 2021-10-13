@@ -35,6 +35,7 @@
         style="@style/tos_text14"/>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/companyName_TiL"
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +46,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:paddingVertical="@dimen/padding_14"
-            android:id="@+id/name_edit_text"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_TiL"
         style="@style/TextInputTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,13 +66,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:paddingVertical="@dimen/padding_14"
-            android:id="@+id/company_number_edit_text"
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="@string/company_registration_number"
+            android:hint="@string/email"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

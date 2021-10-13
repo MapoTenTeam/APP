@@ -39,16 +39,16 @@ data class GeneralEmpPostingDetailDTO(
     val jobDesc: String, // 직무내용
 
     @SerializedName("DEUCATION")
-    val education: String, // 학력
+    val education: CodeName, // 학력
 
     @SerializedName("CAREER")
-    val career: String, // 경력
+    val career: CodeName, // 경력
 
     @SerializedName("CAREER_PERIOD")
     val careerPeriod: String, // 경력기간
 
     @SerializedName("WORK_AREA")
-    val workArea: String, // 근무예정지
+    val workArea: CodeName, // 근무예정지
 
     @SerializedName("WORK_ADDRESS")
     val workAddress: String, // 근무예정지 주소
@@ -57,34 +57,34 @@ data class GeneralEmpPostingDetailDTO(
     val workAreaDesc: String, // 소속산업단지
 
     @SerializedName("EMPLOYTYPE")
-    val employType: String, // 고용형태
+    val employType: CodeName, // 고용형태
 
     @SerializedName("EMPLOYTYPE_DET")
     val employTypeDet: ArrayList<CodeName>, // 고용형태 상세
 
     @SerializedName("PAYCD")
-    val paycd: String, // 임금 지급형태
+    val paycd: CodeName, // 임금 지급형태
 
     @SerializedName("PAY_AMOUNT")
     val payAmount: String, // 임금금액
 
     @SerializedName("WORK_TIME_TYPE")
-    val workTimeType: String, // 근무시간유형
+    val workTimeType: CodeName, // 근무시간유형
 
     @SerializedName("MEAL_COD")
-    val mealCod: String, // 식사제공
+    val mealCod: CodeName, // 식사제공
 
     @SerializedName("WORKINGHOURS")
     val workingHours: String, // 1주당 근로시간
 
     @SerializedName("SEVERANCE_PAY_TYPE")
-    val severancePayType: String, // 퇴직금 형태
+    val severancePayType: CodeName, // 퇴직금 형태
 
     @SerializedName("SOCIAL_INSURANCE")
     val socialInsurance: ArrayList<CodeName>, // 사회보험
 
     @SerializedName("CLOSING_TYPE")
-    val closingType: String, // 접수 마감일 구분
+    val closingType: CodeName, // 접수 마감일 구분
 
     @SerializedName("ENDRECEPTION")
     val endReception: String, // 접수 마감일

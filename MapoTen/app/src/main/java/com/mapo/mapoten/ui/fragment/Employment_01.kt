@@ -35,7 +35,6 @@ class Employment_01 : Fragment() {
 
         }
 
-
         return view
     }
 }
