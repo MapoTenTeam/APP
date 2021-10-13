@@ -1,11 +1,16 @@
 package com.mapo.mapoten.ui.fragment
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.Login.GetUserByIdFindOutputDto
@@ -25,6 +30,8 @@ class Login_01_03 : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var userService: UserService
+    private lateinit var dialog: Dialog
+    var code: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +76,9 @@ class Login_01_03 : Fragment() {
                     response: Response<GetUserByPasswordFindOutputDto>
                 ) { //정상응답이 올경우
                     if (response.isSuccessful) {
+                        code = response.body()?.statusCode.toString()
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
+                        showDialog(code)
                     } else {
                         Log.d(
                             "TAG",
@@ -135,5 +144,47 @@ class Login_01_03 : Fragment() {
                 false
             }
         }
+    }
+
+    // dialog
+    private fun showDialog(code: String) {
+        dialog = Dialog(binding.root.context)
+        with(dialog) {
+            requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+            setContentView(com.mapo.mapoten.R.layout.popup_find_pw_dialog)
+            window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+            window!!.setLayout(
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT,
+                android.view.WindowManager.LayoutParams.WRAP_CONTENT
+            )
+
+            val ivError: ImageView = findViewById(com.mapo.mapoten.R.id.iv_error)
+            val tvInform: TextView = findViewById(R.id.tv_information)
+
+            android.util.Log.d("TAG", "code : $code")
+            when (code) {
+                "400" -> {
+                    ivError.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
+                }
+                "null" -> {
+                    ivError.setImageResource(R.drawable.ic_error_dialog)
+                    tvInform.text = "가입된 회원정보가 없습니다. \n 회원가입 후 이용해주세요."
+                }
+            }
+            show()
+
+            val btnLogin: AppCompatButton = dialog.findViewById(com.mapo.mapoten.R.id.btn_login)
+            btnLogin.setOnClickListener {
+                //로그인 화면 띄우기
+                dismiss()
+                findNavController().navigate(com.mapo.mapoten.R.id.action_login_01_03_to_login_01)
+            }
+            val btnCancel: TextView = dialog.findViewById(com.mapo.mapoten.R.id.tv_cancel)
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
+        }
+
     }
 }
