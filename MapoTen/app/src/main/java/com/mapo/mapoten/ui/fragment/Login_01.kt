@@ -43,7 +43,6 @@ class Login_01 : Fragment() {
     var code: String = ""
     lateinit var userService: UserService
     private lateinit var dialog: Dialog
-    private val digits = "0123456789ABCDEF"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,68 +86,6 @@ class Login_01 : Fragment() {
 
     }
 
-
-
-    // 바이트 값을 16진수로 변경해준다
-    private fun Byte_to_String(temp: ByteArray): String {
-        val sb = StringBuilder()
-        for (a in temp) {
-            sb.append(String.format("%02x", a))
-        }
-        return sb.toString()
-    }
-
-    fun byteArrayToHexaString(bytes: ByteArray): String? {
-        val builder = java.lang.StringBuilder()
-        for (data in bytes) {
-            builder.append(String.format("%02X ", data))
-        }
-        return builder.toString()
-    }
-
-    fun bytesToHex(byteArray: ByteArray): String {
-        val hexChars = CharArray(byteArray.size * 2)
-        for (i in byteArray.indices) {
-            val v = byteArray[i].toInt() and 0xff
-            hexChars[i * 2] = digits[v shr 4]
-            hexChars[i * 2 + 1] = digits[v and 0xf]
-        }
-        return String(hexChars)
-    }
-
-//    // 비밀번호 해싱
-//    @Throws(Exception::class)
-//    private fun Hashing(password : String): String? {
-//        var password: ByteArray? = password.toByteArray()
-//        val md = MessageDigest.getInstance("SHA-256") // SHA-256 해시함수를 사용
-//
-//        // key-stretching
-//        for (i in 0..9999) {
-//            var temp: String = Byte_to_String(password!!) + salt
-//                var input = temp.toByteArray()
-//                md.update(input)
-//                password  = md.digest()
-//        }
-//        return Base64.getEncoder().encodeToString(password!!)
-//    }
-
-
-//    @Throws(Exception::class)
-//    private fun hashing(password: ByteArray): String? {
-//        var password: ByteArray = password
-//       // Log.d("hash","$password, ${password.contentHashCode()}, ${password}")
-//        val md = MessageDigest.getInstance("SHA-256") // SHA-256 해시함수를 사용
-//
-//        // key-stretching
-//  //      for (i in 0..9999) {
-//            val temp = Byte_to_String(password) + salt // 패스워드와 Salt 를 합쳐 새로운 문자열 생성
-//            md.update(temp.byte()) // temp 의 문자열을 해싱하여 md 에 저장해둔다
-//            password = md.digest() // md 객체의 다이제스트를 얻어 password 를 갱신한다
-//  //      }
-//        return Byte_to_String(password)
-//    }
-
-
     // 암호화
     fun hashSHA256(password: String): String {
         val spec: KeySpec = PBEKeySpec(
@@ -159,8 +96,7 @@ class Login_01 : Fragment() {
         val hash = f.generateSecret(spec).getEncoded()
         return Base64.getEncoder().encodeToString(hash)
     }
-
-
+    
     // 로그인
     private fun login() {
 
@@ -169,29 +105,6 @@ class Login_01 : Fragment() {
             var textId = idEditText.text.toString()
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
-  //         Log.d("TAG", "해시 ${hashing(textPwd.toByteArray())}")
- //           Log.d("TAG", "해시 ${hashSHA256(textPwd)}")
-
-
-            //var str = Hashing(textPwd)
-//            val md = MessageDigest.getInstance("SHA-256")
-//            for (i in 0..9999){
-//                var temp: String = textPwd + salt
-//                md.update(temp.toByteArray())
-//                textPwd = md.digest()
-//                //str = Base64.getEncoder().encodeToString(bytes)
-//                println(Base64.getEncoder().encodeToString(bytes))
-//            }
-
-//            val spec: KeySpec = PBEKeySpec(
-//                textPwd.toCharArray(), salt.toByteArray(),
-//                100000, 512
-//            )
-//            val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-//            val hash = f.generateSecret(spec).getEncoded()
-//            val str = Base64.getEncoder().encodeToString(hash)
-
-            //Log.d("str", "$str")
 
             val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
@@ -205,8 +118,6 @@ class Login_01 : Fragment() {
                             Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
                         val token = response.body()?.accessToken
                             Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
-//                        Log.d("TAG", "비밀번호 ${hashing(textPwd.toByteArray(), salt)}")
-//                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
                         if (token != null) {
                             AppPrefs.saveToken(requireActivity(), token)
                             AppPrefs.saveUserType(requireActivity(), response.body()!!.user_se)
@@ -218,8 +129,7 @@ class Login_01 : Fragment() {
                         Toast.makeText(context,
                                 "로그인 실패",
                                 Toast.LENGTH_SHORT).show()
-//                        Log.d("TAG", "비밀번호 ${hashing(textPwd.toByteArray(), salt)}")
-//                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
+                        Log.d("TAG", "비밀번호 ${hashSHA256(textPwd)}")
                         Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }
