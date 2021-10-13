@@ -17,6 +17,10 @@ import com.mapo.mapoten.service.AccountManageService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.spec.KeySpec
+import java.util.*
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
 
 class Account_01_02 : Fragment() {
 
@@ -49,7 +53,7 @@ class Account_01_02 : Fragment() {
     }
 
     private fun validatePassword() {
-        var checkedNewPw: Boolean = false
+        var checkedNewPw = false
         result = checkCurrentPw()
         Log.d("password", "현재비번체크 result: $result")
         val newPw = binding.newPassword.text.toString()
@@ -76,8 +80,11 @@ class Account_01_02 : Fragment() {
             //새비번 불일치 처리
         }
 
-        if (result && checkedNewPw) {
+        if (result && checkedNewPw && newPw.isNotEmpty() && newPw2.isNotEmpty()) {
             updatePassword(newPw2)
+        }else {
+            Toast.makeText(context, "비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
+
         }
 
     }
@@ -86,7 +93,7 @@ class Account_01_02 : Fragment() {
         val password = binding.password.text.toString()
         Log.d("password", "현재비번 : $password")
 
-        service.checkCurrentPw(password).enqueue(object : Callback<ImageResponse> {
+        service.checkCurrentPw(hashSHA256(password)).enqueue(object : Callback<ImageResponse> {
             override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
 
                 if (response.isSuccessful) {
@@ -95,7 +102,6 @@ class Account_01_02 : Fragment() {
                     Log.d("password", "현재 비번 확인 message : ${response.body()!!.message}")
 
                     //    Toast.makeText(requireContext(), "현재 비밀번호 확인 완료", Toast.LENGTH_SHORT).show()
-                    result = true
                 }
             }
 
@@ -104,11 +110,11 @@ class Account_01_02 : Fragment() {
             }
         })
 
-        return result
+        return true
     }
 
     private fun updatePassword(newPw2: String) {
-        service.updatePassword(newPw2).enqueue(object : Callback<Void> {
+        service.updatePassword(hashSHA256(newPw2)).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
@@ -120,6 +126,16 @@ class Account_01_02 : Fragment() {
                 Log.d("password", "비번번경 실패 ")
             }
         })
+    }
+
+    private fun hashSHA256(password: String): String {
+        val spec: KeySpec = PBEKeySpec(
+            password.toCharArray(), salt.toByteArray(),
+            10000, 512
+        )
+        val f: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
+        val hash = f.generateSecret(spec).getEncoded()
+        return Base64.getEncoder().encodeToString(hash)
     }
 
 

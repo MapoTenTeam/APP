@@ -108,7 +108,7 @@ class Login_01 : Fragment() {
             var textPwd = pwdEditText.text.toString()
             Log.d("TAG", "클릭")
 
-            val loginService = userService.requestLogin(LoginRequest(textId, textPwd))
+            val loginService = userService.requestLogin(LoginRequest(textId, hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
