@@ -1,18 +1,27 @@
 package com.mapo.mapoten.ui.activity
 
 import android.app.Application
-import android.content.Context
+import com.mapo.mapoten.system.AppPrefs
 
 class App : Application() {
 
-    init {
-        instance = this
-    }
+//    init {
+//        instance = this
+//    }
+//
+//    companion object {
+//        var instance: App? = null
+//        fun getContext(): Context {
+//            return instance!!.applicationContext
+//        }
+//    }
 
     companion object {
-        var instance: App? = null
-        fun getContext(): Context {
-            return instance!!.applicationContext
-        }
+        lateinit var prefs: AppPrefs
+    }
+
+    override fun onCreate() {
+        prefs = AppPrefs(applicationContext)
+        super.onCreate()
     }
 }

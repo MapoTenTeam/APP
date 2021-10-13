@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_account_01_to_accountProfileView"
             app:destination="@id/accountProfileView" />
+        <action
+            android:id="@+id/action_account_01_to_accountCheckProfile"
+            app:destination="@id/accountCheckProfile" />
     </fragment>
     <fragment
         android:id="@+id/login_01"
@@ -264,4 +267,18 @@
             android:id="@+id/action_mypage_to_businessAccount_01"
             app:destination="@id/businessAccount_01" />
     </fragment>
+    <fragment
+        android:id="@+id/accountCheckProfile"
+        android:name="com.mapo.mapoten.ui.fragment.AccountCheckProfile"
+        android:label="fragment_account_check_profile"
+        tools:layout="@layout/fragment_account_check_profile" >
+        <action
+            android:id="@+id/action_accountCheckProfile_to_accountNewProfile"
+            app:destination="@id/accountNewProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountNewProfile"
+        android:name="com.mapo.mapoten.ui.fragment.AccountNewProfile"
+        android:label="fragment_account_new_profile"
+        tools:layout="@layout/fragment_account_new_profile" />
 </navigation>

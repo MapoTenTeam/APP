@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.AccountNewProfile">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/actionBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_56"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/backButton"
+                    style="@style/BackButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_back_16"
+                    android:text="@string/user_profile_title"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:background="#50c4c4c4" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/padding_10"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_32"
+                android:layout_marginEnd="@dimen/margin_32"
+                android:layout_marginBottom="500dp">
+
+
+                <TextView
+                    android:id="@+id/mypage_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/main_darkBlue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/actionBar"
+                    tools:ignore="NotSibling" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 님"
+                    app:layout_constraintStart_toEndOf="@+id/mypage_userName"
+                    app:layout_constraintTop_toTopOf="@id/mypage_userName" />
+
+                <View
+                    android:id="@+id/profile_middle_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:background="@color/text_lightGrey"
+                    app:layout_constraintTop_toBottomOf="@+id/mypage_userName" />
+
+                <LinearLayout
+                    android:id="@+id/userProfile_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_middle_line">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16"
+
+                        android:text="내 정보" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userName"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="이름 *"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userNameText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userId"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="아이디 *"
+                        android:enabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userIdText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userPhone"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="휴대폰 번호 *"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userPhoneText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:hint="@string/user_new_mobile_hint"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userEmail"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="이메일 *"
+                        android:enabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userEmailText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/userAddress"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="주소 *"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/userAddressText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/user_new_address_hint"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/address_detail"
+                        style="@style/TextInputOutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="상세 주소 *"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/detailAddress_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/padding_14"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/button_background_radius30"
+                        android:text="@string/btn_save"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessFile"
+                        tools:ignore="TextContrastCheck" />
+
+
+                </LinearLayout>
+
+             <!--   <View
+                    android:id="@+id/bottom_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@color/text_lightGrey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userProfile_linearLayout" />
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/bottom_line">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="회원 탈퇴 하시겠습니까? "/>
+
+                    <TextView
+                        android:id="@+id/dismiss"
+                        android:background="@color/text_lightGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="120dp"
+                        android:text="회원탈퇴" />
+
+-->
+                    <!-- <com.google.android.material.textfield.TextInputLayout
+                         android:id="@+id/secession"
+                         style="@style/TextInputOutline"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:hint="탈퇴 사유 *"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/businessName">
+
+                         <com.google.android.material.textfield.TextInputEditText
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:hint="인증번호 6자리를 입력해주세요"
+                             android:paddingVertical="@dimen/padding_14"
+                             android:textSize="@dimen/text_14" />
+
+
+                     </com.google.android.material.textfield.TextInputLayout>
+
+                     <TextView
+                         android:id="@+id/secession_info"
+                         android:layout_width="match_parent"
+                         android:layout_height="150dp"
+                         android:layout_marginTop="@dimen/margin_16"
+                         android:background="@drawable/input_stroke_radius30"
+                         android:text="탈퇴 시 유의사항" />-->
+
+                    <!-- <androidx.appcompat.widget.AppCompatButton
+                         android:id="@+id/secession_button"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="10dp"
+                         android:layout_marginBottom="80dp"
+                         android:background="@drawable/button_background_radius30"
+                         android:text="탈퇴하기"
+                         android:textColor="#ffffff"
+                         android:textSize="@dimen/text_14"
+                         android:textStyle="bold"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/secession_info"
+                         tools:ignore="TextContrastCheck" />-->
+
+
+             <!--  </LinearLayout>-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

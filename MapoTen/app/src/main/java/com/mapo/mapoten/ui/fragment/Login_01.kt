@@ -17,7 +17,7 @@ import com.mapo.mapoten.data.Login.LoginRequest
 import com.mapo.mapoten.data.Login.LoginResponse
 import com.mapo.mapoten.databinding.FragmentLogin01Binding
 import com.mapo.mapoten.service.UserService
-import com.mapo.mapoten.system.AppPrefs
+import com.mapo.mapoten.ui.activity.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,6 +40,7 @@ class Login_01 : Fragment() {
 
         _binding = FragmentLogin01Binding.inflate(inflater, container, false)
 
+        App.prefs.token = ""
         userService = RetrofitBuilder.getInstance().create(UserService::class.java)
 
         // Inflate the layout for this fragment
@@ -107,7 +108,6 @@ class Login_01 : Fragment() {
 
     // 로그인
     private fun login() {
-
         with(binding) {
 
             var textId = idEditText.text.toString()
@@ -115,7 +115,7 @@ class Login_01 : Fragment() {
             Log.d("TAG", "클릭")
             Log.d("TAG", "${hashSHA256(textPwd)}")
 
-            val loginService = userService.requestLogin(LoginRequest(textId,hashSHA256(textPwd)))
+            val loginService = userService.requestLogin(LoginRequest(textId, hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
@@ -124,24 +124,30 @@ class Login_01 : Fragment() {
                     if (response.isSuccessful) {
                         code = response.body()?.statusCode.toString()
                         Log.d("TAG", "${response.body()?.statusCode} : ${response.body()?.message}")
-                            Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
+                        Log.d("TAG", "토큰 : ${response.body()?.accessToken}")
                         val token = response.body()?.accessToken
-                            Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
+                        Log.d("TAG", "로그인 유저정보 : ${response.body()?.user_se}")
                         if (token != null) {
-                            AppPrefs.saveToken(requireActivity(), token)
-                            AppPrefs.saveUserType(requireActivity(), response.body()!!.user_se)
+                            App.prefs.token = "Bearer $token"
+                            App.prefs.type = response.body()!!.user_se
+                            Log.d("로그인", "토큰 : ${App.prefs.token}")
+                            //AppPrefs.saveToken(requireActivity(), token)
+                            RetrofitBuilder.setToken(token)
+                            //AppPrefs.saveUserType(requireActivity(), response.body()!!.user_se)
                         }
                         findNavController().navigate(R.id.home_01)
-                    }
-                    else {
+                    } else {
                         showDialog()
-                        Toast.makeText(context,
-                                "로그인 실패",
-                                Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "로그인 실패",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.d("TAG", "${hashSHA256(textPwd)}")
                         Log.d("TAG", "로그인 실패 ${response.code()} , ${response.message()}")
                     }
                 }
+
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) { //실패할 경우
                     Log.e("error", "통신 실패" + t.localizedMessage)
                 }
