@@ -239,6 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_20"
                     android:orientation="horizontal"
+                    android:paddingBottom="@dimen/margin_20"
                     app:layout_constraintTop_toBottomOf="@+id/bottom_line">
 
                     <TextView
@@ -248,12 +249,11 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/dismiss"
-                        android:layout_width="80dp"
+                        android:layout_width="match_parent"
                         android:layout_height="@dimen/size_24"
-                        android:layout_gravity="right"
-                        android:layout_marginStart="120dp"
                         android:background="@android:color/transparent"
                         android:text="탈퇴하기"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text_middleGrey"
                         android:textSize="@dimen/text_12" />
                 </LinearLayout>

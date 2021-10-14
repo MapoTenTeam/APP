@@ -18,7 +18,9 @@ import androidx.navigation.fragment.findNavController
 import com.mapo.mapoten.R
 import com.mapo.mapoten.config.RetrofitBuilder
 import com.mapo.mapoten.data.BusinessProfile
+import com.mapo.mapoten.data.BusinessProfileItems
 import com.mapo.mapoten.data.ImageResponse
+import com.mapo.mapoten.data.UpdateBusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessAccount0102Binding
 import com.mapo.mapoten.service.AccountManageService
 import retrofit2.Call
@@ -31,7 +33,7 @@ class BusinessAccount_01_02 : Fragment() {
     lateinit var binding : FragmentBusinessAccount0102Binding
     lateinit var service : AccountManageService
     private lateinit var dialog: Dialog
-
+   lateinit var updateProfile : BusinessProfile
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +50,7 @@ class BusinessAccount_01_02 : Fragment() {
         }
 
         binding.saveButton.setOnClickListener {
-
+            updateBizProfile(updateProfile)
         }
 
         binding.dismiss.setOnClickListener {
@@ -74,6 +76,7 @@ class BusinessAccount_01_02 : Fragment() {
                     if (profile !=null) {
                         setUserInfo(profile)
                     }
+                    updateProfile = response.body()!!
                 }
             }
 
@@ -90,6 +93,38 @@ class BusinessAccount_01_02 : Fragment() {
         binding.userIdText.setText(profile.data.ENTRPRS_MBER_ID)
         binding.userEmailText.setText(profile.data.APPLCNT_EMAIL_ADRES)
     }
+
+    private fun updateBizProfile(updateProfile:BusinessProfile) {
+        val userName = binding.userNameText.text.toString()
+        val email = updateProfile.data.APPLCNT_EMAIL_ADRES
+        val code = updateProfile.data.BSNNM_APRVL_NAME
+        val compName = updateProfile.data.CMPNY_NM
+        val compNum = updateProfile.data.BIZRNO
+        val ceoName = updateProfile.data.CEO
+        val address = updateProfile.data.ADRES
+        val detailAd = updateProfile.data.DETAIL_ADRES
+        val category = updateProfile.data.INDUTY
+        val empNum = updateProfile.data.NMBR_WRKRS
+        val homepage = updateProfile.data.WEB_ADRES
+        val ceoEmail = updateProfile.data.CEO_EMAIL_ADRES
+
+        val newProfile = UpdateBusinessProfileItems(userName,email,code,compName,compNum,
+        ceoName,address,detailAd,category,empNum,homepage,ceoEmail)
+
+            service.updateBusinessProfile(newProfile).enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(binding.root).navigate(R.id.action_businessAccount_01_02_to_businessAccount_01)
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.d("password", "비번번경 실패 ")
+                }
+            })
+        }
+
 
 
     private fun showDialog() {

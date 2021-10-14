@@ -241,7 +241,13 @@
         android:id="@+id/businessAccount_01_02"
         android:name="com.mapo.mapoten.ui.fragment.BusinessAccount_01_02"
         android:label="fragment_business_account_01_02"
-        tools:layout="@layout/fragment_business_account_01_02" />
+        tools:layout="@layout/fragment_business_account_01_02" >
+        <action
+            android:id="@+id/action_businessAccount_01_02_to_businessAccount_01"
+            app:destination="@id/businessAccount_01"
+            app:popUpTo="@id/businessAccount_01"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/businessAccount_01_03"
         android:name="com.mapo.mapoten.ui.fragment.BusinessAccount_01_03"
