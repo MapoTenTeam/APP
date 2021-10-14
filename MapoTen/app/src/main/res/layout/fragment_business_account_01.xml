@@ -30,7 +30,10 @@
 
                 <Button
                     android:id="@+id/backButton"
-                    style="@style/BackButtonStyle"
+                    android:textColor="@color/text_darkBlue"
+                    android:textSize="@dimen/text_16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab_mypage" />
