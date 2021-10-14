@@ -111,6 +111,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="234dp"
                         android:background="#50c4c4c4"
+                        android:layout_marginBottom="@dimen/margin_2"
                         android:backgroundTint="@color/white"
                         android:src="@drawable/banner_image1" />
 

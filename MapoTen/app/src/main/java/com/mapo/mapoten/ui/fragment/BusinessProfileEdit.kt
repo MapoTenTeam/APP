@@ -44,6 +44,8 @@ class BusinessProfileEdit : Fragment() {
     lateinit var service: AccountManageService
     private var selectedImageUri: Uri? = null
     private var filePath: String = ""
+    private var code = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +58,20 @@ class BusinessProfileEdit : Fragment() {
 
         binding.backButton.setOnClickListener {
             Navigation.findNavController(view).navigateUp()
+        }
+
+        binding.radioGroup.setOnCheckedChangeListener { _, i ->
+            code = when(i){
+                R.id.radio_button_1 -> {
+                    "10"
+                }
+                R.id.radio_button_2 -> {
+                    "20"
+                }
+                else -> {
+                    "30"
+                }
+            }
         }
 
         initiateLogoUpload()
@@ -226,13 +242,13 @@ class BusinessProfileEdit : Fragment() {
         val category = binding.businessCategoryText.text.toString()
         val empNum = binding.businessEmployeeNumberText.text.toString()
         val homepage = binding.businessWebsiteText.text.toString()
-
+        val code = code
         //모든 항목에 값이 있어야 통신되니까, 값이 없는 항목 처리해줘야함.
 
         val profile = UpdateBusinessProfileItems(
             compName,
             email,
-            category,
+            code,
             compName,
             compNum,
             ceoName,

@@ -16,6 +16,7 @@ data class BusinessProfileItems(
     val CEO_EMAIL_ADRES : String,
     val CMPNY_IM :String,
     val PROFILE_STTUS: Int,
-    val BSNNM_APRVL : String
+    val BSNNM_APRVL_CODE : String,
+    val BSNNM_APRVL_NAME : String
 
 )
