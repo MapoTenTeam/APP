@@ -22,6 +22,11 @@ class AppPrefs(context: Context) {
             prefs.edit().putString("type",value).apply()
         }
 
+    var login_state:Boolean
+        get() = prefs.getBoolean("login",false)
+        set(value){
+            prefs.edit().putBoolean("login",value).apply()
+        }
 
 
     fun logout() {
