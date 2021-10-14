@@ -64,7 +64,10 @@ class Login_01 : Fragment() {
                 if (!pwdRequiredFieldChecker()) {
                     return@setOnClickListener
                 }
+                App.prefs.loginState = autoLoginCheckBox.isChecked
                 login()
+
+
 
             } //로그인 성공시 홈화면으로 이동
             tvFindIdPersonal.setOnClickListener {
