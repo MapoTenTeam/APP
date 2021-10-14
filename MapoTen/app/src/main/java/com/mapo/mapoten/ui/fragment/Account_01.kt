@@ -53,7 +53,7 @@ class Account_01 : Fragment() {
             // 로그아웃
             //Log.d("로그아웃", "토큰1 ${AppPrefs.getToken(requireContext())}")
             AppPrefs(requireContext()).logout()
-            Navigation.findNavController(view).navigate(R.id.login_01)
+            Navigation.findNavController(view).navigate(R.id.action_account_01_to_login_01)
             Toast.makeText(requireContext(), "로그아웃 성공", Toast.LENGTH_SHORT).show()
             Log.d("로그아웃", "토큰2 ${App.prefs.token}")
         }
