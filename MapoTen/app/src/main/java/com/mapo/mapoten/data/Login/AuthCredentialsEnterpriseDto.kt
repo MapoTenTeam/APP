@@ -13,6 +13,8 @@ data class AuthCredentialsEnterpriseDto(
     val password: String,
     @SerializedName("APPLCNT_NM")  // 신청인명
     val name: String,
+    @SerializedName("BIZRNO")  // 사업자 등록번호
+    val bizrno: String,
     @SerializedName("EMAIL_VRFCT")  // 이메일 인증 여부
     val emailVrfct: Int,
     @SerializedName("TERMS")  // 이용약관 체크여부

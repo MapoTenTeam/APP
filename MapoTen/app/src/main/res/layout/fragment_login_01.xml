@@ -55,12 +55,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id_edit_text"
             style="@style/EditTextStyle"
-            android:paddingVertical="@dimen/padding_14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:hint="@string/id"
+            android:paddingVertical="@dimen/padding_14"
             android:singleLine="true"
             android:textSize="@dimen/text_14"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -80,25 +80,24 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/EditTextStyle"
             android:id="@+id/pwd_edit_text"
-            android:paddingVertical="@dimen/padding_14"
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/passWord"
             android:inputType="textPassword"
+            android:paddingVertical="@dimen/padding_14"
             android:textSize="@dimen/text_14"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
-        style="@style/btnStyle"
         android:id="@+id/btn_login"
+        style="@style/btnStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
-        android:text="@string/login"
-         />
+        android:text="@string/login" />
 
     <LinearLayout
 
@@ -122,12 +121,12 @@
 
         <TextView
             android:id="@+id/tv_findId_personal"
+            style="@style/text12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end|center"
             android:gravity="center"
-            android:text="@string/find_id_personal"
-            style="@style/text12"/>
+            android:text="@string/find_id_personal" />
 
         <TextView
             android:id="@+id/textView5"
@@ -141,31 +140,23 @@
             android:textSize="@dimen/text_12" />
 
         <TextView
-            android:id="@+id/tv_findId_business"
+            android:id="@+id/tv_find_pwd"
+            style="@style/text12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end|center"
             android:gravity="center"
-            android:text="@string/find_id_business"
-            style="@style/text12"/>
-    </LinearLayout>
+            android:text="@string/find_pwd" />
 
-    <TextView
-        android:id="@+id/tv_find_pwd"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_30"
-        android:layout_gravity="end"
-        android:text="@string/find_pwd"
-        style="@style/text12"/>
+    </LinearLayout>
 
 
     <Button
-        style="@style/btnStyle"
         android:id="@+id/btn_signUp_personal"
+        style="@style/btnStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
-        android:text="@string/signUp_personal_e"
-         />
+        android:text="@string/signUp_personal_e" />
 
 
     <LinearLayout
@@ -201,8 +192,8 @@
     </LinearLayout>
 
     <Button
-        style="@style/btnStyle"
         android:id="@+id/btn_signUp_business"
+        style="@style/btnStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
         android:text="@string/signUp_business_e" />
