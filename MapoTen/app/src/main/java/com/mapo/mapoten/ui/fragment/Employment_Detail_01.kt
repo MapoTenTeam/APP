@@ -356,10 +356,10 @@ class Employment_Detail_01 : Fragment(), OnMapReadyCallback {
         mapView.onSaveInstanceState(outState)
     }
 
-    override fun onStop() {
-        super.onStop()
-        mapView.onStop()
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        mapView.onStop()
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
