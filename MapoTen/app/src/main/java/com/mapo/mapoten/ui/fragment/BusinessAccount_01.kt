@@ -27,6 +27,8 @@ import com.mapo.mapoten.data.BusinessProfile
 import com.mapo.mapoten.data.BusinessProfileItems
 import com.mapo.mapoten.databinding.FragmentBusinessAccount01Binding
 import com.mapo.mapoten.service.AccountManageService
+import com.mapo.mapoten.system.AppPrefs
+import com.mapo.mapoten.ui.activity.App
 import com.mapo.mapoten.ui.activity.MainActivity
 import org.w3c.dom.Text
 import retrofit2.Call
@@ -66,14 +68,14 @@ class BusinessAccount_01 : Fragment() {
         } //기업프로필작성/수정  이동
 
         binding.personProfileButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.businessAccount_01_02)
+            Navigation.findNavController(view).navigate(R.id.action_businessAccount_01_to_businessAccount_01_02)
         } //회원 정보 수정으로 이동
         binding.passwordChangeButton.setOnClickListener {
             val bundle = bundleOf("cmpny_nm" to profile?.CMPNY_NM)
-            Navigation.findNavController(view).navigate(R.id.businessAccount_01_03, bundle)
+            Navigation.findNavController(view).navigate(R.id.action_businessAccount_01_to_businessAccount_01_03, bundle)
         } //비번 변경 이동
         binding.careerButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.businessAccount_01_04)
+            Navigation.findNavController(view).navigate(R.id.action_businessAccount_01_to_businessAccount_01_04)
         } //채용공고 목록 이동
 
        /* binding.backButton.setOnClickListener {
@@ -83,11 +85,10 @@ class BusinessAccount_01 : Fragment() {
 
         // logout 처리
         binding.logoutBtn.setOnClickListener {
-
+            AppPrefs(requireContext()).logout()
             // login 화면 이동
-            Navigation.findNavController(view).navigate(R.id.login_01)
+            Navigation.findNavController(view).navigate(R.id.action_businessAccount_01_to_login_01)
         }
-
 
 
         return view
@@ -150,7 +151,7 @@ class BusinessAccount_01 : Fragment() {
                     val bundle = bundleOf(
                         "cmpny_nm" to profile?.CMPNY_NM,
                         "bizrno" to profile?.BIZRNO)
-                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01_01,bundle)
+                    Navigation.findNavController(binding.root).navigate(R.id.action_businessAccount_01_to_businessAccount_01_01,bundle)
                 }
 
             }
@@ -172,7 +173,7 @@ class BusinessAccount_01 : Fragment() {
                     )
                     Log.d("bundle", "이미지주소!! : ${profile?.CMPNY_IM}")
                     Navigation.findNavController(binding.root)
-                        .navigate(R.id.businessProfileView, bundle)
+                        .navigate(R.id.action_businessAccount_01_to_businessProfileView, bundle)
                 }
 
             }
