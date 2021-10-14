@@ -232,6 +232,7 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
         binding.applyMethodValue.text = manufactureData(result.applyMethod)
         binding.testMethodValue.text = manufactureData(result.testMethod)
         binding.applyDocumentValue.text = manufactureData(result.applyDocument)
+        binding.endReceptionValue.text = result.endReception.substring(0, 10)
 
         // 채용 담당자 정보
         binding.contactNameValue.text = result.contactName
@@ -246,7 +247,7 @@ class BusinessAccountEmploymentDetail_01 : Fragment() {
 
     private fun manufactureData(data: ArrayList<CodeName>): String {
         var tmpText = ""
-        data.forEach { it ->
+        data.forEach {
             tmpText += "${it.codeName}, "
         }
 
