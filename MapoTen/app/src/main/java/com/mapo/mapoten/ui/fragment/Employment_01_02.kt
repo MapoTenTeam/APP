@@ -50,6 +50,7 @@ class Employment_01_02 : Fragment() {
         initialize()
 
         binding.searchBtn.setOnClickListener {
+            loading(true)
             searchTerm = binding.searchText.text.toString()
             getAllPosting(1, searchTerm)
         }
@@ -97,8 +98,14 @@ class Employment_01_02 : Fragment() {
     }
 
     private fun loading(isLoading: Boolean) {
-        if (isLoading) binding.loading.visibility = View.VISIBLE
-        else binding.loading.visibility = View.GONE
+        if (isLoading) {
+            binding.loading.visibility = View.VISIBLE
+            binding.jobPostingBoard.visibility = View.INVISIBLE
+        }
+        else {
+            binding.loading.visibility = View.GONE
+            binding.jobPostingBoard.visibility = View.VISIBLE
+        }
     }
 
     private fun getAllPosting(page: Int, searchTerm: String) {
