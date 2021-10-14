@@ -68,14 +68,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
                 android:isScrollContainer="false"
-                app:endIconMode="custom"
                 app:boxBackgroundMode="outline"
+                app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:expandedHintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    style="@style/EditTextStyle"
                     android:id="@+id/company_number_edit_text"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -127,9 +127,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/id_TiL"
                 style="@style/TextInputTheme"
-                android:layout_marginTop="@dimen/margin_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_6"
                 android:layout_weight="0.9"
                 android:isScrollContainer="false"
                 app:endIconMode="custom"
@@ -160,7 +160,6 @@
         </LinearLayout>
 
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_TiL"
             style="@style/TextInputTheme"
@@ -168,8 +167,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_6"
             android:isScrollContainer="false"
-            app:endIconMode="custom"
             app:boxBackgroundMode="outline"
+            app:endIconMode="custom"
             app:errorEnabled="true"
             app:expandedHintEnabled="false">
 
@@ -261,6 +260,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/passWord"
+                android:inputType="textPassword"
                 android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -284,19 +284,19 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/pwd_confirm"
+                android:inputType="textPassword"
                 android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <CheckBox
             android:id="@+id/all_checkBox"
+            style="@style/title_text16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/all_check_tos"
-            style="@style/title_text16"/>
+            android:text="@string/all_check_tos" />
 
 
         <LinearLayout

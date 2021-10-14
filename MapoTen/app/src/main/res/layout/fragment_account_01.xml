@@ -233,6 +233,7 @@
             android:id="@+id/myPage_button4_bottomLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:visibility="invisible"
             android:background="#F4F4F4"
             app:layout_constraintTop_toBottomOf="@+id/scrapList_button" />
 

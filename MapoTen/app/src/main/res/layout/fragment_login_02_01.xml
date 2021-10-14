@@ -46,7 +46,6 @@
             app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/name_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -54,6 +53,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/name"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,8 +67,8 @@
                 style="@style/TextInputTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
                 android:layout_marginTop="@dimen/margin_6"
+                android:layout_weight="0.9"
                 android:isScrollContainer="false"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
@@ -98,6 +98,7 @@
 
 
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_TiL"
             style="@style/TextInputTheme"
@@ -111,7 +112,6 @@
             app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/email_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -119,6 +119,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/email"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +161,6 @@
             app:expandedHintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:paddingVertical="@dimen/padding_14"
                 android:id="@+id/authentication_number_edit_text"
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
@@ -168,6 +168,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/authentication_number"
+                android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -199,6 +200,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/passWord"
+                android:inputType="textPassword"
                 android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -222,6 +224,7 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/pwd_confirm"
+                android:inputType="textPassword"
                 android:paddingVertical="@dimen/padding_14"
                 android:singleLine="true" />
 
@@ -229,10 +232,10 @@
 
         <CheckBox
             android:id="@+id/all_checkBox"
+            style="@style/title_text16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/all_check_tos"
-            style="@style/title_text16"/>
+            android:text="@string/all_check_tos" />
 
 
         <LinearLayout
@@ -248,12 +251,13 @@
 
             <TextView
                 android:id="@+id/tv_tos_title"
+                style="@style/tos_text14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_6"
                 android:layout_marginTop="@dimen/margin_6"
-                android:text="@string/tos"
-                style="@style/tos_text14" />
+                android:text="@string/tos" />
+
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
@@ -271,10 +275,10 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos1"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[필수] 마포잡 서비스 이용약관"
-                    style="@style/text12" />
+                    android:text="[필수] 마포잡 서비스 이용약관" />
 
                 <View
                     android:layout_width="0dp"
@@ -282,13 +286,13 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
@@ -308,11 +312,11 @@
 
                 <CheckBox
                     android:id="@+id/tv_tos2"
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="[필수] 개인정보 수집 및 이용약관"
-                    style="@style/text12"/>
+                    android:text="[필수] 개인정보 수집 및 이용약관" />
 
                 <View
                     android:layout_width="0dp"
@@ -320,13 +324,13 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    style="@style/text12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
                     android:layout_marginEnd="@dimen/margin_6"
                     android:gravity="center"
-                    android:text="@string/tos_look"
-                    style="@style/text12" />
+                    android:text="@string/tos_look" />
 
             </LinearLayout>
 
@@ -344,14 +348,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_membership_question"
+                style="@style/tos_text14"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_30"
-                style="@style/tos_text14"
                 android:text="@string/membership_question" />
 
             <TextView
@@ -364,36 +368,36 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_membership_business_question"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/size_30"
-            style="@style/tos_text14"
-            android:text="@string/membership_business_question" />
+            <TextView
+                android:id="@+id/tv_membership_business_question"
+                style="@style/tos_text14"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_30"
+                android:text="@string/membership_business_question" />
 
-        <TextView
-            android:id="@+id/tv_business_signUp"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/size_30"
-            android:layout_marginStart="@dimen/margin_10"
-            android:text="@string/signUp_business"
-            android:textColor="@color/main_skyBlue" />
+            <TextView
+                android:id="@+id/tv_business_signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_30"
+                android:layout_marginStart="@dimen/margin_10"
+                android:text="@string/signUp_business"
+                android:textColor="@color/main_skyBlue" />
 
-    </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_signup"
+            style="@style/btnStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_60"
-            android:text="@string/sign_up_description"
             android:layout_marginBottom="@dimen/margin_40"
-            style="@style/btnStyle" />
+            android:text="@string/sign_up_description" />
 
     </LinearLayout>
 

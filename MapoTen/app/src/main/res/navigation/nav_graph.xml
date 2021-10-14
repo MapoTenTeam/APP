@@ -19,12 +19,17 @@
         android:name="com.mapo.mapoten.ui.fragment.Employment_01"
         android:label="fragment_employment_01"
         tools:layout="@layout/fragment_employment_01">
+
         <action
             android:id="@+id/action_employment_01_to_employment_01_01"
-            app:destination="@id/employment_01_01" />
+            app:destination="@id/employment_01_01"
+            app:popUpTo="@id/employment_01_01"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_employment_01_to_employment_01_02"
-            app:destination="@id/employment_01_02" />
+            app:destination="@id/employment_01_02"
+            app:popUpTo="@id/employment_01_02"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/account_01"
@@ -33,16 +38,31 @@
         tools:layout="@layout/fragment_account_01">
         <action
             android:id="@+id/action_account_01_to_account_01_02"
-            app:destination="@id/account_01_02" />
+            app:destination="@id/account_01_02"
+            app:popUpTo="@id/account_01_02"
+            app:popUpToInclusive="true"
+            />
         <action
             android:id="@+id/action_account_01_to_account_01_03"
-            app:destination="@id/account_01_03" />
+            app:destination="@id/account_01_03"
+            app:popUpTo="@id/account_01_03"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_account_01_to_accountProfileView"
-            app:destination="@id/accountProfileView" />
+            app:destination="@id/accountProfileView"
+            app:popUpTo="@id/accountProfileView"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_account_01_to_accountCheckProfile"
-            app:destination="@id/accountCheckProfile" />
+            app:destination="@id/accountCheckProfile"
+            app:popUpTo="@id/accountCheckProfile"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_account_01_to_login_01"
+            app:destination="@id/login_01"
+            app:popUpTo="@id/login_01"
+            app:popUpToInclusive="true" />
+
     </fragment>
     <fragment
         android:id="@+id/login_01"
@@ -177,19 +197,34 @@
         tools:layout="@layout/fragment_business_account_01">
         <action
             android:id="@+id/action_businessAccount_01_to_businessAccount_01_01"
-            app:destination="@id/businessAccount_01_01" />
+            app:destination="@id/businessAccount_01_01"
+            app:popUpTo="@id/businessAccount_01_01"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_businessAccount_01_to_businessAccount_01_02"
-            app:destination="@id/businessAccount_01_02" />
+            app:destination="@id/businessAccount_01_02"
+            app:popUpTo="@id/businessAccount_01_02"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_businessAccount_01_to_businessAccount_01_03"
-            app:destination="@id/businessAccount_01_03" />
+            app:destination="@id/businessAccount_01_03"
+            app:popUpTo="@id/businessAccount_01_03"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_businessAccount_01_to_businessAccount_01_04"
-            app:destination="@id/businessAccount_01_04" />
+            app:destination="@id/businessAccount_01_04"
+            app:popUpTo="@id/businessAccount_01_04"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_businessAccount_01_to_businessProfileView"
-            app:destination="@id/businessProfileView" />
+            app:destination="@id/businessProfileView"
+            app:popUpTo="@id/businessProfileView"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_businessAccount_01_to_login_01"
+            app:destination="@id/login_01"
+            app:popUpTo="@id/login_01"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/businessAccount_01_01"
@@ -198,7 +233,9 @@
         tools:layout="@layout/fragment_business_account_01_01">
         <action
             android:id="@+id/action_businessAccount_01_01_to_businessProfile_01"
-            app:destination="@id/businessProfile_01" />
+            app:destination="@id/businessProfile_01"
+            app:popUpTo="@id/businessProfile_01"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/businessAccount_01_02"
@@ -217,7 +254,9 @@
         tools:layout="@layout/fragment_business_account_01_04">
         <action
             android:id="@+id/action_businessAccount_01_04_to_businessAccountEmploymentDetail_01"
-            app:destination="@id/businessAccountEmploymentDetail_01" />
+            app:destination="@id/businessAccountEmploymentDetail_01"
+            app:popUpTo="@id/businessAccountEmploymentDetail_01"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/employment_Detail_01"
@@ -242,7 +281,9 @@
         tools:layout="@layout/fragment_business_profile_view" >
         <action
             android:id="@+id/action_businessProfileView_to_businessProfileEdit"
-            app:destination="@id/businessProfileEdit" />
+            app:destination="@id/businessProfileEdit"
+            app:popUpTo="@id/businessProfileEdit"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/businessProfileEdit"
@@ -251,7 +292,9 @@
         tools:layout="@layout/fragment_business_profile_edit" >
         <action
             android:id="@+id/action_businessProfileEdit_to_businessAccount_01"
-            app:destination="@id/businessAccount_01" />
+            app:destination="@id/businessAccount_01"
+            app:popUpTo="@id/businessAccount_01"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/accountProfileView"
@@ -259,7 +302,9 @@
         android:label="AccountProfileView" >
         <action
             android:id="@+id/action_accountProfileView_to_account_01_01"
-            app:destination="@id/account_01_01" />
+            app:destination="@id/account_01_01"
+            app:popUpTo="@id/account_01_01"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/mypage_01"
@@ -267,11 +312,20 @@
         android:label="fragment_mypage_01"
         tools:layout="@layout/fragment_mypage_01" >
         <action
-            android:id="@+id/action_mypage_to_account_01"
-            app:destination="@id/account_01" />
+            android:id="@+id/action_mypage_01_to_account_01"
+            app:destination="@id/account_01"
+            app:popUpTo="@id/account_01"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_mypage_to_businessAccount_01"
-            app:destination="@id/businessAccount_01" />
+            android:id="@+id/action_mypage_01_to_businessAccount_01"
+            app:destination="@id/businessAccount_01"
+            app:popUpTo="@id/businessAccount_01"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mypage_01_to_login_01"
+            app:destination="@id/login_01"
+            app:popUpTo="@id/login_01"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/accountCheckProfile"
