@@ -60,46 +60,23 @@ class BusinessProfileEdit : Fragment() {
             Navigation.findNavController(view).navigateUp()
         }
 
-        binding.radioGroup.setOnCheckedChangeListener { _, i ->
-            code = when(i){
-                R.id.radio_button_1 -> {
-                    "10"
-                }
-                R.id.radio_button_2 -> {
-                    "20"
-                }
-                else -> {
-                    "30"
-                }
-            }
-        }
-
         initiateLogoUpload()
-       // initiateFileUpload()
+        // initiateFileUpload()
 
-        binding.businessNameText.setText(arguments?.getString("cmpny_nm"))
-        binding.businessNumberText.setText(arguments?.getString("bizrno"))
-        binding.ownerNameText.setText(arguments?.getString("ceo"))
-        binding.businessEmailText.setText(arguments?.getString("cmpny_email"))
-        binding.businessAddressText.setText(arguments?.getString("address"))
-        binding.businessAddressDetailText.setText(arguments?.getString("detailad"))
-        binding.businessCategoryText.setText(arguments?.getString("category"))
-        binding.businessEmployeeNumberText.setText(arguments?.getString("empNum"))
-        binding.businessWebsiteText.setText(arguments?.getString("webSite"))
-
-       // Glide.with(binding.imgBusinessLogoValue).load(img).into(binding.imgBusinessLogoValue)
-
-
+        initData()
+        checkBizCode()
 
 
         binding.businessSaveButton.setOnClickListener {
             val check = checkAllNotEmpty()
+
             if (check) {
                 if (selectedImageUri == null) {
                     Log.d("profile", "이미지없이 저장하기 눌럼")
                     addCompProfile()
 
                 } else {
+                    addCompProfile()
                     addCompImg()
                 }
             }else{
@@ -108,6 +85,7 @@ class BusinessProfileEdit : Fragment() {
         }
         return view
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -145,8 +123,22 @@ class BusinessProfileEdit : Fragment() {
         }
     }
 
+    private fun initData(){
+        binding.businessNameText.setText(arguments?.getString("cmpny_nm"))
+        binding.businessNumberText.setText(arguments?.getString("bizrno"))
+        binding.ownerNameText.setText(arguments?.getString("ceo"))
+        binding.businessEmailText.setText(arguments?.getString("cmpny_email"))
+        binding.businessAddressText.setText(arguments?.getString("address"))
+        binding.businessAddressDetailText.setText(arguments?.getString("detailad"))
+        binding.businessCategoryText.setText(arguments?.getString("category"))
+        binding.businessEmployeeNumberText.setText(arguments?.getString("empNum"))
+        binding.businessWebsiteText.setText(arguments?.getString("webSite"))
 
-    fun initiateLogoUpload() {
+        // Glide.with(binding.imgBusinessLogoValue).load(img).into(binding.imgBusinessLogoValue)
+
+    }
+
+    private fun initiateLogoUpload() {
         binding.iconImageUpload.setOnClickListener {
             when {
                 ContextCompat.checkSelfPermission(
@@ -156,7 +148,6 @@ class BusinessProfileEdit : Fragment() {
                     Log.d("logo", "1 번 진입")
                     //갤러리에서 사진 선택
                     navigatePhotos()
-
                 }
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE) -> {
                     //동의하라는 팝업
@@ -170,6 +161,22 @@ class BusinessProfileEdit : Fragment() {
                         1000
                     )
                     Log.d("logo", "3 번 진입")
+                }
+            }
+        }
+    }
+
+    private fun checkBizCode() {
+        binding.radioGroup.setOnCheckedChangeListener { _, i ->
+            code = when(i){
+                R.id.radio_button_1 -> {
+                    "10"
+                }
+                R.id.radio_button_2 -> {
+                    "20"
+                }
+                else -> {
+                    "30"
                 }
             }
         }
@@ -232,7 +239,7 @@ class BusinessProfileEdit : Fragment() {
     }
 
     private fun addCompProfile() {
-        Log.d("profile", "이미지없이 저장하기 눌림림2222222")
+        Log.d("profile", "이미지없이 저장하기 눌림-----------")
         val compName = binding.businessNameText.text.toString()
         val compNum = binding.businessNumberText.text.toString()
         val ceoName = binding.ownerNameText.text.toString()
@@ -242,13 +249,14 @@ class BusinessProfileEdit : Fragment() {
         val category = binding.businessCategoryText.text.toString()
         val empNum = binding.businessEmployeeNumberText.text.toString()
         val homepage = binding.businessWebsiteText.text.toString()
-        val code = code
+        val bizcode = code
+        Log.d("check", "이미지없이 저장 code : $bizcode")
         //모든 항목에 값이 있어야 통신되니까, 값이 없는 항목 처리해줘야함.
 
         val profile = UpdateBusinessProfileItems(
             compName,
             email,
-            code,
+            bizcode,
             compName,
             compNum,
             ceoName,
@@ -266,7 +274,11 @@ class BusinessProfileEdit : Fragment() {
                     val msg = response.message()
                     Log.d("profile 수정", "msg : $msg")
                     Toast.makeText(requireContext(), "수정 완료 되었습니다.", Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(binding.root).navigate(R.id.businessAccount_01)
+                    Navigation.findNavController(binding.root).navigate(R.id.action_businessProfileEdit_to_businessAccount_01)
+                }else {
+                    Log.d("check", "code : ${response.code()}")
+                    Log.d("check", "message : ${response.message()}")
+                    Log.d("check", "message : ${response.errorBody()?.string()}")
                 }
             }
 
@@ -278,8 +290,8 @@ class BusinessProfileEdit : Fragment() {
 
     }
 
-    fun checkAllNotEmpty():Boolean {
-        val textLayout = arrayListOf<Editable?>(binding.businessAddressDetailText.text,
+    private fun checkAllNotEmpty():Boolean {
+        val textInput = arrayListOf<Editable?>(
             binding.businessNameText.text,binding.businessNumberText.text,
             binding.ownerNameText.text,binding.businessEmailText.text,
             binding.businessAddressText.text,binding.businessAddressDetailText.text,
@@ -287,19 +299,19 @@ class BusinessProfileEdit : Fragment() {
             binding.businessWebsiteText.text
         )
 
-        val textInput = arrayListOf<TextInputLayout>(binding.businessAddress2,
+        val textLayout = arrayListOf<TextInputLayout>(
             binding.businessName,binding.businessValidNumber,binding.ownerName,
             binding.businessEmail,binding.businessAddress1, binding.businessAddress2,
             binding.businessCategory, binding.businessEmployeeNumber,binding.businessWebsite
         )
-        for(index in textLayout.indices){
+        for(index in textInput.indices){
             Log.d("id", "인덱스 : $index")
-            if(textLayout[index].isNullOrEmpty()){
-                textInput[index].error = "필수 입력사항 입니다."
-
+            if(textInput[index].isNullOrEmpty()){
+                textLayout[index].error = "필수 입력사항 입니다."
                 return false
+            }else{
+                textLayout[index].error = null
             }
-
         }
 
         return true
@@ -345,10 +357,6 @@ class BusinessProfileEdit : Fragment() {
                 }
             }
         }
-
-            /*if (cursor!!.moveToFirst()) {
-                columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            } cursor.getString(columnIndex)*/
 
             return filePath
         }
