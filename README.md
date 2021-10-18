@@ -1,11 +1,9 @@
 
-# MapoTen App
-마포텐 일자리 플랫폼 어플리케이션 입니다
-
-
-## 일자리 플랫폼 서비스
-
+# MapoTen App - 일자리 플랫폼 서비스
 마포고용복지지원센터가 클라이언트로 참여한 프로젝트 <일자리 플랫폼>입니다.
+<image src="https://user-images.githubusercontent.com/38373150/137691396-432e572e-975f-4e45-9599-60d4c1aa0fe7.gif" />
+
+
 
 ### 기획 의도
 1. 오프라인으로 진행 중인 구인, 구직 서비스를 온라인화.  
@@ -18,9 +16,9 @@
    
 ---
 ### 개발 목표
-
-
-
+1. JetPack Navigation을 사용하여 Fragment 전환 및 데이터 전송 사용
+2. 데이터는 Retrofit2를 사용하여 관게형 데이터 베이스 연동
+3. SecretKeyFactory 클래스 PBKDF2withHmacSHA256 알고리즘 암호화를 이용한 네트워크 통신 시 스니핑 방지
 ---
 ### 주요 기능
 > 로그인, 회원 가입
@@ -28,6 +26,10 @@
 - 비밀번호 암호화
 
 > 채용공고 조회 및 등록
+- 공공 및 일반 일자리 조회
+- 게시물 북마크 기능
+- 검색기능
+- Naver map API 사용
 
 > 사용자에따른(개인 or 기업) 동적 마이페이지
 - 기업 승인 여부, 채용공고 승인 여부 관리
@@ -37,4 +39,7 @@
 - 로그아웃
 
 ### 활용 라이브러리 
----
+--- 
+
+### 앱 다운로드
+[일자리플랫폼](https://drive.google.com/file/d/1A8wu7O69e_6yKgdE-SKEmTy4HR0w-kfp/view?usp=sharing)
