@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/margin_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/find_id_personal"
+        android:text="@string/find_id"
         style="@style/title_text20"/>
 
     <TextView

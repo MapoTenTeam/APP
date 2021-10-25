@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
+//        if (App.prefs.isLogined()){
+//
+//        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.login_01 ||
                 destination.id == R.id.login_02_01 ||

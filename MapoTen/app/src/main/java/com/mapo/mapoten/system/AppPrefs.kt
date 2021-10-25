@@ -28,13 +28,19 @@ class AppPrefs(context: Context) {
             prefs.edit().putBoolean("login",value).apply()
         }
 
+    fun isLogined() : Boolean {
+        return context.getSharedPreferences(prefNm, Application.MODE_PRIVATE)
+            .getBoolean("login", false)
+    }
 
     fun logout() {
         val editor = context.getSharedPreferences(prefNm, Application.MODE_PRIVATE)
         with(editor.edit()){
             //remove(TOKEN)
             clear()
-            commit()
+
+
+
             apply()
         }
 

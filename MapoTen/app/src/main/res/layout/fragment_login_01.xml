@@ -126,7 +126,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="end|center"
             android:gravity="center"
-            android:text="@string/find_id_personal" />
+            android:text="@string/find_id" />
 
         <TextView
             android:id="@+id/textView5"

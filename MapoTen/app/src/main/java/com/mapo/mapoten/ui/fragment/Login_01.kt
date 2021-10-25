@@ -109,7 +109,8 @@ class Login_01 : Fragment() {
 
             var textId = idEditText.text.toString()
             var textPwd = pwdEditText.text.toString()
-            Log.d("TAG", "클릭")
+            Log.d("TAG", " 자동 로그인 ${App.prefs.loginState}")
+
 
             val loginService = userService.requestLogin(LoginRequest(textId, hashSHA256(textPwd)))
             loginService.enqueue(object : Callback<LoginResponse> {
