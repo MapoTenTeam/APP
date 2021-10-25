@@ -116,12 +116,17 @@ class BusinessAccount_01_04 : Fragment() {
 
                     Log.d("employmentDetail", "resultDataList : $resultDataList")
 
-                    if (resultDataList != null) {
+                    if (resultDataList != null && resultDataList.size > 0) {
                         binding.emptyBoardGuide.visibility = View.GONE
                         binding.refreshLayout.visibility = View.VISIBLE
                         adapter.data = resultDataList
                         adapter.notifyDataSetChanged()
 
+                    } else if (resultDataList.size == 0) {
+                        Log.d("employmentDetail", "size xxxxx else")
+                        binding.refreshLayout.visibility = View.GONE
+                        binding.emptyBoardGuide.text = "조회된 내용이 없습니다."
+                        binding.emptyBoardGuide.visibility = View.VISIBLE
                     } else {
                         Log.d("employmentDetail", "size xxxxx else")
                         binding.emptyBoardGuide.visibility = View.VISIBLE
@@ -148,7 +153,10 @@ class BusinessAccount_01_04 : Fragment() {
 
     private fun getPosting(jobStat: String) {
 
-        if(resultDataList === null) {
+
+        Log.d("ENP", "businessAccount01_04 resultSize : ${resultDataList.size}")
+
+        if (resultDataList === null || resultDataList.size == 0) {
             binding.emptyBoardGuide.visibility = View.VISIBLE
             binding.refreshLayout.visibility = View.GONE
             return
@@ -160,9 +168,17 @@ class BusinessAccount_01_04 : Fragment() {
                 dataList.add(resultDataList[i])
             }
         }
-        adapter.data = dataList
-        adapter.notifyDataSetChanged()
 
+        if (dataList.size == 0) {
+            binding.emptyBoardGuide.visibility = View.VISIBLE
+            binding.refreshLayout.visibility = View.GONE
+            return
+        } else {
+            binding.emptyBoardGuide.visibility = View.GONE
+            binding.refreshLayout.visibility = View.VISIBLE
+            adapter.data = dataList
+            adapter.notifyDataSetChanged()
+        }
     }
 
 }

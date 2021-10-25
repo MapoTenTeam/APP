@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_24"
                 android:checked="true"
-                android:paddingHorizontal="@dimen/padding_2"
+                android:paddingHorizontal="@dimen/padding_8"
                 android:text="@string/business_employment_radio_all"
                 tools:ignore="TouchTargetSizeCheck" />
 
